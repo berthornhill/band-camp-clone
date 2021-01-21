@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import LoginForm from "./login_form_component";
 
 const mSTP = (state) => {
+  console.log("inside login for mSTP");
   return {
     user: {
       username: "",
@@ -13,6 +14,7 @@ const mSTP = (state) => {
 };
 
 function mDTP(dispatch) {
+  console.log("inside login mDTP");
   return {
     action: (user) => dispatch(login(user)),
   };

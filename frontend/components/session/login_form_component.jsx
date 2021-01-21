@@ -6,6 +6,7 @@ class LoginForm extends React.Component {
 
     this.state = props.user; //sets state to empty user and password
     this.handleSubmit = this.handleSubmit.bind(this);
+    console.log("inside login");
   }
 
   handleChange(value) {
@@ -23,15 +24,25 @@ class LoginForm extends React.Component {
         <h2>{this.props.formType}</h2>
         <label>
           Username
-          <input type="text" value={"username"} onChange={this.handleChange} />
+          <input
+            type="text"
+            value={this.state.username}
+            onChange={this.handleChange("username")}
+          />
         </label>
         <label>
-          Passsword
-          <input type="text" value={"password"} onChange={this.handleChange} />
+          Password
+          <input
+            type="password"
+            value={this.state.password}
+            onChange={this.handleChange("password")}
+          />
         </label>
-        <input type="submit">{this.props.formType}</input>
+        <input type="submit" value={this.props.formType} />
       </form>
     );
+
+    // return <h1>Forms a coming!~</h1>;
   }
 }
 

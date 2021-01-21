@@ -1,6 +1,6 @@
 import { signup } from "../../actions/session_actions";
 import { connect } from "react-redux";
-import SignupForm from "./login_form_component";
+import SignupForm from "./signup_form_component";
 
 const mSTP = (state) => {
   return {
@@ -8,6 +8,7 @@ const mSTP = (state) => {
       username: "",
       password: "",
       artist: "",
+      email: "",
     },
     formType: "signup",
   };

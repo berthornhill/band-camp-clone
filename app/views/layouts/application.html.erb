@@ -7,6 +7,22 @@
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+
+    <%= if current_user %>
+      <script>
+        window.currentUser = {
+          "user": {
+            "id": "<%= current_user.id %>",
+            "username": "<%= current_user.username %>"
+            },
+          "session": {
+            "id": "<%= current_user.id %>"
+          }
+        };
+      </script>
+    <%= end %>
+
+
   </head>
 
   <body>

@@ -1,1 +1,7 @@
+<script type="text/javascript">
+    window.currentUser = { id: <%= 
+    render("/api/users/user.json.jbuilder",
+    user: current_user).html_safe  %>
+    </script>
+
 <div id="root"><h1>dis broke</h1></div>

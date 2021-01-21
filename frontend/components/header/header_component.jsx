@@ -1,25 +1,21 @@
 // header should render the logo, "tag", search bard
 import React from "react";
+import { Link } from "react-router-dom";
 
-const Header = () => {
+const Header = (props) => {
+  debugger;
+  props.id = 
+  // let sessionLinks;
+  // // if (id)
+
   return (
     <div>
-      <ul>
-        <li>
-          <h2>BANDLAMP</h2>
-        </li>
-        <li>
-          <h3>Search Bar</h3>
-        </li>
-      </ul>
-      <ul>
-        <li>
-          <h3>signup link</h3>
-        </li>
-        <li>
-          <h3>sign in link</h3>
-        </li>
-      </ul>
+      <Link to="/">
+        <h1>Bandlamp: Spotlight On Your Favorite Music.</h1>
+      </Link>
+      <input type="text" placeholder="Search..." />
+      <Link to="/users/login">Log In</Link>
+      <Link to="/users/signup">Sign Up</Link>
     </div>
   );
 };
