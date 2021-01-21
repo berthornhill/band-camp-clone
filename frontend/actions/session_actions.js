@@ -20,6 +20,7 @@ const receiveErrors = (errors) => ({
 });
 
 export const signup = (user) => (dispatch) => {
+  debugger;
   return SessionUtil.signup(user).then(
     (user) => dispatch(recieveCurrentUser(user)),
     (errors) => dispatch(receiveErrors(errors))
@@ -27,6 +28,7 @@ export const signup = (user) => (dispatch) => {
 };
 
 export const login = (user) => (dispatch) => {
+  debugger;
   return SessionUtil.login(user).then(
     (user) => dispatch(recieveCurrentUser(user)),
     (errors) => dispatch(receiveErrors(errors))
@@ -34,6 +36,7 @@ export const login = (user) => (dispatch) => {
 };
 
 export const logout = () => (dispatch) => {
+  debugger;
   return SessionUtil.logout().then(
     () => dispatch(logoutCurrentUser()),
     (errors) => dispatch(receiveErrors(errors))

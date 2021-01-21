@@ -130,6 +130,7 @@ var receiveErrors = function receiveErrors(errors) {
 
 var signup = function signup(user) {
   return function (dispatch) {
+    debugger;
     return _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__["signup"](user).then(function (user) {
       return dispatch(recieveCurrentUser(user));
     }, function (errors) {
@@ -139,6 +140,7 @@ var signup = function signup(user) {
 };
 var login = function login(user) {
   return function (dispatch) {
+    debugger;
     return _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__["login"](user).then(function (user) {
       return dispatch(recieveCurrentUser(user));
     }, function (errors) {
@@ -148,6 +150,7 @@ var login = function login(user) {
 };
 var logout = function logout() {
   return function (dispatch) {
+    debugger;
     return _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__["logout"]().then(function () {
       return dispatch(logoutCurrentUser());
     }, function (errors) {
@@ -173,11 +176,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _components_root__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/root */ "./frontend/components/root.jsx");
 /* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./store/store */ "./frontend/store/store.js");
+/* harmony import */ var _util_session_api_util__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./util/session_api_util */ "./frontend/util/session_api_util.js");
+/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./actions/session_actions */ "./frontend/actions/session_actions.js");
 
 
 
+
+ //testing
+
+ //testing
 
 document.addEventListener("DOMContentLoaded", function () {
+  window.sessionUtil = _util_session_api_util__WEBPACK_IMPORTED_MODULE_4__;
+  window.sessionActions = _actions_session_actions__WEBPACK_IMPORTED_MODULE_5__; //testing
+
+  window.store = Object(_store_store__WEBPACK_IMPORTED_MODULE_3__["default"])(); //testing
+
   var store = Object(_store_store__WEBPACK_IMPORTED_MODULE_3__["default"])();
   var root = document.getElementById("root");
   react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_root__WEBPACK_IMPORTED_MODULE_2__["default"], {
@@ -205,9 +219,7 @@ __webpack_require__.r(__webpack_exports__);
  // import SessionContainer from "./session/session_container";
 
 var App = function App() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Bandlamp: Spotlight On Your Favorite Music."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_header_header_component__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
-    path: "/"
-  })));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Bandlamp: Spotlight On Your Favorite Music."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_header_header_component__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (App);
@@ -369,7 +381,7 @@ var SessionReducer = function SessionReducer() {
       });
 
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["LOGOUT_CURRENT_USER"]:
-      return Object.assing({});
+      return Object.assign({});
 
     default:
       return state;

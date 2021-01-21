@@ -8,9 +8,7 @@ const App = () => {
     <div>
       <h1>Bandlamp: Spotlight On Your Favorite Music.</h1>
       <Header />
-      <Switch>
-        <Route path="/"></Route>
-      </Switch>
+      <Switch>{/* <Route path="/"></Route> */}</Switch>
     </div>
   );
 };
