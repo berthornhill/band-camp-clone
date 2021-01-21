@@ -2,11 +2,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Header = (props) => {
+const Header = ({ currentUser, logout }) => {
   debugger;
-  props.id = 
+
   // let sessionLinks;
   // // if (id)
+
+  const sessionButtons = currentUser ? (
+    <div>
+      <button onClick={logout}>Log Out</button>
+    </div>
+  ) : (
+    <div>
+      <Link to="/users/login">Log In</Link>
+      <Link to="/users/signup">Sign Up</Link>
+    </div>
+  );
 
   return (
     <div>
@@ -14,8 +25,7 @@ const Header = (props) => {
         <h1>Bandlamp: Spotlight On Your Favorite Music.</h1>
       </Link>
       <input type="text" placeholder="Search..." />
-      <Link to="/users/login">Log In</Link>
-      <Link to="/users/signup">Sign Up</Link>
+      {sessionButtons}
     </div>
   );
 };

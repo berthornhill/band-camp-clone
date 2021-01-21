@@ -226,17 +226,21 @@ document.addEventListener("DOMContentLoaded", function () {
   window.store = Object(_store_store__WEBPACK_IMPORTED_MODULE_3__["default"])(); //testing
 
   var prelodedState = undefined;
+  var store;
 
   if (window.currentUser) {
     prelodedState = {
       entities: {
-        user: window.currentUser.user
+        users: window.currentUser.user
       },
       session: window.currentUser.session
     };
+    delete window.currentUser;
+    store = Object(_store_store__WEBPACK_IMPORTED_MODULE_3__["default"])(prelodedState);
+  } else {
+    store = Object(_store_store__WEBPACK_IMPORTED_MODULE_3__["default"])();
   }
 
-  var store = Object(_store_store__WEBPACK_IMPORTED_MODULE_3__["default"])();
   var root = document.getElementById("root");
   react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_root__WEBPACK_IMPORTED_MODULE_2__["default"], {
     store: store
@@ -256,7 +260,7 @@ document.addEventListener("DOMContentLoaded", function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _header_header_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./header/header_component */ "./frontend/components/header/header_component.jsx");
+/* harmony import */ var _header_header_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./header/header_container */ "./frontend/components/header/header_container.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _session_login_page_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./session/login_page_component */ "./frontend/components/session/login_page_component.jsx");
 /* harmony import */ var _splash_splash_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./splash/splash_component */ "./frontend/components/splash/splash_component.jsx");
@@ -271,7 +275,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var App = function App() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_header_header_component__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_header_header_container__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     exact: true,
     path: "/users/login",
     component: _session_login_page_component__WEBPACK_IMPORTED_MODULE_3__["default"]
@@ -294,9 +298,75 @@ var App = function App() {
   !*** ./frontend/components/header/header_component.jsx ***!
   \*********************************************************/
 /*! exports provided: default */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /home/bert/Study/appAcademy/final_projects/full_stack/bandcamp_clone/frontend/components/header/header_component.jsx: Unexpected token (11:2)\n\n\u001b[0m \u001b[90m  9 | \u001b[39m  \u001b[90m// // if (id)\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 10 | \u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 11 | \u001b[39m  \u001b[36mreturn\u001b[39m (\u001b[0m\n\u001b[0m \u001b[90m    | \u001b[39m  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 12 | \u001b[39m    \u001b[33m<\u001b[39m\u001b[33mdiv\u001b[39m\u001b[33m>\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 13 | \u001b[39m      \u001b[33m<\u001b[39m\u001b[33mLink\u001b[39m to\u001b[33m=\u001b[39m\u001b[32m\"/\"\u001b[39m\u001b[33m>\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 14 | \u001b[39m        \u001b[33m<\u001b[39m\u001b[33mh1\u001b[39m\u001b[33m>\u001b[39m\u001b[33mBandlamp\u001b[39m\u001b[33m:\u001b[39m \u001b[33mSpotlight\u001b[39m \u001b[33mOn\u001b[39m \u001b[33mYour\u001b[39m \u001b[33mFavorite\u001b[39m \u001b[33mMusic\u001b[39m\u001b[33m.\u001b[39m\u001b[33m<\u001b[39m\u001b[33m/\u001b[39m\u001b[33mh1\u001b[39m\u001b[33m>\u001b[39m\u001b[0m\n    at Object._raise (/home/bert/Study/appAcademy/final_projects/full_stack/bandcamp_clone/node_modules/@babel/parser/lib/index.js:748:17)\n    at Object.raiseWithData (/home/bert/Study/appAcademy/final_projects/full_stack/bandcamp_clone/node_modules/@babel/parser/lib/index.js:741:17)\n    at Object.raise (/home/bert/Study/appAcademy/final_projects/full_stack/bandcamp_clone/node_modules/@babel/parser/lib/index.js:735:17)\n    at Object.unexpected (/home/bert/Study/appAcademy/final_projects/full_stack/bandcamp_clone/node_modules/@babel/parser/lib/index.js:9101:16)\n    at Object.parseExprAtom (/home/bert/Study/appAcademy/final_projects/full_stack/bandcamp_clone/node_modules/@babel/parser/lib/index.js:10575:20)\n    at Object.parseExprAtom (/home/bert/Study/appAcademy/final_projects/full_stack/bandcamp_clone/node_modules/@babel/parser/lib/index.js:4763:20)\n    at Object.parseExprSubscripts (/home/bert/Study/appAcademy/final_projects/full_stack/bandcamp_clone/node_modules/@babel/parser/lib/index.js:10150:23)\n    at Object.parseUpdate (/home/bert/Study/appAcademy/final_projects/full_stack/bandcamp_clone/node_modules/@babel/parser/lib/index.js:10130:21)\n    at Object.parseMaybeUnary (/home/bert/Study/appAcademy/final_projects/full_stack/bandcamp_clone/node_modules/@babel/parser/lib/index.js:10119:17)\n    at Object.parseExprOps (/home/bert/Study/appAcademy/final_projects/full_stack/bandcamp_clone/node_modules/@babel/parser/lib/index.js:9989:23)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+// header should render the logo, "tag", search bard
+
+
+
+var Header = function Header(_ref) {
+  var currentUser = _ref.currentUser,
+      logout = _ref.logout;
+  debugger; // let sessionLinks;
+  // // if (id)
+
+  var sessionButtons = currentUser ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: logout
+  }, "Log Out")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/users/login"
+  }, "Log In"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/users/signup"
+  }, "Sign Up"));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Bandlamp: Spotlight On Your Favorite Music.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "text",
+    placeholder: "Search..."
+  }), sessionButtons);
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Header);
+
+/***/ }),
+
+/***/ "./frontend/components/header/header_container.js":
+/*!********************************************************!*\
+  !*** ./frontend/components/header/header_container.js ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _header_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./header_component */ "./frontend/components/header/header_component.jsx");
+/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
+
+
+ // debugger;
+
+var mSTP = function mSTP(state) {
+  debugger;
+  return {
+    currentUser: state.session.id
+  };
+};
+
+var mDTP = function mDTP(dispatch) {
+  debugger;
+  return {
+    logout: function logout() {
+      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__["logout"])());
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_header_component__WEBPACK_IMPORTED_MODULE_1__["default"]));
 
 /***/ }),
 
@@ -442,6 +512,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+debugger;
 
 var mSTP = function mSTP(state) {
   console.log("inside login for mSTP");

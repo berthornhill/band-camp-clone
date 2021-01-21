@@ -1,10 +1,19 @@
-import { connect } from "react-dom";
+import { connect } from "react-redux";
 import Header from "./header_component";
+import { logout } from "../../actions/session_actions";
 
-const mSTP = (state, ownProps) => {
+// debugger;
+const mSTP = (state) => {
+  debugger;
   return {
-    currentUser: state.entities.id,
+    currentUser: state.session.id,
   };
 };
 
-export default connect(mSTP)(Header);
+const mDTP = (dispatch) => {
+  debugger;
+  return {
+    logout: () => dispatch(logout()),
+  };
+};
+export default connect(mSTP, mDTP)(Header);

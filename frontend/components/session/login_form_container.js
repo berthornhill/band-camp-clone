@@ -2,6 +2,8 @@ import { login } from "../../actions/session_actions";
 import { connect } from "react-redux";
 import LoginForm from "./login_form_component";
 
+debugger;
+
 const mSTP = (state) => {
   console.log("inside login for mSTP");
   return {

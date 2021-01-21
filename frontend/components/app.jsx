@@ -1,5 +1,5 @@
 import React from "react";
-import HeaderContainer from "./header/header_component";
+import HeaderContainer from "./header/header_container";
 import { Route, Switch } from "react-router-dom";
 // import SessionContainer from "./session/session_container";
 
