@@ -1,0 +1,51 @@
+.login-nav {
+  background-color: #dddddd;
+  width: 100%;
+  height: 105px;
+  display: flex;
+  //   background-color: powderblue;
+  a {
+    width: 75%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 15%;
+  }
+}
+
+.login-form {
+  background-color: #f3f3f3;
+  height: 70vh;
+  width: 100%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 25px;
+  label {
+    padding-top: 20px;
+    padding-right: 10px;
+    display: flex;
+  }
+  input {
+    padding-top: 20;
+    padding-left: 10px;
+  }
+  .submit {
+    padding: 20px;
+    height: 20px;
+    width: 22%;
+    background-color: #00a1c6;
+  }
+}
+
+.form-type {
+  width: 100%;
+  height: 105px;
+  font-size: 20px;
+  background-color: blue;
+}
+// #fffcc8 yellow
+
+// #00a1c6 bluelight
+// #477987 blue dark

@@ -1,0 +1,77 @@
+.splash {
+  width: 100%;
+  // background-color: #222;
+  margin: auto;
+  strong {
+    font-weight: bold;
+  }
+}
+
+.feature-bg {
+  width: 100%;
+  background-color: #222;
+  height: 525px;
+}
+.featured {
+  width: 90%;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 70% 30%;
+}
+
+.top-story {
+  object-fit: cover;
+  width: 100%;
+  max-height: 100%;
+  grid-column: 1;
+  img {
+    width: 100%;
+    height: 525px;
+    object-fit: cover;
+  }
+}
+
+.trio-box {
+  grid-column: 2;
+  img {
+    width: 100%;
+    height: 175px;
+    object-fit: cover;
+  }
+}
+
+.album-carousel {
+}
+
+.dot-sales {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  height: 40px;
+  padding-top: 30px;
+  align-items: center;
+}
+
+.dot-left {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  display: inline-block;
+  background-image: linear-gradient(90deg, #e046ff, #168edf, #16c3ee);
+  margin-left: 10px;
+}
+.dot-right {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  display: inline-block;
+  background-image: linear-gradient(90deg, #16c3ee, #168edf, #e046ff);
+  margin-right: 10px;
+}
+
+.sales {
+  font-size: 25px;
+  strong {
+    font-weight: 900;
+  }
+}
