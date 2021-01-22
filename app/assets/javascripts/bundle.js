@@ -163,7 +163,6 @@ var receiveErrors = function receiveErrors(errors) {
 
 var signup = function signup(user) {
   return function (dispatch) {
-    debugger;
     return _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__["signup"](user).then(function (user) {
       return dispatch(recieveCurrentUser(user));
     }, function (errors) {
@@ -173,7 +172,6 @@ var signup = function signup(user) {
 };
 var login = function login(user) {
   return function (dispatch) {
-    debugger;
     return _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__["login"](user).then(function (user) {
       return dispatch(recieveCurrentUser(user));
     }, function (errors) {
@@ -183,7 +181,6 @@ var login = function login(user) {
 };
 var logout = function logout() {
   return function (dispatch) {
-    debugger;
     return _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__["logout"]().then(function () {
       return dispatch(logoutCurrentUser());
     }, function (errors) {
