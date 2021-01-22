@@ -321,9 +321,8 @@ __webpack_require__.r(__webpack_exports__);
 var NavBar = function NavBar(_ref) {
   var currentUser = _ref.currentUser,
       logout = _ref.logout;
-  debugger; // let sessionLinks;
+  // let sessionLinks;
   // // if (id)
-
   var sessionButtons = currentUser ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: logout
   }, "Log Out")) : [/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
@@ -376,17 +375,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
 
 
- // debugger;
+
 
 var mSTP = function mSTP(state) {
-  debugger;
   return {
     currentUser: state.session.id
   };
 };
 
 var mDTP = function mDTP(dispatch) {
-  debugger;
   return {
     logout: function logout() {
       return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__["logout"])());
@@ -479,7 +476,6 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
     _this.state = props.user; //sets state to empty user and password
 
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
-    console.log("inside login");
     return _this;
   }
 
@@ -547,10 +543,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-debugger;
 
 var mSTP = function mSTP(state) {
-  console.log("inside login for mSTP");
   return {
     user: {
       username: "",
@@ -561,7 +555,6 @@ var mSTP = function mSTP(state) {
 };
 
 function mDTP(dispatch) {
-  console.log("inside login mDTP");
   return {
     action: function action(user) {
       return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["login"])(user));
@@ -745,6 +738,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _signup_form_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./signup_form_component */ "./frontend/components/session/signup_form_component.jsx");
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+
 
 
 
@@ -765,6 +760,9 @@ function mDTP(dispatch) {
   return {
     action: function action(user) {
       return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["signup"])(user));
+    },
+    removeodal: function removeodal() {
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["removeModal"])());
     }
   };
 }

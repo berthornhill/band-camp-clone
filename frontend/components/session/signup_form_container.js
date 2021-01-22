@@ -1,6 +1,7 @@
 import { signup } from "../../actions/session_actions";
 import { connect } from "react-redux";
 import SignupForm from "./signup_form_component";
+import { removeModal } from "../../actions/modal_actions";
 
 const mSTP = (state) => {
   return {
@@ -17,6 +18,7 @@ const mSTP = (state) => {
 function mDTP(dispatch) {
   return {
     action: (user) => dispatch(signup(user)),
+    removeodal: () => dispatch(removeModal()),
   };
 }
 

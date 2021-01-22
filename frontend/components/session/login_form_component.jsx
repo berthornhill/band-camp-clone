@@ -6,7 +6,6 @@ class LoginForm extends React.Component {
 
     this.state = props.user; //sets state to empty user and password
     this.handleSubmit = this.handleSubmit.bind(this);
-    console.log("inside login");
   }
 
   handleChange(value) {

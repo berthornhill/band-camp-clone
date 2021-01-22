@@ -1,5 +1,5 @@
 import React from "react";
-import LoginFormContainer from "../session/login_form_component";
+import SignupContainer from "../session/signup_form_container";
 
 function Modal({ open, closeModal }) {
   if (!modal) {
@@ -9,7 +9,7 @@ function Modal({ open, closeModal }) {
   let component;
   switch (modal) {
     case "signup":
-      component = <LoginFormContainer />;
+      component = <SignupContainer />;
       break;
     default:
       return null;
