@@ -1,3 +1,8 @@
 
 
 <div id="root"><h1>dis broke</h1></div>
+
+<%# bootstraps an image/asset to the window so it can be passed to heroku in compile %>
+<script type="text/javascript">
+    window.logo="<%= image_url('bl_logo.png')%>"
+</script>

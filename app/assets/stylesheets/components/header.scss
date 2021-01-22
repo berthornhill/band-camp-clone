@@ -1,0 +1,22 @@
+.header {
+  width: 100%;
+  height: 105px;
+  position: fixed;
+  display: flex;
+  background-color: lightcoral;
+}
+
+.logo {
+  box-sizing: inherit;
+  justify-content: center;
+}
+
+.header-left {
+  display: flex;
+  justify-content: left;
+}
+
+.header-right {
+  display: flex;
+  justify-content: right;
+}

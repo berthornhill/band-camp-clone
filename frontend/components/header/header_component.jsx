@@ -20,12 +20,16 @@ const Header = ({ currentUser, logout }) => {
   );
 
   return (
-    <div>
-      <Link to="/">
-        <h1>Bandlamp: Spotlight On Your Favorite Music.</h1>
-      </Link>
-      <input type="text" placeholder="Search..." />
-      {sessionButtons}
+    <div className="header">
+      <div className="header-right">
+        <Link to="/">
+          <img src={window.logo} alt="bandlamp logo" id="logo" />
+        </Link>
+      </div>
+      <div className="header-right">
+        <input type="text" placeholder="Search..." />
+        {sessionButtons}
+      </div>
     </div>
   );
 };
