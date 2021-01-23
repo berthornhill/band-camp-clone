@@ -1,6 +1,6 @@
 import React from "react";
 import NavBarContainer from "./header/navbar_container";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect, useHistory } from "react-router-dom";
 // import SessionContainer from "./session/session_container";
 
 import LoginPage from "./session/login_page_component";
