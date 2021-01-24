@@ -9,9 +9,13 @@ const WelcomeModal = ({ removeModal }) => {
   return (
     <div className="modal-container">
       <div className="welcome">
-        <div className="message">
-          <h2>Sign up for a Bandlamp account</h2>
-          <img src={window.lightSwitch} onClick={() => removeModal()} />
+        <div className="modal-header">
+          <div className="message">
+            <h2>Sign up for a Bandlamp account</h2>
+          </div>
+          <div className="switch">
+            <img src={window.lightSwitch} onClick={() => removeModal()} />
+          </div>
         </div>
         <ul className="accounts">
           <li className="artist">
