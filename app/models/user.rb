@@ -36,4 +36,14 @@ class User < ApplicationRecord
         self.session_token
     end
 
+    # associations
+
+    has_many :albums,
+    class_name: :Album,
+    primary_key: :id,
+    foreign_key: :artist_id
+
+    has_many :tracks, through: :albums
+
+
 end
