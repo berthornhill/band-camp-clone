@@ -4,7 +4,7 @@ import LoginForm from "./login_form_component";
 import { removeModal } from "../../actions/modal_actions";
 
 const mSTP = (state, ownProps) => {
-  debugger;
+  // debugger;
   let user;
   ownProps.location.type
     ? (user = { username: "demo", password: "testpassword" })

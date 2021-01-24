@@ -40,7 +40,7 @@ export const signup = (user) => (dispatch) => {
 };
 
 export const login = (user) => (dispatch) => {
-  debugger;
+  // debugger;
   return SessionUtil.login(user).then(
     (user) => dispatch(recieveCurrentUser(user)),
     (errors) => dispatch(receiveErrors(errors.responseJSON))

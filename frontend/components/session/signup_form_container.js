@@ -4,7 +4,7 @@ import SignupForm from "./signup_form_component";
 import { removeModal } from "../../actions/modal_actions";
 
 const mSTP = (state, ownProps) => {
-  debugger;
+  // debugger;
   return {
     user: {
       username: "",

@@ -10,6 +10,7 @@ import Splash from "./splash/splash_component";
 import SignupForm from "./session/signup_form_container";
 import { AuthRoute } from "../util/route_util";
 import Modal from "./modal/modal_container";
+import Footer from "./footer/footer";
 
 const App = () => {
   return (
@@ -27,6 +28,8 @@ const App = () => {
 
         <Route path="/" component={Splash} />
       </Switch>
+
+      <Footer />
     </div>
   );
 };

@@ -6,7 +6,7 @@ const NavBar = ({ currentUser, logout, openModal }) => {
   // let sessionLinks;
   // // if (id)
 
-  debugger;
+  // debugger;
 
   const sessionButtons = currentUser ? (
     <div>
@@ -42,20 +42,22 @@ const NavBar = ({ currentUser, logout, openModal }) => {
         </div>
       </div>
       <div className="nav-right">
-        <div>
+        <div className="search-bar">
           <input
             type="text"
             placeholder="Search and discover music"
-            className="search-bar"
+            className="search-field"
           />
-          <img src={window.search} alt="search icon" className="search-icon" />
+          <img src={window.bulb} alt="search icon" className="search-icon" />
         </div>
-        <ul>
-          <li>
-            <span className="grad-text"> Hire Me!</span>
-          </li>
-          {sessionButtons}
-        </ul>
+        <div className="nav-links">
+          <ul>
+            <li>
+              <span className="grad-text"> Hire Me!</span>
+            </li>
+            {sessionButtons}
+          </ul>
+        </div>
       </div>
     </div>
   );
