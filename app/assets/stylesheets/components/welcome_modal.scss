@@ -13,24 +13,39 @@
   align-items: center;
   margin: auto;
 
-  .message {
-    display: inline-block;
+  .modal-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     width: 100%;
-    padding-top: 20px;
+    padding-top: 0px;
     height: 40px;
     font-size: 20px;
     background-color: #d6d6d6;
-    h2 {
-      display: inline-block;
-      position: fixed;
-      font-weight: bold;
-      font-size: 20px;
+
+    .message {
+      width: 100%;
+      text-align: center;
+      h2 {
+        display: block;
+        padding-left: 100px;
+        font-weight: bold;
+        font-size: 20px;
+      }
     }
-    img {
-      display: inline-block;
-      height: 40px;
-      float: right;
-      position: relative;
+    .switch {
+      img {
+        display: inline-block;
+        width: 50px;
+        height: 40px;
+        float: right;
+        padding-right: 5px;
+        transform: rotate(180deg);
+      }
+    }
+    .switch:hover {
+      cursor: pointer;
+      background-color: rgba(161, 161, 75, 0.692);
     }
   }
 
