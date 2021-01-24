@@ -9,16 +9,25 @@ class SignupForm extends React.Component {
   }
 
   handleChange(value) {
-    return (e) => this.setState({ [value]: e.target.value });
-    this.props.clearErrors();
+    return (e) => {
+      this.setState({ [value]: e.target.value });
+      this.props.clearErrors();
+      // debugger;
+    };
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.action(this.state).then(this.props.removeModal());
+    this.props.action(this.state);
   }
+
+  // life cycle methods //
+
   componentWillUnmount() {
     this.props.clearErrors();
+  }
+  componentDidMount() {
+    this.props.removeModal();
   }
 
   render() {
@@ -33,49 +42,69 @@ class SignupForm extends React.Component {
     errors ? (withErrors = "errors") : "";
 
     return (
-      <form onSubmit={this.handleSubmit} className="signup-form">
-        <div className="form-type">
-          <h2>Sign up for a Bandlamp account</h2>
-        </div>
-        <label>
-          Artist/Band
-          <input
-            type="text"
-            value={this.state.artist}
-            onChange={this.handleChange("artist")}
-            className={withErrors}
-          />
-        </label>
-        <label>
-          Username
-          <input
-            type="text"
-            value={this.state.username}
-            onChange={this.handleChange("username")}
-            className={withErrors}
-          />
-        </label>
-        <label>
-          Email
-          <input
-            type="text"
-            value={this.state.email}
-            onChange={this.handleChange("email")}
-            className={withErrors}
-          />
-        </label>
-        <label>
-          Passsword
-          <input
-            type="password"
-            value={this.state.password}
-            onChange={this.handleChange("password")}
-            className={withErrors}
-          />
-        </label>
-        <span>{errors}</span>
-        <input type="submit" value={this.props.formType} className="submit" />
-      </form>
+      <div className="form-outer">
+        <form onSubmit={this.handleSubmit} className="login-form">
+          <div className="form-type">
+            <h2>Sign up for a Bandlamp account</h2>
+          </div>
+          <div className="form-inputs">
+            <div className="item">
+              <label>Artist/Band</label>
+              <div>
+                <input
+                  type="text"
+                  value={this.state.artist}
+                  onChange={this.handleChange("artist")}
+                  className={withErrors}
+                />
+              </div>
+            </div>
+            <div className="item">
+              <label>Username</label>
+              <div>
+                <input
+                  type="text"
+                  value={this.state.username}
+                  onChange={this.handleChange("username")}
+                  className={withErrors}
+                />
+              </div>
+            </div>
+            <div className="item">
+              <label>Email</label>
+              <div>
+                <input
+                  type="text"
+                  value={this.state.email}
+                  onChange={this.handleChange("email")}
+                  className={withErrors}
+                />
+              </div>
+            </div>
+            <div className="item">
+              <label>Passsword</label>
+              <div>
+                <input
+                  type="password"
+                  value={this.state.password}
+                  onChange={this.handleChange("password")}
+                  className={withErrors}
+                />
+              </div>
+            </div>
+            <div className="errors-render">
+              <span>{errors}</span>
+            </div>
+          </div>
+          <div className="submit-button">
+            <input
+              type="submit"
+              value={this.props.formType}
+              className="submit"
+            />
+          </div>
+        </form>
+      </div>
     );
   }
 }

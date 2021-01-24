@@ -28,8 +28,14 @@ class LoginForm extends React.Component {
     //   this.props.history.push("/");
   }
 
+  // life cycle methods //
+
   componentWillUnmount() {
     this.props.clearErrors();
+  }
+
+  componentDidMount() {
+    this.props.removeModal();
   }
 
   render() {
@@ -44,31 +50,45 @@ class LoginForm extends React.Component {
     errors ? (withErrors = "errors") : "";
 
     return (
-      <div className="wrapper">
+      <div className="form-outer">
         <form onSubmit={this.handleSubmit} className="login-form">
           <div className="form-type">
             <h2>{this.props.formType}</h2>
           </div>
-          <label>
-            Username
+          <div className="form-inputs">
+            <div className="item">
+              <label>Username</label>
+              <div>
+                <input
+                  type="text"
+                  value={this.state.username}
+                  onChange={this.handleChange("username")}
+                  className={withErrors}
+                />
+              </div>
+            </div>
+            <div className="item">
+              <label>Password</label>
+              <div>
+                <input
+                  type="password"
+                  value={this.state.password}
+                  onChange={this.handleChange("password")}
+                  className={withErrors}
+                />
+              </div>
+            </div>
+            <div className="errors-render">
+              <span>{errors}</span>
+            </div>
+          </div>
+          <div className="submit-button">
             <input
-              type="text"
-              value={this.state.username}
-              onChange={this.handleChange("username")}
-              className={withErrors}
+              className="submit"
+              type="submit"
+              value={this.props.formType}
             />
-          </label>
-          <label>
-            Password
-            <input
-              type="password"
-              value={this.state.password}
-              onChange={this.handleChange("password")}
-              className={withErrors}
-            />
-          </label>
-          <span>{errors}</span>
-          <input className="submit" type="submit" value={this.props.formType} />
+          </div>
         </form>
       </div>
     );

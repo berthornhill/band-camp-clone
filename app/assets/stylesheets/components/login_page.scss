@@ -13,14 +13,16 @@
   }
 }
 
-.wrapper {
+.form-outer {
   background-color: #f3f3f3;
   height: 70vh;
   display: block;
+  padding-top: 25px;
 }
 
 .login-form {
   width: 650px;
+  height: auto;
   margin: auto;
   display: flex;
   flex-direction: column;
@@ -42,38 +44,85 @@
     // align-items: center;
   }
 
-  label,
-  input {
-    // display: block;
+  .form-inputs {
+    padding-top: 20px;
     display: flex;
-    flex-grow: 1;
-    // padding-top: 20px;
-    // padding-right: 10px;
-    // display: flex;
-    // align-items: center;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
   }
-  input {
-    // padding-top: 20;
-    // padding-left: 10px;
-    margin-bottom: 20px;
-    height: 20px;
-    border-style: outset;
-    border: 1px solid #dddddd;
-  }
-  label {
-    padding-top: 10px;
-  }
-  .submit {
-    padding: 20px;
-    height: auto;
-    width: 185px;
 
-    background-color: #00a1c6;
-    color: white;
-    font-size: 20px;
-    font-weight: bold;
-    border: none;
+  .item {
+    display: block;
+    width: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    label {
+      display: inline-block;
+      width: 155px;
+      text-align: right;
+      margin-top: 8px;
+      vertical-align: top;
+      font-size: 18px;
+      margin-right: 16px;
+    }
+    div {
+      width: 300px;
+      display: inline-block;
+      margin-right: 175px;
+      vertical-align: top;
+    }
+    input {
+      height: 35px;
+      background: #fff;
+      color: #333;
+      outline: none;
+      width: 100%;
+      border: 1px solid #ccc;
+
+      margin: 0;
+      font-size: 16px;
+    }
   }
+  .submit-button {
+    padding-top: 20px;
+    height: 35px;
+    width: 306px;
+    display: flex;
+    input {
+      font-size: 18;
+      font-weight: 900;
+      color: white;
+      background-color: #00a1c6;
+      border-style: none;
+      flex-grow: 1;
+    }
+  }
+
+  // input {
+  //   // // padding-top: 20;
+  //   // padding-left: 10px;
+  //   // margin-bottom: 20px;
+  //   // height: 35px;
+  //   // border-style: outset;
+  //   // border: 1px solid #dddddd;
+  // }
+  // label {
+  //   padding-top: 10px;
+  //   // padding-right: 20px;
+  // }
+  // .submit {
+  //   padding: 20px;
+  //   height: auto;
+  //   width: 185px;
+
+  //   background-color: #00a1c6;
+  //   color: white;
+  //   font-size: 20px;
+  //   font-weight: bold;
+  //   border: none;
+  // }
 }
 
 .errors {

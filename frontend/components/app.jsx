@@ -17,6 +17,7 @@ const App = () => {
       <Modal />
       <Switch>
         <Route exact path="/users/login" component={LoginNav} />
+        <Route exact path="/users/signup" component={LoginNav} />
         <Route path="/" component={NavBarContainer} />
       </Switch>
 
