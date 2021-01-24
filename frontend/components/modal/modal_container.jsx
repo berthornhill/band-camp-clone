@@ -1,5 +1,5 @@
 import { openModal, removeModal } from "../../actions/modal_actions";
-import { connect } from "react-dom";
+import { connect } from "react-redux";
 import Modal from "./modal_component";
 
 const mSTP = (state) => {
@@ -11,7 +11,7 @@ const mSTP = (state) => {
 const mDTP = (dispatch) => {
   return {
     openModal: (component) => dispatch(openModal(component)),
-    closeModal: () => dispatch(closeModal()),
+    removeModal: () => dispatch(removeModal()),
   };
 };
 

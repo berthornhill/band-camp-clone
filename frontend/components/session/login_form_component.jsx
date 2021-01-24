@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useImperativeHandle } from "react";
+import { useHistory } from "react-router-dom";
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -9,42 +10,68 @@ class LoginForm extends React.Component {
   }
 
   handleChange(value) {
-    return (e) => this.setState({ [value]: e.target.value });
+    return (e) => {
+      this.setState({ [value]: e.target.value });
+      this.props.clearErrors();
+      // debugger;
+    };
   }
 
   handleSubmit(e) {
     e.preventDefault();
     this.props.action(this.state);
-    this.setState({ password: "" });
+    // this.setState({ password: "" });
+    // debugger;
+    // if (this.props.errors) {
+    //   this.renderErrors();
+    // } else {
+    //   this.props.history.push("/");
+  }
+
+  componentWillUnmount() {
+    this.props.clearErrors();
   }
 
   render() {
-    return (
-      <form onSubmit={this.handleSubmit} className="login-form">
-        <div classname="form-type">
-          <h2>{this.props.formType}</h2>
-        </div>
-        <label>
-          Username
-          <input
-            type="text"
-            value={this.state.username}
-            onChange={this.handleChange("username")}
-          />
-        </label>
-        <label>
-          Password
-          <input
-            type="password"
-            value={this.state.password}
-            onChange={this.handleChange("password")}
-          />
-        </label>
-        <input className="submit" type="submit" value={this.props.formType} />
-      </form>
-    );
+    debugger;
 
-    // return <h1>Forms a coming!~</h1>;
+    const errors = this.props.errors.map((error) => {
+      return <p className="error">{error}</p>;
+    });
+
+    let withErrors;
+    //add css selector with errors.
+    errors ? (withErrors = "errors") : "";
+
+    return (
+      <div className="wrapper">
+        <form onSubmit={this.handleSubmit} className="login-form">
+          <div className="form-type">
+            <h2>{this.props.formType}</h2>
+          </div>
+          <label>
+            Username
+            <input
+              type="text"
+              value={this.state.username}
+              onChange={this.handleChange("username")}
+              className={withErrors}
+            />
+          </label>
+          <label>
+            Password
+            <input
+              type="password"
+              value={this.state.password}
+              onChange={this.handleChange("password")}
+              className={withErrors}
+            />
+          </label>
+          <span>{errors}</span>
+          <input className="submit" type="submit" value={this.props.formType} />
+        </form>
+      </div>
+    );
   }
 }
 

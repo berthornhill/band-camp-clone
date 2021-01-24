@@ -2,9 +2,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const NavBar = ({ currentUser, logout }) => {
+const NavBar = ({ currentUser, logout, openModal }) => {
   // let sessionLinks;
   // // if (id)
+
+  debugger;
 
   const sessionButtons = currentUser ? (
     <div>
@@ -16,7 +18,9 @@ const NavBar = ({ currentUser, logout }) => {
         <Link to="/users/login">Log In</Link>
       </li>,
       <li>
-        <Link to="/users/signup">Sign Up</Link>
+        <Link to="" onClick={() => openModal()}>
+          Sign Up
+        </Link>
       </li>,
     ]
   );
