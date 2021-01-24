@@ -1,0 +1,32 @@
+.footer {
+  width: 100%;
+  height: 350px;
+  background-color: #477987;
+  color: white;
+  font-size: 20px;
+  .outer-link-container {
+    width: 85%;
+    margin: auto;
+  }
+
+  a {
+    color: white;
+  }
+  .inner-link-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 50px;
+
+    li {
+      padding-top: 10px;
+    }
+  }
+
+  .link-column1 {
+  }
+  .link-column2 {
+  }
+  .link-column3 {
+  }
+}

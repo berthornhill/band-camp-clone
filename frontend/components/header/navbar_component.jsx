@@ -2,9 +2,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const NavBar = ({ currentUser, logout }) => {
+const NavBar = ({ currentUser, logout, openModal }) => {
   // let sessionLinks;
   // // if (id)
+
+  // debugger;
 
   const sessionButtons = currentUser ? (
     <div>
@@ -16,7 +18,9 @@ const NavBar = ({ currentUser, logout }) => {
         <Link to="/users/login">Log In</Link>
       </li>,
       <li>
-        <Link to="/users/signup">Sign Up</Link>
+        <Link to="" onClick={() => openModal()}>
+          Sign Up
+        </Link>
       </li>,
     ]
   );
@@ -38,20 +42,22 @@ const NavBar = ({ currentUser, logout }) => {
         </div>
       </div>
       <div className="nav-right">
-        <div>
+        <div className="search-bar">
           <input
             type="text"
             placeholder="Search and discover music"
-            className="search-bar"
+            className="search-field"
           />
-          <img src={window.search} alt="search icon" className="search-icon" />
+          <img src={window.bulb} alt="search icon" className="search-icon" />
         </div>
-        <ul>
-          <li>
-            <span className="grad-text"> Hire Me!</span>
-          </li>
-          {sessionButtons}
-        </ul>
+        <div className="nav-links">
+          <ul>
+            <li>
+              <span className="grad-text"> Hire Me!</span>
+            </li>
+            {sessionButtons}
+          </ul>
+        </div>
       </div>
     </div>
   );
