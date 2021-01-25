@@ -68,17 +68,19 @@ const AlbumCarousel = () => {
   );
 
   return (
-    <div className="album-carousel">
-      <ul>
-        {album1}
-        {album2}
-        {album3}
-        {album4}
-        {album5}
-        {album2}
-        {album3}
-        {album4}
-      </ul>
+    <div className="album-carousel-outer">
+      <div className="album-carousel">
+        <ul>
+          {album1}
+          {album2}
+          {album3}
+          {album4}
+          {album5}
+          {album2}
+          {album3}
+          {album4}
+        </ul>
+      </div>
     </div>
   );
 };

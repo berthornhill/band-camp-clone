@@ -1,5 +1,6 @@
 import React, { useImperativeHandle } from "react";
 import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -51,45 +52,59 @@ class LoginForm extends React.Component {
 
     return (
       <div className="form-outer">
-        <form onSubmit={this.handleSubmit} className="login-form">
-          <div className="form-type">
-            <h2>{this.props.formType}</h2>
-          </div>
-          <div className="form-inputs">
-            <div className="item">
-              <label>Username</label>
-              <div>
-                <input
-                  type="text"
-                  value={this.state.username}
-                  onChange={this.handleChange("username")}
-                  className={withErrors}
-                />
+        <div className="form-inner-container">
+          <form onSubmit={this.handleSubmit} className="login-form">
+            <div className="form-type">
+              <h2>{this.props.formType}</h2>
+            </div>
+            <div className="form-inputs">
+              <div className="item">
+                <label>Username</label>
+                <div>
+                  <input
+                    type="text"
+                    value={this.state.username}
+                    onChange={this.handleChange("username")}
+                    className={withErrors}
+                  />
+                </div>
+              </div>
+              <div className="item">
+                <label>Password</label>
+                <div>
+                  <input
+                    type="password"
+                    value={this.state.password}
+                    onChange={this.handleChange("password")}
+                    className={withErrors}
+                  />
+                </div>
+              </div>
+              <div className="errors-render">
+                <span>{errors}</span>
               </div>
             </div>
-            <div className="item">
-              <label>Password</label>
-              <div>
-                <input
-                  type="password"
-                  value={this.state.password}
-                  onChange={this.handleChange("password")}
-                  className={withErrors}
-                />
-              </div>
+            <div className="submit-button">
+              <input className="submit" type="submit" value="Log in" />
             </div>
-            <div className="errors-render">
-              <span>{errors}</span>
-            </div>
+          </form>
+
+          <div className="redirect-links">
+            <span>
+              Don't have an account? <Link to="/users/signup"> Sign up</Link> or
+              use our{" "}
+              <Link
+                to={{
+                  pathname: "/users/login",
+                  type: "demo",
+                }}
+              >
+                demo
+              </Link>{" "}
+              account.
+            </span>
           </div>
-          <div className="submit-button">
-            <input
-              className="submit"
-              type="submit"
-              value={this.props.formType}
-            />
-          </div>
-        </form>
+        </div>
       </div>
     );
   }

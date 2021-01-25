@@ -3,9 +3,10 @@
   height: 350px;
   background-color: #477987;
   color: white;
-  font-size: 20px;
+  font-size: 13px;
+  font-weight: 100;
   .outer-link-container {
-    width: 85%;
+    width: 1100px;
     margin: auto;
   }
 
@@ -16,10 +17,14 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding-top: 50px;
-
+    padding-top: 25px;
+    // ul {
+    //   display: flex;
+    //   flex-direction: column;
+    //   justify-content: space-around;
+    // }
     li {
-      padding-top: 10px;
+      padding-top: 25px;
     }
   }
 
@@ -28,5 +33,8 @@
   .link-column2 {
   }
   .link-column3 {
+  }
+  .link-column4 {
+    width: 20%;
   }
 }

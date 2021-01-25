@@ -9,7 +9,7 @@ const Footer = () => {
           <div className="link-column1">
             <ul>
               <li>
-                <Link to="/users/login">Sign in!</Link>
+                <Link to="/users/login">Log in!</Link>
               </li>
               <li>
                 <Link to="/users/signup">Sign up!</Link>
@@ -21,7 +21,7 @@ const Footer = () => {
                     type: "demo",
                   }}
                 >
-                  Sign up as Demo User
+                  Sign in as Demo User
                 </Link>
               </li>
             </ul>
@@ -42,7 +42,8 @@ const Footer = () => {
               </li>
             </ul>
           </div>
-          <div className="link-column3">
+          <div className="link-column3"></div>
+          <div className="link-column4">
             <ul>
               <li>
                 <a href="#">Favorites</a>

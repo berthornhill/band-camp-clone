@@ -15,12 +15,12 @@ const NavBar = ({ currentUser, logout, openModal }) => {
   ) : (
     [
       <li>
-        <Link to="/users/login">Log In</Link>
-      </li>,
-      <li>
         <Link to="" onClick={() => openModal()}>
           Sign Up
         </Link>
+      </li>,
+      <li>
+        <Link to="/users/login">Log In</Link>
       </li>,
     ]
   );

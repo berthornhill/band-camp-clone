@@ -20,17 +20,41 @@
   padding-top: 25px;
 }
 
-.login-form {
+.form-inner-container {
   width: 650px;
   height: auto;
   margin: auto;
+
+  .redirect-links {
+    display: flex;
+    align-items: center;
+    margin: auto;
+    padding-top: 60px;
+    font-size: 12px;
+    span {
+      color: #818285;
+      margin: auto;
+    }
+    a {
+      color: #00a1c6;
+    }
+  }
+}
+.login-form {
+  // width: 650px;
+  // height: auto;
+  // margin: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
+  color: #3333;
 
   h2 {
     text-align: center;
     padding-top: 40px;
+    font-size: 18px;
+    font-weight: 100;
+    color: rgb(51, 51, 51);
   }
   .form-type {
     width: 60%;
@@ -46,6 +70,7 @@
 
   .form-inputs {
     padding-top: 20px;
+
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -64,8 +89,9 @@
       text-align: right;
       margin-top: 8px;
       vertical-align: top;
-      font-size: 18px;
+      font-size: 16px;
       margin-right: 16px;
+      color: rgb(51, 51, 51);
     }
     div {
       width: 300px;
@@ -74,13 +100,14 @@
       vertical-align: top;
     }
     input {
-      height: 35px;
+      height: 30px;
       background: #fff;
       color: #333;
       outline: none;
       width: 100%;
       border: 1px solid #ccc;
 
+      padding-left: 10px;
       margin: 0;
       font-size: 16px;
     }

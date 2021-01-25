@@ -19,7 +19,11 @@ const WelcomeModal = ({ removeModal }) => {
         </div>
         <ul className="accounts">
           <li className="artist">
+            <div className="icon">
+              <img src={window.desklamp} />
+            </div>
             <div className="infolink">
+              <Link to="/users/signup">Sign up as an Artist</Link>
               <div className="description">
                 <p>
                   Sell directly to your fans with total control over your music
@@ -27,10 +31,6 @@ const WelcomeModal = ({ removeModal }) => {
                   stats, music chart reporting, and more. learn more
                 </p>
               </div>
-              <Link to="/users/signup">Sign up as an Artist</Link>
-            </div>
-            <div className="icon">
-              <img src={window.desklamp} />
             </div>
           </li>
           <li className="demo-user">
@@ -38,12 +38,6 @@ const WelcomeModal = ({ removeModal }) => {
               <img src={window.lantern} />
             </div>
             <div className="infolink">
-              <div className="description">
-                Don't wanna make an account of your own? No problem. Use this
-                provided Demo account and have a good time! Try out all our
-                <span className="grad-text"> illuminating</span> features
-                without the commitment!
-              </div>
               <Link
                 to={{
                   pathname: "/users/login",
@@ -52,6 +46,12 @@ const WelcomeModal = ({ removeModal }) => {
               >
                 Sign up as Demo User
               </Link>
+              <div className="description">
+                Don't wanna make an account of your own? No problem. Use this
+                provided Demo account and have a good time! Try out all our
+                <span className="grad-text"> illuminating</span> features
+                without the commitment!
+              </div>
             </div>
           </li>
         </ul>

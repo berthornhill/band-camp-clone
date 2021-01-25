@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 class SignupForm extends React.Component {
   constructor(props) {
@@ -43,67 +44,81 @@ class SignupForm extends React.Component {
 
     return (
       <div className="form-outer">
-        <form onSubmit={this.handleSubmit} className="login-form">
-          <div className="form-type">
-            <h2>Sign up for a Bandlamp account</h2>
+        <div className="form-inner-container">
+          <form onSubmit={this.handleSubmit} className="login-form">
+            <div className="form-type">
+              <h2>Sign up for a Bandlamp account</h2>
+            </div>
+            <div className="form-inputs">
+              <div className="item">
+                <label>Artist/Band</label>
+                <div>
+                  <input
+                    type="text"
+                    value={this.state.artist}
+                    onChange={this.handleChange("artist")}
+                    className={withErrors}
+                  />
+                </div>
+              </div>
+              <div className="item">
+                <label>Username</label>
+                <div>
+                  <input
+                    type="text"
+                    value={this.state.username}
+                    onChange={this.handleChange("username")}
+                    className={withErrors}
+                  />
+                </div>
+              </div>
+              <div className="item">
+                <label>Email</label>
+                <div>
+                  <input
+                    type="text"
+                    value={this.state.email}
+                    onChange={this.handleChange("email")}
+                    className={withErrors}
+                  />
+                </div>
+              </div>
+              <div className="item">
+                <label>Passsword</label>
+                <div>
+                  <input
+                    type="password"
+                    value={this.state.password}
+                    onChange={this.handleChange("password")}
+                    className={withErrors}
+                  />
+                </div>
+              </div>
+              <div className="errors-render">
+                <span>{errors}</span>
+              </div>
+            </div>
+            <div className="submit-button">
+              <input type="submit" value="Sign up" className="submit" />
+            </div>
+          </form>
+
+          <div className="redirect-links">
+            <span>
+              Already have an account or not ready to sign up just yet?{" "}
+              <Link to="/users/login">Log in</Link> or use our{" "}
+              <Link
+                to={{
+                  pathname: "/users/login",
+                  type: "demo",
+                }}
+              >
+                demo
+              </Link>{" "}
+              account.
+            </span>
           </div>
-          <div className="form-inputs">
-            <div className="item">
-              <label>Artist/Band</label>
-              <div>
-                <input
-                  type="text"
-                  value={this.state.artist}
-                  onChange={this.handleChange("artist")}
-                  className={withErrors}
-                />
-              </div>
-            </div>
-            <div className="item">
-              <label>Username</label>
-              <div>
-                <input
-                  type="text"
-                  value={this.state.username}
-                  onChange={this.handleChange("username")}
-                  className={withErrors}
-                />
-              </div>
-            </div>
-            <div className="item">
-              <label>Email</label>
-              <div>
-                <input
-                  type="text"
-                  value={this.state.email}
-                  onChange={this.handleChange("email")}
-                  className={withErrors}
-                />
-              </div>
-            </div>
-            <div className="item">
-              <label>Passsword</label>
-              <div>
-                <input
-                  type="password"
-                  value={this.state.password}
-                  onChange={this.handleChange("password")}
-                  className={withErrors}
-                />
-              </div>
-            </div>
-            <div className="errors-render">
-              <span>{errors}</span>
-            </div>
-          </div>
-          <div className="submit-button">
-            <input
-              type="submit"
-              value={this.props.formType}
-              className="submit"
-            />
-          </div>
-        </form>
+        </div>
       </div>
     );
   }

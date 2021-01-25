@@ -11,7 +11,7 @@
 
 
 
-json.artist do
+# json.artist do
    
     json.set! @artist.id do 
         json.id @artist.id
@@ -29,5 +29,5 @@ json.artist do
             end
         end
     end 
-end
+# end
 

@@ -40,30 +40,33 @@
   }
 }
 
-.album-carousel {
+.sales-outer {
+  width: 100%;
+  height: 90px;
 }
 
 .dot-sales {
+  width: 1100px;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   height: 40px;
-  padding-top: 50px;
-  padding-bottom: 50px;
+  padding-top: 25px;
+  padding-bottom: 25x;
   align-items: center;
 }
 
 .dot-left {
-  height: 20px;
-  width: 20px;
+  height: 12px;
+  width: 12px;
   border-radius: 50%;
   display: inline-block;
   background-image: linear-gradient(90deg, #e046ff, #168edf, #16c3ee);
   margin-left: 10px;
 }
 .dot-right {
-  height: 20px;
-  width: 20px;
+  height: 12px;
+  width: 12px;
   border-radius: 50%;
   display: inline-block;
   background-image: linear-gradient(90deg, #16c3ee, #168edf, #e046ff);
@@ -71,7 +74,7 @@
 }
 
 .sales {
-  font-size: 25px;
+  font-size: 18px;
   strong {
     font-weight: 900;
   }
