@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const ArtistAlbums = ({ albums }) => {
+const ArtistAlbums = ({ albums, artist }) => {
   debugger;
   const albumCards = albums.map((album) => {
     return (
       <li className="artist-show-album-card" key={album.id}>
-        <Link to="#">
+        <Link to={`/artist/${artist.id}/album/${album.id}`}>
           <div className="album-art">
             <img src={window.albumcover5} alt={album.albumName} />
           </div>

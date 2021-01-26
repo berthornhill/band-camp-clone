@@ -3,7 +3,7 @@ import { Link, Switch, Route } from "react-router-dom";
 import ArtistHeader from "./artist_header";
 import ArtistAlbums from "./artist_albums";
 import ArtistSidebar from "./artist_sidebar";
-import AlbumShow from "../albums/show";
+import AlbumShow from "../albums/album_show";
 
 class ArtistShow extends React.Component {
   constructor(props) {
@@ -34,7 +34,9 @@ class ArtistShow extends React.Component {
                 />
                 <Route
                   path="/artist/:id"
-                  render={(albums) => <ArtistAlbums albums={albums} />}
+                  render={(props) => (
+                    <ArtistAlbums albums={albums} artist={artist.id} />
+                  )}
                 />
               </Switch>
               <ArtistSidebar artist={artist} />
