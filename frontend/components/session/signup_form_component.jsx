@@ -147,7 +147,7 @@ class SignupForm extends React.Component {
                     type="password"
                     value={this.state.password}
                     onChange={this.handleChange("password")}
-                    className={this.state.errors.password ? "error-box" : ""}
+                    className={this.props.errors.password ? "error-box" : ""}
                   />
                   <div className="errors">{this.props.errors.password}</div>
                 </div>

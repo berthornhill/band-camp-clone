@@ -1443,7 +1443,7 @@ var SignupForm = /*#__PURE__*/function (_React$Component) {
         type: "password",
         value: this.state.password,
         onChange: this.handleChange("password"),
-        className: this.state.errors.password ? "error-box" : ""
+        className: this.props.errors.password ? "error-box" : ""
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "errors"
       }, this.props.errors.password)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
