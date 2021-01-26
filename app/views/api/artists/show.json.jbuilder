@@ -12,8 +12,9 @@
 
 
 # json.artist do
+# debugger
    
-    json.set! @artist.id do 
+    json.set! "artist" do 
         json.id @artist.id
         json.artist @artist.artist
         json.bio @artist.bio

@@ -18,15 +18,15 @@ const App = () => {
     <div>
       <Modal />
       <Switch>
-        <Route exact path="/users/login" component={LoginNav} />
-        <Route exact path="/users/signup" component={LoginNav} />
+        <Route path="/users/login" component={LoginNav} />
+        <Route path="/users/signup" component={LoginNav} />
         <Route path="/" component={NavBarContainer} />
       </Switch>
 
       <Switch>
-        <AuthRoute exact path="/users/login" component={LoginForm} />
-        <AuthRoute exact path="/users/signup" component={SignupForm} />
-        <Route exact path="/artists/:id" component={ArtistShow} />
+        <AuthRoute path="/users/login" component={LoginForm} />
+        <AuthRoute path="/users/signup" component={SignupForm} />
+        <Route path="/artist/:id" component={ArtistShow} />
 
         <Route path="/" component={Splash} />
       </Switch>

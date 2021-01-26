@@ -1,7 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Switch, Route } from "react-router-dom";
 import ArtistHeader from "./artist_header";
 import ArtistAlbums from "./artist_albums";
+import ArtistSidebar from "./artist_sidebar";
+import AlbumShow from "../albums/show";
 
 class ArtistShow extends React.Component {
   constructor(props) {
@@ -14,17 +16,33 @@ class ArtistShow extends React.Component {
   }
 
   render() {
-    const { id, albums, artist } = this.props;
-
-    if (!id) return null;
-
-    return (
-      <div>
-        <ArtistHeader artist={artist} />
-        <ArtistSidebar artist={artist} />
-        <ArtistAlbums albums={albums} />
-      </div>
-    );
+    debugger;
+    const { albums, artist } = this.props;
+    debugger;
+    if (!artist.id) {
+      return null;
+    } else {
+      return (
+        <div className="artist-show-outer">
+          <div className="artist-show-inner">
+            <ArtistHeader artist={artist} />
+            <div className="artist-show-main">
+              <Switch>
+                <Route
+                  path="/artist/:id/album/:albumId"
+                  component={AlbumShow}
+                />
+                <Route
+                  path="/artist/:id"
+                  render={(albums) => <ArtistAlbums albums={albums} />}
+                />
+              </Switch>
+              <ArtistSidebar artist={artist} />
+            </div>
+          </div>
+        </div>
+      );
+    }
   }
 }
 

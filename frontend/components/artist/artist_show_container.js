@@ -3,9 +3,10 @@ import { artistShow } from "../../actions/artist_show_actions";
 import ArtistShow from "./artist_show_component";
 
 const mSTP = (state, ownProps) => {
+  // debugger;
   return {
     artist: state.entities.artist,
-    // id: ownProps.match.params.id,
+    albums: Object.values(state.entities.albums),
   };
 };
 

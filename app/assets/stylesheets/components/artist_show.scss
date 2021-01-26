@@ -1,0 +1,132 @@
+.artist-show-outer {
+  width: 100%;
+}
+
+.artist-show-inner {
+  width: 975px;
+  min-height: 80vh;
+  margin: auto;
+}
+
+.artist-header-inner {
+  height: 210px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  img {
+    height: 180px;
+    object-fit: cover;
+  }
+  .img-text {
+    color: rgb(255, 255, 255);
+    font-size: 50px;
+    font-weight: 900;
+    position: absolute;
+    position: absolute;
+    right: 20px;
+    top: 15px;
+  }
+}
+
+.artist-header-navs {
+  height: 38px;
+  display: flex;
+  align-content: center;
+  background-color: #f2f2f2;
+
+  ul {
+    padding-top: 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: stretch;
+    align-content: center;
+  }
+  li {
+    // display: flex;
+    // align-items: stretch;
+    padding: 0px 15px 0px 15px;
+    height: 100%;
+    margin: auto;
+    color: (0, 161, 198);
+    font-size: 14px;
+    font-weight: 700;
+    color: rgb(0, 161, 198);
+  }
+
+  li:hover {
+    border-top: 3px solid rgb(0, 161, 198);
+  }
+}
+
+.artist-show-main {
+  display: grid;
+  grid-template-columns: auto 120px;
+  padding: 45px 30px 45px 30px;
+}
+
+// leftside css
+
+.artist-show-main-left {
+  grid-column-start: 1;
+  height: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.artist-show-album-card-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding-right: 28px;
+}
+
+.artist-show-album-card {
+  width: 232px;
+  min-height: 232px;
+  padding-bottom: 30px;
+
+  p {
+    font-size: 14px;
+    font-weight: bold;
+    width: auto;
+    height: 15px;
+    margin: 10px 10px 10px 0px;
+  }
+}
+
+.artist-show-album-card:hover {
+  p {
+    text-decoration: underline;
+  }
+}
+
+// rigth side/ artist - sidebar css
+
+.artist-show-main-right {
+  grid-column-start: 2;
+  height: 100%;
+  font-size: 12px;
+}
+
+#artist-pic {
+  img {
+    width: 120px;
+    height: 80px;
+    object-fit: contain;
+  }
+  padding-bottom: 18px;
+}
+
+.artist-side-bar-name {
+  padding-bottom: 4px;
+  font-weight: 700;
+  font-size: 14px;
+}
+.artist-side-bar-bio {
+  padding-bottom: 18px;
+}
+.artist-side-bar-location {
+  padding-bottom: 18px;
+  color: #696969;
+}
