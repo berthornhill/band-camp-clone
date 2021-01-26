@@ -356,7 +356,7 @@ var App = function App() {
     component: _session_signup_form_container__WEBPACK_IMPORTED_MODULE_6__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     exact: true,
-    path: "/artist/:id",
+    path: "/artists/:id",
     component: _artist_artist_show_container__WEBPACK_IMPORTED_MODULE_10__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     path: "/",
@@ -2079,7 +2079,7 @@ __webpack_require__.r(__webpack_exports__);
 var artistShow = function artistShow(id) {
   return $.ajax({
     method: "GET",
-    url: "/api/artist/".concat(id)
+    url: "/api/artists/".concat(id)
   });
 };
 
