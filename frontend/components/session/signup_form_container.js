@@ -2,6 +2,7 @@ import { signup, clearErrors } from "../../actions/session_actions";
 import { connect } from "react-redux";
 import SignupForm from "./signup_form_component";
 import { removeModal } from "../../actions/modal_actions";
+import React from "react";
 
 const mSTP = (state, ownProps) => {
   // debugger;

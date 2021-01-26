@@ -38,6 +38,10 @@
     a {
       color: #00a1c6;
     }
+    button {
+      color: #00a1c6;
+      border-style: none;
+    }
   }
 }
 .login-form {
@@ -111,6 +115,9 @@
       margin: 0;
       font-size: 16px;
     }
+    .error-box {
+      border: 1px solid red;
+    }
   }
   .submit-button {
     padding-top: 20px;
@@ -126,37 +133,18 @@
       flex-grow: 1;
     }
   }
-
-  // input {
-  //   // // padding-top: 20;
-  //   // padding-left: 10px;
-  //   // margin-bottom: 20px;
-  //   // height: 35px;
-  //   // border-style: outset;
-  //   // border: 1px solid #dddddd;
-  // }
-  // label {
-  //   padding-top: 10px;
-  //   // padding-right: 20px;
-  // }
-  // .submit {
-  //   padding: 20px;
-  //   height: auto;
-  //   width: 185px;
-
-  //   background-color: #00a1c6;
-  //   color: white;
-  //   font-size: 20px;
-  //   font-weight: bold;
-  //   border: none;
-  // }
 }
 
 .errors {
-  border: 1px solid red;
+  color: red;
+  margin-top: 10px;
 }
 .error {
   color: red;
+}
+
+.error-box {
+  border: 1px solid red;
 }
 
 // #fffcc8 yellow

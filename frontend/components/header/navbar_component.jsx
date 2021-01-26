@@ -1,6 +1,7 @@
 // nav should render the logo, "tag", search bard
 import React from "react";
 import { Link } from "react-router-dom";
+import UserNav from "./user_nav";
 
 const NavBar = ({ currentUser, logout, openModal }) => {
   // let sessionLinks;
@@ -24,6 +25,10 @@ const NavBar = ({ currentUser, logout, openModal }) => {
       </li>,
     ]
   );
+
+  if (currentUser) {
+    return <UserNav currentUser={currentUser} logout={logout} />;
+  }
 
   return (
     <div className="nav">

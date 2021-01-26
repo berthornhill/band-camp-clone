@@ -6,7 +6,12 @@ class Api::UsersController < ApplicationController
             login!(@user)
             render :show
         else 
-            render json: @user.errors.full_messages, status: 401
+            # debugger
+            render json: {
+                username:(@user.errors.full_messages_for(:username).first),
+                email: (@user.errors.full_messages_for(:email).first),
+                password: (@user.errors.full_messages_for(:password).first),
+                }, status: 401
         end
     end
 

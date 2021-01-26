@@ -8,10 +8,12 @@ class LoginForm extends React.Component {
 
     this.state = props.user; //sets state to empty user and password
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleDemo = this.handleDemo.bind(this);
   }
 
   handleChange(value) {
     return (e) => {
+      // debugger;
       this.setState({ [value]: e.target.value });
       this.props.clearErrors();
       // debugger;
@@ -21,12 +23,11 @@ class LoginForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     this.props.action(this.state);
-    // this.setState({ password: "" });
+  }
+
+  handleDemo() {
+    this.setState({ username: "demo", password: "testpassword" });
     // debugger;
-    // if (this.props.errors) {
-    //   this.renderErrors();
-    // } else {
-    //   this.props.history.push("/");
   }
 
   // life cycle methods //
@@ -40,16 +41,6 @@ class LoginForm extends React.Component {
   }
 
   render() {
-    // debugger;
-
-    const errors = this.props.errors.map((error) => {
-      return <p className="error">{error}</p>;
-    });
-
-    let withErrors;
-    //add css selector with errors.
-    errors ? (withErrors = "errors") : "";
-
     return (
       <div className="form-outer">
         <div className="form-inner-container">
@@ -65,7 +56,7 @@ class LoginForm extends React.Component {
                     type="text"
                     value={this.state.username}
                     onChange={this.handleChange("username")}
-                    className={withErrors}
+                    className={this.props.errors.login ? "error-box" : ""}
                   />
                 </div>
               </div>
@@ -76,12 +67,10 @@ class LoginForm extends React.Component {
                     type="password"
                     value={this.state.password}
                     onChange={this.handleChange("password")}
-                    className={withErrors}
+                    className={this.props.errors.login ? "error-box" : ""}
                   />
+                  <div className="errors">{this.props.errors.login}</div>
                 </div>
-              </div>
-              <div className="errors-render">
-                <span>{errors}</span>
               </div>
             </div>
             <div className="submit-button">
@@ -92,15 +81,10 @@ class LoginForm extends React.Component {
           <div className="redirect-links">
             <span>
               Don't have an account? <Link to="/users/signup"> Sign up</Link> or
-              use our{" "}
-              <Link
-                to={{
-                  pathname: "/users/login",
-                  type: "demo",
-                }}
-              >
+              use our
+              <button className="demo-link" onClick={() => this.handleDemo()}>
                 demo
-              </Link>{" "}
+              </button>
               account.
             </span>
           </div>

@@ -5,15 +5,29 @@ class SignupForm extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = props.user; //sets state to empty user and password
+    this.state = {
+      user: props.user,
+      errors: props.errors,
+    };
+
+    //sets state to empty user and password
+
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(value) {
     return (e) => {
       this.setState({ [value]: e.target.value });
-      this.props.clearErrors();
-      // debugger;
+      e.target.className = "";
+
+      switch (value) {
+        case "username":
+          this.setState({ errors: { usernameError: "" } });
+        case "email":
+          this.setState({ errors: { emailError: "" } });
+        case "password":
+          this.setState({ errors: { passwordError: "" } });
+      }
     };
   }
 
@@ -34,13 +48,55 @@ class SignupForm extends React.Component {
   render() {
     // debugger;
 
-    const errors = this.props.errors.map((error) => {
-      return <p className="error">{error}</p>;
-    });
+    // const errors = this.props.errors.map((error) => {
+    //   return <p className="error">{error}</p>;
+    // });
+    // debugger;
+    // const { errors } = this.props.errors;
+    // debugger;
 
-    let withErrors;
-    //add css selector with errors.
-    errors ? (withErrors = "errors") : "";
+    // switch (true) {
+    //   case this.props.errors.includes("Username can't be blank"):
+    //     this.setState({
+    //       errors: {
+    //         usernameError: (
+    //           <div className="errors">Username can't be blank</div>
+    //         ),
+    //       },
+    //     });
+    //   case this.props.errors.includes("Username has already been taken"):
+    //     this.setState({
+    //       errors: {
+    //         usernameError: (
+    //           <div className="errors">Username has already been taken</div>
+    //         ),
+    //       },
+    //     });
+
+    //   case this.props.errors.includes(
+    //     "Password is too short (minimum is 6 characters)"
+    //   ):
+    //     this.setState({
+    //       errors: {
+    //         passwordError: (
+    //           <div className="errors">
+    //             Password is too short (minimum is 6 characters)
+    //           </div>
+    //         ),
+    //       },
+    //     });
+    //   case this.props.errors.includes("Email can't be blank"):
+    //     this.setState({
+    //       errors: {
+    //         emailError: <div className="errors">Email can't be blank</div>,
+    //       },
+    //     });
+    // }
+
+    // debugger;
+    // let withErrors;
+    // //add css selector with errors.
+    // errors ? (withErrors = "errors") : "";
 
     return (
       <div className="form-outer">
@@ -57,7 +113,6 @@ class SignupForm extends React.Component {
                     type="text"
                     value={this.state.artist}
                     onChange={this.handleChange("artist")}
-                    className={withErrors}
                   />
                 </div>
               </div>
@@ -68,8 +123,9 @@ class SignupForm extends React.Component {
                     type="text"
                     value={this.state.username}
                     onChange={this.handleChange("username")}
-                    className={withErrors}
+                    className={this.props.errors.username ? "error-box" : ""}
                   />
+                  <div className="errors">{this.props.errors.username}</div>
                 </div>
               </div>
               <div className="item">
@@ -79,8 +135,9 @@ class SignupForm extends React.Component {
                     type="text"
                     value={this.state.email}
                     onChange={this.handleChange("email")}
-                    className={withErrors}
+                    className={this.props.errors.email ? "error-box" : ""}
                   />
+                  <div className="errors">{this.props.errors.email}</div>
                 </div>
               </div>
               <div className="item">
@@ -90,12 +147,10 @@ class SignupForm extends React.Component {
                     type="password"
                     value={this.state.password}
                     onChange={this.handleChange("password")}
-                    className={withErrors}
+                    className={this.state.errors.password ? "error-box" : ""}
                   />
+                  <div className="errors">{this.props.errors.password}</div>
                 </div>
-              </div>
-              <div className="errors-render">
-                <span>{errors}</span>
               </div>
             </div>
             <div className="submit-button">

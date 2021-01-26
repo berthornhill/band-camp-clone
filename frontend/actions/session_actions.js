@@ -17,8 +17,6 @@ const logoutCurrentUser = () => ({
 });
 
 const receiveErrors = (errors) => {
-  // console.log("hello from receieveErrors");
-  // debugger;
   return {
     type: RECEIVE_ERRORS,
     errors,

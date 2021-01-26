@@ -16,8 +16,8 @@ const DotSales = () => {
         </div>
         <div className="sales">
           <p>
-            Fans have paid more than <strong>75 bagillion</strong> using
-            BandLamp, and <strong>$10</strong> of that in last 72 hours alone!
+            Fans have paid more than <strong>1 billion</strong> using Bandlamp,
+            and <strong>$10</strong> of that in last 72 hours alone!
           </p>
         </div>
         <div>

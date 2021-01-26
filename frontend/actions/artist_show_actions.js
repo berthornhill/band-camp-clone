@@ -3,7 +3,7 @@ import * as artistAPI from "../util/artist_show_util";
 export const RECEIVE_ARTIST = "RECEIVE_ARTIST";
 
 const receiveArtist = (artist) => {
-  debugger;
+  // debugger;
   return {
     type: RECEIVE_ARTIST,
     artist,

@@ -5,8 +5,7 @@ const ErrorsReducer = (state = [], action) => {
   // debugger;
   switch (action.type) {
     case RECEIVE_ERRORS:
-      let errors = Object.values(action.errors);
-      return errors;
+      return Object.assign({}, action.errors);
     case REMOVE_ERRORS:
       return [];
     default:

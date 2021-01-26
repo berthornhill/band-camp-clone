@@ -10,7 +10,7 @@ const mSTP = (state, ownProps) => {
 };
 
 const mDTP = (dispatch) => {
-  debugger;
+  // debugger;
   return {
     artistShow: (id) => dispatch(artistShow(id)),
   };

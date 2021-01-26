@@ -7,6 +7,7 @@ const Features = () => {
         <div className="featured">
           <div className="top-story">
             <img src={window.concert2} alt="top story, rock star guy image" />
+            <h3>This Year, Concerts Are Outside!</h3>
           </div>
           <div className="trio-box">
             <img src={window.record} alt="top story, rock star guy image" />
