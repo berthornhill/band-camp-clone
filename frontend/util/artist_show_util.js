@@ -3,3 +3,9 @@ export const artistShow = (id) =>
     method: "GET",
     url: `/api/artists/${id}`,
   });
+
+export const fetchArtists = () =>
+  $.ajax({
+    method: "GET",
+    url: `/api/artists`,
+  });

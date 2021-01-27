@@ -90,16 +90,19 @@
 /*!*************************************************!*\
   !*** ./frontend/actions/artist_show_actions.js ***!
   \*************************************************/
-/*! exports provided: RECEIVE_ARTIST, artistShow */
+/*! exports provided: RECEIVE_ARTIST, RECEIVE_ARTISTS, artistShow, fetchArtists */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_ARTIST", function() { return RECEIVE_ARTIST; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_ARTISTS", function() { return RECEIVE_ARTISTS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "artistShow", function() { return artistShow; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchArtists", function() { return fetchArtists; });
 /* harmony import */ var _util_artist_show_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/artist_show_util */ "./frontend/util/artist_show_util.js");
 
 var RECEIVE_ARTIST = "RECEIVE_ARTIST";
+var RECEIVE_ARTISTS = "RECEIVE_ARTISTS";
 
 var receiveArtist = function receiveArtist(artist) {
   // debugger;
@@ -109,10 +112,24 @@ var receiveArtist = function receiveArtist(artist) {
   };
 };
 
+var receiveArtists = function receiveArtists(artists) {
+  return {
+    type: RECEIVE_ARTISTS,
+    artists: artists
+  };
+};
+
 var artistShow = function artistShow(id) {
   return function (dispatch) {
     return _util_artist_show_util__WEBPACK_IMPORTED_MODULE_0__["artistShow"](id).then(function (artist) {
       return dispatch(receiveArtist(artist));
+    });
+  };
+};
+var fetchArtists = function fetchArtists() {
+  return function (dispatch) {
+    return _util_artist_show_util__WEBPACK_IMPORTED_MODULE_0__["fetchArtists"]().then(function (artists) {
+      return dispatch(receiveArtists(artists));
     });
   };
 };
@@ -1736,72 +1753,189 @@ var mDTP = function mDTP(dispatch) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 
-var AlbumCarousel = function AlbumCarousel() {
-  var album1 = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-    className: "album-card splash",
-    key: "1"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-    src: window.albumcover1,
-    alt: "muzac"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "album-title"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Best Album Ever")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "band-name"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Best Band Ever")));
-  var album5 = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-    className: "album-card splash",
-    key: "5"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-    src: window.albumcover5,
-    alt: "muzac"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "album-title"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Best Album Ever")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "band-name"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Best Band Ever")));
-  var album2 = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-    className: "album-card splash",
-    key: "2"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-    src: window.albumcover2,
-    alt: "muzac"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "album-title"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Best Album Ever")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "band-name"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Best Band Ever")));
-  var album3 = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-    className: "album-card splash",
-    key: "3"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-    src: window.albumcover3,
-    alt: "muzac"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "album-title"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Best Album Ever")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "band-name"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Best Band Ever")));
-  var album4 = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-    className: "album-card splash",
-    key: "4"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-    src: window.albumcover4,
-    alt: "muzac"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "album-title"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Best Album Ever")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "band-name"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Best Band Ever")));
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "album-carousel-outer"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "album-carousel"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, album1, album2, album3, album4, album5, album2, album3, album4)));
+
+
+var AlbumCarousel = /*#__PURE__*/function (_React$Component) {
+  _inherits(AlbumCarousel, _React$Component);
+
+  var _super = _createSuper(AlbumCarousel);
+
+  function AlbumCarousel() {
+    _classCallCheck(this, AlbumCarousel);
+
+    return _super.apply(this, arguments);
+  }
+
+  _createClass(AlbumCarousel, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      // debugger;
+      this.props.fetchArtists();
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var imgs = [window.rockstarguy, window.albumcover1, window.albumcover2, window.albumcover3, window.albumcover4, window.albumcover5, window.concert2, window.concert1, window.guy1, window.guy2, window.guy3, window.guy4, window.color1, window.color2, window.color3, window.color4];
+      var artistsArray = this.props.artists.map(function (artist) {
+        var i = Math.floor(Math.random() * 16);
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          className: "album-card splash",
+          key: artist.id
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+          to: "/artist/".concat(artist.id)
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          src: imgs[i],
+          alt: artist.artist
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "album-title"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Artist")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "band-name"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, artist.artist)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "band-name"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, artist.location))));
+      }); // if !this.props.
+
+      debugger;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "album-carousel-outer"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "album-carousel"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, artistsArray)));
+    }
+  }]);
+
+  return AlbumCarousel;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (AlbumCarousel); // const AlbumCarousel = () => {
+//   const album5 = (
+//     <li className="album-card splash" key="5">
+//       <div>
+//         <img src={window.albumcover5} alt="muzac" />
+//       </div>
+//       <div className="album-title">
+//         <span>Best Album Ever</span>
+//       </div>
+//       <div className="band-name">
+//         <span>Best Band Ever</span>
+//       </div>
+//     </li>
+//   );
+//   const album2 = (
+//     <li className="album-card splash" key="2">
+//       <div>
+//         <img src={window.albumcover2} alt="muzac" />
+//       </div>
+//       <div className="album-title">
+//         <span>Best Album Ever</span>
+//       </div>
+//       <div className="band-name">
+//         <span>Best Band Ever</span>
+//       </div>
+//     </li>
+//   );
+//   const album3 = (
+//     <li className="album-card splash" key="3">
+//       <div>
+//         <img src={window.albumcover3} alt="muzac" />
+//       </div>
+//       <div className="album-title">
+//         <span>Best Album Ever</span>
+//       </div>
+//       <div className="band-name">
+//         <span>Best Band Ever</span>
+//       </div>
+//     </li>
+//   );
+//   const album4 = (
+//     <li className="album-card splash" key="4">
+//       <div>
+//         <img src={window.albumcover4} alt="muzac" />
+//       </div>
+//       <div className="album-title">
+//         <span>Best Album Ever</span>
+//       </div>
+//       <div className="band-name">
+//         <span>Best Band Ever</span>
+//       </div>
+//     </li>
+//   );
+//   return (
+//     <div className="album-carousel-outer">
+//       <div className="album-carousel">
+//         <ul>
+//           {album1}
+//           {album2}
+//           {album3}
+//           {album4}
+//           {album5}
+//           {album2}
+//           {album3}
+//           {album4}
+//         </ul>
+//       </div>
+//     </div>
+//   );
+// };
+
+/***/ }),
+
+/***/ "./frontend/components/splash/album_carousel_container.js":
+/*!****************************************************************!*\
+  !*** ./frontend/components/splash/album_carousel_container.js ***!
+  \****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _album_carousel__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./album_carousel */ "./frontend/components/splash/album_carousel.jsx");
+/* harmony import */ var _actions_artist_show_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/artist_show_actions */ "./frontend/actions/artist_show_actions.js");
+
+
+
+
+var mSTP = function mSTP(state) {
+  debugger;
+  return {
+    artists: Object.values(state.entities.artist)
+  };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (AlbumCarousel);
+var mDTP = function mDTP(dispatch) {
+  return {
+    fetchArtists: function fetchArtists() {
+      return dispatch(Object(_actions_artist_show_actions__WEBPACK_IMPORTED_MODULE_2__["fetchArtists"])());
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_album_carousel__WEBPACK_IMPORTED_MODULE_1__["default"]));
 
 /***/ }),
 
@@ -1895,7 +2029,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _session_login_form_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../session/login_form_container */ "./frontend/components/session/login_form_container.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _features_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./features_component */ "./frontend/components/splash/features_component.jsx");
-/* harmony import */ var _album_carousel__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./album_carousel */ "./frontend/components/splash/album_carousel.jsx");
+/* harmony import */ var _album_carousel_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./album_carousel_container */ "./frontend/components/splash/album_carousel_container.js");
 /* harmony import */ var _dot_sales_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./dot_sales.jsx */ "./frontend/components/splash/dot_sales.jsx");
 
 
@@ -1905,7 +2039,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var splash = function splash(props) {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_features_component__WEBPACK_IMPORTED_MODULE_3__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_dot_sales_jsx__WEBPACK_IMPORTED_MODULE_5__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_album_carousel__WEBPACK_IMPORTED_MODULE_4__["default"], null));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_features_component__WEBPACK_IMPORTED_MODULE_3__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_dot_sales_jsx__WEBPACK_IMPORTED_MODULE_5__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_album_carousel_container__WEBPACK_IMPORTED_MODULE_4__["default"], null));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (splash);
@@ -1962,6 +2096,9 @@ var ArtistReducer = function ArtistReducer() {
   switch (action.type) {
     case _actions_artist_show_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ARTIST"]:
       return Object.assign({}, action.artist.artist);
+
+    case _actions_artist_show_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ARTISTS"]:
+      return Object.assign({}, action.artists);
 
     default:
       return state;
@@ -2213,16 +2350,23 @@ var configureStore = function configureStore() {
 /*!*******************************************!*\
   !*** ./frontend/util/artist_show_util.js ***!
   \*******************************************/
-/*! exports provided: artistShow */
+/*! exports provided: artistShow, fetchArtists */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "artistShow", function() { return artistShow; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchArtists", function() { return fetchArtists; });
 var artistShow = function artistShow(id) {
   return $.ajax({
     method: "GET",
     url: "/api/artists/".concat(id)
+  });
+};
+var fetchArtists = function fetchArtists() {
+  return $.ajax({
+    method: "GET",
+    url: "/api/artists"
   });
 };
 
