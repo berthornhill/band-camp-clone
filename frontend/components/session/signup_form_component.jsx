@@ -16,6 +16,8 @@ class SignupForm extends React.Component {
   }
 
   handleChange(value) {
+    // e.preventDefault();
+    debugger;
     return (e) => {
       this.setState({ [value]: e.target.value });
       e.target.className = "";
@@ -46,58 +48,6 @@ class SignupForm extends React.Component {
   }
 
   render() {
-    // debugger;
-
-    // const errors = this.props.errors.map((error) => {
-    //   return <p className="error">{error}</p>;
-    // });
-    // debugger;
-    // const { errors } = this.props.errors;
-    // debugger;
-
-    // switch (true) {
-    //   case this.props.errors.includes("Username can't be blank"):
-    //     this.setState({
-    //       errors: {
-    //         usernameError: (
-    //           <div className="errors">Username can't be blank</div>
-    //         ),
-    //       },
-    //     });
-    //   case this.props.errors.includes("Username has already been taken"):
-    //     this.setState({
-    //       errors: {
-    //         usernameError: (
-    //           <div className="errors">Username has already been taken</div>
-    //         ),
-    //       },
-    //     });
-
-    //   case this.props.errors.includes(
-    //     "Password is too short (minimum is 6 characters)"
-    //   ):
-    //     this.setState({
-    //       errors: {
-    //         passwordError: (
-    //           <div className="errors">
-    //             Password is too short (minimum is 6 characters)
-    //           </div>
-    //         ),
-    //       },
-    //     });
-    //   case this.props.errors.includes("Email can't be blank"):
-    //     this.setState({
-    //       errors: {
-    //         emailError: <div className="errors">Email can't be blank</div>,
-    //       },
-    //     });
-    // }
-
-    // debugger;
-    // let withErrors;
-    // //add css selector with errors.
-    // errors ? (withErrors = "errors") : "";
-
     return (
       <div className="form-outer">
         <div className="form-inner-container">

@@ -10,7 +10,8 @@ class Api::UsersController < ApplicationController
             render json: {
                 username:(@user.errors.full_messages_for(:username).first),
                 email: (@user.errors.full_messages_for(:email).first),
-                password: (@user.errors.full_messages_for(:password).first),
+                password:  !!@user.errors.full_messages_for(:password).first ? @user.errors.full_messages_for(:password).first 
+                              : !!@user.errors.full_messages_for(:password_digest).first ?  "Password can't be blank" : nil,
                 }, status: 401
         end
     end

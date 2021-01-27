@@ -1432,6 +1432,8 @@ var SignupForm = /*#__PURE__*/function (_React$Component) {
     value: function handleChange(value) {
       var _this2 = this;
 
+      // e.preventDefault();
+      debugger;
       return function (e) {
         _this2.setState(_defineProperty({}, value, e.target.value));
 
@@ -1482,53 +1484,6 @@ var SignupForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      // debugger;
-      // const errors = this.props.errors.map((error) => {
-      //   return <p className="error">{error}</p>;
-      // });
-      // debugger;
-      // const { errors } = this.props.errors;
-      // debugger;
-      // switch (true) {
-      //   case this.props.errors.includes("Username can't be blank"):
-      //     this.setState({
-      //       errors: {
-      //         usernameError: (
-      //           <div className="errors">Username can't be blank</div>
-      //         ),
-      //       },
-      //     });
-      //   case this.props.errors.includes("Username has already been taken"):
-      //     this.setState({
-      //       errors: {
-      //         usernameError: (
-      //           <div className="errors">Username has already been taken</div>
-      //         ),
-      //       },
-      //     });
-      //   case this.props.errors.includes(
-      //     "Password is too short (minimum is 6 characters)"
-      //   ):
-      //     this.setState({
-      //       errors: {
-      //         passwordError: (
-      //           <div className="errors">
-      //             Password is too short (minimum is 6 characters)
-      //           </div>
-      //         ),
-      //       },
-      //     });
-      //   case this.props.errors.includes("Email can't be blank"):
-      //     this.setState({
-      //       errors: {
-      //         emailError: <div className="errors">Email can't be blank</div>,
-      //       },
-      //     });
-      // }
-      // debugger;
-      // let withErrors;
-      // //add css selector with errors.
-      // errors ? (withErrors = "errors") : "";
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-outer"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
