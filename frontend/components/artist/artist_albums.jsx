@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const ArtistAlbums = ({ albums, artist }) => {
-  debugger;
+  // debugger;
   const albumCards = albums.map((album) => {
     return (
       <li className="artist-show-album-card" key={album.id}>
@@ -16,7 +16,7 @@ const ArtistAlbums = ({ albums, artist }) => {
     );
   });
 
-  debugger;
+  // debugger;
   return (
     <div className="artist-show-main-left">
       <ol className="artist-show-album-card-container">{albumCards}</ol>

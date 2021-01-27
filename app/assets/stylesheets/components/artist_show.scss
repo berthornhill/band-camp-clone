@@ -52,6 +52,9 @@
     font-size: 14px;
     font-weight: 700;
     color: rgb(0, 161, 198);
+    a {
+      color: rgb(0, 161, 198);
+    }
   }
 
   li:hover {
@@ -70,21 +73,22 @@
 .artist-show-main-left {
   grid-column-start: 1;
   height: 100%;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 0px;
+  padding-right: 0px;
 }
 
 .artist-show-album-card-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
+  // align-content: flex-start;
   flex-wrap: wrap;
-  padding-right: 28px;
 }
 
 .artist-show-album-card {
   width: 232px;
   min-height: 232px;
   padding-bottom: 30px;
+  margin-right: 30px;
 
   p {
     font-size: 14px;

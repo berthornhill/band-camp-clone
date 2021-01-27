@@ -17,7 +17,7 @@ class SignupForm extends React.Component {
 
   handleChange(value) {
     // e.preventDefault();
-    debugger;
+    // debugger;
     return (e) => {
       this.setState({ [value]: e.target.value });
       e.target.className = "";

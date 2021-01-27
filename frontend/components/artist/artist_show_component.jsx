@@ -16,9 +16,9 @@ class ArtistShow extends React.Component {
   }
 
   render() {
-    debugger;
+    // debugger;
     const { albums, artist } = this.props;
-    debugger;
+    // debugger;
     if (!artist.id) {
       return null;
     } else {

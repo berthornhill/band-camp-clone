@@ -419,7 +419,7 @@ __webpack_require__.r(__webpack_exports__);
 var ArtistAlbums = function ArtistAlbums(_ref) {
   var albums = _ref.albums,
       artist = _ref.artist;
-  debugger;
+  // debugger;
   var albumCards = albums.map(function (album) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
       className: "artist-show-album-card",
@@ -432,8 +432,8 @@ var ArtistAlbums = function ArtistAlbums(_ref) {
       src: window.albumcover5,
       alt: album.albumName
     })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, album.albumName)));
-  });
-  debugger;
+  }); // debugger;
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "artist-show-main-left"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ol", {
@@ -460,11 +460,13 @@ var ArtistAlbums = function ArtistAlbums(_ref) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
 
 
 var ArtistHeader = function ArtistHeader(_ref) {
   var artist = _ref.artist;
-  debugger;
+  // debugger;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "artist-header-outer"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -478,7 +480,11 @@ var ArtistHeader = function ArtistHeader(_ref) {
     className: "img-text"
   }, artist.artist)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "artist-header-navs"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "music"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "merch"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "commuinty")))));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/artist/".concat(artist.id)
+  }, "music")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/"
+  }, "bandlamp")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "community")))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (ArtistHeader);
@@ -550,11 +556,10 @@ var ArtistShow = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      debugger;
+      // debugger;
       var _this$props = this.props,
           albums = _this$props.albums,
-          artist = _this$props.artist;
-      debugger;
+          artist = _this$props.artist; // debugger;
 
       if (!artist.id) {
         return null;
@@ -1433,7 +1438,7 @@ var SignupForm = /*#__PURE__*/function (_React$Component) {
       var _this2 = this;
 
       // e.preventDefault();
-      debugger;
+      // debugger;
       return function (e) {
         _this2.setState(_defineProperty({}, value, e.target.value));
 
@@ -1773,8 +1778,8 @@ var AlbumCarousel = /*#__PURE__*/function (_React$Component) {
           className: "band-name"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, artist.location))));
       }); // if !this.props.
+      // debugger;
 
-      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "album-carousel-outer"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1876,7 +1881,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state) {
-  debugger;
+  // debugger;
   return {
     artists: Object.values(state.entities.artist)
   };

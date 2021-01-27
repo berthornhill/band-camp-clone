@@ -1,7 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const ArtistHeader = ({ artist }) => {
-  debugger;
+  // debugger;
   return (
     <div className="artist-header-outer">
       <div className="artist-header-inner">
@@ -12,9 +13,13 @@ const ArtistHeader = ({ artist }) => {
         </div>
         <div className="artist-header-navs">
           <ul>
-            <li>music</li>
-            <li>merch</li>
-            <li>commuinty</li>
+            <li>
+              <Link to={`/artist/${artist.id}`}>music</Link>
+            </li>
+            <li>
+              <Link to="/">bandlamp</Link>
+            </li>
+            <li>community</li>
           </ul>
         </div>
       </div>

@@ -52,7 +52,7 @@ class AlbumCarousel extends React.Component {
 
     // if !this.props.
 
-    debugger;
+    // debugger;
     return (
       <div className="album-carousel-outer">
         <div className="album-carousel">
