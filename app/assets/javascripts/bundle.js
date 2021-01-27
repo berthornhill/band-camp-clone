@@ -649,7 +649,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ArtistSidebar = function ArtistSidebar(_ref) {
   var artist = _ref.artist;
-  debugger;
+  // debugger;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "artist-show-main-right"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
