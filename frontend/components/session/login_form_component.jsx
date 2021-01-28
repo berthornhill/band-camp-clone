@@ -15,7 +15,8 @@ class LoginForm extends React.Component {
     return (e) => {
       // debugger;
       this.setState({ [value]: e.target.value });
-      this.props.clearErrors();
+      e.target.className = "";
+      // this.props.clearErrors();
       // debugger;
     };
   }

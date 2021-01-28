@@ -8,6 +8,7 @@ class Api::UsersController < ApplicationController
         else 
             # debugger
             render json: {
+                artist: (@user.errors.full_messages_for(:artist).first),
                 username:(@user.errors.full_messages_for(:username).first),
                 email: (@user.errors.full_messages_for(:email).first),
                 password:  !!@user.errors.full_messages_for(:password).first ? @user.errors.full_messages_for(:password).first 

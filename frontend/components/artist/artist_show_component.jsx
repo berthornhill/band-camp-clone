@@ -1,9 +1,10 @@
 import React from "react";
 import { Link, Switch, Route } from "react-router-dom";
 import ArtistHeader from "./artist_header";
-import ArtistAlbums from "./artist_albums";
+import ArtistIndex from "./artist_index";
 import ArtistSidebar from "./artist_sidebar";
-import AlbumShow from "../albums/album_show";
+import AlbumShow from "../albums/album_show_container";
+import MediaPlayer from "../media_player/media_player_container";
 
 class ArtistShow extends React.Component {
   constructor(props) {
@@ -11,17 +12,18 @@ class ArtistShow extends React.Component {
   }
 
   componentDidMount() {
-    // debugger;
-    this.props.artistShow(this.props.match.params.id);
+    debugger;
+    this.props.fetchArtist(this.props.match.params.id);
   }
 
   render() {
     // debugger;
-    const { albums, artist } = this.props;
-    // debugger;
-    if (!artist.id) {
+    const { artist } = this.props;
+    debugger;
+    if (!artist) {
       return null;
     } else {
+      // debugger;
       return (
         <div className="artist-show-outer">
           <div className="artist-show-inner">
@@ -30,14 +32,16 @@ class ArtistShow extends React.Component {
               <Switch>
                 <Route
                   path="/artist/:id/album/:albumId"
-                  component={AlbumShow}
+                  component={MediaPlayer}
                 />
-                <Route
+                <Route path="/artist/:id" component={ArtistIndex} />
+
+                {/* <Route
                   path="/artist/:id"
                   render={(props) => (
                     <ArtistAlbums albums={albums} artist={artist.id} />
                   )}
-                />
+                /> */}
               </Switch>
               <ArtistSidebar artist={artist} />
             </div>

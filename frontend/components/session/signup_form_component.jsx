@@ -5,11 +5,17 @@ class SignupForm extends React.Component {
   constructor(props) {
     super(props);
 
+    // (this.state = this.props.user), (this.state = props.errors);
+    // debugger;
     this.state = {
-      user: props.user,
+      username: props.user.username,
+      artist: props.user.artist,
+      password: props.user.password,
+      email: props.user.email,
       errors: props.errors,
     };
 
+    // debugger;
     //sets state to empty user and password
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -19,6 +25,7 @@ class SignupForm extends React.Component {
     // e.preventDefault();
     // debugger;
     return (e) => {
+      debugger;
       this.setState({ [value]: e.target.value });
       e.target.className = "";
 
@@ -28,6 +35,8 @@ class SignupForm extends React.Component {
         case "email":
           this.setState({ errors: { emailError: "" } });
         case "password":
+          this.setState({ errors: { passwordError: "" } });
+        case "artist":
           this.setState({ errors: { passwordError: "" } });
       }
     };
@@ -48,6 +57,7 @@ class SignupForm extends React.Component {
   }
 
   render() {
+    debugger;
     return (
       <div className="form-outer">
         <div className="form-inner-container">
@@ -63,7 +73,9 @@ class SignupForm extends React.Component {
                     type="text"
                     value={this.state.artist}
                     onChange={this.handleChange("artist")}
+                    className={this.props.errors.artist ? "error-box" : ""}
                   />
+                  <div className="errors">{this.props.errors.artist}</div>
                 </div>
               </div>
               <div className="item">

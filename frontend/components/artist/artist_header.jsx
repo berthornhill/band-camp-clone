@@ -13,13 +13,13 @@ const ArtistHeader = ({ artist }) => {
         </div>
         <div className="artist-header-navs">
           <ul>
-            <li>
+            <li key="return-to-artist-page">
               <Link to={`/artist/${artist.id}`}>music</Link>
             </li>
-            <li>
+            <li key="bandlamp-home">
               <Link to="/">bandlamp</Link>
             </li>
-            <li>community</li>
+            <li key="community">community</li>
           </ul>
         </div>
       </div>

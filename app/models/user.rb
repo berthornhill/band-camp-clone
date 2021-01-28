@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+    validates :artist, presence: true
     validates :username, presence: true, uniqueness: true
     validates :password_digest, presence: true
     validates :password, length: { minimum: 6, allow_nil: true}
@@ -41,7 +42,8 @@ class User < ApplicationRecord
     has_many :albums,
     class_name: :Album,
     primary_key: :id,
-    foreign_key: :artist_id
+    foreign_key: :artist_id,
+    dependent: :destroy
 
     has_many :tracks, through: :albums
 

@@ -1,9 +1,9 @@
-import AlbumShow from "./album_show";
-import { fetchAlbum } from "../../actions/artist_show_actions";
 import { connect } from "react-redux";
+import MediaPlayer from "./media_player";
+import { fetchAlbum } from "../../actions/artist_show_actions";
 
 const mSTP = (state, ownProps) => {
-  debugger;
+  // debugger;
   return {
     album: state.entities.albums[ownProps.match.params.albumId],
     tracks: state.entities.tracks,
@@ -16,4 +16,4 @@ const mDTP = (dispatch) => {
   };
 };
 
-export default connect(mSTP, mDTP)(AlbumShow);
+export default connect(mSTP, mDTP)(MediaPlayer);

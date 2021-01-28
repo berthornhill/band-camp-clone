@@ -8,9 +8,13 @@ Rails.application.routes.draw do
 
     resources :artists, only: [:index, :show] do
       resources :albums, only: [:show] 
-      resources :tracks, only: [:show]
     end
-    resources :albums, only: [:index]
+    
+    resources :albums, only: [:show] do
+      resources :tracks, only: [:index]
+    end
+
+    resources :tests, only: [:show]
 
   end
 

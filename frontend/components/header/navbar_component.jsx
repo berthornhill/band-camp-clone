@@ -15,12 +15,12 @@ const NavBar = ({ currentUser, logout, openModal }) => {
     </div>
   ) : (
     [
-      <li>
+      <li key="1">
         <Link to="" onClick={() => openModal()}>
           Sign Up
         </Link>
       </li>,
-      <li>
+      <li key="2">
         <Link to="/users/login">Log In</Link>
       </li>,
     ]
@@ -57,7 +57,7 @@ const NavBar = ({ currentUser, logout, openModal }) => {
         </div>
         <div className="nav-links">
           <ul>
-            <li>
+            <li key="1">
               <span className="grad-text"> Hire Me!</span>
             </li>
             {sessionButtons}
