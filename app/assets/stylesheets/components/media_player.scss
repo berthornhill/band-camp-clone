@@ -86,7 +86,27 @@
     flex-direction: row;
     align-items: center;
     div {
-      padding-right: 18px;
+      padding-right: 12px;
+      padding-left: 15px;
     }
+    button {
+      height: 19px;
+      width: 18px;
+      padding-left: 4px;
+    }
+  }
+}
+
+audio {
+  height: 100px;
+}
+
+.single-track {
+  button {
+    height: 46px;
+    width: 51px;
+
+    background-color: white;
+    border: 1px solid black;
   }
 }

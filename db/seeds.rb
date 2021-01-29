@@ -7,11 +7,14 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 User.destroy_all
+Album.destroy_all
+Track.destroy_all
 
 
 
 User.create!(
     username: "demo",
+    artist: "demo",
     password: "testpassword",
     email:"test@test.com"
 )
@@ -152,7 +155,7 @@ BANDS.each_with_index do | band, i |
         email:"test#{i}@test.com",
         artist: band,
         bio: "We are a great band! We hope you enjoy our music! Like and follow us on Bandlamp! Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        location: "USA",
+        location: "USA"
     )
     
 end
@@ -171,8 +174,16 @@ User.all.ids.each do |id|
     }
 end
 
+User.create!(username: "Bert", artist: "artist formerly known as bert", password: "password", email: "bert@bert")
+Album.create!(artist_id: User.last.id, album_name: "I'm sorry for this", description: "I'm sorry for this")
 
-# Album.create!(artist_id: 25,
-# album_name: "Thriller",
-# description: "This is our newest realese! It's was a labor of love and it would mean a lot to us if you would listen to it and like and follow us on Bandlamp. Peace and love!"
-# )
+Track.create!(title: "On The Waterfront-Opening Horn Solo", album_id: Album.last.id, track_no: 1)
+Track.last.song.attach(io: File.open('app/assets/media/audio/waterfront.wav'), filename: 'waterfront.wav')
+
+Track.create!(title: "Zocalo Quintet Demo Reel", album_id: Album.last.id, track_no: 3)
+Track.last.song.attach(io: File.open('app/assets/media/audio/zoc_demo.mp3'), filename: 'zoc_demo.mp3')
+
+Track.create!(title: "Silent Flame", album_id: Album.last.id, track_no: 2)
+Track.last.song.attach(io: File.open('app/assets/media/audio/silent_flame.mp3'), filename: 'silent_flame.mp3')
+
+

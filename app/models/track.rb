@@ -14,5 +14,6 @@ class Track < ApplicationRecord
         source: :artist
       
 
+    has_one_attached :song
     
 end

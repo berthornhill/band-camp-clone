@@ -47,5 +47,7 @@ class User < ApplicationRecord
 
     has_many :tracks, through: :albums
 
+    has_one_attached :photo
+
 
 end

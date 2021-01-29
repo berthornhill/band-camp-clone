@@ -1,10 +1,21 @@
 import React from "react";
 import BigAlbum from "../albums/big_album";
 import { Link } from "react-router-dom";
+import ReactAudioPlayer from "react-audio-player";
 
 class MediaPlayer extends React.Component {
   constructor(props) {
     super(props);
+    // debugger;
+    this.state = {
+      url: "",
+    };
+    this.playSong = this.playSong.bind(this);
+  }
+
+  playSong(e) {
+    // debugger;
+    this.setState({ url: e.target.value });
   }
 
   render() {
@@ -16,6 +27,9 @@ class MediaPlayer extends React.Component {
       if (track) {
         return (
           <li className="single-track" key={track.track_no}>
+            <button value={track.url} onClick={(value) => this.playSong(value)}>
+              ▶
+            </button>
             <div>{track.track_no}</div>
             <div>{track.title}</div>
           </li>
@@ -33,6 +47,12 @@ class MediaPlayer extends React.Component {
                 by <Link to={`/artist/${artist.id}`}>{artist.artist}</Link>
               </div>
             </div>
+            {/* <audio controls src={this.state.url}>
+              {" "}
+              Your browser does not support the
+              <code>audio</code> element.
+            </audio> */}
+            <ReactAudioPlayer src={this.state.url} autoPlay controls />
             <div className="now-playing-container">
               <ul>{tracks[0]}</ul>
             </div>
