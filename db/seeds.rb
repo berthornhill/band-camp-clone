@@ -5,6 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require 'open-uri'
 
 User.destroy_all
 Album.destroy_all
@@ -174,16 +175,18 @@ User.all.ids.each do |id|
     }
 end
 
-User.create!(username: "Bert", artist: "artist formerly known as bert", password: "password", email: "bert@bert")
+User.create!(username: "Bert", artist: "Formerly, an known as bert", password: "password", email: "bert@bert")
 Album.create!(artist_id: User.last.id, album_name: "I'm sorry for this", description: "I'm sorry for this")
 
+
+waterfront = URI.open('https://bandlamp-seed.s3.us-east-2.amazonaws.com/waterfront.wav')
 Track.create!(title: "On The Waterfront-Opening Horn Solo", album_id: Album.last.id, track_no: 1)
-Track.last.song.attach(io: File.open('app/assets/media/audio/waterfront.wav'), filename: 'waterfront.wav')
+Track.last.song.attach(io: waterfront, filename: 'waterfront.wav')
 
 Track.create!(title: "Zocalo Quintet Demo Reel", album_id: Album.last.id, track_no: 3)
-Track.last.song.attach(io: File.open('app/assets/media/audio/zoc_demo.mp3'), filename: 'zoc_demo.mp3')
+Track.last.song.attach(io: URI.open('https://bandlamp-seed.s3.us-east-2.amazonaws.com/zoc_demo.mp3'), filename: 'zoc_demo.mp3')
 
 Track.create!(title: "Silent Flame", album_id: Album.last.id, track_no: 2)
-Track.last.song.attach(io: File.open('app/assets/media/audio/silent_flame.mp3'), filename: 'silent_flame.mp3')
+Track.last.song.attach(io: URI.open('https://bandlamp-seed.s3.us-east-2.amazonaws.com/silent_flame.mp3'), filename: 'silent_flame.mp3')
 
 
