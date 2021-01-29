@@ -13,16 +13,16 @@ const Features = () => {
             <h3>This Year, Concerts Are Outside!</h3>
           </div>
           <div className="trio-box">
-            <Link to="/artist/178">
+            <Link to="/artist/245">
               <img src={window.record} alt="top story, rock star guy image" />
             </Link>
-            <Link to="/artist/199">
+            <Link to="/artist/240">
               <img
                 src={window.rockstarguy}
                 alt="top story, rock star guy image"
               />
             </Link>
-            <Link to="/artist/200">
+            <Link to="/artist/256">
               <img src={window.urmusic} alt="top story, rock star guy image" />
             </Link>
           </div>
