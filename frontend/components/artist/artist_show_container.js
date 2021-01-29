@@ -3,7 +3,7 @@ import { fetchArtist } from "../../actions/artist_show_actions";
 import ArtistShow from "./artist_show_component";
 
 const mSTP = (state, ownProps) => {
-  debugger;
+  // debugger;
   return {
     artist: state.entities.artist[ownProps.match.params.id],
     // albums: Object.values(state.entities.albums),

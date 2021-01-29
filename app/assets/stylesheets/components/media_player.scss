@@ -23,6 +23,14 @@
   height: 47px;
   font-size: 28px;
   font-weight: 900;
+  div {
+    font-size: 14px;
+    padding-top: 10px;
+    font-weight: 100;
+    a {
+      color: rgb(0, 161, 198);
+    }
+  }
 }
 .now-playing-container {
   width: 100%;
@@ -62,6 +70,7 @@
   flex-direction: column;
   align-items: center;
   padding-top: 50px;
+  padding-right: 25px;
   width: 350px;
 }
 

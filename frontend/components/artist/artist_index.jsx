@@ -53,7 +53,7 @@ class ArtistIndex extends React.Component {
 // }
 
 const mSTP = (state, ownProps) => {
-  debugger;
+  // debugger;
   return {
     albums: state.entities.albums,
     artist: state.entities.artist[ownProps.match.params.id], //[1,2,334,4,53]
@@ -61,7 +61,7 @@ const mSTP = (state, ownProps) => {
 };
 
 const mDTP = (dispatch) => {
-  debugger;
+  // debugger;
   return {
     fetchAlbums: (artistId) => dispatch(fetchAlbums(artistId)),
   };

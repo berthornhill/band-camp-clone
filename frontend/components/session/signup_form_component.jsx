@@ -25,7 +25,7 @@ class SignupForm extends React.Component {
     // e.preventDefault();
     // debugger;
     return (e) => {
-      debugger;
+      // debugger;
       this.setState({ [value]: e.target.value });
       e.target.className = "";
 

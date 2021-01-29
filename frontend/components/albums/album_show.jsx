@@ -15,11 +15,11 @@ class AlbumShow extends React.Component {
   }
 
   render() {
-    debugger;
+    // debugger;
     if (!this.props.album) {
       return null;
     }
-    debugger;
+    // debugger;
 
     return (
       <div className="artist-show-main-left">

@@ -12,14 +12,21 @@ class ArtistShow extends React.Component {
   }
 
   componentDidMount() {
-    debugger;
+    // debugger;
     this.props.fetchArtist(this.props.match.params.id);
+  }
+
+  componentDidUpdate(prevProps) {
+    // debugger;
+    if (this.props.match.params.id !== prevProps.match.params.id) {
+      this.props.fetchArtist(this.props.match.params.id);
+    }
   }
 
   render() {
     // debugger;
     const { artist } = this.props;
-    debugger;
+    // debugger;
     if (!artist) {
       return null;
     } else {
