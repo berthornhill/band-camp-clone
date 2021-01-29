@@ -175,8 +175,8 @@ User.all.ids.each do |id|
     }
 end
 
-User.create!(username: "Bert", artist: "Formerly, an known as bert", password: "password", email: "bert@bert")
-Album.create!(artist_id: User.last.id, album_name: "I'm sorry for this", description: "I'm sorry for this")
+User.create!(username: "Bert", artist: "Bert Hill, Developer", password: "password", email: "bert@bert", bio: "I created this app. Thanks for stopping in. In addition to my work as a developer, I am also a musicain. Here are a few recordings of some of my performances from over the years. Please enjoy them and the website")
+Album.create!(artist_id: User.last.id, album_name: "Sample Tracks", description: "Demo recordings")
 
 
 waterfront = URI.open('https://bandlamp-seed.s3.us-east-2.amazonaws.com/waterfront.wav')
