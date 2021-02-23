@@ -2573,6 +2573,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -2618,15 +2620,41 @@ var InfoForm = /*#__PURE__*/function (_React$Component) {
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
+    _this.handleFile = _this.handleFile.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(InfoForm, [{
     key: "handleChange",
     value: function handleChange(input) {
+      var _this2 = this;
+
       return function (e) {
-        e.preventDefault(); // set e to state
+        e.preventDefault();
+
+        _this2.setState(_defineProperty({}, value, e.target.value));
+
+        e.target.className = "";
       };
+    }
+  }, {
+    key: "handleFile",
+    value: function handleFile(e) {
+      var _this3 = this;
+
+      debugger;
+      e.preventDefault();
+      debugger;
+      var file = e.currentTarget.files[0];
+      var fileReader = new FileReader();
+
+      fileReader.onloadend = function () {
+        debugger;
+
+        _this3.setState(_defineProperty({}, e.target.id, fileReader.result));
+      };
+
+      fileReader.readAsDataURL(file);
     }
   }, {
     key: "handleSubmit",
@@ -2653,7 +2681,9 @@ var InfoForm = /*#__PURE__*/function (_React$Component) {
         src: artistImagePreview,
         alt: "preview of image"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "file"
+        type: "file",
+        id: "artistImage",
+        onChange: this.handleFile
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "banner-image",
         className: "artist-info-form"
@@ -2662,17 +2692,23 @@ var InfoForm = /*#__PURE__*/function (_React$Component) {
         src: artistBannerPreview,
         alt: "preview of image"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "file"
+        type: "file",
+        id: "bannerImage",
+        onChange: this.handleFile
       })), "Artist Bio", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "artist-bio",
         className: "artist-info-form"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "text"
+        type: "text",
+        value: bio ? bio : "",
+        onChange: this.handleChange("bio")
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "artist-location",
         className: "artist-info-form"
       }, "Location", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "text"
+        type: "text",
+        value: location ? location : "",
+        onChange: this.handleChange("location")
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "submit"
       }, "update artist"));

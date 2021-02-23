@@ -15,13 +15,30 @@ class InfoForm extends React.Component {
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleFile = this.handleFile.bind(this);
   }
 
   handleChange(input) {
     return (e) => {
       e.preventDefault();
-      // set e to state
+      this.setState({ [value]: e.target.value });
+      e.target.className = "";
     };
+  }
+
+  handleFile(e) {
+    debugger;
+
+    e.preventDefault();
+    debugger;
+    const file = e.currentTarget.files[0];
+    const fileReader = new FileReader();
+    fileReader.onloadend = () => {
+      debugger;
+      this.setState({ [e.target.id]: fileReader.result });
+    };
+
+    fileReader.readAsDataURL(file);
   }
 
   handleSubmit(e) {
@@ -43,7 +60,7 @@ class InfoForm extends React.Component {
             src={artistImagePreview}
             alt="preview of image"
           />
-          <input type="file" />
+          <input type="file" id="artistImage" onChange={this.handleFile} />
         </label>
         <label htmlFor="banner-image" className="artist-info-form">
           <img
@@ -51,15 +68,23 @@ class InfoForm extends React.Component {
             src={artistBannerPreview}
             alt="preview of image"
           />
-          <input type="file" />
+          <input type="file" id="bannerImage" onChange={this.handleFile} />
         </label>
         Artist Bio
         <label htmlFor="artist-bio" className="artist-info-form">
-          <input type="text" />
+          <input
+            type="text"
+            value={bio ? bio : ""}
+            onChange={this.handleChange("bio")}
+          />
         </label>
         <label htmlFor="artist-location" className="artist-info-form">
           Location
-          <input type="text" />
+          <input
+            type="text"
+            value={location ? location : ""}
+            onChange={this.handleChange("location")}
+          />
         </label>
         <button type="submit">update artist</button>
       </form>
