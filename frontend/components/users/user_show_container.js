@@ -1,11 +1,20 @@
 import { connect } from "react-redux";
 import UserShow from "./user_show";
+import { fetchArtist, updateArtist } from "../../actions/artist_show_actions";
 
-const mSTP = (state) => {
-  return {};
+const mSTP = (state, ownProps) => {
+  debugger;
+  return {
+    artist: state.entities.artist[ownProps.match.params.id],
+    session: state.session,
+    errors: state.errors,
+  };
 };
 const mDTP = (dispatch) => {
-  return {};
+  return {
+    fetchArtist: (id) => dispatch(fetchArtist(id)),
+    updateArtist: (id) => dispatch(updateArtist(id)),
+  };
 };
 
 export default connect(mSTP, mDTP)(UserShow);

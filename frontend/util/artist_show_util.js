@@ -23,8 +23,16 @@ export const fetchAlbums = (id) => {
   });
 };
 
-export const fetchTracks = (id) =>
+export const fetchTracks = (id) => {
   $.ajax({
     method: "GET",
     url: `/api/albums/${id}/tracks`,
   });
+};
+
+export const updateArtist = (id) => {
+  $.ajax({
+    method: "POST",
+    url: `/api/artists/${id}`,
+  });
+};

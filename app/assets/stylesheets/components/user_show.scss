@@ -52,16 +52,43 @@
   margin: auto;
   display: grid;
   grid-template-columns: 60% 40%;
-  height: 400px;
+  //   height: 400px;
   background-color: cornsilk;
 
   .left-side {
     grid-column-start: 1;
     background-color: rgb(130, 111, 237);
+
+    .left-contents {
+    }
   }
 
   .right-side {
     grid-column-start: 2;
     background-color: rgb(44, 213, 188);
+  }
+
+  .right-contents {
+    .artist-info-form {
+      width: 100%;
+      height: 200px;
+    }
+
+    // .artist-image-form {
+    //   width: 100%;
+    //   height: 200px;
+    // }
+    // .banner-image-form {
+    //   width: 100%;
+    //   height: 200px;
+    // }
+    // .bio-form {
+    //   width: 100%;
+    //   height: 200px;
+    // }
+    // .location-form {
+    //   width: 100%;
+    //   height: 200px;
+    // }
   }
 }

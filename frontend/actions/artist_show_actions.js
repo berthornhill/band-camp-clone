@@ -45,6 +45,13 @@ const receiveAlbum = (album) => {
   };
 };
 
+const receiveErrors = (errors) => {
+  return {
+    type: RECEIVE_ERRORS,
+    errors,
+  };
+};
+
 export const fetchArtist = (id) => (dispatch) =>
   artistAPI.artistShow(id).then((artist) => dispatch(receiveArtist(artist)));
 
@@ -65,3 +72,9 @@ export const fetchTracks = (id) => (dispatch) =>
 export const fetchAlbums = (id) => (dispatch) => {
   artistAPI.fetchAlbums(id).then((albums) => dispatch(receiveAlbums(albums)));
 };
+
+export const updateArtist = (id) => (dispatch) =>
+  artistAPI.updateArtist(id).then(
+    (artist) => dispatch(receiveArtist(artist)),
+    (errors) => dispatch(receiveErrors(errors.respondJSON))
+  );
