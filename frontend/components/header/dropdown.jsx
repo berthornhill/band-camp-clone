@@ -1,5 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Link, Redirect } from "react-router-dom";
+import user_show_container from "../users/user_show_container";
 
 class UserDropdown extends React.Component {
   constructor(props) {
@@ -12,24 +14,25 @@ class UserDropdown extends React.Component {
   }
 
   openCloseMenu() {
-    // debugger;
+    debugger;
     const toggle = !this.state.display;
     this.setState({ display: toggle });
   }
 
   render() {
-    // debugger;
-    const { currentUser, logout } = this.props;
+    const { currentUser, logout, user } = this.props;
+
     return (
       <div>
         <button
           className="dropdown"
-          onFocus={this.openCloseMenu}
-          onBlur={this.openCloseMenu}
+          // onFocus={this.openCloseMenu}
+          // onBlur={this.openCloseMenu}
+          onClick={this.openCloseMenu}
         >
           <span className="dot-big"></span>
           {this.state.display ? (
-            <MenuItems currentUser={currentUser} logout={logout} />
+            <MenuItems currentUser={currentUser} logout={logout} user={user} />
           ) : null}
         </button>
       </div>
@@ -37,11 +40,15 @@ class UserDropdown extends React.Component {
   }
 }
 
-const MenuItems = ({ currentUser, logout }) => {
+// Menu Functional component
+const MenuItems = ({ currentUser, logout, user }) => {
+  debugger;
   return (
     <div>
       <ul>
-        <li onClick={logout}>Log Out</li>
+        <Link to={`/artist/${currentUser}`}>{user.artist}: view site</Link>
+        <Link to={`/users/${currentUser}`}>edit profile</Link>
+        <li onClick={logout}>log out</li>
       </ul>
     </div>
   );

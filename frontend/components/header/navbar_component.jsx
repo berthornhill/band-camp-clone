@@ -3,7 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import UserNav from "./user_nav";
 
-const NavBar = ({ currentUser, logout, openModal }) => {
+const NavBar = ({ currentUser, user, logout, openModal }) => {
   // let sessionLinks;
   // // if (id)
 
@@ -27,7 +27,7 @@ const NavBar = ({ currentUser, logout, openModal }) => {
   );
 
   if (currentUser) {
-    return <UserNav currentUser={currentUser} logout={logout} />;
+    return <UserNav currentUser={currentUser} logout={logout} user={user} />;
   }
 
   return (

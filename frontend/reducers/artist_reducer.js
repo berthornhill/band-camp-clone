@@ -3,6 +3,8 @@ import {
   RECEIVE_ARTISTS,
 } from "../actions/artist_show_actions";
 
+import { RECEIVE_CURRENT_USER } from "../actions/session_actions";
+
 const ArtistReducer = (state = {}, action) => {
   // debugger;
   Object.freeze(state);
@@ -16,6 +18,10 @@ const ArtistReducer = (state = {}, action) => {
       };
     case RECEIVE_ARTISTS:
       return Object.assign({}, action.artists);
+
+    case RECEIVE_CURRENT_USER:
+    // debugger;
+    // return { ...state, action };
     default:
       return state;
   }

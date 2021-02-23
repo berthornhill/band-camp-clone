@@ -7,10 +7,13 @@ export const LOGOUT_CURRENT_USER = "LOGOUT_CURRENT_USER";
 export const RECEIVE_ERRORS = "RECEIVE_ERRORS";
 export const REMOVE_ERRORS = "REMOVE_ERRORS";
 
-const recieveCurrentUser = (user) => ({
-  type: RECEIVE_CURRENT_USER,
-  user,
-});
+const recieveCurrentUser = (user) => {
+  debugger;
+  return {
+    type: RECEIVE_CURRENT_USER,
+    user,
+  };
+};
 
 const logoutCurrentUser = () => ({
   type: LOGOUT_CURRENT_USER,

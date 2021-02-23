@@ -12,6 +12,7 @@ import { AuthRoute } from "../util/route_util";
 import Modal from "./modal/modal_container";
 import Footer from "./footer/footer";
 import ArtistShow from "./artist/artist_show_container";
+import UserShow from "./users/user_show_container";
 
 const App = () => {
   return (
@@ -26,7 +27,8 @@ const App = () => {
       <Switch>
         <AuthRoute path="/users/login" component={LoginForm} />
         <AuthRoute path="/users/signup" component={SignupForm} />
-        <Route path="/artist/:id" component={ArtistShow} />
+        <Route exact path="/artist/:id" component={ArtistShow} />
+        <Route exact path="/users/:id" component={UserShow} />
 
         <Route path="/" component={Splash} />
       </Switch>

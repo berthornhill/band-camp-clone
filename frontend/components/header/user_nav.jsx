@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import UserDropdown from "./dropdown";
 import { Link } from "react-router-dom";
 
-const UserNav = ({ currentUser, logout }) => {
+const UserNav = ({ currentUser, logout, user }) => {
   return (
     <div className="outer-user-nav">
       <div className="user-nav">
@@ -32,7 +32,7 @@ const UserNav = ({ currentUser, logout }) => {
           <div className="heart">
             <img src={window.heart}></img>
           </div>
-          <UserDropdown currentUser={currentUser} logout={logout} />
+          <UserDropdown currentUser={currentUser} logout={logout} user={user} />
         </div>
       </div>
     </div>

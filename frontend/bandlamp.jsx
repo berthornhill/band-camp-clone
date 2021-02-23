@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let prelodedState = undefined;
   let store;
   if (window.currentUser) {
+    debugger;
     prelodedState = {
       entities: {
         users: window.currentUser.user,
