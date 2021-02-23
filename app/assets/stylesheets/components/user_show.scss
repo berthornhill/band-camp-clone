@@ -51,15 +51,30 @@
   height: auto;
   margin: auto;
   display: grid;
-  grid-template-columns: 60% 40%;
+  grid-template-columns: 40% 60%;
   //   height: 400px;
   background-color: cornsilk;
 
   .left-side {
     grid-column-start: 1;
     background-color: rgb(130, 111, 237);
+    display: flex;
+    flex-direction: column;
+  }
+  .left-contents {
+    display: flex;
+    flex-direction: column;
+    align-content: space-around;
 
-    .left-contents {
+    a {
+      border: none;
+      height: 150px;
+      background-color: white;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
   }
 
@@ -71,7 +86,7 @@
   .right-contents {
     .artist-info-form {
       width: 100%;
-      height: 200px;
+      height: auto;
     }
 
     // .artist-image-form {
@@ -90,5 +105,31 @@
     //   width: 100%;
     //   height: 200px;
     // }
+  }
+}
+
+#info-form {
+  display: flex;
+  flex-direction: column;
+  align-content: space-around;
+  justify-content: flex-end;
+
+  label {
+    padding-bottom: 50px;
+  }
+
+  label > {
+    padding-bottom: 10px;
+  }
+
+  .artist-image-preview {
+    height: 125px;
+    width: 125px;
+    object-fit: cover;
+  }
+  .banner-image-preview {
+    height: 75px;
+    width: 100%;
+    object-fit: cover;
   }
 }

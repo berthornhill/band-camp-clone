@@ -1,5 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Switch, Route } from "react-router-dom";
+import InfoFrom from "./info_form";
+import AlbumForm from "./album_form";
+import TracksForm from "./tracks_form";
 
 class UserShow extends React.Component {
   constructor(props) {
@@ -7,11 +10,12 @@ class UserShow extends React.Component {
 
     debugger;
 
-    this.state = props.artist;
-
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleTab = this.handleTab.bind(this);
   }
+
+  handleTab() {}
 
   handleChange(input) {
     return (e) => {
@@ -49,30 +53,29 @@ class UserShow extends React.Component {
             </div>
             <div className="user-grid-box">
               <div className="left-side">
-                <div classname="left-contents">
-                  Links to add album/add track
+                <div className="left-contents">
+                  <Link to={`/users/${this.props.artist.id}/edit`}>
+                    edit artist info
+                  </Link>
+                  <Link to={`/users/${this.props.artist.id}/album`}>
+                    add album
+                  </Link>
+                  <Link to={`/users/${this.props.artist.id}/track`}>
+                    add tracks
+                  </Link>
                 </div>
               </div>
               <div className="right-side">
                 <div className="right-contents">
-                  <form onSubmit={this.handleSubmit}>
-                    <label htmlFor="artist-image" className="artist-info-form">
-                      <input type="file" />
-                    </label>
-
-                    <label htmlFor="banner-image" className="artist-info-form">
-                      <input type="file" />
-                    </label>
-                    <label htmlFor="artist-bio" className="artist-info-form">
-                      <input type="text" />
-                    </label>
-                    <label
-                      htmlFor="artist-location"
-                      className="artist-info-form"
-                    >
-                      <input type="text" />
-                    </label>
-                  </form>
+                  <Switch>
+                    <Route
+                      path="/users/:id/edit"
+                      artist={this.props.artist}
+                      component={InfoFrom}
+                    />
+                    <Route path="/users/:id/album" component={AlbumForm} />
+                    <Route path="/users/:id/track" component={TracksForm} />
+                  </Switch>
                 </div>
               </div>
             </div>
@@ -82,5 +85,4 @@ class UserShow extends React.Component {
     );
   }
 }
-
 export default UserShow;
