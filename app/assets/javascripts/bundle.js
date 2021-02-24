@@ -2616,8 +2616,14 @@ var InfoForm = /*#__PURE__*/function (_React$Component) {
       artist: props.artist.artist,
       bio: props.artist.bio,
       location: props.artist.location,
-      artistImage: props.artist.artistImage,
-      bannerImage: props.artist.bannerImage,
+      artistImage: {
+        file: null,
+        preview: props.artist.artistImage
+      },
+      bannerImage: {
+        file: null,
+        preview: props.artist.bannerImage
+      },
       errors: props.errors
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
@@ -2653,7 +2659,10 @@ var InfoForm = /*#__PURE__*/function (_React$Component) {
       fileReader.onloadend = function () {
         debugger;
 
-        _this3.setState(_defineProperty({}, e.target.id, fileReader.result));
+        _this3.setState(_defineProperty({}, e.target.id, {
+          preview: fileReader.result,
+          file: file
+        }));
       };
 
       fileReader.readAsDataURL(file);
@@ -2667,8 +2676,10 @@ var InfoForm = /*#__PURE__*/function (_React$Component) {
       var id = this.props.artist.id;
       formData.append("artist[location]", this.state.location);
       formData.append("artist[bio]", this.state.bio);
-      formData.append("artist[artist_image]", this.state.artistImage);
-      formData.append("artist[banner_image]", this.state.bannerImage);
+      this.state.artistImage.file ? formData.append("artist[artist_image]", this.state.artistImage.file) : null;
+      this.state.bannerImage.file ? formData.append("artist[banner_image]", this.state.bannerImage.file) : null; // formData.append("artist[artist_image]", this.state.artistImage.file);
+      // formData.append("artist[banner_image]", this.state.bannerImage.file);
+
       this.props.updateArtist(id, formData);
     }
   }, {
@@ -2677,8 +2688,8 @@ var InfoForm = /*#__PURE__*/function (_React$Component) {
       var _this$state = this.state,
           bio = _this$state.bio,
           location = _this$state.location;
-      var artistImagePreview = this.state.artistImage || window.emptyband;
-      var artistBannerPreview = this.state.bannerImage || window.emptyalbumart;
+      var artistImagePreview = this.state.artistImage.preview || window.emptyband;
+      var artistBannerPreview = this.state.bannerImage.preview || window.emptyalbumart;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         id: "info-form",
         onSubmit: this.handleSubmit

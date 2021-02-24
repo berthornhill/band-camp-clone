@@ -10,8 +10,14 @@ class InfoForm extends React.Component {
       artist: props.artist.artist,
       bio: props.artist.bio,
       location: props.artist.location,
-      artistImage: props.artist.artistImage,
-      bannerImage: props.artist.bannerImage,
+      artistImage: {
+        file: null,
+        preview: props.artist.artistImage,
+      },
+      bannerImage: {
+        file: null,
+        preview: props.artist.bannerImage,
+      },
       errors: props.errors,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -36,7 +42,9 @@ class InfoForm extends React.Component {
     const fileReader = new FileReader();
     fileReader.onloadend = () => {
       debugger;
-      this.setState({ [e.target.id]: fileReader.result });
+      this.setState({
+        [e.target.id]: { preview: fileReader.result, file: file },
+      });
     };
 
     fileReader.readAsDataURL(file);
@@ -49,8 +57,17 @@ class InfoForm extends React.Component {
     const { id } = this.props.artist;
     formData.append("artist[location]", this.state.location);
     formData.append("artist[bio]", this.state.bio);
-    formData.append("artist[artist_image]", this.state.artistImage);
-    formData.append("artist[banner_image]", this.state.bannerImage);
+
+    this.state.artistImage.file
+      ? formData.append("artist[artist_image]", this.state.artistImage.file)
+      : null;
+
+    this.state.bannerImage.file
+      ? formData.append("artist[banner_image]", this.state.bannerImage.file)
+      : null;
+
+    // formData.append("artist[artist_image]", this.state.artistImage.file);
+    // formData.append("artist[banner_image]", this.state.bannerImage.file);
 
     this.props.updateArtist(id, formData);
   }
@@ -58,8 +75,10 @@ class InfoForm extends React.Component {
   render() {
     const { bio, location } = this.state;
 
-    const artistImagePreview = this.state.artistImage || window.emptyband;
-    const artistBannerPreview = this.state.bannerImage || window.emptyalbumart;
+    const artistImagePreview =
+      this.state.artistImage.preview || window.emptyband;
+    const artistBannerPreview =
+      this.state.bannerImage.preview || window.emptyalbumart;
 
     return (
       <form id="info-form" onSubmit={this.handleSubmit}>

@@ -4,11 +4,22 @@
 # @tracksArr
 
 json.artist do
+    # debugger
     json.id @artist.id
     json.artist @artist.artist
     json.bio @artist.bio
     json.location @artist.location
     json.albums @albumsArr
+  
+    if @artist.artist_image.attached?
+         json.artistImage url_for(@artist.artist_image) 
+    end
+ 
+    if @artist.banner_image.attached?
+        json.bannerImage url_for(@artist.banner_image)
+    end
+    # json.artistImage url_for(@artist.artist_image)
+    # json.bannerImage url_for(@artist.banner_image)
 end
 
 json.albums do
