@@ -73,8 +73,8 @@ export const fetchAlbums = (id) => (dispatch) => {
   artistAPI.fetchAlbums(id).then((albums) => dispatch(receiveAlbums(albums)));
 };
 
-export const updateArtist = (id) => (dispatch) =>
-  artistAPI.updateArtist(id).then(
+export const updateArtist = (id, formData) => (dispatch) =>
+  artistAPI.updateArtist(id, formData).then(
     (artist) => dispatch(receiveArtist(artist)),
     (errors) => dispatch(receiveErrors(errors.respondJSON))
   );

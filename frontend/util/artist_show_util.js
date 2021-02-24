@@ -30,9 +30,12 @@ export const fetchTracks = (id) => {
   });
 };
 
-export const updateArtist = (id) => {
+export const updateArtist = (id, formData) => {
   $.ajax({
-    method: "POST",
+    method: "PATCH",
     url: `/api/artists/${id}`,
+    data: formData,
+    contentType: false,
+    processData: false,
   });
 };

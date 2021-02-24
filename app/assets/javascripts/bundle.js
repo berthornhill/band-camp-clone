@@ -200,9 +200,9 @@ var fetchAlbums = function fetchAlbums(id) {
     });
   };
 };
-var updateArtist = function updateArtist(id) {
+var updateArtist = function updateArtist(id, formData) {
   return function (dispatch) {
-    return _util_artist_show_util__WEBPACK_IMPORTED_MODULE_0__["updateArtist"](id).then(function (artist) {
+    return _util_artist_show_util__WEBPACK_IMPORTED_MODULE_0__["updateArtist"](id, formData).then(function (artist) {
       return dispatch(receiveArtist(artist));
     }, function (errors) {
       return dispatch(receiveErrors(errors.respondJSON));
@@ -2571,6 +2571,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_artist_show_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/artist_show_actions */ "./frontend/actions/artist_show_actions.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -2594,6 +2595,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 
 
 
@@ -2632,7 +2634,7 @@ var InfoForm = /*#__PURE__*/function (_React$Component) {
       return function (e) {
         e.preventDefault();
 
-        _this2.setState(_defineProperty({}, value, e.target.value));
+        _this2.setState(_defineProperty({}, input, e.target.value));
 
         e.target.className = "";
       };
@@ -2659,13 +2661,20 @@ var InfoForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
-      e.preventDefaul(); // send form data.
+      e.preventDefault(); // send form data.
+
+      var formData = new FormData();
+      var id = this.props.artist.id;
+      formData.append("artist[location]", this.state.location);
+      formData.append("artist[bio]", this.state.bio);
+      formData.append("artist[artist_image]", this.state.artistImage);
+      formData.append("artist[banner_image]", this.state.bannerImage);
+      this.props.updateArtist(id, formData);
     }
   }, {
     key: "render",
     value: function render() {
       var _this$state = this.state,
-          artist = _this$state.artist,
           bio = _this$state.bio,
           location = _this$state.location;
       var artistImagePreview = this.state.artistImage || window.emptyband;
@@ -2695,10 +2704,10 @@ var InfoForm = /*#__PURE__*/function (_React$Component) {
         type: "file",
         id: "bannerImage",
         onChange: this.handleFile
-      })), "Artist Bio", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "artist-bio",
         className: "artist-info-form"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, "Artist Bio", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         value: bio ? bio : "",
         onChange: this.handleChange("bio")
@@ -2728,19 +2737,9 @@ var mSTP = function mSTP(state, ownProps) {
 
 var mDTP = function mDTP(dispatch) {
   return {
-    updateArtist: function (_updateArtist) {
-      function updateArtist(_x) {
-        return _updateArtist.apply(this, arguments);
-      }
-
-      updateArtist.toString = function () {
-        return _updateArtist.toString();
-      };
-
-      return updateArtist;
-    }(function (id) {
-      return dispatch(updateArtist(id));
-    })
+    updateArtist: function updateArtist(id, formData) {
+      return dispatch(Object(_actions_artist_show_actions__WEBPACK_IMPORTED_MODULE_2__["updateArtist"])(id, formData));
+    }
   };
 };
 
@@ -3371,10 +3370,13 @@ var fetchTracks = function fetchTracks(id) {
     url: "/api/albums/".concat(id, "/tracks")
   });
 };
-var updateArtist = function updateArtist(id) {
+var updateArtist = function updateArtist(id, formData) {
   $.ajax({
-    method: "POST",
-    url: "/api/artists/".concat(id)
+    method: "PATCH",
+    url: "/api/artists/".concat(id),
+    data: formData,
+    contentType: false,
+    processData: false
   });
 };
 

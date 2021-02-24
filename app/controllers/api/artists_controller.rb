@@ -1,5 +1,7 @@
 class Api::ArtistsController < ApplicationController
 
+     skip_before_action :verify_authenticity_token
+
     def index 
         ids = User.pluck(:id)
         sample = ids.sample(8) 
@@ -20,5 +22,20 @@ class Api::ArtistsController < ApplicationController
         @tracksArr = @tracks.pluck(:id)
         render :show
     end
+
+    def update
+        @artist = User.find(params[:id])
+        if @artist.update(update_params)
+            
+
+        render json: { word: "hello"}, status: 200
+        debugger
+    
+    end
+
+    def update_params
+        params.require(:artist).permit(:location, :bio, :artist_image, :banner_image)
+    end
+
 end
 

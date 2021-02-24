@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { updateArtist } from "../../actions/artist_show_actions";
 
 class InfoForm extends React.Component {
   constructor(props) {
@@ -21,7 +22,7 @@ class InfoForm extends React.Component {
   handleChange(input) {
     return (e) => {
       e.preventDefault();
-      this.setState({ [value]: e.target.value });
+      this.setState({ [input]: e.target.value });
       e.target.className = "";
     };
   }
@@ -42,12 +43,20 @@ class InfoForm extends React.Component {
   }
 
   handleSubmit(e) {
-    e.preventDefaul();
+    e.preventDefault();
     // send form data.
+    const formData = new FormData();
+    const { id } = this.props.artist;
+    formData.append("artist[location]", this.state.location);
+    formData.append("artist[bio]", this.state.bio);
+    formData.append("artist[artist_image]", this.state.artistImage);
+    formData.append("artist[banner_image]", this.state.bannerImage);
+
+    this.props.updateArtist(id, formData);
   }
 
   render() {
-    const { artist, bio, location } = this.state;
+    const { bio, location } = this.state;
 
     const artistImagePreview = this.state.artistImage || window.emptyband;
     const artistBannerPreview = this.state.bannerImage || window.emptyalbumart;
@@ -70,8 +79,8 @@ class InfoForm extends React.Component {
           />
           <input type="file" id="bannerImage" onChange={this.handleFile} />
         </label>
-        Artist Bio
         <label htmlFor="artist-bio" className="artist-info-form">
+          Artist Bio
           <input
             type="text"
             value={bio ? bio : ""}
@@ -102,7 +111,7 @@ const mSTP = (state, ownProps) => {
 
 const mDTP = (dispatch) => {
   return {
-    updateArtist: (id) => dispatch(updateArtist(id)),
+    updateArtist: (id, formData) => dispatch(updateArtist(id, formData)),
   };
 };
 
