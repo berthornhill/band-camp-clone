@@ -19,11 +19,12 @@ const receiveTracks = (tracks) => {
   };
 };
 
-const receiveAlbum = (album) => {
-  // debugger;
+const receiveAlbum = ({ album, artist }) => {
+  debugger;
   return {
     type: RECEIVE_ALBUM,
     album,
+    artist,
   };
 };
 

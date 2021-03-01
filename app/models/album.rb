@@ -16,6 +16,6 @@ class Album < ApplicationRecord
 
     has_many :tracks, dependent: :destroy
 
-    has_one_attached :cover_art
+    has_one_attached :album_art
 
 end

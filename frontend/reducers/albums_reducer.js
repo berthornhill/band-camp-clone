@@ -15,9 +15,9 @@ const AlbumsReducer = (state = {}, action) => {
     //   // return Object.assign({}, state, action.artist.albums);
     //   debugger;
     //   return Object.assign({}, state, action.albums);
-    // case RECEIVE_ALBUM:
-    // debugger;
-    // return Object.assign({}, { [action.tracks.albumId]: action.tracks });
+    case RECEIVE_ALBUM:
+      debugger;
+      return Object.assign({}, state, { [action.album.id]: action.album });
     default:
       return state;
   }

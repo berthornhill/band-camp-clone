@@ -49,15 +49,10 @@ class AlbumForm extends React.Component {
     // send form data.
     const formData = new FormData();
     const { id } = this.props.artist;
-    formData.append("artist[description]", this.state.description);
-    formData.append("artist[albumName]", this.state.albumName);
-
-    this.state.albumArt.file
-      ? formData.append("artist[artist_image]", this.state.albumArt.file)
-      : null;
-
-    // formData.append("artist[artist_image]", this.state.artistImage.file);
-    // formData.append("artist[banner_image]", this.state.bannerImage.file);
+    formData.append("album[description]", this.state.description);
+    formData.append("album[album_name]", this.state.albumName);
+    formData.append("album[album_art]", this.state.albumArt.file);
+    formData.append("album[artist_id]", id);
 
     this.props.createAlbum(id, formData);
   }

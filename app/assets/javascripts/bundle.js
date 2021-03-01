@@ -125,11 +125,14 @@ var receiveTracks = function receiveTracks(tracks) {
   };
 };
 
-var receiveAlbum = function receiveAlbum(album) {
-  // debugger;
+var receiveAlbum = function receiveAlbum(_ref2) {
+  var album = _ref2.album,
+      artist = _ref2.artist;
+  debugger;
   return {
     type: RECEIVE_ALBUM,
-    album: album
+    album: album,
+    artist: artist
   };
 };
 
@@ -2707,11 +2710,10 @@ var AlbumForm = /*#__PURE__*/function (_React$Component) {
 
       var formData = new FormData();
       var id = this.props.artist.id;
-      formData.append("artist[description]", this.state.description);
-      formData.append("artist[albumName]", this.state.albumName);
-      this.state.albumArt.file ? formData.append("artist[artist_image]", this.state.albumArt.file) : null; // formData.append("artist[artist_image]", this.state.artistImage.file);
-      // formData.append("artist[banner_image]", this.state.bannerImage.file);
-
+      formData.append("album[description]", this.state.description);
+      formData.append("album[album_name]", this.state.albumName);
+      formData.append("album[album_art]", this.state.albumArt.file);
+      formData.append("album[artist_id]", id);
       this.props.createAlbum(id, formData);
     }
   }, {
@@ -3215,6 +3217,8 @@ var mDTP = function mDTP(dispatch) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_artist_show_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/artist_show_actions */ "./frontend/actions/artist_show_actions.js");
 /* harmony import */ var _actions_album_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/album_actions */ "./frontend/actions/album_actions.js");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -3246,9 +3250,10 @@ var AlbumsReducer = function AlbumsReducer() {
     //   // return Object.assign({}, state, action.artist.albums);
     //   debugger;
     //   return Object.assign({}, state, action.albums);
-    // case RECEIVE_ALBUM:
-    // debugger;
-    // return Object.assign({}, { [action.tracks.albumId]: action.tracks });
+
+    case _actions_album_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_ALBUM"]:
+      debugger;
+      return Object.assign({}, state, _defineProperty({}, action.album.id, action.album));
 
     default:
       return state;
@@ -3269,12 +3274,14 @@ var AlbumsReducer = function AlbumsReducer() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_artist_show_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/artist_show_actions */ "./frontend/actions/artist_show_actions.js");
-/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/session_actions */ "./frontend/actions/session_actions.js");
+/* harmony import */ var _actions_album_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/album_actions */ "./frontend/actions/album_actions.js");
+/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../actions/session_actions */ "./frontend/actions/session_actions.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -3293,7 +3300,11 @@ var ArtistReducer = function ArtistReducer() {
     case _actions_artist_show_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ARTISTS"]:
       return Object.assign({}, action.artists);
 
-    case _actions_session_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_CURRENT_USER"]: // debugger;
+    case _actions_album_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_ALBUM"]:
+      debugger;
+      return Object.assign({}, state, _defineProperty({}, action.artist.id.albums, action.artist.id.albums));
+
+    case _actions_session_actions__WEBPACK_IMPORTED_MODULE_2__["RECEIVE_CURRENT_USER"]: // debugger;
     // return { ...state, action };
 
     default:
@@ -3610,14 +3621,14 @@ var fetchAlbums = function fetchAlbums(id) {
   });
 };
 var fetchTracks = function fetchTracks(id) {
-  $.ajax({
+  return $.ajax({
     method: "GET",
     url: "/api/albums/".concat(id, "/tracks")
   });
 };
 var createAlbum = function createAlbum(artistId, formData) {
   debugger;
-  $.ajax({
+  return $.ajax({
     method: "POST",
     url: "/api/artists/".concat(artistId, "/albums"),
     data: formData,
@@ -3626,7 +3637,7 @@ var createAlbum = function createAlbum(artistId, formData) {
   });
 };
 var createTracks = function createTracks(albumId, formData) {
-  $.ajax({
+  return $.ajax({
     method: "POST",
     url: "/api/albums/".concat(albumId, "/tracks"),
     data: formData,
@@ -3679,7 +3690,7 @@ var fetchArtists = function fetchArtists() {
 // };
 
 var updateArtist = function updateArtist(id, formData) {
-  $.ajax({
+  return $.ajax({
     method: "PATCH",
     url: "/api/artists/".concat(id),
     data: formData,

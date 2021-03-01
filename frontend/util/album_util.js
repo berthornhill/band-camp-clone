@@ -12,7 +12,7 @@ export const fetchAlbums = (id) => {
 };
 
 export const fetchTracks = (id) => {
-  $.ajax({
+  return $.ajax({
     method: "GET",
     url: `/api/albums/${id}/tracks`,
   });
@@ -20,7 +20,7 @@ export const fetchTracks = (id) => {
 
 export const createAlbum = (artistId, formData) => {
   debugger;
-  $.ajax({
+  return $.ajax({
     method: "POST",
     url: `/api/artists/${artistId}/albums`,
     data: formData,
@@ -29,7 +29,7 @@ export const createAlbum = (artistId, formData) => {
   });
 };
 export const createTracks = (albumId, formData) => {
-  $.ajax({
+  return $.ajax({
     method: "POST",
     url: `/api/albums/${albumId}/tracks`,
     data: formData,

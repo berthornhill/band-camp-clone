@@ -3,6 +3,8 @@ import {
   RECEIVE_ARTISTS,
 } from "../actions/artist_show_actions";
 
+import { RECEIVE_ALBUM } from "../actions/album_actions";
+
 import { RECEIVE_CURRENT_USER } from "../actions/session_actions";
 
 const ArtistReducer = (state = {}, action) => {
@@ -19,6 +21,11 @@ const ArtistReducer = (state = {}, action) => {
     case RECEIVE_ARTISTS:
       return Object.assign({}, action.artists);
 
+    case RECEIVE_ALBUM:
+      debugger;
+      return Object.assign({}, state, {
+        [action.artist.id.albums]: action.artist.id.albums,
+      });
     case RECEIVE_CURRENT_USER:
     // debugger;
     // return { ...state, action };
