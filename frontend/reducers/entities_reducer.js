@@ -1,13 +1,13 @@
 import { combineReducers } from "redux";
 import UsersReducer from "./users_reducer";
 import ArtistReducer from "./artist_reducer";
-import AlbumReducer from "./album_reducer";
+import AlbumsReducer from "./albums_reducer";
 import TracksReducer from "./tracks_reducer";
 
 const EntitiesReducer = combineReducers({
   users: UsersReducer,
   artist: ArtistReducer,
-  albums: AlbumReducer,
+  albums: AlbumsReducer,
   tracks: TracksReducer,
 });
 

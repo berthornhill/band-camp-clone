@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, Switch, Route } from "react-router-dom";
 import InfoFrom from "./info_form";
-import AlbumForm from "./album_form";
+import AlbumForm from "./album_form_container";
 import TracksForm from "./tracks_form";
 
 class UserShow extends React.Component {

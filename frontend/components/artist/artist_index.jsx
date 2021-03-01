@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, StaticRouter } from "react-router-dom";
-import { fetchAlbums } from "../../actions/artist_show_actions";
+import { fetchAlbums } from "../../actions/album_actions";
 import { connect } from "react-redux";
 import { render } from "react-dom";
 

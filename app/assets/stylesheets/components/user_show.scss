@@ -1,5 +1,5 @@
 #user-background {
-  //   background-color: blue;
+  background-color: #f7f7f7;
   width: 100%;
   height: auto;
 }
@@ -16,7 +16,7 @@
 #user-outer {
   height: auto;
   margin: auto;
-  padding: 35px 30px 45px;
+  padding: 35px 30px 0px, 30px;
   //   background-color: brown;
   max-width: 1000px;
 }
@@ -33,8 +33,9 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  margin-top: 28px;
-  margin-bottom: 28px;
+  margin-top: 60px;
+  margin-bottom: 60px;
+  border-bottom: 1px solid #dbdbdb;
   h1 {
     font-size: 36px;
     font-weight: 400;
@@ -53,15 +54,10 @@
   display: grid;
   grid-template-columns: 40% 60%;
   //   height: 400px;
-  background-color: cornsilk;
+  // background-color: cornsilk;
 
   .left-side {
     grid-column-start: 1;
-    background-color: rgb(130, 111, 237);
-    display: flex;
-    flex-direction: column;
-  }
-  .left-contents {
     display: flex;
     flex-direction: column;
     align-content: space-around;
@@ -69,18 +65,27 @@
     a {
       border: none;
       height: 150px;
-      background-color: white;
+      // background-color: white;
       text-align: center;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
     }
+    a:hover {
+      background-color: white;
+      border-bottom: 1px solid #dbdbdb;
+      border-top: 1px solid #dbdbdb;
+      transition: background-color 0.2s;
+    }
   }
 
   .right-side {
     grid-column-start: 2;
-    background-color: rgb(44, 213, 188);
+    // background-color: rgb(44, 213, 188);
+    background-color: white;
+    border-left: 1px solid #dbdbdb;
+    padding-bottom: 45px;
   }
 
   .right-contents {
@@ -116,6 +121,12 @@
 
   label {
     padding-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  input {
+    padding-top: 25px;
   }
 
   label > {
@@ -131,5 +142,32 @@
     height: 75px;
     width: 100%;
     object-fit: cover;
+  }
+
+  .form-text-area {
+    width: 98%;
+    min-height: 48px;
+    border: 1px solid #dbdbdb;
+  }
+
+  button {
+    border: none;
+    background-color: white;
+    font-size: 20px;
+    color: #0687f5;
+    border: 1px solid grey;
+    padding: 3px;
+    width: 75%;
+    margin: auto;
+  }
+  .input-button {
+    border: none;
+    background-color: white;
+    font-size: 20px;
+    color: #0687f5;
+
+    #file-upload-button {
+      background-color: white;
+    }
   }
 }

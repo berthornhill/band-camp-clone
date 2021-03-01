@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import MediaPlayer from "./media_player";
-import { fetchAlbum } from "../../actions/artist_show_actions";
+// import { fetchAlbum } from "../../actions/album_actions.js";
+import { fetchAlbum } from "../../actions/album_actions";
 
 const mSTP = (state, ownProps) => {
   // debugger;

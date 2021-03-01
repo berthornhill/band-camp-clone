@@ -6,7 +6,7 @@ import ReactAudioPlayer from "react-audio-player";
 class MediaPlayer extends React.Component {
   constructor(props) {
     super(props);
-    // debugger;
+    debugger;
     this.state = {
       url: "",
     };
@@ -19,7 +19,7 @@ class MediaPlayer extends React.Component {
   }
 
   render() {
-    // debugger;
+    debugger;
     const { artist } = this.props;
 
     let tracks = this.props.album.tracks.map((key) => {

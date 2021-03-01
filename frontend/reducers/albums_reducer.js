@@ -1,10 +1,7 @@
-import {
-  RECEIVE_ALBUM,
-  RECEIVE_ALBUMS,
-  RECEIVE_ARTIST,
-} from "../actions/artist_show_actions";
+import { RECEIVE_ARTIST } from "../actions/artist_show_actions";
+import { RECEIVE_ALBUMS, RECEIVE_ALBUM } from "../actions/album_actions";
 
-const AlbumReducer = (state = {}, action) => {
+const AlbumsReducer = (state = {}, action) => {
   Object.freeze(state);
   // debugger;
   switch (action.type) {
@@ -26,6 +23,6 @@ const AlbumReducer = (state = {}, action) => {
   }
 };
 
-export default AlbumReducer;
+export default AlbumsReducer;
 
 // { …state, [id]: album }

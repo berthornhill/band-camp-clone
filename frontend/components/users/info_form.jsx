@@ -88,7 +88,12 @@ class InfoForm extends React.Component {
             src={artistImagePreview}
             alt="preview of image"
           />
-          <input type="file" id="artistImage" onChange={this.handleFile} />
+          <input
+            className="input-button"
+            type="file"
+            id="artistImage"
+            onChange={this.handleFile}
+          />
         </label>
         <label htmlFor="banner-image" className="artist-info-form">
           <img
@@ -99,8 +104,9 @@ class InfoForm extends React.Component {
           <input type="file" id="bannerImage" onChange={this.handleFile} />
         </label>
         <label htmlFor="artist-bio" className="artist-info-form">
-          Artist Bio
-          <input
+          <div>Artist Bio</div>
+          <textarea
+            className="form-text-area"
             type="text"
             value={bio ? bio : ""}
             onChange={this.handleChange("bio")}
@@ -119,6 +125,8 @@ class InfoForm extends React.Component {
     );
   }
 }
+
+// redux methods for info form
 
 const mSTP = (state, ownProps) => {
   debugger;

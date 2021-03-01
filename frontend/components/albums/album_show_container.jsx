@@ -1,5 +1,5 @@
 import AlbumShow from "./album_show";
-import { fetchAlbum } from "../../actions/artist_show_actions";
+import { fetchAlbum } from "../../actions/album_actions";
 import { connect } from "react-redux";
 
 const mSTP = (state, ownProps) => {

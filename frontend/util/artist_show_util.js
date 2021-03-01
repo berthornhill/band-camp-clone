@@ -10,25 +10,25 @@ export const fetchArtists = () =>
     url: `/api/artists`,
   });
 
-export const fetchAlbum = (id) =>
-  $.ajax({
-    method: "GET",
-    url: `/api/albums/${id}`,
-  });
+// export const fetchAlbum = (id) =>
+//   $.ajax({
+//     method: "GET",
+//     url: `/api/albums/${id}`,
+//   });
 
-export const fetchAlbums = (id) => {
-  return $.ajax({
-    method: "GET",
-    url: `/api/tests/${id}`,
-  });
-};
+// export const fetchAlbums = (id) => {
+//   return $.ajax({
+//     method: "GET",
+//     url: `/api/tests/${id}`,
+//   });
+// };
 
-export const fetchTracks = (id) => {
-  $.ajax({
-    method: "GET",
-    url: `/api/albums/${id}/tracks`,
-  });
-};
+// export const fetchTracks = (id) => {
+//   $.ajax({
+//     method: "GET",
+//     url: `/api/albums/${id}/tracks`,
+//   });
+// };
 
 export const updateArtist = (id, formData) => {
   $.ajax({
