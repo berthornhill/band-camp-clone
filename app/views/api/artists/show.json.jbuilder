@@ -29,7 +29,7 @@ json.albums do
                 json.id album.id
                 json.albumName album.album_name
                 json.description album.description
-                json.tracks @tracksArr
+                json.tracks @tracks.where(album_id: album.id).pluck(:id)
          
                 if album.album_art.attached? 
                     json.albumArt url_for(album.album_art)

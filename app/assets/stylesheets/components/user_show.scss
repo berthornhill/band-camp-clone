@@ -177,6 +177,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     padding-left: 52px;
+    padding-bottom: 20px;
 
     img {
       width: 100px;
@@ -189,5 +190,10 @@
       outline-offset: 1px;
       outline: 4px dashed #0687f5;
     }
+  }
+
+  .add-tracks-label {
+    padding-top: 20px;
+    border-top: 1px solid #dbdbdb;
   }
 }

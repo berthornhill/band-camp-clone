@@ -1,6 +1,6 @@
 class Track < ApplicationRecord
 
-    validates :title, :track_no, :album_id, presence: true
+    validates :title, :track_no, :album_id, :song, presence: true
 
     
     belongs_to :album

@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     end
     
     resources :albums, only: [:show] do
-      resources :tracks, only: [:index]
+      resources :tracks, only: [:index, :create]
     end
 
     resources :tests, only: [:show]

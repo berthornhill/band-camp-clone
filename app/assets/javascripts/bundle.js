@@ -90,7 +90,7 @@
 /*!*******************************************!*\
   !*** ./frontend/actions/album_actions.js ***!
   \*******************************************/
-/*! exports provided: RECEIVE_ALBUM, RECEIVE_ALBUMS, RECEIVE_TRACKS, fetchAlbum, fetchAlbums, createAlbum, fetchTracks, createTracks */
+/*! exports provided: RECEIVE_ALBUM, RECEIVE_ALBUMS, RECEIVE_TRACKS, RECEIVE_NEW_TRACK, fetchAlbum, fetchAlbums, createAlbum, fetchTracks, createTracks */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -98,6 +98,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_ALBUM", function() { return RECEIVE_ALBUM; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_ALBUMS", function() { return RECEIVE_ALBUMS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_TRACKS", function() { return RECEIVE_TRACKS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_NEW_TRACK", function() { return RECEIVE_NEW_TRACK; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAlbum", function() { return fetchAlbum; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAlbums", function() { return fetchAlbums; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createAlbum", function() { return createAlbum; });
@@ -108,6 +109,7 @@ __webpack_require__.r(__webpack_exports__);
 var RECEIVE_ALBUM = "RECEIVE_ALBUM";
 var RECEIVE_ALBUMS = "RECEIVE_ALBUMS";
 var RECEIVE_TRACKS = "RECEIVE_TRACKS";
+var RECEIVE_NEW_TRACK = "RECEIVE_NEW_TRACK";
 
 var receiveAlbums = function receiveAlbums(_ref) {
   var albums = _ref.albums;
@@ -115,13 +117,6 @@ var receiveAlbums = function receiveAlbums(_ref) {
   return {
     type: RECEIVE_ALBUMS,
     albums: albums
-  };
-};
-
-var receiveTracks = function receiveTracks(tracks) {
-  return {
-    type: RECEIVE_TRACKS,
-    tracks: tracks
   };
 };
 
@@ -133,6 +128,23 @@ var receiveAlbum = function receiveAlbum(_ref2) {
     type: RECEIVE_ALBUM,
     album: album,
     artist: artist
+  };
+};
+
+var receiveTracks = function receiveTracks(tracks) {
+  return {
+    type: RECEIVE_TRACKS,
+    tracks: tracks
+  };
+};
+
+var receieveNewTrack = function receieveNewTrack(_ref3) {
+  var track = _ref3.track,
+      album = _ref3.album;
+  return {
+    type: RECEIVE_NEW_TRACK,
+    track: track,
+    album: album
   };
 };
 
@@ -166,7 +178,7 @@ var fetchTracks = function fetchTracks(id) {
 };
 var createTracks = function createTracks(albumId, formData) {
   return function (dispatch) {
-    return _util_album_util__WEBPACK_IMPORTED_MODULE_0__["createTracks"](id).then(function (tracks) {
+    return _util_album_util__WEBPACK_IMPORTED_MODULE_0__["createTracks"](albumId, formData).then(function (tracks) {
       return dispatch(receiveTracks(tracks));
     });
   };
@@ -3018,6 +3030,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -3053,63 +3067,121 @@ var TracksForm = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props); // debugger;
 
     _this.state = {
-      currentAlbum: props.albumsArray[props.albumsArray.length - 1]
+      currentAlbum: props.albumsArray[props.albumsArray.length - 1],
+      title: "",
+      trackNumber: "",
+      file: ""
     };
     _this.changeCurrentAlbum = _this.changeCurrentAlbum.bind(_assertThisInitialized(_this));
+    _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.handleFile = _this.handleFile.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(TracksForm, [{
-    key: "changeCurrentAlbum",
-    value: function changeCurrentAlbum(index) {
+    key: "handleChange",
+    value: function handleChange(input) {
       var _this2 = this;
 
       return function (e) {
         e.preventDefault();
 
-        _this2.setState({
-          currentAlbum: _this2.props.albumsArray[index]
+        _this2.setState(_defineProperty({}, input, e.target.value));
+      };
+    }
+  }, {
+    key: "handleFile",
+    value: function handleFile(e) {
+      e.preventDefault(); // debugger;
+
+      var file = e.currentTarget.files[0]; // const fileReader = new FileReader();
+
+      this.setState({
+        file: file
+      });
+    }
+  }, {
+    key: "changeCurrentAlbum",
+    value: function changeCurrentAlbum(index) {
+      var _this3 = this;
+
+      return function (e) {
+        e.preventDefault();
+
+        _this3.setState({
+          currentAlbum: _this3.props.albumsArray[index]
         });
       };
     }
   }, {
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      e.preventDefault(); // const file = e.currentTarget.files[0];
+
+      debugger;
+      var id = this.state.currentAlbum;
+      debugger;
+      var newTrackNo = this.props.albums[id].tracks.length + 1;
+      var formData = new FormData();
+      formData.append("track[song]", this.state.file);
+      formData.append("track[title]", this.state.title);
+      formData.append("track[album_id]", id);
+      formData.append("track[track_no]", newTrackNo);
+      this.props.createTracks(id, formData);
+    }
+  }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
+      var _this4 = this;
 
       // builds album image cards which change the current Album for addition of tracks.
       var albumSelect = this.props.albumsArray.map(function (id, index) {
-        var album = _this3.props.albums[id];
+        var album = _this4.props.albums[id];
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           key: id
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          onClick: _this3.changeCurrentAlbum(index) // className={id === this.state.currentAlbum ? "current-album" : null}
+          onClick: _this4.changeCurrentAlbum(index) // className={id === this.state.currentAlbum ? "current-album" : null}
 
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
           src: album.albumArt,
           alt: "album cover art",
-          className: id === _this3.state.currentAlbum ? "current-album" : null
+          className: id === _this4.state.currentAlbum ? "current-album" : null
         })));
       });
       var selected = this.props.albums[this.state.currentAlbum];
       debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        id: "info-form"
+        id: "info-form",
+        onSubmit: this.handleSubmit
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "album-select-box"
-      }, albumSelect), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, albumSelect), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        className: "add-tracks-label",
+        htmlFor: "addTrack"
+      }, "Add Track", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         className: "input-button",
         type: "file",
-        id: "newTrack" // onChange={this.handleFile}
-
-      }));
+        id: "newTrack",
+        accept: "audio/*",
+        onChange: this.handleFile
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "title"
+      }, "Track Title:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        onChange: this.handleChange("title")
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        type: "submit"
+      }, "Upload Track"));
     }
   }]);
 
   return TracksForm;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (TracksForm);
+/* harmony default export */ __webpack_exports__["default"] = (TracksForm); // albumId
+// name
+// trackNumber
 
 /***/ }),
 
@@ -3342,6 +3414,10 @@ var mDTP = function mDTP(dispatch) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_artist_show_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/artist_show_actions */ "./frontend/actions/artist_show_actions.js");
 /* harmony import */ var _actions_album_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/album_actions */ "./frontend/actions/album_actions.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
@@ -3372,14 +3448,16 @@ var AlbumsReducer = function AlbumsReducer() {
       var newState = Object.assign.apply(Object, [{}, state].concat(_toConsumableArray(action.artistPackage.albums))); // debugger;
 
       return newState;
-    // case RECEIVE_ALBUMS:
-    //   // return Object.assign({}, state, action.artist.albums);
-    //   debugger;
-    //   return Object.assign({}, state, action.albums);
 
     case _actions_album_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_ALBUM"]:
-      debugger;
+      // debugger;
       return Object.assign({}, state, _defineProperty({}, action.album.id, action.album));
+
+    case _actions_album_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_NEW_TRACK"]:
+      debugger;
+      return _objectSpread(_objectSpread({}, state), {}, _defineProperty({}, action.album.id, {
+        tracks: action.album.tracks
+      }));
 
     default:
       return state;
@@ -3617,21 +3695,31 @@ var SessionReducer = function SessionReducer() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_artist_show_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/artist_show_actions */ "./frontend/actions/artist_show_actions.js");
+/* harmony import */ var _actions_album_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/album_actions */ "./frontend/actions/album_actions.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
 
 
 var TracksReducer = function TracksReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
-  Object.freeze(state); //   debugger;
+  Object.freeze(state);
+  debugger;
 
   switch (action.type) {
     case _actions_artist_show_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ARTIST"]:
       var newState = Object.assign({}, state, action.artistPackage.tracks); // debugger;
 
       return newState;
-    // case RECEIVE_TRACKS:
-    //   // debugger;
-    //   return { ...state, [action.tracks.id]: action.tracks };
+
+    case _actions_album_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_NEW_TRACK"]:
+      // debugger;
+      return _objectSpread(_objectSpread({}, state), {}, _defineProperty({}, action.tracks.id, action.track));
 
     default:
       return state;
