@@ -170,4 +170,24 @@
       background-color: white;
     }
   }
+
+  .album-select-box {
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding-left: 52px;
+
+    img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      margin: 5px;
+    }
+
+    .current-album {
+      outline-offset: 1px;
+      outline: 4px dashed #0687f5;
+    }
+  }
 }
