@@ -3237,7 +3237,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 var AlbumsReducer = function AlbumsReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
-  Object.freeze(state); // debugger;
+  Object.freeze(state);
+  debugger;
 
   switch (action.type) {
     case _actions_artist_show_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ARTIST"]:
@@ -3290,7 +3291,8 @@ var ArtistReducer = function ArtistReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
   // debugger;
-  Object.freeze(state); // debugger;
+  Object.freeze(state);
+  debugger;
 
   switch (action.type) {
     case _actions_artist_show_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ARTIST"]:
@@ -3302,7 +3304,7 @@ var ArtistReducer = function ArtistReducer() {
 
     case _actions_album_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_ALBUM"]:
       debugger;
-      return Object.assign({}, state, _defineProperty({}, action.artist.id.albums, action.artist.id.albums));
+      return Object.assign({}, state, _defineProperty({}, action.artist.id, action.artist));
 
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_2__["RECEIVE_CURRENT_USER"]: // debugger;
     // return { ...state, action };

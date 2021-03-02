@@ -10,7 +10,7 @@ import { RECEIVE_CURRENT_USER } from "../actions/session_actions";
 const ArtistReducer = (state = {}, action) => {
   // debugger;
   Object.freeze(state);
-  // debugger;
+  debugger;
   switch (action.type) {
     case RECEIVE_ARTIST:
       // debugger;
@@ -24,7 +24,7 @@ const ArtistReducer = (state = {}, action) => {
     case RECEIVE_ALBUM:
       debugger;
       return Object.assign({}, state, {
-        [action.artist.id.albums]: action.artist.id.albums,
+        [action.artist.id]: action.artist,
       });
     case RECEIVE_CURRENT_USER:
     // debugger;

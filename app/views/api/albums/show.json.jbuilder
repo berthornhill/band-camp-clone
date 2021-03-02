@@ -1,6 +1,6 @@
 
 json.album do
-    json.set! @album.id do 
+    # json.set! @album.id do 
         json.id @album.id
         json.albumName @album.album_name
         json.description @album.description
@@ -9,7 +9,7 @@ json.album do
         if @album.album_art.attached? 
             json.albumArt url_for(@album.album_art)
         end
-    end
+    # end
 end
 
 

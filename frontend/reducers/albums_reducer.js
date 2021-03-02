@@ -3,7 +3,7 @@ import { RECEIVE_ALBUMS, RECEIVE_ALBUM } from "../actions/album_actions";
 
 const AlbumsReducer = (state = {}, action) => {
   Object.freeze(state);
-  // debugger;
+  debugger;
   switch (action.type) {
     case RECEIVE_ARTIST:
       // const als = { ...action.artistPackage.albums };

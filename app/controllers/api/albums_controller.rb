@@ -19,17 +19,17 @@ class Api::AlbumsController < ApplicationController
 
 
     def create 
-        debugger
+        # debugger
         @artist = User.find(params[:artist_id])
         @album = Album.new(album_params)
-        debugger
+        # debugger
         if @album.save 
-            debugger
+            # debugger
             @tracksArr = [];
             @albumsArr = Album.where(artist_id: @artist.id).pluck(:id) 
             render :show
         else
-            debugger
+            # debugger
             render json: {errors: @album.errors.full_messages }, status: 401
         end
        
