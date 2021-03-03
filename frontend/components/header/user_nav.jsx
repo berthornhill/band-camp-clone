@@ -2,8 +2,9 @@ import React from "react";
 import { connect } from "react-redux";
 import UserDropdown from "./dropdown";
 import { Link } from "react-router-dom";
+import SearchBar from "./search_bar";
 
-const UserNav = ({ currentUser, logout, user }) => {
+const UserNav = ({ currentUser, logout, user, searchArtist }) => {
   return (
     <div className="outer-user-nav">
       <div className="user-nav">
@@ -13,14 +14,8 @@ const UserNav = ({ currentUser, logout, user }) => {
               <img src={window.logo} alt="bandlamp logo" className="logo" />
             </Link>
           </div>
-          <div className="search-bar">
-            <input
-              type="text"
-              placeholder="Search and discover music"
-              className="search-field"
-            />
-            <img src={window.bulb} alt="search icon" className="search-icon" />
-          </div>
+
+          <SearchBar searchArtist={searchArtist} />
         </div>
         <div className="user-nav-right">
           <div>

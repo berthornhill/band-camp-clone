@@ -2,8 +2,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import UserNav from "./user_nav";
+import SearchBar from "./search_bar";
 
-const NavBar = ({ currentUser, user, logout, openModal }) => {
+const NavBar = ({ currentUser, user, logout, openModal, searchArtist }) => {
   // let sessionLinks;
   // // if (id)
 
@@ -27,7 +28,14 @@ const NavBar = ({ currentUser, user, logout, openModal }) => {
   );
 
   if (currentUser) {
-    return <UserNav currentUser={currentUser} logout={logout} user={user} />;
+    return (
+      <UserNav
+        currentUser={currentUser}
+        logout={logout}
+        user={user}
+        searchArtist={searchArtist}
+      />
+    );
   }
 
   return (
@@ -47,14 +55,7 @@ const NavBar = ({ currentUser, user, logout, openModal }) => {
         </div>
       </div>
       <div className="nav-right">
-        <div className="search-bar">
-          <input
-            type="text"
-            placeholder="Search and discover music"
-            className="search-field"
-          />
-          <img src={window.bulb} alt="search icon" className="search-icon" />
-        </div>
+        <SearchBar searchArtist={searchArtist} />
         <div className="nav-links">
           <ul>
             <li key="1">

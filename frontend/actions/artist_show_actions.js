@@ -2,6 +2,7 @@ import * as artistAPI from "../util/artist_show_util";
 
 export const RECEIVE_ARTIST = "RECEIVE_ARTIST";
 export const RECEIVE_ARTISTS = "RECEIVE_ARTISTS";
+export const RECEIVE_SEARCH = "RECEIVE_SEARCH";
 // export const RECEIVE_ALBUM = "RECEIVE_ALBUM";
 // export const RECEIVE_ALBUMS = "RECEIVE_ALBUMS";
 // export const RECEIVE_TRACKS = "RECEIVE_TRACKS";
@@ -52,10 +53,10 @@ const receiveErrors = (errors) => {
   };
 };
 
-const receieveSearch = ({ artists, search }) => {
+const receiveSearch = ({ artists, search }) => {
   debugger;
   return {
-    type: RECEIVE_ARTISTS,
+    type: RECEIVE_SEARCH,
     artists,
     search,
   };
@@ -91,4 +92,4 @@ export const updateArtist = (id, formData) => (dispatch) =>
 export const searchArtist = (search) => (dispatch) =>
   artistAPI
     .searchArtist(search)
-    .then((results) => dispatch(receieveSearch(results)));
+    .then((results) => dispatch(receiveSearch(results)));

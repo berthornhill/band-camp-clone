@@ -13,6 +13,7 @@ import Modal from "./modal/modal_container";
 import Footer from "./footer/footer";
 import ArtistShow from "./artist/artist_show_container";
 import UserShow from "./users/user_show_container";
+import SearchResults from "./search_page/search_results_container";
 
 const App = () => {
   return (
@@ -29,6 +30,7 @@ const App = () => {
         <AuthRoute path="/users/signup" component={SignupForm} />
         <Route path="/users/:id" component={UserShow} />
         <Route path="/artist/:id" component={ArtistShow} />
+        <Route path="/search" component={SearchResults} />
 
         <Route path="/" component={Splash} />
       </Switch>

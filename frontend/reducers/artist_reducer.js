@@ -1,6 +1,7 @@
 import {
   RECEIVE_ARTIST,
   RECEIVE_ARTISTS,
+  RECEIVE_SEARCH,
 } from "../actions/artist_show_actions";
 
 import { RECEIVE_ALBUM } from "../actions/album_actions";
@@ -17,7 +18,7 @@ const ArtistReducer = (state = {}, action) => {
         [action.artistPackage.artist.id]: action.artistPackage.artist,
       };
     case RECEIVE_ARTISTS:
-      return Object.assign({}, action.artists);
+      return Object.assign({}, state, action.artists);
 
     case RECEIVE_ALBUM:
       return Object.assign({}, state, {
