@@ -8,7 +8,7 @@ class UserShow extends React.Component {
   constructor(props) {
     super(props);
 
-    debugger;
+    // debugger;
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -31,17 +31,17 @@ class UserShow extends React.Component {
 
   componentDidMount() {
     const { artist } = this.props;
-    debugger;
+    // debugger;
     if (!artist) this.props.fetchArtist(this.props.match.params.id);
   }
 
   render() {
-    debugger;
+    // debugger;
     const { artist } = this.props;
     // debugger;
     if (!artist) return null;
 
-    debugger;
+    // debugger;
     return (
       <div id="user-background">
         <div id="color-bar"></div>
@@ -49,7 +49,9 @@ class UserShow extends React.Component {
           <div id="user-inner">
             <div className="header-container">
               <h1>{this.props.artist.artist}! This is your dashboard.</h1>
-              <Link to="">www.bandlink.###</Link>
+              <Link to={`/artist/${artist.id}`} className="artist-site">
+                {`https://bandlamp.herokuapp.com/#/artist/${artist.id}`}
+              </Link>
             </div>
             <div className="user-grid-box">
               <div className="left-side">

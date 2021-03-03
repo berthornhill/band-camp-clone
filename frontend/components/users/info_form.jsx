@@ -5,7 +5,7 @@ import { updateArtist } from "../../actions/artist_show_actions";
 class InfoForm extends React.Component {
   constructor(props) {
     super(props);
-    debugger;
+    // debugger;
     this.state = {
       artist: props.artist.artist,
       bio: props.artist.bio,
@@ -34,14 +34,14 @@ class InfoForm extends React.Component {
   }
 
   handleFile(e) {
-    debugger;
+    // debugger;
 
     e.preventDefault();
-    debugger;
+    // debugger;
     const file = e.currentTarget.files[0];
     const fileReader = new FileReader();
     fileReader.onloadend = () => {
-      debugger;
+      // debugger;
       this.setState({
         [e.target.id]: { preview: fileReader.result, file: file },
       });
@@ -129,7 +129,7 @@ class InfoForm extends React.Component {
 // redux methods for info form
 
 const mSTP = (state, ownProps) => {
-  debugger;
+  // debugger;
   return {
     artist: state.entities.artist[ownProps.match.params.id],
     errors: state.errors,

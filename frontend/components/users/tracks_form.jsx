@@ -80,7 +80,7 @@ class TracksForm extends React.Component {
 
     const selected = this.props.albums[this.state.currentAlbum];
 
-    debugger;
+    // debugger;
 
     return (
       <form id="info-form" onSubmit={this.handleSubmit}>

@@ -12,17 +12,21 @@ class SearchBar extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange() {
-    return (e) => {
-      e.preventDefault();
-      this.setState({ searchCriteria: e.target.value });
-      e.target.className = "";
-    };
+  handleChange(e) {
+    // debugger;
+    // return (e) => {
+
+    e.preventDefault();
+    debugger;
+    this.setState({ searchCriteria: e.target.value });
+    e.target.className = "";
+    // };
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.searchArtist(this.state.searchCriteria);
+
+    this.props.searchArtist({ search: this.state.searchCriteria });
     return <Redirect to="/search" />;
   }
 
@@ -34,6 +38,7 @@ class SearchBar extends React.Component {
             type="text"
             placeholder="Search and discover music"
             className="search-field"
+            value={this.state.searchCriteria}
             onChange={this.handleChange}
           />
           <img src={window.bulb} alt="search icon" className="search-icon" />

@@ -28,14 +28,14 @@ class AlbumForm extends React.Component {
   }
 
   handleFile(e) {
-    debugger;
+    // debugger;
 
     e.preventDefault();
-    debugger;
+    // debugger;
     const file = e.currentTarget.files[0];
     const fileReader = new FileReader();
     fileReader.onloadend = () => {
-      debugger;
+      // debugger;
       this.setState({
         [e.target.id]: { preview: fileReader.result, file: file },
       });
@@ -61,7 +61,7 @@ class AlbumForm extends React.Component {
     const { albumName, description } = this.state;
 
     const albumArtPreview = this.state.albumArt.preview || window.emptyband;
-    debugger;
+    // debugger;
     return (
       <form id="info-form" onSubmit={this.handleSubmit}>
         <label htmlFor="artist-image" className="artist-info-form">

@@ -260,7 +260,7 @@ var receiveErrors = function receiveErrors(errors) {
 var receiveSearch = function receiveSearch(_ref2) {
   var artists = _ref2.artists,
       search = _ref2.search;
-  debugger;
+  // debugger;
   return {
     type: RECEIVE_SEARCH,
     artists: artists,
@@ -1451,24 +1451,23 @@ var SearchBar = /*#__PURE__*/function (_React$Component) {
 
   _createClass(SearchBar, [{
     key: "handleChange",
-    value: function handleChange() {
-      var _this2 = this;
-
-      return function (e) {
-        e.preventDefault();
-
-        _this2.setState({
-          searchCriteria: e.target.value
-        });
-
-        e.target.className = "";
-      };
+    value: function handleChange(e) {
+      // debugger;
+      // return (e) => {
+      e.preventDefault();
+      debugger;
+      this.setState({
+        searchCriteria: e.target.value
+      });
+      e.target.className = ""; // };
     }
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
-      this.props.searchArtist(this.state.searchCriteria);
+      this.props.searchArtist({
+        search: this.state.searchCriteria
+      });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Redirect"], {
         to: "/search"
       });
@@ -1483,6 +1482,7 @@ var SearchBar = /*#__PURE__*/function (_React$Component) {
         type: "text",
         placeholder: "Search and discover music",
         className: "search-field",
+        value: this.state.searchCriteria,
         onChange: this.handleChange
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: window.bulb,
@@ -1614,8 +1614,8 @@ var MediaPlayer = /*#__PURE__*/function (_React$Component) {
 
     _classCallCheck(this, MediaPlayer);
 
-    _this = _super.call(this, props);
-    debugger;
+    _this = _super.call(this, props); // debugger;
+
     _this.state = {
       url: ""
     };
@@ -1636,7 +1636,7 @@ var MediaPlayer = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
-      debugger;
+      // debugger;
       var artist = this.props.artist;
       var tracks = this.props.album.tracks.map(function (key) {
         var track = _this2.props.tracks[key];
@@ -1857,13 +1857,80 @@ var Root = function Root(_ref) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 
 
-var SearchResults = function SearchResults(props) {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "HEllooo Worllddd");
-};
+
+
+var SearchResults = /*#__PURE__*/function (_React$Component) {
+  _inherits(SearchResults, _React$Component);
+
+  var _super = _createSuper(SearchResults);
+
+  function SearchResults() {
+    _classCallCheck(this, SearchResults);
+
+    return _super.apply(this, arguments);
+  }
+
+  _createClass(SearchResults, [{
+    key: "render",
+    value: function render() {
+      var _this = this;
+
+      var search = this.props.search;
+      var results = search.map(function (id) {
+        debugger;
+        var artist = _this.props.artists[id];
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          className: "search-card"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+          to: "/artist/".concat(id),
+          className: "artist-image"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          src: artist.artistImage ? artist.artistImage : window.albumcover3,
+          alt: "artist image"
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "artist-card"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "artist-type"
+        }, "Artist"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "artist-name"
+        }, artist.artist), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+          to: "/artist/".concat(id),
+          className: "artist-site"
+        }, "https://bandlamp.herokuapp.com/#/artist/".concat(id)))));
+      });
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Search Results")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, results));
+    }
+  }]);
+
+  return SearchResults;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (SearchResults);
 
@@ -1884,9 +1951,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state) {
+  debugger;
   return {
-    results: state.entities.results,
-    artists: state.entities.artists
+    search: state.entities.search,
+    artists: state.entities.artist
   };
 };
 
@@ -2267,7 +2335,7 @@ var SignupForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      debugger;
+      // debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-outer"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2879,15 +2947,14 @@ var AlbumForm = /*#__PURE__*/function (_React$Component) {
     value: function handleFile(e) {
       var _this3 = this;
 
-      debugger;
-      e.preventDefault();
-      debugger;
+      // debugger;
+      e.preventDefault(); // debugger;
+
       var file = e.currentTarget.files[0];
       var fileReader = new FileReader();
 
       fileReader.onloadend = function () {
-        debugger;
-
+        // debugger;
         _this3.setState(_defineProperty({}, e.target.id, {
           preview: fileReader.result,
           file: file
@@ -2915,8 +2982,8 @@ var AlbumForm = /*#__PURE__*/function (_React$Component) {
       var _this$state = this.state,
           albumName = _this$state.albumName,
           description = _this$state.description;
-      var albumArtPreview = this.state.albumArt.preview || window.emptyband;
-      debugger;
+      var albumArtPreview = this.state.albumArt.preview || window.emptyband; // debugger;
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         id: "info-form",
         onSubmit: this.handleSubmit
@@ -3047,8 +3114,8 @@ var InfoForm = /*#__PURE__*/function (_React$Component) {
 
     _classCallCheck(this, InfoForm);
 
-    _this = _super.call(this, props);
-    debugger;
+    _this = _super.call(this, props); // debugger;
+
     _this.state = {
       artist: props.artist.artist,
       bio: props.artist.bio,
@@ -3087,15 +3154,14 @@ var InfoForm = /*#__PURE__*/function (_React$Component) {
     value: function handleFile(e) {
       var _this3 = this;
 
-      debugger;
-      e.preventDefault();
-      debugger;
+      // debugger;
+      e.preventDefault(); // debugger;
+
       var file = e.currentTarget.files[0];
       var fileReader = new FileReader();
 
       fileReader.onloadend = function () {
-        debugger;
-
+        // debugger;
         _this3.setState(_defineProperty({}, e.target.id, {
           preview: fileReader.result,
           file: file
@@ -3179,7 +3245,7 @@ var InfoForm = /*#__PURE__*/function (_React$Component) {
 
 
 var mSTP = function mSTP(state, ownProps) {
-  debugger;
+  // debugger;
   return {
     artist: state.entities.artist[ownProps.match.params.id],
     errors: state.errors
@@ -3330,8 +3396,8 @@ var TracksForm = /*#__PURE__*/function (_React$Component) {
           className: id === _this4.state.currentAlbum ? "current-album" : null
         })));
       });
-      var selected = this.props.albums[this.state.currentAlbum];
-      debugger;
+      var selected = this.props.albums[this.state.currentAlbum]; // debugger;
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         id: "info-form",
         onSubmit: this.handleSubmit
@@ -3457,8 +3523,8 @@ var UserShow = /*#__PURE__*/function (_React$Component) {
 
     _classCallCheck(this, UserShow);
 
-    _this = _super.call(this, props);
-    debugger;
+    _this = _super.call(this, props); // debugger;
+
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
     _this.handleTab = _this.handleTab.bind(_assertThisInitialized(_this));
@@ -3483,18 +3549,18 @@ var UserShow = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {
-      var artist = this.props.artist;
-      debugger;
+      var artist = this.props.artist; // debugger;
+
       if (!artist) this.props.fetchArtist(this.props.match.params.id);
     }
   }, {
     key: "render",
     value: function render() {
-      debugger;
+      // debugger;
       var artist = this.props.artist; // debugger;
 
-      if (!artist) return null;
-      debugger;
+      if (!artist) return null; // debugger;
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "user-background"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3506,8 +3572,9 @@ var UserShow = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "header-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, this.props.artist.artist, "! This is your dashboard."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: ""
-      }, "www.bandlink.###")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        to: "/artist/".concat(artist.id),
+        className: "artist-site"
+      }, "https://bandlamp.herokuapp.com/#/artist/".concat(artist.id))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "user-grid-box"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "left-side"
@@ -3561,7 +3628,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state, ownProps) {
-  debugger;
+  // debugger;
   return {
     artist: state.entities.artist[ownProps.match.params.id],
     session: state.session,
@@ -3619,8 +3686,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 var AlbumsReducer = function AlbumsReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
-  Object.freeze(state);
-  debugger;
+  Object.freeze(state); // debugger;
 
   switch (action.type) {
     case _actions_artist_show_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ARTIST"]:
@@ -3631,12 +3697,11 @@ var AlbumsReducer = function AlbumsReducer() {
       return Object.assign({}, state, _defineProperty({}, action.album.id, action.album));
 
     case _actions_album_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_NEW_TRACK"]:
-      debugger;
-
+      // debugger;
       var addTracksState = _objectSpread({}, state);
 
-      addTracksState[action.album.id].tracks = action.album.tracks;
-      debugger;
+      addTracksState[action.album.id].tracks = action.album.tracks; // debugger;
+
       return addTracksState;
 
     default:
@@ -3685,7 +3750,10 @@ var ArtistReducer = function ArtistReducer() {
     case _actions_album_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_ALBUM"]:
       return Object.assign({}, state, _defineProperty({}, action.artist.id, action.artist));
 
-    case _actions_session_actions__WEBPACK_IMPORTED_MODULE_2__["RECEIVE_CURRENT_USER"]: // return { ...state, action };
+    case _actions_artist_show_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_SEARCH"]:
+      // debugger;
+      return _objectSpread(_objectSpread({}, state), action.artists);
+    // return { ...state, action };
 
     default:
       return state;
@@ -3910,8 +3978,7 @@ __webpack_require__.r(__webpack_exports__);
 var TracksReducer = function TracksReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
-  Object.freeze(state);
-  debugger;
+  Object.freeze(state); // debugger;
 
   switch (action.type) {
     case _actions_artist_show_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ARTIST"]:
@@ -3920,7 +3987,7 @@ var TracksReducer = function TracksReducer() {
       return newState;
 
     case _actions_album_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_NEW_TRACK"]:
-      debugger;
+      // debugger;
       return Object.assign({}, state, action.track);
 
     default:
@@ -4044,7 +4111,7 @@ var fetchTracks = function fetchTracks(id) {
   });
 };
 var createAlbum = function createAlbum(artistId, formData) {
-  debugger;
+  // debugger;
   return $.ajax({
     method: "POST",
     url: "/api/artists/".concat(artistId, "/albums"),

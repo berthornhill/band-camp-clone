@@ -57,7 +57,7 @@ class SignupForm extends React.Component {
   }
 
   render() {
-    debugger;
+    // debugger;
     return (
       <div className="form-outer">
         <div className="form-inner-container">

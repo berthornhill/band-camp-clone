@@ -7,7 +7,7 @@ import {
 
 const AlbumsReducer = (state = {}, action) => {
   Object.freeze(state);
-  debugger;
+  // debugger;
   switch (action.type) {
     case RECEIVE_ARTIST:
       const newState = Object.assign({}, state, ...action.artistPackage.albums);
@@ -15,10 +15,10 @@ const AlbumsReducer = (state = {}, action) => {
     case RECEIVE_ALBUM:
       return Object.assign({}, state, { [action.album.id]: action.album });
     case RECEIVE_NEW_TRACK:
-      debugger;
+      // debugger;
       const addTracksState = { ...state };
       addTracksState[action.album.id].tracks = action.album.tracks;
-      debugger;
+      // debugger;
       return addTracksState;
     default:
       return state;

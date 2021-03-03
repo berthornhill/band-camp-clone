@@ -24,8 +24,9 @@ const ArtistReducer = (state = {}, action) => {
       return Object.assign({}, state, {
         [action.artist.id]: action.artist,
       });
-    case RECEIVE_CURRENT_USER:
-
+    case RECEIVE_SEARCH:
+      // debugger;
+      return { ...state, ...action.artists };
     // return { ...state, action };
     default:
       return state;

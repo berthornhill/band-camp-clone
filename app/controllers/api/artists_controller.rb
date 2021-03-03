@@ -26,22 +26,22 @@ class Api::ArtistsController < ApplicationController
 
     def update
         @artist = User.find(params[:id])
-        debugger
+        # debugger
 
         if @artist.artist_image.attached? && params[:artist][:artist_image] 
-            debugger
+            # debugger
             @artist.artist_image.purge
             # @artist.artist_image.attach(params[:artist][:artist_image])
             # @artist.update(params[:artist][:artist_image])
-            debugger
+            # debugger
         end
 
         if @artist.banner_image.attached? && params[:artist][:banner_image]
-            debugger
+            # debugger
             @artist.banner_image.purge
             # @artist.banner_image.attach(params[:artist][:banner_image])
             # @artist.update(params[:artist][:banner_image])
-            debugger
+            # debugger
         end
         
         if @artist.update(update_params)
@@ -56,7 +56,7 @@ class Api::ArtistsController < ApplicationController
            
             render :show
         else
-            debugger
+            # debugger
             render json: {errors: @artist.errors.full_messages }, status: 401
         end
     
