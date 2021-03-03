@@ -9,17 +9,17 @@ class Api::TracksController < ApplicationController
 
 
     def create 
-      debugger
+      # debugger
       # package = valid_params
       @album = Album.find(params[:album_id])
       @track = Track.new(valid_params)
 
       if @track.save 
-        debugger
-          @tracksArr = Track.find(album_id: @album.id).pluck(:id)
+        @tracksArr = Track.where(album_id: @album.id).pluck(:id)
+        # debugger
           render :show
       else
-        debugger
+        # debugger
         render json: {errors: @track.errors.full_messages}
       end   
 

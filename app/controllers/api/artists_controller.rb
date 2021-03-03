@@ -19,7 +19,8 @@ class Api::ArtistsController < ApplicationController
         @albumsArr = @albums.pluck(:id) # creates array of album :ids
         
         @tracks = User.find(params[:id]).tracks
-        @tracksArr = @tracks.pluck(:id)
+        # @tracksArr = @tracks.pluck(:id)
+        puts "Pre SHOW"
         render :show
     end
 

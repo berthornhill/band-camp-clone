@@ -43,9 +43,9 @@ class TracksForm extends React.Component {
     e.preventDefault();
     // const file = e.currentTarget.files[0];
 
-    debugger;
+    // debugger;
     const id = this.state.currentAlbum;
-    debugger;
+    // debugger;
     const newTrackNo = this.props.albums[id].tracks.length + 1;
     const formData = new FormData();
     formData.append("track[song]", this.state.file);

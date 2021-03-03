@@ -10,8 +10,8 @@ const TracksReducer = (state = {}, action) => {
       // debugger;
       return newState;
     case RECEIVE_NEW_TRACK:
-      // debugger;
-      return { ...state, [action.tracks.id]: action.track };
+      debugger;
+      return Object.assign({}, state, action.track);
     default:
       return state;
   }

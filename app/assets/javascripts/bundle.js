@@ -138,7 +138,7 @@ var receiveTracks = function receiveTracks(tracks) {
   };
 };
 
-var receieveNewTrack = function receieveNewTrack(_ref3) {
+var receiveNewTrack = function receiveNewTrack(_ref3) {
   var track = _ref3.track,
       album = _ref3.album;
   return {
@@ -179,7 +179,7 @@ var fetchTracks = function fetchTracks(id) {
 var createTracks = function createTracks(albumId, formData) {
   return function (dispatch) {
     return _util_album_util__WEBPACK_IMPORTED_MODULE_0__["createTracks"](albumId, formData).then(function (tracks) {
-      return dispatch(receiveTracks(tracks));
+      return dispatch(receiveNewTrack(tracks));
     });
   };
 };
@@ -3118,10 +3118,10 @@ var TracksForm = /*#__PURE__*/function (_React$Component) {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault(); // const file = e.currentTarget.files[0];
+      // debugger;
 
-      debugger;
-      var id = this.state.currentAlbum;
-      debugger;
+      var id = this.state.currentAlbum; // debugger;
+
       var newTrackNo = this.props.albums[id].tracks.length + 1;
       var formData = new FormData();
       formData.append("track[song]", this.state.file);
@@ -3443,21 +3443,20 @@ var AlbumsReducer = function AlbumsReducer() {
 
   switch (action.type) {
     case _actions_artist_show_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ARTIST"]:
-      // const als = { ...action.artistPackage.albums };
-      // debugger;
-      var newState = Object.assign.apply(Object, [{}, state].concat(_toConsumableArray(action.artistPackage.albums))); // debugger;
-
+      var newState = Object.assign.apply(Object, [{}, state].concat(_toConsumableArray(action.artistPackage.albums)));
       return newState;
 
     case _actions_album_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_ALBUM"]:
-      // debugger;
       return Object.assign({}, state, _defineProperty({}, action.album.id, action.album));
 
     case _actions_album_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_NEW_TRACK"]:
       debugger;
-      return _objectSpread(_objectSpread({}, state), {}, _defineProperty({}, action.album.id, {
-        tracks: action.album.tracks
-      }));
+
+      var addTracksState = _objectSpread({}, state);
+
+      addTracksState[action.album.id].tracks = action.album.tracks;
+      debugger;
+      return addTracksState;
 
     default:
       return state;
@@ -3493,24 +3492,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 var ArtistReducer = function ArtistReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
-  // debugger;
   Object.freeze(state);
-  debugger;
 
   switch (action.type) {
     case _actions_artist_show_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ARTIST"]:
-      // debugger;
       return _objectSpread(_objectSpread({}, state), {}, _defineProperty({}, action.artistPackage.artist.id, action.artistPackage.artist));
 
     case _actions_artist_show_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ARTISTS"]:
       return Object.assign({}, action.artists);
 
     case _actions_album_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_ALBUM"]:
-      debugger;
       return Object.assign({}, state, _defineProperty({}, action.artist.id, action.artist));
 
-    case _actions_session_actions__WEBPACK_IMPORTED_MODULE_2__["RECEIVE_CURRENT_USER"]: // debugger;
-    // return { ...state, action };
+    case _actions_session_actions__WEBPACK_IMPORTED_MODULE_2__["RECEIVE_CURRENT_USER"]: // return { ...state, action };
 
     default:
       return state;
@@ -3696,12 +3690,6 @@ var SessionReducer = function SessionReducer() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_artist_show_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/artist_show_actions */ "./frontend/actions/artist_show_actions.js");
 /* harmony import */ var _actions_album_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/album_actions */ "./frontend/actions/album_actions.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 
 
 
@@ -3718,8 +3706,8 @@ var TracksReducer = function TracksReducer() {
       return newState;
 
     case _actions_album_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_NEW_TRACK"]:
-      // debugger;
-      return _objectSpread(_objectSpread({}, state), {}, _defineProperty({}, action.tracks.id, action.track));
+      debugger;
+      return Object.assign({}, state, action.track);
 
     default:
       return state;

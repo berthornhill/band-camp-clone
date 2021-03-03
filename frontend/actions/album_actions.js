@@ -29,7 +29,7 @@ const receiveTracks = (tracks) => {
   };
 };
 
-const receieveNewTrack = ({ track, album }) => {
+const receiveNewTrack = ({ track, album }) => {
   return {
     type: RECEIVE_NEW_TRACK,
     track,
@@ -56,4 +56,4 @@ export const fetchTracks = (id) => (dispatch) =>
 export const createTracks = (albumId, formData) => (dispatch) =>
   albumAPI
     .createTracks(albumId, formData)
-    .then((tracks) => dispatch(receiveTracks(tracks)));
+    .then((tracks) => dispatch(receiveNewTrack(tracks)));

@@ -10,7 +10,9 @@ json.artist do
     json.bio @artist.bio
     json.location @artist.location
     json.albums @albumsArr
-  
+    puts
+    puts "url artist grab"
+    puts
     if @artist.artist_image.attached?
          json.artistImage url_for(@artist.artist_image) 
     end
@@ -30,7 +32,9 @@ json.albums do
                 json.albumName album.album_name
                 json.description album.description
                 json.tracks @tracks.where(album_id: album.id).pluck(:id)
-         
+                puts
+                puts "url album grab"
+                puts
                 if album.album_art.attached? 
                     json.albumArt url_for(album.album_art)
                 end
