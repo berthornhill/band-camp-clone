@@ -190,7 +190,7 @@ var createTracks = function createTracks(albumId, formData) {
 /*!*************************************************!*\
   !*** ./frontend/actions/artist_show_actions.js ***!
   \*************************************************/
-/*! exports provided: RECEIVE_ARTIST, RECEIVE_ARTISTS, fetchArtist, fetchArtists, updateArtist */
+/*! exports provided: RECEIVE_ARTIST, RECEIVE_ARTISTS, fetchArtist, fetchArtists, updateArtist, searchArtist */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -200,6 +200,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchArtist", function() { return fetchArtist; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchArtists", function() { return fetchArtists; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateArtist", function() { return updateArtist; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "searchArtist", function() { return searchArtist; });
 /* harmony import */ var _util_artist_show_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/artist_show_util */ "./frontend/util/artist_show_util.js");
 
 var RECEIVE_ARTIST = "RECEIVE_ARTIST";
@@ -254,6 +255,17 @@ var receiveErrors = function receiveErrors(errors) {
   };
 };
 
+var receieveSearch = function receieveSearch(_ref2) {
+  var artists = _ref2.artists,
+      search = _ref2.search;
+  debugger;
+  return {
+    type: RECEIVE_ARTISTS,
+    artists: artists,
+    search: search
+  };
+};
+
 var fetchArtist = function fetchArtist(id) {
   return function (dispatch) {
     return _util_artist_show_util__WEBPACK_IMPORTED_MODULE_0__["artistShow"](id).then(function (artist) {
@@ -285,6 +297,13 @@ var updateArtist = function updateArtist(id, formData) {
       return dispatch(receiveArtist(artist));
     }, function (errors) {
       return dispatch(receiveErrors(errors.respondJSON));
+    });
+  };
+};
+var searchArtist = function searchArtist(search) {
+  return function (dispatch) {
+    return _util_artist_show_util__WEBPACK_IMPORTED_MODULE_0__["searchArtist"](search).then(function (results) {
+      return dispatch(receieveSearch(results));
     });
   };
 };
@@ -3855,7 +3874,7 @@ var createTracks = function createTracks(albumId, formData) {
 /*!*******************************************!*\
   !*** ./frontend/util/artist_show_util.js ***!
   \*******************************************/
-/*! exports provided: artistShow, fetchArtists, updateArtist */
+/*! exports provided: artistShow, fetchArtists, updateArtist, searchArtist */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3863,6 +3882,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "artistShow", function() { return artistShow; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchArtists", function() { return fetchArtists; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateArtist", function() { return updateArtist; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "searchArtist", function() { return searchArtist; });
 var artistShow = function artistShow(id) {
   return $.ajax({
     method: "GET",
@@ -3899,6 +3919,13 @@ var updateArtist = function updateArtist(id, formData) {
     data: formData,
     contentType: false,
     processData: false
+  });
+};
+var searchArtist = function searchArtist(search) {
+  return $.ajax({
+    method: "GET",
+    url: "/api/search",
+    data: search
   });
 };
 

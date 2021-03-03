@@ -39,3 +39,11 @@ export const updateArtist = (id, formData) => {
     processData: false,
   });
 };
+
+export const searchArtist = (search) => {
+  return $.ajax({
+    method: "GET",
+    url: "/api/search",
+    data: search,
+  });
+};

@@ -52,6 +52,15 @@ const receiveErrors = (errors) => {
   };
 };
 
+const receieveSearch = ({ artists, search }) => {
+  debugger;
+  return {
+    type: RECEIVE_ARTISTS,
+    artists,
+    search,
+  };
+};
+
 export const fetchArtist = (id) => (dispatch) =>
   artistAPI.artistShow(id).then((artist) => dispatch(receiveArtist(artist)));
 
@@ -78,3 +87,8 @@ export const updateArtist = (id, formData) => (dispatch) =>
     (artist) => dispatch(receiveArtist(artist)),
     (errors) => dispatch(receiveErrors(errors.respondJSON))
   );
+
+export const searchArtist = (search) => (dispatch) =>
+  artistAPI
+    .searchArtist(search)
+    .then((results) => dispatch(receieveSearch(results)));
