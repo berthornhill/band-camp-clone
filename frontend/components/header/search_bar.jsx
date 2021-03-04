@@ -1,4 +1,5 @@
 import React from "react";
+import { render } from "react-dom";
 import { Redirect, withRouter } from "react-router-dom";
 
 class SearchBar extends React.Component {
@@ -11,6 +12,12 @@ class SearchBar extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.renderRedirect = this.renderRedirect.bind(this);
+  }
+
+  renderRedirect() {
+    debugger;
+    this.state.redirect ? <Redirect to="/search" /> : null;
   }
 
   handleChange(e) {
@@ -26,13 +33,22 @@ class SearchBar extends React.Component {
     e.preventDefault();
 
     this.props.searchArtist({ search: this.state.searchCriteria });
-    this.props.history.push("/search");
+    // this.setState({ redirect: true });3
+    debugger;
+    // this.props.history.push("/search");
+
+    this.props.history.push({
+      pathname: "/search",
+      search: `?results=${this.state.searchCriteria}`,
+    });
   }
 
   render() {
+    debugger;
     return (
       <div>
         <form className="search-bar" onSubmit={this.handleSubmit}>
+          <div>{this.renderRedirect()}</div>
           <input
             type="text"
             placeholder="Search and discover music"
@@ -47,4 +63,4 @@ class SearchBar extends React.Component {
   }
 }
 
-export default SearchBar;
+export default withRouter(SearchBar);

@@ -11,16 +11,13 @@ class Api::ArtistsController < ApplicationController
 
 
     def show 
-        # debugger
-        @artist = User.find(params[:id])
-        # debugger
-
-        @albums = Album.where(artist_id: @artist.id) #pulls all albums with aritst_id of @artist
-        @albumsArr = @albums.pluck(:id) # creates array of album :ids
         
-        @tracks = User.find(params[:id]).tracks
-        # @tracksArr = @tracks.pluck(:id)
-        puts "Pre SHOW"
+        @artist = User.where(id: params[:id]).includes(artist_image_attachment: :blob, banner_image_attachment: :blob)[0]
+      
+        #pulls all albums with aritst_id of @artist
+        @albums = Album.where(artist_id: @artist.id).includes(album_art_attachment: :blob).to_a
+        @albumsArr = @albums.pluck(:id) # creates array of album :ids
+        @tracks = User.find(params[:id]).tracks.includes(song_attachment: :blob).to_a
         render :show
     end
 
