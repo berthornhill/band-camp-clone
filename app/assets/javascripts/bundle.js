@@ -1442,7 +1442,8 @@ var SearchBar = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     debugger;
     _this.state = {
-      searchCriteria: ""
+      searchCriteria: "",
+      redirect: false
     };
     _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
@@ -1459,7 +1460,6 @@ var SearchBar = /*#__PURE__*/function (_React$Component) {
       this.setState({
         searchCriteria: e.target.value
       });
-      e.target.className = ""; // };
     }
   }, {
     key: "handleSubmit",
@@ -1468,9 +1468,7 @@ var SearchBar = /*#__PURE__*/function (_React$Component) {
       this.props.searchArtist({
         search: this.state.searchCriteria
       });
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Redirect"], {
-        to: "/search"
-      });
+      this.props.history.push("/search");
     }
   }, {
     key: "render",

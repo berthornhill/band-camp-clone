@@ -1,5 +1,5 @@
 import React from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, withRouter } from "react-router-dom";
 
 class SearchBar extends React.Component {
   constructor(props) {
@@ -7,6 +7,7 @@ class SearchBar extends React.Component {
     debugger;
     this.state = {
       searchCriteria: "",
+      redirect: false,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -19,15 +20,13 @@ class SearchBar extends React.Component {
     e.preventDefault();
     debugger;
     this.setState({ searchCriteria: e.target.value });
-    e.target.className = "";
-    // };
   }
 
   handleSubmit(e) {
     e.preventDefault();
 
     this.props.searchArtist({ search: this.state.searchCriteria });
-    return <Redirect to="/search" />;
+    this.props.history.push("/search");
   }
 
   render() {
