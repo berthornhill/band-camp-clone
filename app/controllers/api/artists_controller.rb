@@ -13,7 +13,8 @@ class Api::ArtistsController < ApplicationController
     def show 
         
         @artist = User.where(id: params[:id]).includes(artist_image_attachment: :blob, banner_image_attachment: :blob)[0]
-      
+        # @artist = User.where(id: params[:id]).includes(artist_image_attachment: :blob, banner_image_attachment: :blob)
+        # debuggers
         #pulls all albums with aritst_id of @artist
         @albums = Album.where(artist_id: @artist.id).includes(album_art_attachment: :blob).to_a
         @albumsArr = @albums.pluck(:id) # creates array of album :ids
