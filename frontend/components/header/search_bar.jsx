@@ -5,7 +5,7 @@ import { Redirect, withRouter } from "react-router-dom";
 class SearchBar extends React.Component {
   constructor(props) {
     super(props);
-    debugger;
+    // debugger;
     this.state = {
       searchCriteria: "",
       redirect: false,
@@ -16,7 +16,7 @@ class SearchBar extends React.Component {
   }
 
   renderRedirect() {
-    debugger;
+    // debugger;
     this.state.redirect ? <Redirect to="/search" /> : null;
   }
 
@@ -25,7 +25,7 @@ class SearchBar extends React.Component {
     // return (e) => {
 
     e.preventDefault();
-    debugger;
+    // debugger;
     this.setState({ searchCriteria: e.target.value });
   }
 
@@ -34,7 +34,7 @@ class SearchBar extends React.Component {
 
     this.props.searchArtist({ search: this.state.searchCriteria });
     // this.setState({ redirect: true });3
-    debugger;
+    // debugger;
     // this.props.history.push("/search");
 
     this.props.history.push({
@@ -44,7 +44,7 @@ class SearchBar extends React.Component {
   }
 
   render() {
-    debugger;
+    // debugger;
     return (
       <div>
         <form className="search-bar" onSubmit={this.handleSubmit}>

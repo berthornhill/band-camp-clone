@@ -1,9 +1,4 @@
 
-
-puts "**************************************"
-
-
-
 json.artist do
     
     json.id @artist.id

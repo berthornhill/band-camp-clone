@@ -31,6 +31,7 @@ class AlbumForm extends React.Component {
     // debugger;
 
     e.preventDefault();
+
     // debugger;
     const file = e.currentTarget.files[0];
     const fileReader = new FileReader();
@@ -46,6 +47,9 @@ class AlbumForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
+
+    if (!this.state.albumArt.file) return alert("You must add some album art");
+
     // send form data.
     const formData = new FormData();
     const { id } = this.props.artist;

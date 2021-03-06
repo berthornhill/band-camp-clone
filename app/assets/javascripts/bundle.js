@@ -259,11 +259,15 @@ var receiveErrors = function receiveErrors(errors) {
 
 var receiveSearch = function receiveSearch(_ref2) {
   var artists = _ref2.artists,
+      albums = _ref2.albums,
+      tracks = _ref2.tracks,
       search = _ref2.search;
-  // debugger;
+  debugger;
   return {
     type: RECEIVE_SEARCH,
     artists: artists,
+    albums: albums,
+    tracks: tracks,
     search: search
   };
 };
@@ -1442,8 +1446,8 @@ var SearchBar = /*#__PURE__*/function (_React$Component) {
 
     _classCallCheck(this, SearchBar);
 
-    _this = _super.call(this, props);
-    debugger;
+    _this = _super.call(this, props); // debugger;
+
     _this.state = {
       searchCriteria: "",
       redirect: false
@@ -1457,7 +1461,7 @@ var SearchBar = /*#__PURE__*/function (_React$Component) {
   _createClass(SearchBar, [{
     key: "renderRedirect",
     value: function renderRedirect() {
-      debugger;
+      // debugger;
       this.state.redirect ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Redirect"], {
         to: "/search"
       }) : null;
@@ -1467,8 +1471,8 @@ var SearchBar = /*#__PURE__*/function (_React$Component) {
     value: function handleChange(e) {
       // debugger;
       // return (e) => {
-      e.preventDefault();
-      debugger;
+      e.preventDefault(); // debugger;
+
       this.setState({
         searchCriteria: e.target.value
       });
@@ -1480,8 +1484,8 @@ var SearchBar = /*#__PURE__*/function (_React$Component) {
       this.props.searchArtist({
         search: this.state.searchCriteria
       }); // this.setState({ redirect: true });3
-
-      debugger; // this.props.history.push("/search");
+      // debugger;
+      // this.props.history.push("/search");
 
       this.props.history.push({
         pathname: "/search",
@@ -1491,7 +1495,7 @@ var SearchBar = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      debugger;
+      // debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         className: "search-bar",
         onSubmit: this.handleSubmit
@@ -1863,6 +1867,47 @@ var Root = function Root(_ref) {
 
 /***/ }),
 
+/***/ "./frontend/components/search_page/artist_card.jsx":
+/*!*********************************************************!*\
+  !*** ./frontend/components/search_page/artist_card.jsx ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
+
+
+var ArtistCard = function ArtistCard(_ref) {
+  var artist = _ref.artist;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "search-card"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/artist/".concat(artist.id),
+    className: "artist-image"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: artist.artistImage ? artist.artistImage : window.albumcover3,
+    alt: "artist image"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "artist-card"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "artist-type"
+  }, "Artist"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "artist-name"
+  }, artist.artist), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/artist/".concat(artist.id),
+    className: "artist-site"
+  }, "https://bandlamp.herokuapp.com/#/artist/".concat(artist.id)))));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (ArtistCard);
+
+/***/ }),
+
 /***/ "./frontend/components/search_page/search_results.jsx":
 /*!************************************************************!*\
   !*** ./frontend/components/search_page/search_results.jsx ***!
@@ -1877,6 +1922,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _artist_card__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./artist_card */ "./frontend/components/search_page/artist_card.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1903,6 +1949,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var SearchResults = /*#__PURE__*/function (_React$Component) {
   _inherits(SearchResults, _React$Component);
 
@@ -1920,29 +1967,23 @@ var SearchResults = /*#__PURE__*/function (_React$Component) {
       var _this = this;
 
       var search = this.props.search;
-      var results = search.map(function (id) {
-        debugger;
+      var artistResults = search.artists.map(function (id) {
         var artist = _this.props.artists[id];
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-          className: "search-card"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
-          to: "/artist/".concat(id),
-          className: "artist-image"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-          src: artist.artistImage ? artist.artistImage : window.albumcover3,
-          alt: "artist image"
-        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "artist-card"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "artist-type"
-        }, "Artist"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "artist-name"
-        }, artist.artist), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
-          to: "/artist/".concat(id),
-          className: "artist-site"
-        }, "https://bandlamp.herokuapp.com/#/artist/".concat(id)))));
-      });
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Search Results")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, results));
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_artist_card__WEBPACK_IMPORTED_MODULE_3__["default"], {
+          artist: artist
+        });
+      }); // const albumResults = search.album.map((id) => {
+      //   let album = this.props.albums[id];
+      //   return <AlbumCard album={album} />;
+      // });
+      // const trackResults = search.tracks.map((id) => {
+      //   let track = this.props.tracks[id];
+      //   let album = this.props.albums[track.album_id];
+      //   let artist = this.props.artist[album.artist_id];
+      //   return <TrackCard track={track} />;
+      // });
+
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "SEARCH TITLE DIV")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Artist Results"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, artistResults)));
     }
   }]);
 
@@ -1971,7 +2012,9 @@ var mSTP = function mSTP(state) {
   debugger;
   return {
     search: state.entities.search,
-    artists: state.entities.artist
+    artists: state.entities.artist,
+    albums: state.entities.albums,
+    tracks: state.entities.tracks
   };
 };
 
@@ -2983,7 +3026,8 @@ var AlbumForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
-      e.preventDefault(); // send form data.
+      e.preventDefault();
+      if (!this.state.albumArt.file) return alert("You must add some album art"); // send form data.
 
       var formData = new FormData();
       var id = this.props.artist.id;
@@ -3401,7 +3445,8 @@ var TracksForm = /*#__PURE__*/function (_React$Component) {
 
       // builds album image cards which change the current Album for addition of tracks.
       var albumSelect = this.props.albumsArray.map(function (id, index) {
-        var album = _this4.props.albums[id];
+        var album = _this4.props.albums[id]; // debugger;
+
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           key: id
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3412,6 +3457,15 @@ var TracksForm = /*#__PURE__*/function (_React$Component) {
           alt: "album cover art",
           className: id === _this4.state.currentAlbum ? "current-album" : null
         })));
+      }); // debugger;
+
+      var trackList = this.props.albums[this.state.currentAlbum].tracks.map(function (trackId) {
+        debugger;
+        var track = _this4.props.tracks[trackId];
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          key: track.id,
+          className: "track-list"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, " ", track.track_no), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, track.title));
       });
       var selected = this.props.albums[this.state.currentAlbum]; // debugger;
 
@@ -3420,7 +3474,7 @@ var TracksForm = /*#__PURE__*/function (_React$Component) {
         onSubmit: this.handleSubmit
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "album-select-box"
-      }, albumSelect), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      }, albumSelect), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ol", null, trackList), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         className: "add-tracks-label",
         htmlFor: "addTrack"
       }, "Add Track", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -3721,6 +3775,10 @@ var AlbumsReducer = function AlbumsReducer() {
 
       return addTracksState;
 
+    case _actions_artist_show_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_SEARCH"]:
+      // debugger;
+      return _objectSpread(_objectSpread({}, state), action.albums);
+
     default:
       return state;
   }
@@ -3924,15 +3982,22 @@ var RootReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])(
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_artist_show_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/artist_show_actions */ "./frontend/actions/artist_show_actions.js");
 
+var _nullSearch = {
+  artists: [],
+  albums: [],
+  tracks: []
+};
 
 var SearchReducer = function SearchReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _nullSearch;
   var action = arguments.length > 1 ? arguments[1] : undefined;
   Object.freeze(state);
+  debugger;
 
   switch (action.type) {
     case _actions_artist_show_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_SEARCH"]:
-      return action.search.result;
+      debugger;
+      return action.search;
 
     default:
       return state;
@@ -3989,6 +4054,12 @@ var SessionReducer = function SessionReducer() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_artist_show_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/artist_show_actions */ "./frontend/actions/artist_show_actions.js");
 /* harmony import */ var _actions_album_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/album_actions */ "./frontend/actions/album_actions.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -4006,6 +4077,10 @@ var TracksReducer = function TracksReducer() {
     case _actions_album_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_NEW_TRACK"]:
       // debugger;
       return Object.assign({}, state, action.track);
+
+    case _actions_artist_show_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_SEARCH"]:
+      // debugger;
+      return _objectSpread(_objectSpread({}, state), action.tracks);
 
     default:
       return state;
@@ -4173,24 +4248,7 @@ var fetchArtists = function fetchArtists() {
     method: "GET",
     url: "/api/artists"
   });
-}; // export const fetchAlbum = (id) =>
-//   $.ajax({
-//     method: "GET",
-//     url: `/api/albums/${id}`,
-//   });
-// export const fetchAlbums = (id) => {
-//   return $.ajax({
-//     method: "GET",
-//     url: `/api/tests/${id}`,
-//   });
-// };
-// export const fetchTracks = (id) => {
-//   $.ajax({
-//     method: "GET",
-//     url: `/api/albums/${id}/tracks`,
-//   });
-// };
-
+};
 var updateArtist = function updateArtist(id, formData) {
   return $.ajax({
     method: "PATCH",

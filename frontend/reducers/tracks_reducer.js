@@ -1,4 +1,4 @@
-import { RECEIVE_ARTIST } from "../actions/artist_show_actions";
+import { RECEIVE_ARTIST, RECEIVE_SEARCH } from "../actions/artist_show_actions";
 import { RECEIVE_TRACKS, RECEIVE_NEW_TRACK } from "../actions/album_actions";
 
 const TracksReducer = (state = {}, action) => {
@@ -12,6 +12,9 @@ const TracksReducer = (state = {}, action) => {
     case RECEIVE_NEW_TRACK:
       // debugger;
       return Object.assign({}, state, action.track);
+    case RECEIVE_SEARCH:
+      // debugger;
+      return { ...state, ...action.tracks };
     default:
       return state;
   }

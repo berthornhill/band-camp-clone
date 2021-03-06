@@ -6,6 +6,8 @@ const mSTP = (state) => {
   return {
     search: state.entities.search,
     artists: state.entities.artist,
+    albums: state.entities.albums,
+    tracks: state.entities.tracks,
   };
 };
 

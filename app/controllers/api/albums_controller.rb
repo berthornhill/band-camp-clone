@@ -1,7 +1,7 @@
 class Api::AlbumsController < ApplicationController
 
     def index 
-        # debugger
+        debugger
         @albums = Album.where(artist_id: (params[:artist_id]))
         # debugger
         @artist_id = params[:artist_id]
@@ -9,9 +9,10 @@ class Api::AlbumsController < ApplicationController
     end
    
     def show
-        # debugger
-        @album = Album.find(params[:id])
-        @tracks = Track.where(album_id: params[:id])
+        debugger
+        @album = Album.where(id: params[:id]).includes(album_art_attachment: :blob)[0]
+        @tracks = Track.where(album_id: params[:id]).includes(song_attachment: :blob).to_a
+        debugger
         render :show
 
 
@@ -20,13 +21,17 @@ class Api::AlbumsController < ApplicationController
 
     def create 
         # debugger
-        @artist = User.find(params[:artist_id])
+        # @artist = User.find(params[:artist_id])
+
         @album = Album.new(album_params)
         # debugger
         if @album.save 
             # debugger
+            @artist = User.where(id: params[:artist_id]).includes(artist_image_attachment: :blob, banner_image_attachment: :blob)[0]
+            @album = Album.where(id: @album.id).includes(album_art_attachment: :blob)[0]
             @tracksArr = [];
-            @albumsArr = Album.where(artist_id: @artist.id).pluck(:id) 
+            # debugger
+            @albumsArr = @artist.albums.pluck(:id) 
             render :show
         else
             # debugger
@@ -45,3 +50,5 @@ class Api::AlbumsController < ApplicationController
 
 
 end
+
+ 

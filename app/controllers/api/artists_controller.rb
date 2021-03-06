@@ -5,7 +5,7 @@ class Api::ArtistsController < ApplicationController
     def index 
         ids = User.pluck(:id)
         sample = ids.sample(8) 
-        @artists = User.where(id: sample)
+        @artists = User.where(id: sample).includes(artist_image_attachment: :blob, banner_image_attachment: :blob)
         render :index
     end
 
@@ -44,13 +44,10 @@ class Api::ArtistsController < ApplicationController
         
         if @artist.update(update_params)
          
-            @albums = Album.where(artist_id: @artist.id) #pulls all albums with aritst_id of @artist
+            #pulls all albums with aritst_id of @artist
+            @albums = Album.where(artist_id: @artist.id).includes(album_art_attachment: :blob).to_a
             @albumsArr = @albums.pluck(:id) # creates array of album :ids
-        
-            @tracks = User.find(params[:id]).tracks
-            @tracksArr = @tracks.pluck(:id)
-            # debugger
-
+            @tracks = User.find(params[:id]).tracks.includes(song_attachment: :blob).to_a
            
             render :show
         else

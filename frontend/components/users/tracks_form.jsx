@@ -60,6 +60,7 @@ class TracksForm extends React.Component {
     // builds album image cards which change the current Album for addition of tracks.
     const albumSelect = this.props.albumsArray.map((id, index) => {
       let album = this.props.albums[id];
+      // debugger;
       return (
         <li key={id}>
           <div
@@ -77,6 +78,20 @@ class TracksForm extends React.Component {
         </li>
       );
     });
+    // debugger;
+    const trackList = this.props.albums[this.state.currentAlbum].tracks.map(
+      (trackId) => {
+        debugger;
+        let track = this.props.tracks[trackId];
+
+        return (
+          <li key={track.id} className="track-list">
+            <div> {track.track_no}</div>
+            <div>{track.title}</div>
+          </li>
+        );
+      }
+    );
 
     const selected = this.props.albums[this.state.currentAlbum];
 
@@ -85,6 +100,7 @@ class TracksForm extends React.Component {
     return (
       <form id="info-form" onSubmit={this.handleSubmit}>
         <ul className="album-select-box">{albumSelect}</ul>
+        <ol>{trackList}</ol>
         <label className="add-tracks-label" htmlFor="addTrack">
           Add Track
           <input

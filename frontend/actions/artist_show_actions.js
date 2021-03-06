@@ -53,11 +53,13 @@ const receiveErrors = (errors) => {
   };
 };
 
-const receiveSearch = ({ artists, search }) => {
-  // debugger;
+const receiveSearch = ({ artists, albums, tracks, search }) => {
+  debugger;
   return {
     type: RECEIVE_SEARCH,
     artists,
+    albums,
+    tracks,
     search,
   };
 };

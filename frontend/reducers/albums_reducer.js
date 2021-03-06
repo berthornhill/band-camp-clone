@@ -1,4 +1,4 @@
-import { RECEIVE_ARTIST } from "../actions/artist_show_actions";
+import { RECEIVE_ARTIST, RECEIVE_SEARCH } from "../actions/artist_show_actions";
 import {
   RECEIVE_ALBUMS,
   RECEIVE_ALBUM,
@@ -20,6 +20,9 @@ const AlbumsReducer = (state = {}, action) => {
       addTracksState[action.album.id].tracks = action.album.tracks;
       // debugger;
       return addTracksState;
+    case RECEIVE_SEARCH:
+      // debugger;
+      return { ...state, ...action.albums };
     default:
       return state;
   }
