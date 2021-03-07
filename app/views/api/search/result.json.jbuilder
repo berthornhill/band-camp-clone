@@ -45,7 +45,7 @@ json.tracks do
             json.id track.id
             json.title track.title
             json.album_id track.album_id
-            # json.artist_id @artist.id
+            json.artist_id track.artist.id
             json.track_no track.track_no
          
             if track.song.attached? 

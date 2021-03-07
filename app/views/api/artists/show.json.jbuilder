@@ -27,7 +27,7 @@ json.albums do
                 json.id album.id
                 json.albumName album.album_name
                 json.description album.description
-            
+                # debugger
                 json.tracks @tracks.select{ |track| track.album_id == album.id }.pluck(:id)
             
                 if album.album_art.attached? 
