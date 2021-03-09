@@ -43,7 +43,7 @@ class AlbumCarousel extends React.Component {
               <span>{artist.artist}</span>
             </div>
             <div className="band-name">
-              <span>{artist.location}</span>
+              <span>in 🇺🇸 {artist.location}</span>
             </div>
           </Link>
         </li>

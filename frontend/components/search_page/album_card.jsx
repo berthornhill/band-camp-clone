@@ -15,7 +15,14 @@ const AlbumCard = ({ album, artist }) => {
       </Link>
       <div className="info-section">
         <div className="card-type">ALBUM</div>
-        <div className="card-name">{album.albumName}</div>
+        <div className="card-name">
+          <Link
+            to={`/artist/${album.artistId}/album/${album.id}`}
+            className="card-name"
+          >
+            {album.albumName}
+          </Link>
+        </div>
         <div className="xtra-info">by {`${artist.artist}`}</div>
         <Link
           to={`/artist/${album.artistId}/album/${album.id}`}

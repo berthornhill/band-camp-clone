@@ -70,21 +70,6 @@ export const fetchArtist = (id) => (dispatch) =>
 export const fetchArtists = () => (dispatch) =>
   artistAPI.fetchArtists().then((artists) => dispatch(receiveArtists(artists)));
 
-// export const fetchAlbum = (id) => (dispatch) =>
-//   artistAPI.fetchAlbum(id).then((album) => dispatch(receiveAlbum(album)));
-
-// export const fetchAlbums = (artistId) => (dispatch) =>
-//   artistAPI
-//     .fetchAlbums(artistId)
-//     .then((albums) => dispatch(receiveAlbums(albums)));
-
-// export const fetchTracks = (id) => (dispatch) =>
-//   artistAPI.fetchTracks(id).then((tracks) => dispatch(receiveTracks(tracks)));
-
-// export const fetchAlbums = (id) => (dispatch) => {
-//   artistAPI.fetchAlbums(id).then((albums) => dispatch(receiveAlbums(albums)));
-// };
-
 export const updateArtist = (id, formData) => (dispatch) =>
   artistAPI.updateArtist(id, formData).then(
     (artist) => dispatch(receiveArtist(artist)),

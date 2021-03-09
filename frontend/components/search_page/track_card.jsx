@@ -16,7 +16,12 @@ const TrackCard = ({ track, album, artist }) => {
       </Link>
       <div className="info-section">
         <div className="card-type">TRACK</div>
-        <div className="card-name">{track.title}</div>
+        <Link
+          to={`/artist/${album.artistId}/album/${album.id}`}
+          className="card-name"
+        >
+          {track.title}
+        </Link>
         <div className="xtra-info">from {`${album.albumName}`}</div>
         <div className="xtra-info">by {`${artist.artist}`}</div>
         <Link

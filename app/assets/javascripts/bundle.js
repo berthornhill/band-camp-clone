@@ -285,18 +285,7 @@ var fetchArtists = function fetchArtists() {
       return dispatch(receiveArtists(artists));
     });
   };
-}; // export const fetchAlbum = (id) => (dispatch) =>
-//   artistAPI.fetchAlbum(id).then((album) => dispatch(receiveAlbum(album)));
-// export const fetchAlbums = (artistId) => (dispatch) =>
-//   artistAPI
-//     .fetchAlbums(artistId)
-//     .then((albums) => dispatch(receiveAlbums(albums)));
-// export const fetchTracks = (id) => (dispatch) =>
-//   artistAPI.fetchTracks(id).then((tracks) => dispatch(receiveTracks(tracks)));
-// export const fetchAlbums = (id) => (dispatch) => {
-//   artistAPI.fetchAlbums(id).then((albums) => dispatch(receiveAlbums(albums)));
-// };
-
+};
 var updateArtist = function updateArtist(id, formData) {
   return function (dispatch) {
     return _util_artist_show_util__WEBPACK_IMPORTED_MODULE_0__["updateArtist"](id, formData).then(function (artist) {
@@ -438,6 +427,66 @@ var clearErrors = function clearErrors() {
       type: REMOVE_ERRORS
     });
   };
+};
+
+/***/ }),
+
+/***/ "./frontend/actions/tag_actions.js":
+/*!*****************************************!*\
+  !*** ./frontend/actions/tag_actions.js ***!
+  \*****************************************/
+/*! exports provided: RECEIVE_TAGGED, fetchTaggedTracks, fetchTagged */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_TAGGED", function() { return RECEIVE_TAGGED; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchTaggedTracks", function() { return fetchTaggedTracks; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchTagged", function() { return fetchTagged; });
+/* harmony import */ var _util_tags_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/tags_util */ "./frontend/util/tags_util.js");
+
+var RECEIVE_TAGGED = "RECEIVE_TAGGED";
+
+var receiveTagged = function receiveTagged(payload) {
+  return {
+    type: RECEIVE_TAGGED,
+    payload: payload
+  };
+};
+
+var fetchTaggedTracks = function fetchTaggedTracks(tag) {
+  return dispatch = function (_dispatch) {
+    function dispatch() {
+      return _dispatch.apply(this, arguments);
+    }
+
+    dispatch.toString = function () {
+      return _dispatch.toString();
+    };
+
+    return dispatch;
+  }(function () {
+    return _util_tags_util__WEBPACK_IMPORTED_MODULE_0__["fetchTaggedTracks"](tag).then(function (payload) {
+      return dispatch(receiveTagged(payload));
+    });
+  });
+};
+var fetchTagged = function fetchTagged(tag) {
+  return dispatch = function (_dispatch2) {
+    function dispatch() {
+      return _dispatch2.apply(this, arguments);
+    }
+
+    dispatch.toString = function () {
+      return _dispatch2.toString();
+    };
+
+    return dispatch;
+  }(function () {
+    return _util_tags_util__WEBPACK_IMPORTED_MODULE_0__["fetchTagged"](tag).then(function (payload) {
+      return dispatch(receiveTagged(payload));
+    });
+  });
 };
 
 /***/ }),
@@ -1131,6 +1180,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+var TopTags = ["featured", "electronic", "rock", "experimental", "alternative", "metal", "hip-hop/rap", "punk", "ambient", "soundtrack", "jazz", "classical"];
 
 var Discover = /*#__PURE__*/function (_React$Component) {
   _inherits(Discover, _React$Component);
@@ -1138,14 +1188,49 @@ var Discover = /*#__PURE__*/function (_React$Component) {
   var _super = _createSuper(Discover);
 
   function Discover(props) {
+    var _this;
+
     _classCallCheck(this, Discover);
 
-    return _super.call(this, props);
+    _this = _super.call(this, props);
+    _this.state = {
+      focusedTag: "featured"
+    };
+    _this.changeTag = _this.changeTag.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(Discover, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.fetchTags({
+        tag: this.state.focusedTag
+      });
+    }
+  }, {
+    key: "changeTag",
+    value: function changeTag(e) {
+      debugger;
+      e.preventDefault();
+      this.setState({
+        focusedTag: e.target.id
+      });
+      this.props.fetchTags({
+        tag: this.state.focusedTag
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
+      var tags = TopTags.map(function (tag) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          id: tag,
+          className: "tag-pill",
+          onClick: _this2.changeTag
+        }, tag);
+      });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "discover-outer"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1156,15 +1241,15 @@ var Discover = /*#__PURE__*/function (_React$Component) {
         className: "top tags-outer"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "top tags-inner"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Tags"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "electronic"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "rock"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "experimental"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "alternative"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "metal"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "hip-hop/rap"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "punk"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "ambient"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "soundtrack"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "jazz"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "classical"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, tags)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "middle tags-outer"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "middle tags-inner"
-      }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "other"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "tags"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "bottom tags-outer"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "bottom tags-inner"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "stuff"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "sure"), " ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "showcase"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-left"
@@ -1190,15 +1275,25 @@ var Discover = /*#__PURE__*/function (_React$Component) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _discover__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./discover */ "./frontend/components/discover/discover.jsx");
+/* harmony import */ var _actions_tag_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/tag_actions */ "./frontend/actions/tag_actions.js");
+
 
 
 
 var mSTP = function mSTP(state) {
-  return {};
+  return {
+    artists: state.entities.artist,
+    albums: state.entities.albums,
+    tracks: state.entities.tracks
+  };
 };
 
 var mDTP = function mDTP(dispatch) {
-  return {};
+  return {
+    fetchTaggedTracks: function fetchTaggedTracks(tag) {
+      return dispatch(Object(_actions_tag_actions__WEBPACK_IMPORTED_MODULE_2__["fetchTaggedTracks"])(tag));
+    }
+  };
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_discover__WEBPACK_IMPORTED_MODULE_1__["default"]));
@@ -2130,7 +2225,10 @@ var AlbumCard = function AlbumCard(_ref) {
     className: "card-type"
   }, "ALBUM"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "card-name"
-  }, album.albumName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/artist/".concat(album.artistId, "/album/").concat(album.id),
+    className: "card-name"
+  }, album.albumName)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "xtra-info"
   }, "by ", "".concat(artist.artist)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/artist/".concat(album.artistId, "/album/").concat(album.id),
@@ -2172,7 +2270,8 @@ var ArtistCard = function ArtistCard(_ref) {
     className: "info-section"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "card-type"
-  }, "Artist"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, "Artist"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/artist/".concat(artist.id),
     className: "card-name"
   }, artist.artist), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "xtra-info"
@@ -2359,7 +2458,8 @@ var TrackCard = function TrackCard(_ref) {
     className: "info-section"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "card-type"
-  }, "TRACK"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, "TRACK"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/artist/".concat(album.artistId, "/album/").concat(album.id),
     className: "card-name"
   }, track.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "xtra-info"
@@ -3035,7 +3135,7 @@ var AlbumCarousel = /*#__PURE__*/function (_React$Component) {
           className: "band-name"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, artist.artist)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "band-name"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, artist.location))));
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "in \uD83C\uDDFA\uD83C\uDDF8 ", artist.location))));
       }); // if !this.props.
       // debugger;
 
@@ -4712,6 +4812,35 @@ var logout = function logout() {
   return $.ajax({
     method: "DELETE",
     url: "api/session"
+  });
+};
+
+/***/ }),
+
+/***/ "./frontend/util/tags_util.js":
+/*!************************************!*\
+  !*** ./frontend/util/tags_util.js ***!
+  \************************************/
+/*! exports provided: fetchTaggedTracks, fetchTagged */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchTaggedTracks", function() { return fetchTaggedTracks; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchTagged", function() { return fetchTagged; });
+var fetchTaggedTracks = function fetchTaggedTracks(tag) {
+  return $.ajax({
+    method: "GET",
+    url: "/api/tags/".concat(tag)
+  });
+};
+var fetchTagged = function fetchTagged(tag) {
+  return $.ajax({
+    method: "GET",
+    url: "/api/tags",
+    data: {
+      tag: tag
+    }
   });
 };
 

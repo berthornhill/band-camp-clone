@@ -12,7 +12,9 @@ const ArtistCard = ({ artist }) => {
       </Link>
       <div className="info-section">
         <div className="card-type">Artist</div>
-        <div className="card-name">{artist.artist}</div>
+        <Link to={`/artist/${artist.id}`} className="card-name">
+          {artist.artist}
+        </Link>
         <div className="xtra-info">location: {`${artist.location}`}</div>
         <Link to={`/artist/${artist.id}`} className="result-link">
           {`https://bandlamp.herokuapp.com/#/artist/${artist.id}`}
