@@ -1,5 +1,7 @@
 class Track < ApplicationRecord
 
+    include Taggable
+
     validates :title, :track_no, :album_id, :song, presence: true
 
     

@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 2021_03_07_203548) do
     t.bigint "taggable_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["tag"], name: "index_genre_tags_on_tag", unique: true
+    t.index ["tag", "taggable_type", "taggable_id"], name: "index_genre_tags_on_tag_and_taggable_type_and_taggable_id", unique: true
     t.index ["taggable_type", "taggable_id"], name: "index_genre_tags_on_taggable_type_and_taggable_id"
   end
 

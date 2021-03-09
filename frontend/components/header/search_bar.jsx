@@ -1,6 +1,7 @@
 import React from "react";
 import { render } from "react-dom";
 import { Redirect, withRouter } from "react-router-dom";
+import SearchDropdown from "./search_dropdown";
 
 class SearchBar extends React.Component {
   constructor(props) {
@@ -9,10 +10,17 @@ class SearchBar extends React.Component {
     this.state = {
       searchCriteria: "",
       redirect: false,
+      displayDropDown: false,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.renderRedirect = this.renderRedirect.bind(this);
+    this.openCloseMenu = this.openCloseMenu.bind(this);
+  }
+
+  openCloseMenu() {
+    const toggle = !this.state.displayDropDown;
+    this.setState({ displayDropDown: toggle });
   }
 
   renderRedirect() {
@@ -32,6 +40,8 @@ class SearchBar extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
 
+    this.openCloseMenu();
+
     this.props.searchArtist({ search: this.state.searchCriteria });
     // this.setState({ redirect: true });3
     // debugger;
@@ -46,19 +56,27 @@ class SearchBar extends React.Component {
   render() {
     // debugger;
     return (
-      <div>
-        <form className="search-bar" onSubmit={this.handleSubmit}>
-          <div>{this.renderRedirect()}</div>
-          <input
-            type="text"
-            placeholder="Search and discover music"
-            className="search-field"
-            value={this.state.searchCriteria}
-            onChange={this.handleChange}
-          />
-          <img src={window.bulb} alt="search icon" className="search-icon" />
-        </form>
-      </div>
+      // <div>
+      <form className="search-bar" onSubmit={this.handleSubmit}>
+        <input
+          type="text"
+          placeholder="Search and discover music"
+          className="search-field"
+          value={this.state.searchCriteria}
+          onChange={this.handleChange}
+          onFocus={this.openCloseMenu}
+          onBlur={this.openCloseMenu}
+        />
+
+        <img
+          src={window.bulb}
+          alt="search icon"
+          className="search-icon"
+          onClick={this.handleSubmit}
+        />
+        {this.state.displayDropDown ? <SearchDropdown /> : null}
+      </form>
+      // </div>
     );
   }
 }

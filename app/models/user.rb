@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+
+    include Taggable
+
     validates :artist, presence: true
     validates :username, presence: true, uniqueness: true
     validates :password_digest, presence: true
@@ -46,8 +49,6 @@ class User < ApplicationRecord
     dependent: :destroy
 
     has_many :tracks, through: :albums
-
-    has_many :genre_tags, as: :taggable
 
     has_one_attached :artist_image
 

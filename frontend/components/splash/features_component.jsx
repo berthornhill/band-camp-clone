@@ -9,8 +9,8 @@ const Features = () => {
           <div className="top-story">
             <Link to="/artist/210">
               <img src={window.concert2} alt="top story, rock star guy image" />
+              <h3>This Year, Concerts Are Outside!</h3>
             </Link>
-            <h3>This Year, Concerts Are Outside!</h3>
           </div>
           <div className="trio-box">
             <Link to="/artist/245">

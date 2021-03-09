@@ -34,15 +34,11 @@
 
 // RIGHT SIDE NAVIGATION
 .nav-right {
-  //   float: right;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-
-  justify-content: space-around;
   width: 400px;
-  //   border: solid 2px black;
-  float: left;
+  align-items: flex-end;
 
   div {
     display: flex;
@@ -72,8 +68,8 @@
     // display: flex;
     // justify-content: space-between;
     display: flex;
-    justify-content: flex-end;
-    // width: 100%;
+    // justify-content: space;
+    width: 100%;
     flex-grow: 1;
     top: 5px;
 
@@ -82,7 +78,7 @@
       flex-grow: 1;
       flex-direction: row;
       align-items: center;
-      justify-content: flex-end;
+      justify-content: space-between;
       // border: solid 2px black;
 
       li {
@@ -112,15 +108,20 @@
   color: rgba(51, 51, 51, 70);
   background-color: #f3f3f3;
   height: 32px;
+  width: 282px;
   border: solid 1px #f3f3f3;
   border-radius: 5px;
+  position: relative;
 }
 
 .search-bar:focus {
-  -webkit-box-shadow: -1px 1px 9px 4px rgba(109, 109, 109, 0.59);
-  box-shadow: -1px 1px 9px 4px rgba(109, 109, 109, 0.59);
-  border: none;
+  outline: none;
 }
+
+.search-bar input {
+  outline: none;
+}
+
 .search-icon {
   width: 22px;
   position: absolute;
@@ -128,7 +129,7 @@
   float: right;
   padding-right: 8px;
   padding-top: -2px;
-  transform: rotate(-18deg);
+  // transform: rotate(-18deg);
   top: 5px;
 }
 .search-icon:hover {
@@ -147,4 +148,76 @@
   -moz-background-clip: text;
   -webkit-background-clip: text;
   -moz-text-fill-color: transparent;
+}
+
+#search-dropdown {
+  background-color: #168edf;
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: auto;
+  background-color: white;
+  z-index: 1;
+  padding-top: 0px;
+  top: 30px;
+
+  li {
+    display: flex;
+    line-height: 50px;
+  }
+
+  span {
+    color: white;
+  }
+
+  a {
+    flex-grow: 1;
+    color: white;
+    position: relative;
+    font-size: 14px;
+    font-weight: 500;
+    padding-right: 20px;
+    padding-left: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transition: opacity 0.2s;
+  }
+
+  li:hover {
+    opacity: 0.5;
+    transition: 0.2s;
+    transition-timing-function: ease-in;
+  }
+
+  .orange {
+    background-color: hsl(27, 90%, 68%);
+  }
+  .sherbert {
+    background-color: hsl(11, 89%, 65%);
+  }
+  .red {
+    background-color: hsl(355, 74%, 51%);
+  }
+  .fusia {
+    background-color: hsl(339, 65%, 52%);
+  }
+  .lavender {
+    background-color: hsl(314, 51%, 50%);
+  }
+  .violet {
+    background-color: hsl(277, 43%, 57%);
+  }
+  .purple {
+    background-color: hsl(255, 29%, 57%);
+  }
+  .blue {
+    background-color: hsl(231, 40%, 66%);
+  }
+  .grey {
+    background-color: #87a8c5;
+  }
+  .brown {
+    background-color: #333;
+  }
 }

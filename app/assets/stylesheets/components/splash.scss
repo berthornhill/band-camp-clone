@@ -14,6 +14,7 @@
 }
 .featured {
   width: 90%;
+  min-width: 1100px;
   margin: auto;
   display: grid;
   grid-template-columns: 70% 30%;
@@ -34,8 +35,8 @@
     font-weight: 700;
     position: absolute;
     color: whitesmoke;
-    top: 55%;
-    left: 6%;
+    left: 2%;
+    top: 81%;
   }
 }
 
@@ -44,11 +45,25 @@
   width: 100%;
   max-height: 100%;
   grid-column: 1;
+  position: relative;
+
+  // background-image: image-url("concert2.jpg");
+  // background-repeat: no-repeat;
+  // background-size: 100%;
+  // background-position: center;
+
   img {
     width: 100%;
     height: 525px;
     object-fit: cover;
   }
+
+  // a div {
+  //   display: flex;
+  //   flex-direction: column;
+  //   align-items: center;
+  //   justify-content: flex-end;
+  // }
 }
 
 .trio-box {

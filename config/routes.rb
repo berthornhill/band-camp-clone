@@ -16,6 +16,8 @@ Rails.application.routes.draw do
 
     resources :tests, only: [:show]
 
+    resources :tags, only: [:index]
+
     get '/search', to: 'search#search'
   end
 
