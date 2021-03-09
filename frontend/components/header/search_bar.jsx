@@ -16,11 +16,16 @@ class SearchBar extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.renderRedirect = this.renderRedirect.bind(this);
     this.openCloseMenu = this.openCloseMenu.bind(this);
+    this.closeMenu = this.closeMenu.bind(this);
   }
 
   openCloseMenu() {
-    const toggle = !this.state.displayDropDown;
-    this.setState({ displayDropDown: toggle });
+    // const toggle = !this.state.displayDropDown;
+    this.setState({ displayDropDown: true });
+  }
+
+  closeMenu() {
+    this.setState({ displayDropDown: false });
   }
 
   renderRedirect() {
@@ -40,7 +45,7 @@ class SearchBar extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
 
-    this.openCloseMenu();
+    this.closeMenu();
 
     this.props.searchArtist({ search: this.state.searchCriteria });
     // this.setState({ redirect: true });3
@@ -50,6 +55,7 @@ class SearchBar extends React.Component {
     this.props.history.push({
       pathname: "/search",
       search: `?results=${this.state.searchCriteria}`,
+      // state: this.state.searchCriteria,
     });
   }
 
@@ -65,7 +71,7 @@ class SearchBar extends React.Component {
           value={this.state.searchCriteria}
           onChange={this.handleChange}
           onFocus={this.openCloseMenu}
-          onBlur={this.openCloseMenu}
+          onBlur={this.closeMenu}
         />
 
         <img

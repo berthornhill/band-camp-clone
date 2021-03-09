@@ -1592,15 +1592,23 @@ var SearchBar = /*#__PURE__*/function (_React$Component) {
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.renderRedirect = _this.renderRedirect.bind(_assertThisInitialized(_this));
     _this.openCloseMenu = _this.openCloseMenu.bind(_assertThisInitialized(_this));
+    _this.closeMenu = _this.closeMenu.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(SearchBar, [{
     key: "openCloseMenu",
     value: function openCloseMenu() {
-      var toggle = !this.state.displayDropDown;
+      // const toggle = !this.state.displayDropDown;
       this.setState({
-        displayDropDown: toggle
+        displayDropDown: true
+      });
+    }
+  }, {
+    key: "closeMenu",
+    value: function closeMenu() {
+      this.setState({
+        displayDropDown: false
       });
     }
   }, {
@@ -1626,7 +1634,7 @@ var SearchBar = /*#__PURE__*/function (_React$Component) {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
-      this.openCloseMenu();
+      this.closeMenu();
       this.props.searchArtist({
         search: this.state.searchCriteria
       }); // this.setState({ redirect: true });3
@@ -1635,7 +1643,8 @@ var SearchBar = /*#__PURE__*/function (_React$Component) {
 
       this.props.history.push({
         pathname: "/search",
-        search: "?results=".concat(this.state.searchCriteria)
+        search: "?results=".concat(this.state.searchCriteria) // state: this.state.searchCriteria,
+
       });
     }
   }, {
@@ -1655,7 +1664,7 @@ var SearchBar = /*#__PURE__*/function (_React$Component) {
           value: this.state.searchCriteria,
           onChange: this.handleChange,
           onFocus: this.openCloseMenu,
-          onBlur: this.openCloseMenu
+          onBlur: this.closeMenu
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
           src: window.bulb,
           alt: "search icon",
@@ -2088,6 +2097,51 @@ var Root = function Root(_ref) {
 
 /***/ }),
 
+/***/ "./frontend/components/search_page/album_card.jsx":
+/*!********************************************************!*\
+  !*** ./frontend/components/search_page/album_card.jsx ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
+
+
+var AlbumCard = function AlbumCard(_ref) {
+  var album = _ref.album,
+      artist = _ref.artist;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "search-card",
+    key: album.id
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/artist/".concat(artist.id, "/album/").concat(album.id),
+    className: "artist-image"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: album.albumArt ? album.albumArt : window.albumcover3,
+    alt: "search result image"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "info-section"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "card-type"
+  }, "ALBUM"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "card-name"
+  }, album.albumName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "xtra-info"
+  }, "by ", "".concat(artist.artist)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/artist/".concat(album.artistId, "/album/").concat(album.id),
+    className: "result-link"
+  }, "https://bandlamp.herokuapp.com/#/artist/".concat(album.artistId, "/album/").concat(album.id))));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (AlbumCard);
+
+/***/ }),
+
 /***/ "./frontend/components/search_page/artist_card.jsx":
 /*!*********************************************************!*\
   !*** ./frontend/components/search_page/artist_card.jsx ***!
@@ -2106,23 +2160,26 @@ __webpack_require__.r(__webpack_exports__);
 var ArtistCard = function ArtistCard(_ref) {
   var artist = _ref.artist;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-    className: "search-card"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    className: "search-card",
+    key: artist.id
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/artist/".concat(artist.id),
     className: "artist-image"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     src: artist.artistImage ? artist.artistImage : window.albumcover3,
     alt: "artist image"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "artist-card"
+    className: "info-section"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "artist-type"
+    className: "card-type"
   }, "Artist"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "artist-name"
-  }, artist.artist), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    className: "card-name"
+  }, artist.artist), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "xtra-info"
+  }, "location: ", "".concat(artist.location)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/artist/".concat(artist.id),
-    className: "artist-site"
-  }, "https://bandlamp.herokuapp.com/#/artist/".concat(artist.id)))));
+    className: "result-link"
+  }, "https://bandlamp.herokuapp.com/#/artist/".concat(artist.id))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (ArtistCard);
@@ -2144,6 +2201,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _artist_card__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./artist_card */ "./frontend/components/search_page/artist_card.jsx");
+/* harmony import */ var _album_card__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./album_card */ "./frontend/components/search_page/album_card.jsx");
+/* harmony import */ var _track_card__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./track_card */ "./frontend/components/search_page/track_card.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2171,6 +2230,8 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
+
 var SearchResults = /*#__PURE__*/function (_React$Component) {
   _inherits(SearchResults, _React$Component);
 
@@ -2188,23 +2249,41 @@ var SearchResults = /*#__PURE__*/function (_React$Component) {
       var _this = this;
 
       var search = this.props.search;
+      debugger;
       var artistResults = search.artists.map(function (id) {
         var artist = _this.props.artists[id];
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_artist_card__WEBPACK_IMPORTED_MODULE_3__["default"], {
           artist: artist
         });
-      }); // const albumResults = search.album.map((id) => {
-      //   let album = this.props.albums[id];
-      //   return <AlbumCard album={album} />;
-      // });
-      // const trackResults = search.tracks.map((id) => {
-      //   let track = this.props.tracks[id];
-      //   let album = this.props.albums[track.album_id];
-      //   let artist = this.props.artist[album.artist_id];
-      //   return <TrackCard track={track} />;
-      // });
+      }); // debugger;
 
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "SEARCH TITLE DIV")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Artist Results"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, artistResults)));
+      var albumResults = search.albums.map(function (id) {
+        var album = _this.props.albums[id];
+        var artist = _this.props.artists[album.artistId];
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_album_card__WEBPACK_IMPORTED_MODULE_4__["default"], {
+          album: album,
+          artist: artist
+        });
+      });
+      var trackResults = search.tracks.map(function (id) {
+        debugger;
+        var track = _this.props.tracks[id];
+        var album = _this.props.albums[track.album_id];
+        var artist = _this.props.artists[track.artist_id];
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_track_card__WEBPACK_IMPORTED_MODULE_5__["default"], {
+          track: track,
+          album: album,
+          artist: artist
+        });
+      });
+      debugger;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "search-outer"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "search-inner"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "search-header"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "SEARCH RESULTS FOR: ".concat(this.props.history.location.search.split("=")[1]))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, artistResults)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, albumResults)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, trackResults))));
     }
   }]);
 
@@ -2244,6 +2323,55 @@ var mDTP = function mDTP(dispatch) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_search_results__WEBPACK_IMPORTED_MODULE_1__["default"]));
+
+/***/ }),
+
+/***/ "./frontend/components/search_page/track_card.jsx":
+/*!********************************************************!*\
+  !*** ./frontend/components/search_page/track_card.jsx ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
+
+
+var TrackCard = function TrackCard(_ref) {
+  var track = _ref.track,
+      album = _ref.album,
+      artist = _ref.artist;
+  debugger;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "search-card",
+    key: track.id
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/artist/".concat(artist.id, "/album/").concat(album.id),
+    className: "artist-image"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: album.albumArt ? album.albumArt : window.albumcover3,
+    alt: "search result image"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "info-section"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "card-type"
+  }, "TRACK"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "card-name"
+  }, track.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "xtra-info"
+  }, "from ", "".concat(album.albumName)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "xtra-info"
+  }, "by ", "".concat(artist.artist)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/artist/".concat(album.artistId, "/album/").concat(album.id),
+    className: "result-link"
+  }, "https://bandlamp.herokuapp.com/#/artist/".concat(album.artistId, "/album/").concat(album.id))));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (TrackCard);
 
 /***/ }),
 

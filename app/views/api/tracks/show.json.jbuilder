@@ -7,7 +7,7 @@ end
 
 
 json.track do 
-    debugger
+
     json.set! @track.id do
        
         json.id @track.id

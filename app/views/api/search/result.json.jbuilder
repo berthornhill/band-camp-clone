@@ -25,6 +25,7 @@ json.albums do
                 json.id album.id
                 json.albumName album.album_name
                 json.description album.description
+                json.artistId album.artist_id
             
                 json.tracks @tracks.select{ |track| track.album_id == album.id }.pluck(:id)
             
