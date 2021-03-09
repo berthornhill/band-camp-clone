@@ -12,6 +12,7 @@ const splash = (props) => {
       <Features />
       <DotSales />
       <AlbumCarousel />
+
       <Discover />
     </>
   );
