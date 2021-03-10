@@ -1,6 +1,6 @@
 import { RECEIVE_TAGGED } from "../actions/tag_actions";
 
-const TagsReducer = (state = [], action) => {
+const TagsReducer = (state = {}, action) => {
   Object.freeze(state);
 
   switch (action.type) {

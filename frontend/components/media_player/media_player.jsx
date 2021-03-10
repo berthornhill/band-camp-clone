@@ -26,11 +26,11 @@ class MediaPlayer extends React.Component {
       let track = this.props.tracks[key];
       if (track) {
         return (
-          <li className="single-track" key={track.track_no}>
+          <li className="single-track" key={track.trackNo}>
             <button value={track.url} onClick={(value) => this.playSong(value)}>
               ▶
             </button>
-            <div>{track.track_no}</div>
+            <div>{track.trackNo}</div>
             <div>{track.title}</div>
           </li>
         );

@@ -55,15 +55,98 @@
     display: grid;
     grid-template-columns: 70% 30%;
     margin: auto;
-    height: 550px;
+    // height: 510px;
   }
 
   .col-left {
     grid-column-start: 1;
-    background-color: blue;
+    // background-color: blue;
+    display: flex;
+    justify-content: space-around;
+    // align-content: flex-start;
+    flex-wrap: wrap;
+    padding-top: 25px;
   }
   .col-right {
     grid-column-start: 2;
     background-color: violet;
+  }
+}
+
+.tag-pill:hover {
+  border-radius: 50%;
+  color: rgb(37, 37, 37);
+}
+
+// discover player styles
+
+.showcase {
+  background-color: #eef2f3;
+}
+
+.discover-track-card {
+  width: 172px;
+  margin-bottom: 18px;
+  min-height: 236px;
+
+  .track-info div {
+    padding-bottom: 5px;
+  }
+
+  .cover-art-container {
+    padding-bottom: 15px;
+    position: relative;
+  }
+
+  .play-button {
+    position: absolute;
+    background: rgb(0, 0, 0);
+    background: rgba(0, 0, 0, 0.5); /* Black see-through */
+    color: #f1f1f1;
+    width: 25%;
+    height: 10%;
+    top: 35%;
+    left: 25%;
+    transition: 0.2s ease;
+    opacity: 0;
+    color: white;
+    font-size: 20px;
+    padding: 20px;
+    border-radius: 3px;
+  }
+
+  .cover-art-container:hover .play-button {
+    opacity: 1;
+    cursor: pointer;
+  }
+
+  .cover-art {
+    width: 172px;
+    height: 172px;
+    object-fit: cover;
+    outline: 1px solid rgba(52, 54, 58, 0.253);
+    outline-offset: -1px;
+  }
+
+  .play-button-symbol {
+    color: white;
+    font-size: 36px;
+    line-height: 46%;
+    margin-left: 10px;
+  }
+  .title {
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  .artist {
+    font-size: 12px;
+  }
+  .card-link {
+  }
+
+  .card-tag {
+    font-size: 12px;
+    color: #999;
   }
 }

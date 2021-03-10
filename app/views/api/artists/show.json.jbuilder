@@ -48,9 +48,9 @@ json.tracks do
         json.set! track.id do
             json.id track.id
             json.title track.title
-            json.album_id track.album_id
-            json.artist_id @artist.id
-            json.track_no track.track_no
+            json.albumId track.album_id
+            json.artistId @artist.id
+            json.trackNo track.track_no
          
             if track.song.attached? 
                  json.url url_for(track.song)

@@ -1,5 +1,5 @@
 import React from "react";
-import DiscoverPlayer from "./discover_player";
+import DiscoverPlayer from "./discover_player_container";
 
 const TopTags = [
   "featured",
@@ -64,11 +64,7 @@ class Discover extends React.Component {
         <div className="bottom tags-outer">
           <div className="bottom tags-inner"></div>
         </div>
-
-        <div className="showcase">
-          <div className="col-left"></div>
-          <DiscoverPlayer />
-        </div>
+        <DiscoverPlayer />
       </div>
     );
   }

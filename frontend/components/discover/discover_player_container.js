@@ -1,9 +1,9 @@
 import { connect } from "react-redux";
-import Discover from "./discover";
-import { fetchTaggedTracks } from "../../actions/tag_actions";
+import DiscoverPlayer from "./discover_player";
+// import { fetchTaggedTracks } from "../../actions/tag_actions";
 
 const mSTP = (state) => {
-  // debugger;
+  //   debugger;
   return {
     artists: state.entities.artist,
     albums: state.entities.albums,
@@ -14,8 +14,8 @@ const mSTP = (state) => {
 
 const mDTP = (dispatch) => {
   return {
-    fetchTaggedTracks: (tag) => dispatch(fetchTaggedTracks(tag)),
+    // fetchTaggedTracks: (tag) => dispatch(fetchTaggedTracks(tag)),
   };
 };
 
-export default connect(mSTP, mDTP)(Discover);
+export default connect(mSTP, mDTP)(DiscoverPlayer);

@@ -9,7 +9,7 @@ class SearchResults extends React.Component {
   render() {
     const { search } = this.props;
 
-    debugger;
+    // debugger;
 
     const artistResults = search.artists.map((id) => {
       let artist = this.props.artists[id];
@@ -24,14 +24,14 @@ class SearchResults extends React.Component {
     });
 
     const trackResults = search.tracks.map((id) => {
-      debugger;
+      // debugger;
       let track = this.props.tracks[id];
-      let album = this.props.albums[track.album_id];
-      let artist = this.props.artists[track.artist_id];
+      let album = this.props.albums[track.albumId];
+      let artist = this.props.artists[track.artistId];
       return <TrackCard track={track} album={album} artist={artist} />;
     });
 
-    debugger;
+    // debugger;
 
     return (
       <div className="search-outer">
