@@ -1287,6 +1287,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _media_player_audio_player__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../media_player/audio_player */ "./frontend/components/media_player/audio_player.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1312,6 +1313,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var DiscoverPlayer = /*#__PURE__*/function (_React$Component) {
   _inherits(DiscoverPlayer, _React$Component);
 
@@ -1324,8 +1326,8 @@ var DiscoverPlayer = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      playing: false // currentTrackId: this.props.tags.taggedData[0],
-
+      playing: false,
+      currentTrackId: empty
     };
     return _this;
   }
@@ -1343,7 +1345,8 @@ var DiscoverPlayer = /*#__PURE__*/function (_React$Component) {
         var artist = _this2.props.artists[track.artistId];
         var album = _this2.props.albums[track.albumId];
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "discover-track-card"
+          className: "discover-track-card",
+          key: id
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "cover-art-container"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
@@ -1351,11 +1354,11 @@ var DiscoverPlayer = /*#__PURE__*/function (_React$Component) {
           src: album.albumArt ? album.albumArt : window.albumcover3,
           alt: "play ".concat(track.title)
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          "class": "play-button"
+          className: "play-button"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          "class": "play-button-overlay"
+          className: "play-button-overlay"
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          "class": "play-button-symbol"
+          className: "play-button-symbol"
         }, "\u25B6"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "track-info"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1378,7 +1381,13 @@ var DiscoverPlayer = /*#__PURE__*/function (_React$Component) {
         className: "col-left"
       }, trackCards), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-right"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "I will play music very soon!"), ";"));
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "now-playing-image"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        id: "np-cover-art",
+        src: window.albumcover3,
+        alt: ""
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_media_player_audio_player__WEBPACK_IMPORTED_MODULE_2__["default"], null)));
     }
   }]);
 
@@ -2007,6 +2016,27 @@ var UserNav = function UserNav(_ref) {
 
 /***/ }),
 
+/***/ "./frontend/components/media_player/audio_player.jsx":
+/*!***********************************************************!*\
+  !*** ./frontend/components/media_player/audio_player.jsx ***!
+  \***********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var AudioPlayer = function AudioPlayer() {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "hello world. I am audio player no 9");
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (AudioPlayer);
+
+/***/ }),
+
 /***/ "./frontend/components/media_player/media_player.jsx":
 /*!***********************************************************!*\
   !*** ./frontend/components/media_player/media_player.jsx ***!
@@ -2065,6 +2095,7 @@ var MediaPlayer = /*#__PURE__*/function (_React$Component) {
       url: ""
     };
     _this.playSong = _this.playSong.bind(_assertThisInitialized(_this));
+    _this.audioRef = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef();
     return _this;
   }
 
@@ -2098,6 +2129,7 @@ var MediaPlayer = /*#__PURE__*/function (_React$Component) {
           }, "\u25B6"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, track.trackNo), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, track.title));
         }
       });
+      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "album-show-main-outer"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2108,11 +2140,12 @@ var MediaPlayer = /*#__PURE__*/function (_React$Component) {
         className: "ba-title"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, this.props.album.albumName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "by ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
         to: "/artist/".concat(artist.id)
-      }, artist.artist))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_audio_player__WEBPACK_IMPORTED_MODULE_3___default.a, {
-        src: this.state.url,
+      }, artist.artist))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("audio", {
+        controls: true,
         autoPlay: true,
-        controls: true
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        src: this.state.url,
+        ref: this.audioRef
+      }, "Your browser does not support the", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("code", null, "audio"), " element."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "now-playing-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, tracks[0])), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "blurb"

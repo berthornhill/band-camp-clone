@@ -11,6 +11,7 @@ class MediaPlayer extends React.Component {
       url: "",
     };
     this.playSong = this.playSong.bind(this);
+    this.audioRef = React.createRef();
   }
 
   playSong(e) {
@@ -37,6 +38,8 @@ class MediaPlayer extends React.Component {
       }
     });
 
+    debugger;
+
     return (
       <div className="album-show-main-outer">
         <div className="media-player-outer">
@@ -52,7 +55,18 @@ class MediaPlayer extends React.Component {
               Your browser does not support the
               <code>audio</code> element.
             </audio> */}
-            <ReactAudioPlayer src={this.state.url} autoPlay controls />
+            {/* <ReactAudioPlayer
+              src={this.state.url}
+              autoPlay
+              controls
+              ref={this.audioRef}
+            /> */}
+
+            <audio controls autoPlay src={this.state.url} ref={this.audioRef}>
+              Your browser does not support the
+              <code>audio</code> element.
+            </audio>
+
             <div className="now-playing-container">
               <ul>{tracks[0]}</ul>
             </div>

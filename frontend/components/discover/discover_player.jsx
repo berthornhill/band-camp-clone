@@ -1,12 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import AudioPlayer from "../media_player/audio_player";
 
 class DiscoverPlayer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       playing: false,
-      // currentTrackId: this.props.tags.taggedData[0],
+      currentTrackId: empty,
     };
   }
 
@@ -21,16 +22,16 @@ class DiscoverPlayer extends React.Component {
       let album = this.props.albums[track.albumId];
 
       return (
-        <div className="discover-track-card">
+        <div className="discover-track-card" key={id}>
           <div className="cover-art-container">
             <img
               className="cover-art"
               src={album.albumArt ? album.albumArt : window.albumcover3}
               alt={`play ${track.title}`}
             />
-            <div class="play-button">
-              <div class="play-button-overlay"></div>
-              <div class="play-button-symbol">▶</div>
+            <div className="play-button">
+              <div className="play-button-overlay"></div>
+              <div className="play-button-symbol">▶</div>
             </div>
           </div>
           <div className="track-info">
@@ -57,7 +58,10 @@ class DiscoverPlayer extends React.Component {
       <div className="showcase">
         <div className="col-left">{trackCards}</div>
         <div className="col-right">
-          <h1>I will play music very soon!</h1>;
+          <div className="now-playing-image">
+            <img id="np-cover-art" src={window.albumcover3} alt="" />
+          </div>
+          <AudioPlayer />
         </div>
       </div>
     );
