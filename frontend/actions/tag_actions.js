@@ -9,13 +9,9 @@ const receiveTagged = (payload) => {
   };
 };
 
-export const fetchTaggedTracks = (tag) =>
-  (dispatch = () =>
-    TagsUtil.fetchTaggedTracks(tag).then((payload) =>
-      dispatch(receiveTagged(payload))
-    ));
-export const fetchTagged = (tag) =>
-  (dispatch = () =>
-    TagsUtil.fetchTagged(tag).then((payload) =>
-      dispatch(receiveTagged(payload))
-    ));
+export const fetchTaggedTracks = (tag) => (dispatch) =>
+  TagsUtil.fetchTaggedTracks(tag).then((payload) =>
+    dispatch(receiveTagged(payload))
+  );
+export const fetchTagged = (tag) => (dispatch) =>
+  TagsUtil.fetchTagged(tag).then((payload) => dispatch(receiveTagged(payload)));

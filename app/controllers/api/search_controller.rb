@@ -1,7 +1,7 @@
 class Api::SearchController < ApplicationController
 
     def search
-        @artists
+        @artists ||= []
         @albums ||= []
         @tracks ||= []
         @artist_results_array ||= []

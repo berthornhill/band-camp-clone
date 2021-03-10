@@ -455,38 +455,18 @@ var receiveTagged = function receiveTagged(payload) {
 };
 
 var fetchTaggedTracks = function fetchTaggedTracks(tag) {
-  return dispatch = function (_dispatch) {
-    function dispatch() {
-      return _dispatch.apply(this, arguments);
-    }
-
-    dispatch.toString = function () {
-      return _dispatch.toString();
-    };
-
-    return dispatch;
-  }(function () {
+  return function (dispatch) {
     return _util_tags_util__WEBPACK_IMPORTED_MODULE_0__["fetchTaggedTracks"](tag).then(function (payload) {
       return dispatch(receiveTagged(payload));
     });
-  });
+  };
 };
 var fetchTagged = function fetchTagged(tag) {
-  return dispatch = function (_dispatch2) {
-    function dispatch() {
-      return _dispatch2.apply(this, arguments);
-    }
-
-    dispatch.toString = function () {
-      return _dispatch2.toString();
-    };
-
-    return dispatch;
-  }(function () {
+  return function (dispatch) {
     return _util_tags_util__WEBPACK_IMPORTED_MODULE_0__["fetchTagged"](tag).then(function (payload) {
       return dispatch(receiveTagged(payload));
     });
-  });
+  };
 };
 
 /***/ }),
@@ -1203,30 +1183,27 @@ var Discover = /*#__PURE__*/function (_React$Component) {
   _createClass(Discover, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.fetchTags({
-        tag: this.state.focusedTag
-      });
+      this.props.fetchTaggedTracks(this.state.focusedTag);
     }
   }, {
     key: "changeTag",
     value: function changeTag(e) {
-      debugger;
+      // debugger;
       e.preventDefault();
       this.setState({
         focusedTag: e.target.id
       });
-      this.props.fetchTags({
-        tag: this.state.focusedTag
-      });
+      this.props.fetchTaggedTracks(e.target.id);
     }
   }, {
     key: "render",
     value: function render() {
       var _this2 = this;
 
-      var tags = TopTags.map(function (tag) {
+      var tags = TopTags.map(function (tag, i) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           id: tag,
+          key: i,
           className: "tag-pill",
           onClick: _this2.changeTag
         }, tag);
@@ -4829,6 +4806,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchTaggedTracks", function() { return fetchTaggedTracks; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchTagged", function() { return fetchTagged; });
 var fetchTaggedTracks = function fetchTaggedTracks(tag) {
+  debugger;
   return $.ajax({
     method: "GET",
     url: "/api/tags/".concat(tag)

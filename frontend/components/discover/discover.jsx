@@ -27,20 +27,20 @@ class Discover extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchTags({ tag: this.state.focusedTag });
+    this.props.fetchTaggedTracks(this.state.focusedTag);
   }
 
   changeTag(e) {
-    debugger;
+    // debugger;
     e.preventDefault();
     this.setState({ focusedTag: e.target.id });
-    this.props.fetchTags({ tag: this.state.focusedTag });
+    this.props.fetchTaggedTracks(e.target.id);
   }
 
   render() {
-    const tags = TopTags.map((tag) => {
+    const tags = TopTags.map((tag, i) => {
       return (
-        <div id={tag} className="tag-pill" onClick={this.changeTag}>
+        <div id={tag} key={i} className="tag-pill" onClick={this.changeTag}>
           {tag}
         </div>
       );
@@ -56,21 +56,7 @@ class Discover extends React.Component {
         </div>
 
         <div className="top tags-outer">
-          <div className="top tags-inner">
-            {tags}
-            {/* {     <div>featured</div>
-            <div>electronic</div>
-            <div>rock</div>
-            <div>experimental</div>
-            <div>alternative</div>
-            <div>metal</div>
-            <div>hip-hop/rap</div>
-            <div>punk</div>
-            <div>ambient</div>
-            <div>soundtrack</div>
-            <div>jazz</div>
-            <div>classical</div>} */}
-          </div>
+          <div className="top tags-inner">{tags}</div>
         </div>
         <div className="middle tags-outer">
           <div className="middle tags-inner"></div>
