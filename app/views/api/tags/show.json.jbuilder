@@ -1,34 +1,32 @@
+json.artists do
+    @artists.each do |artist|
+        # debugger
+        json.set! artist.id do 
+            json.id artist.id
+            json.artist artist.artist
+            json.bio artist.bio
+            json.location artist.location
 
-json.artist do
+            if artist.artist_image.attached?
+                json.artistImage url_for(artist.artist_image) 
+            end
     
-    json.id @artist.id
-    json.artist @artist.artist
-    json.bio @artist.bio
-    json.location @artist.location
-    json.albums @albumsArr
-  
-    if @artist.artist_image.attached?
-         json.artistImage url_for(@artist.artist_image) 
+            if artist.banner_image.attached?
+                json.bannerImage url_for(artist.banner_image)
+            end
+        end
     end
- 
-    if @artist.banner_image.attached?
-        json.bannerImage url_for(@artist.banner_image)
-    end
-    # json.artistImage url_for(@artist.artist_image)
-    # json.bannerImage url_for(@artist.banner_image)
 end
 
 json.albums do
-    json.array! @albums do |album|
-        # debugger
-     
-       
+     @albums.each do |album|
+        # debugger  
             json.set! album.id do 
                 json.id album.id
                 json.albumName album.album_name
                 json.description album.description
                 json.artistId album.artist_id
-                # debugger
+            
                 json.tracks @tracks.select{ |track| track.album_id == album.id }.pluck(:id)
             
                 if album.album_art.attached? 
@@ -40,16 +38,15 @@ json.albums do
     end
 end
 
+
 json.tracks do 
     @tracks.each do |track|
-        
-      
-
+        # debuggers
         json.set! track.id do
             json.id track.id
             json.title track.title
             json.albumId track.album_id
-            json.artistId @artist.id
+            json.artistId track.artist.id
             json.trackNo track.track_no
          
             if track.song.attached? 
@@ -58,4 +55,10 @@ json.tracks do
 
         end
     end
+end
+
+json.tags do 
+    json.allTags @all_tags
+    json.currentTag @current_tag
+    json.taggedData @tagged_array
 end

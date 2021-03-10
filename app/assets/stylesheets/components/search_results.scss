@@ -1,0 +1,62 @@
+.search-outer {
+  width: 100%;
+  height: auto;
+
+  .search-inner {
+    // background-color: violet;
+    width: 975px;
+    margin: auto;
+    height: auto;
+    padding-top: 20px;
+    border-top: 1px dotted #e5e5e5;
+  }
+  .search-header {
+    height: 65px;
+    // text-align: center;
+    display: flex;
+    align-items: center;
+    h1 {
+      font-weight: normal;
+    }
+  }
+
+  .search-card {
+    height: 160px;
+    display: flex;
+    img {
+      width: 145px;
+      height: 145px;
+      object-fit: cover;
+    }
+    padding: 0 0 0.9em 0;
+    border-bottom: 1px dotted #e5e5e5;
+  }
+
+  .info-section {
+    display: inline-block;
+    color: #595959;
+    vertical-align: top;
+    width: 475px;
+    margin-left: 1.3em;
+    line-height: 1.4em;
+  }
+  .card-type {
+    font-size: 10px;
+    color: #999;
+    margin-bottom: 0.5em;
+  }
+  .card-name {
+    font-size: 16px;
+    margin-bottom: 0.1em;
+    color: #0687f5;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .result-link {
+    color: #84c67d;
+  }
+  .xtra-info {
+    font-size: 12px;
+    // margin-bottom: 0.3em;
+  }
+}

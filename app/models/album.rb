@@ -1,5 +1,7 @@
 class Album < ApplicationRecord
 
+    include Taggable
+
     validates :artist_id, presence: true
     validates :album_name, presence: true
 

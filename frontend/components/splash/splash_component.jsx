@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Features from "./features_component";
 import AlbumCarousel from "./album_carousel_container";
 import DotSales from "./dot_sales.jsx";
+import Discover from "../discover/discover_container";
 
 const splash = (props) => {
   return (
@@ -11,6 +12,8 @@ const splash = (props) => {
       <Features />
       <DotSales />
       <AlbumCarousel />
+
+      <Discover />
     </>
   );
 };

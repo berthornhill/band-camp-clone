@@ -1,7 +1,7 @@
 class Api::AlbumsController < ApplicationController
 
     def index 
-        debugger
+        # debugger
         @albums = Album.where(artist_id: (params[:artist_id]))
         # debugger
         @artist_id = params[:artist_id]
@@ -9,10 +9,10 @@ class Api::AlbumsController < ApplicationController
     end
    
     def show
-        debugger
+        # debugger
         @album = Album.where(id: params[:id]).includes(album_art_attachment: :blob)[0]
         @tracks = Track.where(album_id: params[:id]).includes(song_attachment: :blob).to_a
-        debugger
+        # debugger
         render :show
 
 

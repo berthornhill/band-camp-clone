@@ -3,21 +3,22 @@ import { Link } from "react-router-dom";
 
 const ArtistCard = ({ artist }) => {
   return (
-    <li className="search-card">
-      <div>
-        <Link to={`/artist/${artist.id}`} className="artist-image">
-          <img
-            src={artist.artistImage ? artist.artistImage : window.albumcover3}
-            alt="artist image"
-          />
+    <li className="search-card" key={artist.id}>
+      <Link to={`/artist/${artist.id}`} className="artist-image">
+        <img
+          src={artist.artistImage ? artist.artistImage : window.albumcover3}
+          alt="artist image"
+        />
+      </Link>
+      <div className="info-section">
+        <div className="card-type">Artist</div>
+        <Link to={`/artist/${artist.id}`} className="card-name">
+          {artist.artist}
         </Link>
-        <div className="artist-card">
-          <div className="artist-type">Artist</div>
-          <div className="artist-name">{artist.artist}</div>
-          <Link to={`/artist/${artist.id}`} className="artist-site">
-            {`https://bandlamp.herokuapp.com/#/artist/${artist.id}`}
-          </Link>
-        </div>
+        <div className="xtra-info">location: {`${artist.location}`}</div>
+        <Link to={`/artist/${artist.id}`} className="result-link">
+          {`https://bandlamp.herokuapp.com/#/artist/${artist.id}`}
+        </Link>
       </div>
     </li>
   );

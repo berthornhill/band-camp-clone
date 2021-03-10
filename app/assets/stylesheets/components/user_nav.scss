@@ -42,6 +42,7 @@
     display: flex;
     justify-content: flex-end;
     color: rgba(51, 51, 51, 70);
+    position: relative;
 
     .search-field {
       flex-grow: 1;
@@ -56,7 +57,7 @@
     }
 
     .search-icon {
-      top: 15px;
+      // top: 15px;
       align-self: flex-end;
     }
   }

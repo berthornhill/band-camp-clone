@@ -43,7 +43,7 @@ class AlbumCarousel extends React.Component {
               <span>{artist.artist}</span>
             </div>
             <div className="band-name">
-              <span>{artist.location}</span>
+              <span>in 🇺🇸 {artist.location}</span>
             </div>
           </Link>
         </li>
@@ -56,7 +56,7 @@ class AlbumCarousel extends React.Component {
     return (
       <div className="album-carousel-outer">
         <div className="album-carousel">
-          <ul>{artistsArray}</ul>
+          <ul>{artistsArray.slice(0, 8)}</ul>
         </div>
       </div>
     );

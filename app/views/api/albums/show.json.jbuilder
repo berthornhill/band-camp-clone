@@ -5,7 +5,7 @@ json.album do
         json.albumName @album.album_name
         json.description @album.description
         json.tracks @tracksArr
-
+        json.artistId @album.artist_id
         if @album.album_art.attached? 
             json.albumArt url_for(@album.album_art)
         end

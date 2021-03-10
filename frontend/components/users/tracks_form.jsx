@@ -86,7 +86,7 @@ class TracksForm extends React.Component {
 
         return (
           <li key={track.id} className="track-list">
-            <div> {track.track_no}</div>
+            <div> {track.trackNo}</div>
             <div>{track.title}</div>
           </li>
         );

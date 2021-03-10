@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+
+    include Taggable
+
     validates :artist, presence: true
     validates :username, presence: true, uniqueness: true
     validates :password_digest, presence: true
@@ -50,6 +53,7 @@ class User < ApplicationRecord
     has_one_attached :artist_image
 
     has_one_attached :banner_image
+
 
 
 end
