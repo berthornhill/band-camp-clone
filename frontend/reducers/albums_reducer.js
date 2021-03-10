@@ -1,4 +1,5 @@
 import { RECEIVE_ARTIST, RECEIVE_SEARCH } from "../actions/artist_show_actions";
+import { RECEIVE_TAGGED } from "../actions/tag_actions";
 import {
   RECEIVE_ALBUMS,
   RECEIVE_ALBUM,
@@ -23,6 +24,8 @@ const AlbumsReducer = (state = {}, action) => {
     case RECEIVE_SEARCH:
       // debugger;
       return { ...state, ...action.albums };
+    case RECEIVE_TAGGED:
+      return { ...state, ...action.payload.albums };
     default:
       return state;
   }

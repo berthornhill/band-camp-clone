@@ -7,6 +7,7 @@ import {
 import { RECEIVE_ALBUM } from "../actions/album_actions";
 
 import { RECEIVE_CURRENT_USER } from "../actions/session_actions";
+import { RECEIVE_TAGGED } from "../actions/tag_actions";
 
 const ArtistReducer = (state = {}, action) => {
   Object.freeze(state);
@@ -28,6 +29,8 @@ const ArtistReducer = (state = {}, action) => {
       // debugger;
       return { ...state, ...action.artists };
     // return { ...state, action };
+    case RECEIVE_TAGGED:
+      return { ...state, ...action.payload.artists };
     default:
       return state;
   }

@@ -19,6 +19,7 @@ json.artists do
 end
 
 json.tags do 
-    json.tags @tagged_array
     json.allTags @all_tags
+    json.currentTag @current_tag
+    json.taggedData @tagged_array
 end

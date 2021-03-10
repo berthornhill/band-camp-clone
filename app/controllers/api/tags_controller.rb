@@ -6,7 +6,7 @@ class Api::TagsController < ApplicationController
         # debugger
         @tagged_array = @artists.pluck(:id)
         @all_tags = GenreTag.select(:tag).distinct.pluck(:tag)
-        
+        @currentTag = params[:tag]
         render :index
     end
 
@@ -20,7 +20,8 @@ class Api::TagsController < ApplicationController
         @tracks = Track.joins(:tags).select("tracks.*").where("genre_tags.tag = '#{params[:id]}'").includes(song_attachment: :blob, artist: :tracks).to_a
        
         @tagged_array = @tracks.pluck(:id)
-
+        @all_tags = GenreTag.select(:tag).distinct.pluck(:tag)
+        @current_tag = params[:id]
         append_artists_from_arr(@tracks)
         append_albums_from_tracks()
 

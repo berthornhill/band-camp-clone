@@ -1258,10 +1258,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state) {
+  debugger;
   return {
     artists: state.entities.artist,
     albums: state.entities.albums,
-    tracks: state.entities.tracks
+    tracks: state.entities.tracks,
+    tags: state.entities.tags
   };
 };
 
@@ -4160,7 +4162,8 @@ var mDTP = function mDTP(dispatch) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_artist_show_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/artist_show_actions */ "./frontend/actions/artist_show_actions.js");
-/* harmony import */ var _actions_album_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/album_actions */ "./frontend/actions/album_actions.js");
+/* harmony import */ var _actions_tag_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/tag_actions */ "./frontend/actions/tag_actions.js");
+/* harmony import */ var _actions_album_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../actions/album_actions */ "./frontend/actions/album_actions.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -4182,6 +4185,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 
 
+
 var AlbumsReducer = function AlbumsReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
@@ -4192,10 +4196,10 @@ var AlbumsReducer = function AlbumsReducer() {
       var newState = Object.assign.apply(Object, [{}, state].concat(_toConsumableArray(action.artistPackage.albums)));
       return newState;
 
-    case _actions_album_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_ALBUM"]:
+    case _actions_album_actions__WEBPACK_IMPORTED_MODULE_2__["RECEIVE_ALBUM"]:
       return Object.assign({}, state, _defineProperty({}, action.album.id, action.album));
 
-    case _actions_album_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_NEW_TRACK"]:
+    case _actions_album_actions__WEBPACK_IMPORTED_MODULE_2__["RECEIVE_NEW_TRACK"]:
       // debugger;
       var addTracksState = _objectSpread({}, state);
 
@@ -4206,6 +4210,9 @@ var AlbumsReducer = function AlbumsReducer() {
     case _actions_artist_show_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_SEARCH"]:
       // debugger;
       return _objectSpread(_objectSpread({}, state), action.albums);
+
+    case _actions_tag_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_TAGGED"]:
+      return _objectSpread(_objectSpread({}, state), action.payload.albums);
 
     default:
       return state;
@@ -4228,11 +4235,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_artist_show_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/artist_show_actions */ "./frontend/actions/artist_show_actions.js");
 /* harmony import */ var _actions_album_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/album_actions */ "./frontend/actions/album_actions.js");
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../actions/session_actions */ "./frontend/actions/session_actions.js");
+/* harmony import */ var _actions_tag_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../actions/tag_actions */ "./frontend/actions/tag_actions.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -4258,6 +4267,9 @@ var ArtistReducer = function ArtistReducer() {
       return _objectSpread(_objectSpread({}, state), action.artists);
     // return { ...state, action };
 
+    case _actions_tag_actions__WEBPACK_IMPORTED_MODULE_3__["RECEIVE_TAGGED"]:
+      return _objectSpread(_objectSpread({}, state), action.payload.artists);
+
     default:
       return state;
   }
@@ -4282,6 +4294,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _albums_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./albums_reducer */ "./frontend/reducers/albums_reducer.js");
 /* harmony import */ var _tracks_reducer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./tracks_reducer */ "./frontend/reducers/tracks_reducer.js");
 /* harmony import */ var _search_reducer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./search_reducer */ "./frontend/reducers/search_reducer.js");
+/* harmony import */ var _tags_reducer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./tags_reducer */ "./frontend/reducers/tags_reducer.js");
+
 
 
 
@@ -4293,7 +4307,8 @@ var EntitiesReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers
   artist: _artist_reducer__WEBPACK_IMPORTED_MODULE_2__["default"],
   albums: _albums_reducer__WEBPACK_IMPORTED_MODULE_3__["default"],
   tracks: _tracks_reducer__WEBPACK_IMPORTED_MODULE_4__["default"],
-  search: _search_reducer__WEBPACK_IMPORTED_MODULE_5__["default"]
+  search: _search_reducer__WEBPACK_IMPORTED_MODULE_5__["default"],
+  tags: _tags_reducer__WEBPACK_IMPORTED_MODULE_6__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (EntitiesReducer);
 {
@@ -4471,6 +4486,42 @@ var SessionReducer = function SessionReducer() {
 
 /***/ }),
 
+/***/ "./frontend/reducers/tags_reducer.js":
+/*!*******************************************!*\
+  !*** ./frontend/reducers/tags_reducer.js ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_tag_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/tag_actions */ "./frontend/actions/tag_actions.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+var TagsReducer = function TagsReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+
+  switch (action.type) {
+    case _actions_tag_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_TAGGED"]:
+      return _objectSpread({}, action.payload.tags);
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (TagsReducer);
+
+/***/ }),
+
 /***/ "./frontend/reducers/tracks_reducer.js":
 /*!*********************************************!*\
   !*** ./frontend/reducers/tracks_reducer.js ***!
@@ -4482,11 +4533,13 @@ var SessionReducer = function SessionReducer() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_artist_show_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/artist_show_actions */ "./frontend/actions/artist_show_actions.js");
 /* harmony import */ var _actions_album_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/album_actions */ "./frontend/actions/album_actions.js");
+/* harmony import */ var _actions_tag_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../actions/tag_actions */ "./frontend/actions/tag_actions.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -4509,6 +4562,9 @@ var TracksReducer = function TracksReducer() {
     case _actions_artist_show_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_SEARCH"]:
       // debugger;
       return _objectSpread(_objectSpread({}, state), action.tracks);
+
+    case _actions_tag_actions__WEBPACK_IMPORTED_MODULE_2__["RECEIVE_TAGGED"]:
+      return _objectSpread(_objectSpread({}, state), action.payload.tracks);
 
     default:
       return state;
