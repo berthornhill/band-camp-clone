@@ -2107,7 +2107,9 @@ var AudioPlayer = /*#__PURE__*/function (_React$Component) {
     _this.state = {
       playing: false,
       track: _this.props.track,
-      icon: "▶"
+      icon: "▶",
+      currentTime: 0.0,
+      duration: 0.0
     }; // basic event methods
 
     _this.handleClick = _this.handleClick.bind(_assertThisInitialized(_this)); // audio playback methods
@@ -2120,6 +2122,20 @@ var AudioPlayer = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(AudioPlayer, [{
+    key: "updateTime",
+    value: function updateTime() {
+      console.log("updating time");
+    }
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var audio = this.audio.current;
+      this.setState({
+        currentTime: audio.currentTime,
+        duration: audio.duration
+      });
+    }
+  }, {
     key: "handleClick",
     value: function handleClick(e) {
       e.preventDefault();
@@ -2148,6 +2164,8 @@ var AudioPlayer = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "audio-player-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2169,7 +2187,7 @@ var AudioPlayer = /*#__PURE__*/function (_React$Component) {
         id: "audio-element",
         ref: this.audio,
         onTimeUpdate: function onTimeUpdate(e) {
-          return updateTime();
+          return _this2.updateTime();
         }
       }, " ", "Your browser does not support the ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("code", null, "audio"), " element."));
     }

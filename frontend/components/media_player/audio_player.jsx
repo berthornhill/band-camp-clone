@@ -8,6 +8,8 @@ class AudioPlayer extends React.Component {
       playing: false,
       track: this.props.track,
       icon: "▶",
+      currentTime: 0.0,
+      duration: 0.0,
     };
 
     // basic event methods
@@ -19,6 +21,14 @@ class AudioPlayer extends React.Component {
 
     // reference to <audio> element for managing playback
     this.audio = React.createRef();
+  }
+  updateTime() {
+    console.log("updating time");
+  }
+
+  componentDidMount() {
+    let audio = this.audio.current;
+    this.setState({ currentTime: audio.currentTime, duration: audio.duration });
   }
 
   handleClick(e) {
@@ -59,7 +69,7 @@ class AudioPlayer extends React.Component {
           src={this.state.track.url}
           id="audio-element"
           ref={this.audio}
-          onTimeUpdate={(e) => updateTime()}
+          onTimeUpdate={(e) => this.updateTime()}
         >
           {" "}
           Your browser does not support the <code>audio</code> element.
