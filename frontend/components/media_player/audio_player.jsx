@@ -8,8 +8,8 @@ class AudioPlayer extends React.Component {
       playing: false,
       track: this.props.track,
       icon: "▶",
-      currentTime: 0.0,
-      duration: 0.0,
+      currentTime: "00:00",
+      duration: "00:00",
     };
 
     // basic event methods
@@ -18,24 +18,30 @@ class AudioPlayer extends React.Component {
     // audio playback methods
     this.togglePlay = this.togglePlay.bind(this);
     this.updateTime = this.updateTime.bind(this);
-
-    // reference to <audio> element for managing playback
+    this.convertTime = this.convertTime.bind(this)
+    this.setDuration = this.setDuration.bind(this)
+    //` reference to <audio> element for managing playback
     this.audio = React.createRef();
   }
-  updateTime() {
-    console.log("updating time");
-  }
-
+  
   componentDidMount() {
     let audio = this.audio.current;
-    this.setState({ currentTime: audio.currentTime, duration: audio.duration });
-  }
+    debugger
+    audio.load()
 
+    // .then(()=>{
+      
+    //     this.updateTime();
+    //     this.updateDuration();`
+    //   // this.setState({ currentTime: audio.currentTime, duration: audio.duration });
+    // } )
+  }
+  
   handleClick(e) {
     e.preventDefault();
     this.state.playing ? null : this.togglePlay();
   }
-
+  
   togglePlay() {
     let audio = this.audio.current;
     debugger;
@@ -49,6 +55,41 @@ class AudioPlayer extends React.Component {
     debugger;
   }
 
+  setDuration(){
+    let audio = this.audio.current;
+
+    let duration = this.convertTime(audio.duration)
+    this.setState({ duration: duration });
+  }
+
+  updateTime() {
+    let audio = this.audio.current;
+    console.log("updating time");
+    debugger
+    let time =this.convertTime(audio.currentTime)
+    this.setState({currentTime: time})
+  }
+  
+  convertTime(time) {
+
+  let totalSeconds = Math.floor(time)
+  let mins = (totalSeconds / 60).toLocaleString('en-US', {
+      minimumIntegerDigits: 2,
+      maximumFractionDigits: 0,
+      useGrouping: false
+    })
+  let seconds = (totalSeconds % 60).toLocaleString('en-US', {
+    minimumIntegerDigits: 2,
+    maximumFractionDigits: 0,
+    useGrouping: false
+  })
+
+    let humanReadableTime = `${mins}:${seconds}`
+    return humanReadableTime
+  }
+
+  
+
   render() {
     return (
       <div id="audio-player-container">
@@ -58,7 +99,7 @@ class AudioPlayer extends React.Component {
         <div className="track-details-container">
           <div className="title-times-container">
             <div>{this.props.track.title}</div>
-            <div>0:00/1:56</div>
+            <div>{this.state.currentTime}/{this.state.duration}</div>
           </div>
           <div id="prog-bar-container">
             <div id="prog-bar"></div>
@@ -70,6 +111,7 @@ class AudioPlayer extends React.Component {
           id="audio-element"
           ref={this.audio}
           onTimeUpdate={(e) => this.updateTime()}
+          onLoadedData={(e)=> this.setDuration()}
         >
           {" "}
           Your browser does not support the <code>audio</code> element.

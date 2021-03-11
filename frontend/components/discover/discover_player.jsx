@@ -10,12 +10,21 @@ class DiscoverPlayer extends React.Component {
     //   playing: false,
     //   // currentTrackId: empty,
     // };
+    this.handlePlayTrack = this.handlePlayTrack.bind(this);
   }
 
   componentDidMount() {
     // initialTrack = this.props.tracks[this.props.taggedData[0]];
     // this.props.playTrack(initialTrack);
     debugger;
+  }
+
+  handlePlayTrack(e){
+    e.preventDefault()
+    
+    debugger
+    let track = this.props.tracks[e.target.id]
+    this.props.playTrack(track)
   }
 
   render() {
@@ -40,9 +49,9 @@ class DiscoverPlayer extends React.Component {
               src={album.albumArt ? album.albumArt : window.albumcover3}
               alt={`play ${track.title}`}
             />
-            <div className="play-button">
-              <div className="play-button-overlay"></div>
-              <div className="play-button-symbol">▶</div>
+            <div id={id} className="play-button" onClick={this.handlePlayTrack}>
+              <div id={id} className="play-button-overlay"></div>
+              <div id={id} className="play-button-symbol">▶</div>
             </div>
           </div>
           <div className="track-info">

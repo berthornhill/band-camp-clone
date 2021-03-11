@@ -1345,12 +1345,17 @@ var DiscoverPlayer = /*#__PURE__*/function (_React$Component) {
   var _super = _createSuper(DiscoverPlayer);
 
   function DiscoverPlayer(props) {
+    var _this;
+
     _classCallCheck(this, DiscoverPlayer);
 
-    return _super.call(this, props); // this.state = {
+    _this = _super.call(this, props); // this.state = {
     //   playing: false,
     //   // currentTrackId: empty,
     // };
+
+    _this.handlePlayTrack = _this.handlePlayTrack.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(DiscoverPlayer, [{
@@ -1361,9 +1366,17 @@ var DiscoverPlayer = /*#__PURE__*/function (_React$Component) {
       debugger;
     }
   }, {
+    key: "handlePlayTrack",
+    value: function handlePlayTrack(e) {
+      e.preventDefault();
+      debugger;
+      var track = this.props.tracks[e.target.id];
+      this.props.playTrack(track);
+    }
+  }, {
     key: "render",
     value: function render() {
-      var _this = this;
+      var _this2 = this;
 
       var tags = this.props.tags;
       debugger;
@@ -1372,9 +1385,9 @@ var DiscoverPlayer = /*#__PURE__*/function (_React$Component) {
 
       var initialTrack = this.props.tracks[tags.taggedData[0]];
       var trackCards = tags.taggedData.slice(0, 8).map(function (id) {
-        var track = _this.props.tracks[id];
-        var artist = _this.props.artists[track.artistId];
-        var album = _this.props.albums[track.albumId];
+        var track = _this2.props.tracks[id];
+        var artist = _this2.props.artists[track.artistId];
+        var album = _this2.props.albums[track.albumId];
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "discover-track-card",
           key: id
@@ -1385,10 +1398,14 @@ var DiscoverPlayer = /*#__PURE__*/function (_React$Component) {
           src: album.albumArt ? album.albumArt : window.albumcover3,
           alt: "play ".concat(track.title)
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "play-button"
+          id: id,
+          className: "play-button",
+          onClick: _this2.handlePlayTrack
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          id: id,
           className: "play-button-overlay"
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          id: id,
           className: "play-button-symbol"
         }, "\u25B6"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "track-info"
@@ -2108,32 +2125,31 @@ var AudioPlayer = /*#__PURE__*/function (_React$Component) {
       playing: false,
       track: _this.props.track,
       icon: "▶",
-      currentTime: 0.0,
-      duration: 0.0
+      currentTime: "00:00",
+      duration: "00:00"
     }; // basic event methods
 
     _this.handleClick = _this.handleClick.bind(_assertThisInitialized(_this)); // audio playback methods
 
     _this.togglePlay = _this.togglePlay.bind(_assertThisInitialized(_this));
-    _this.updateTime = _this.updateTime.bind(_assertThisInitialized(_this)); // reference to <audio> element for managing playback
+    _this.updateTime = _this.updateTime.bind(_assertThisInitialized(_this));
+    _this.convertTime = _this.convertTime.bind(_assertThisInitialized(_this));
+    _this.setDuration = _this.setDuration.bind(_assertThisInitialized(_this)); //` reference to <audio> element for managing playback
 
     _this.audio = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef();
     return _this;
   }
 
   _createClass(AudioPlayer, [{
-    key: "updateTime",
-    value: function updateTime() {
-      console.log("updating time");
-    }
-  }, {
     key: "componentDidMount",
     value: function componentDidMount() {
       var audio = this.audio.current;
-      this.setState({
-        currentTime: audio.currentTime,
-        duration: audio.duration
-      });
+      debugger;
+      audio.load(); // .then(()=>{
+      //     this.updateTime();
+      //     this.updateDuration();`
+      //   // this.setState({ currentTime: audio.currentTime, duration: audio.duration });
+      // } )
     }
   }, {
     key: "handleClick",
@@ -2162,6 +2178,43 @@ var AudioPlayer = /*#__PURE__*/function (_React$Component) {
       debugger;
     }
   }, {
+    key: "setDuration",
+    value: function setDuration() {
+      var audio = this.audio.current;
+      var duration = this.convertTime(audio.duration);
+      this.setState({
+        duration: duration
+      });
+    }
+  }, {
+    key: "updateTime",
+    value: function updateTime() {
+      var audio = this.audio.current;
+      console.log("updating time");
+      debugger;
+      var time = this.convertTime(audio.currentTime);
+      this.setState({
+        currentTime: time
+      });
+    }
+  }, {
+    key: "convertTime",
+    value: function convertTime(time) {
+      var totalSeconds = Math.floor(time);
+      var mins = (totalSeconds / 60).toLocaleString('en-US', {
+        minimumIntegerDigits: 2,
+        maximumFractionDigits: 0,
+        useGrouping: false
+      });
+      var seconds = (totalSeconds % 60).toLocaleString('en-US', {
+        minimumIntegerDigits: 2,
+        maximumFractionDigits: 0,
+        useGrouping: false
+      });
+      var humanReadableTime = "".concat(mins, ":").concat(seconds);
+      return humanReadableTime;
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this2 = this;
@@ -2177,7 +2230,7 @@ var AudioPlayer = /*#__PURE__*/function (_React$Component) {
         className: "track-details-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "title-times-container"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.track.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "0:00/1:56")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.track.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.state.currentTime, "/", this.state.duration)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "prog-bar-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "prog-bar"
@@ -2188,6 +2241,9 @@ var AudioPlayer = /*#__PURE__*/function (_React$Component) {
         ref: this.audio,
         onTimeUpdate: function onTimeUpdate(e) {
           return _this2.updateTime();
+        },
+        onLoadedData: function onLoadedData(e) {
+          return _this2.setDuration();
         }
       }, " ", "Your browser does not support the ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("code", null, "audio"), " element."));
     }
