@@ -71,6 +71,10 @@
     grid-column-start: 2;
     background-color: white;
   }
+
+  .col-right-outer {
+    padding: 25px 10px;
+  }
 }
 
 .tag-pill:hover {
@@ -163,8 +167,11 @@
 
 #np-cover-art {
   object-fit: cover;
-  height: 315px;
+  height: 310px;
+  width: 100%;
+  // width: px;
   margin: 0px;
   margin: auto;
-  width: 315px;
+  outline: 1px solid rgba(52, 54, 58, 0.253);
+  outline-offset: -1px;
 }

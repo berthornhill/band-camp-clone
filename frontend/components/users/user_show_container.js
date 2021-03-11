@@ -5,7 +5,7 @@ import { fetchArtist, updateArtist } from "../../actions/artist_show_actions";
 const mSTP = (state, ownProps) => {
   // debugger;
   return {
-    artist: state.entities.artist[ownProps.match.params.id],
+    artist: state.entities.artists[ownProps.match.params.id],
     session: state.session,
     errors: state.errors,
   };

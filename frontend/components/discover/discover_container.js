@@ -5,7 +5,7 @@ import { fetchTaggedTracks } from "../../actions/tag_actions";
 const mSTP = (state) => {
   // debugger;
   return {
-    artists: state.entities.artist,
+    artists: state.entities.artists,
     albums: state.entities.albums,
     tracks: state.entities.tracks,
     tags: state.entities.tags,

@@ -1,11 +1,12 @@
 import { connect } from "react-redux";
 import DiscoverPlayer from "./discover_player";
 // import { fetchTaggedTracks } from "../../actions/tag_actions";
+import { playTrack } from "../../actions/player_actions";
 
-const mSTP = (state) => {
+const mSTP = (state, ownProps) => {
   //   debugger;
   return {
-    artists: state.entities.artist,
+    artists: state.entities.artists,
     albums: state.entities.albums,
     tracks: state.entities.tracks,
     tags: state.entities.tags,
@@ -14,7 +15,7 @@ const mSTP = (state) => {
 
 const mDTP = (dispatch) => {
   return {
-    // fetchTaggedTracks: (tag) => dispatch(fetchTaggedTracks(tag)),
+    playTrack: (track) => dispatch(playTrack(track)),
   };
 };
 

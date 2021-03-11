@@ -5,7 +5,7 @@ const mSTP = (state) => {
   debugger;
   return {
     search: state.entities.search,
-    artists: state.entities.artist,
+    artists: state.entities.artists,
     albums: state.entities.albums,
     tracks: state.entities.tracks,
   };

@@ -8,7 +8,7 @@ import TagsReducer from "./tags_reducer";
 
 const EntitiesReducer = combineReducers({
   users: UsersReducer,
-  artist: ArtistReducer,
+  artists: ArtistReducer,
   albums: AlbumsReducer,
   tracks: TracksReducer,
   search: SearchReducer,

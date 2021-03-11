@@ -131,7 +131,7 @@ class InfoForm extends React.Component {
 const mSTP = (state, ownProps) => {
   // debugger;
   return {
-    artist: state.entities.artist[ownProps.match.params.id],
+    artist: state.entities.artists[ownProps.match.params.id],
     errors: state.errors,
   };
 };

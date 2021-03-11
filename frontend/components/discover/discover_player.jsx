@@ -1,20 +1,31 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import AudioPlayer from "../media_player/audio_player";
+import { playTrack } from "../../actions/player_actions";
+import AudioPlayer from "../media_player/audio_player_container";
 
 class DiscoverPlayer extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      playing: false,
-      currentTrackId: empty,
-    };
+    // this.state = {
+    //   playing: false,
+    //   // currentTrackId: empty,
+    // };
+  }
+
+  componentDidMount() {
+    // initialTrack = this.props.tracks[this.props.taggedData[0]];
+    // this.props.playTrack(initialTrack);
+    debugger;
   }
 
   render() {
     const { tags } = this.props;
-    // debugger;
+    debugger;
     if (!tags.taggedData) return null;
+
+    debugger;
+    // pulls first track from tagged id to be passed on to the audio player
+    const initialTrack = this.props.tracks[tags.taggedData[0]];
 
     const trackCards = tags.taggedData.slice(0, 8).map((id) => {
       let track = this.props.tracks[id];
@@ -58,10 +69,12 @@ class DiscoverPlayer extends React.Component {
       <div className="showcase">
         <div className="col-left">{trackCards}</div>
         <div className="col-right">
-          <div className="now-playing-image">
-            <img id="np-cover-art" src={window.albumcover3} alt="" />
+          <div className="col-right-outer">
+            <div className="now-playing-image">
+              <img id="np-cover-art" src={window.albumcover3} alt="" />
+            </div>
+            <AudioPlayer initialTrack={initialTrack} />
           </div>
-          <AudioPlayer />
         </div>
       </div>
     );

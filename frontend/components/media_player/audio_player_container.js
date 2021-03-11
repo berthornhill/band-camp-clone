@@ -1,11 +1,13 @@
 import { connect } from "react-redux";
 import AudioPlayer from "./audio_player";
 
-const mSTP = (state) => {
+const mSTP = (state, ownProps) => {
+  let track = state.ui.playing.track || ownProps.initialTrack;
+  debugger;
   return {
-    track: state.entities.playing,
-    artist: state.entities.artists[state.entities.playing.artistId],
-    album: state.entities.album[state.entities.playing.albumId],
+    track: track,
+    artist: state.entities.artists[track.artistId],
+    album: state.entities.albums[track.albumId],
   };
 };
 
