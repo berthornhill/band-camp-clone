@@ -4,7 +4,7 @@ import ArtistHeader from "./artist_header";
 import ArtistIndex from "./artist_index";
 import ArtistSidebar from "./artist_sidebar";
 import AlbumShow from "../albums/album_show_container";
-import MediaPlayer from "../media_player/media_player_container";
+import AlbumInfo from "../albums/album_info_container";
 
 class ArtistShow extends React.Component {
   constructor(props) {
@@ -39,7 +39,7 @@ class ArtistShow extends React.Component {
               <Switch>
                 <Route
                   path="/artist/:id/album/:albumId"
-                  component={MediaPlayer}
+                  component={AlbumInfo}
                 />
                 <Route path="/artist/:id" component={ArtistIndex} />
 

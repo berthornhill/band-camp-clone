@@ -6,11 +6,12 @@ import AudioPlayer from "../media_player/audio_player_container";
 class DiscoverPlayer extends React.Component {
   constructor(props) {
     super(props);
-    // this.state = {
-    //   playing: false,
-    //   // currentTrackId: empty,
-    // };
+    this.state = {
+      playing: this.props.playing,
+      currentTrackId: null,
+    };
     this.handlePlayTrack = this.handlePlayTrack.bind(this);
+    this.handlePauseTrack = this.handlePauseTrack.bind(this);
   }
 
   componentDidMount() {
@@ -19,12 +20,20 @@ class DiscoverPlayer extends React.Component {
     debugger;
   }
 
-  handlePlayTrack(e){
-    e.preventDefault()
-    
-    debugger
-    let track = this.props.tracks[e.target.id]
-    this.props.playTrack(track)
+  handlePauseTrack(e) {
+    e.preventDefault();
+    this.setState({ playing: false, currentTrackId: null });
+    e.target.className = "play-button";
+  }
+
+  handlePlayTrack(e) {
+    e.preventDefault();
+
+    debugger;
+    let track = this.props.tracks[e.target.id];
+    this.props.playTrack(track);
+    this.setState({ currentTrackId: track.id, playing: true });
+    // e.target.className = "play-button playing";
   }
 
   render() {
@@ -40,6 +49,36 @@ class DiscoverPlayer extends React.Component {
       let track = this.props.tracks[id];
       let artist = this.props.artists[track.artistId];
       let album = this.props.albums[track.albumId];
+      let playOrPause;
+
+      // sets to render div with play button
+      // if (this.state.currentTrackId == id) {
+      //   debugger;
+      //   playOrPause = (
+      //     <div
+      //       id={id}
+      //       className="play-button playing"
+      //       onClick={this.handlePlayTrack}
+      //     >
+      //       <div id={id} className="play-button-overlay"></div>
+      //       <div id={id} className="play-button-symbol">
+      //         ❚❚
+      //       </div>
+      //     </div>
+      //   );
+      // } else {
+      //   debugger;
+      //   playOrPause = (
+      //     <div id={id} className="play-button" onClick={this.handlePlayTrack}>
+      //       <div id={id} className="play-button-overlay"></div>
+      //       <div id={id} className="play-button-symbol">
+      //         ▶
+      //       </div>
+      //     </div>
+      //   );
+      // }
+
+      debugger;
 
       return (
         <div className="discover-track-card" key={id}>
@@ -50,9 +89,16 @@ class DiscoverPlayer extends React.Component {
               alt={`play ${track.title}`}
             />
             <div id={id} className="play-button" onClick={this.handlePlayTrack}>
-              <div id={id} className="play-button-overlay"></div>
-              <div id={id} className="play-button-symbol">▶</div>
+              <div id={id} className="play-button-overlay">
+                <img
+                  id={id}
+                  className="play-button-symbol"
+                  src={window.playSolid}
+                />
+              </div>
+              <div></div>
             </div>
+            {/* {playOrPause} */}
           </div>
           <div className="track-info">
             <div className="title">
@@ -82,7 +128,10 @@ class DiscoverPlayer extends React.Component {
             <div className="now-playing-image">
               <img id="np-cover-art" src={window.albumcover3} alt="" />
             </div>
-            <AudioPlayer initialTrack={initialTrack} />
+            <AudioPlayer
+              initialTrack={initialTrack}
+              playing={this.state.playing}
+            />
           </div>
         </div>
       </div>
@@ -91,3 +140,24 @@ class DiscoverPlayer extends React.Component {
 }
 
 export default DiscoverPlayer;
+
+// info stuff to be added underneath <AudioPlayer>
+{
+  /* <div className="info-section">
+  <div className="xtra-info">
+    from the album{" "}
+    <Link
+      to={`/artist/${album.artistId}/album/${album.id}`}
+      className="result-link"
+    >
+      {`${album.albumName}`}
+    </Link>
+  </div>
+  <div className="xtra-info">
+    by
+    <Link to={`/artist/${album.artistId}`} className="result-link">
+      {`${artist.artist}`}
+    </Link>
+  </div>
+</div>; */
+}

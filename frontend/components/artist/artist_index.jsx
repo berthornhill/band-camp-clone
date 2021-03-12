@@ -27,7 +27,10 @@ class ArtistIndex extends React.Component {
             <li className="artist-show-album-card" key={album.id}>
               <Link to={`/artist/${this.props.artist.id}/album/${album.id}`}>
                 <div className="album-art">
-                  <img src={window.albumcover5} alt={album.albumName} />
+                  <img
+                    src={album.albumArt ? album.albumArt : window.albumcover2}
+                    alt={album.albumName}
+                  />
                 </div>
                 <p>{album.albumName}</p>
               </Link>

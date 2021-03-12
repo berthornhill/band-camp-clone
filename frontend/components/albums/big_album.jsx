@@ -6,7 +6,10 @@ const BigAlbum = ({ album }) => {
     <div className="big-album-outer">
       <div className="big-album-inner">
         <div className="ba-image">
-          <img src={window.albumcover2} alt="album cover" />
+          <img
+            src={album.albumArt ? album.albumArt : window.albumcover2}
+            alt="album cover"
+          />
         </div>
       </div>
     </div>

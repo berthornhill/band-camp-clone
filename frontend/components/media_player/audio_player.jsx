@@ -5,9 +5,9 @@ class AudioPlayer extends React.Component {
     super(props);
     debugger;
     this.state = {
-      playing: false,
-      track: this.props.track,
-      icon: "▶",
+      // playing: props.playing,
+      // track: props.track,
+      icon: window.playSolidBlack,
       currentTime: "00:00",
       duration: "00:00",
     };
@@ -18,100 +18,135 @@ class AudioPlayer extends React.Component {
     // audio playback methods
     this.togglePlay = this.togglePlay.bind(this);
     this.updateTime = this.updateTime.bind(this);
-    this.convertTime = this.convertTime.bind(this)
-    this.setDuration = this.setDuration.bind(this)
+    this.convertTime = this.convertTime.bind(this);
+    this.setDuration = this.setDuration.bind(this);
+    this.onLoadData = this.onLoadData.bind(this);
+    this.updateProgressBar = this.updateProgressBar.bind(this);
     //` reference to <audio> element for managing playback
     this.audio = React.createRef();
+    this.progress = React.createRef();
   }
-  
+
   componentDidMount() {
     let audio = this.audio.current;
-    debugger
-    audio.load()
+    debugger;
+    audio.load();
+    this.props.playing ? this.togglePlay() : null;
 
     // .then(()=>{
-      
+
     //     this.updateTime();
     //     this.updateDuration();`
     //   // this.setState({ currentTime: audio.currentTime, duration: audio.duration });
     // } )
   }
-  
+
+  // componentDidUpdate(prevProps) {
+  //   debugger;
+  //   if (prevProps.track !== this.props.track) {
+  //     this.setState({ track: this.props.track, playing: this.props.playing });
+  //   } else if (
+  //     prevProps.track === this.props.track &&
+  //     this.props.playing !== this.state.playing
+  //   ) {
+  //     this.togglePlay();
+  //   }
+  // }
+
   handleClick(e) {
     e.preventDefault();
-    this.state.playing ? null : this.togglePlay();
+    this.togglePlay();
   }
-  
+
+  onLoadData() {
+    debugger;
+    this.props.playing ? this.togglePlay() : null;
+    this.setDuration();
+  }
+
   togglePlay() {
     let audio = this.audio.current;
     debugger;
     if (audio.paused) {
       audio.play();
-      this.setState({ icon: "❚❚" });
+      this.setState({ icon: window.pause, playing: true });
     } else {
       audio.pause();
-      this.setState({ icon: "▶" });
+      this.setState({ icon: window.playSolidBlack, playing: false });
     }
     debugger;
   }
 
-  setDuration(){
+  setDuration() {
     let audio = this.audio.current;
 
-    let duration = this.convertTime(audio.duration)
+    let duration = this.convertTime(audio.duration);
     this.setState({ duration: duration });
   }
 
   updateTime() {
     let audio = this.audio.current;
     console.log("updating time");
-    debugger
-    let time =this.convertTime(audio.currentTime)
-    this.setState({currentTime: time})
+    debugger;
+    let time = this.convertTime(audio.currentTime);
+    this.setState({ currentTime: time });
+    this.updateProgressBar();
   }
-  
-  convertTime(time) {
 
-  let totalSeconds = Math.floor(time)
-  let mins = (totalSeconds / 60).toLocaleString('en-US', {
+  convertTime(time) {
+    let totalSeconds = Math.floor(time);
+    let mins = (totalSeconds / 60).toLocaleString("en-US", {
       minimumIntegerDigits: 2,
       maximumFractionDigits: 0,
-      useGrouping: false
-    })
-  let seconds = (totalSeconds % 60).toLocaleString('en-US', {
-    minimumIntegerDigits: 2,
-    maximumFractionDigits: 0,
-    useGrouping: false
-  })
+      useGrouping: false,
+    });
+    let seconds = (totalSeconds % 60).toLocaleString("en-US", {
+      minimumIntegerDigits: 2,
+      maximumFractionDigits: 0,
+      useGrouping: false,
+    });
 
-    let humanReadableTime = `${mins}:${seconds}`
-    return humanReadableTime
+    let humanReadableTime = `${mins}:${seconds}`;
+    return humanReadableTime;
   }
 
-  
+  updateProgressBar() {
+    let audio = this.audio.current;
+    const currentProgress = (audio.currentTime / audio.duration) * 100;
+    debugger;
+    this.progress.current.style.flexBasis = `${currentProgress}%`;
+  }
 
   render() {
+    debugger;
     return (
       <div id="audio-player-container">
         <div id="play-button-container" onClick={this.handleClick}>
-          <div className="play-pause">{this.state.icon}</div>
+          <div className="play-pause">
+            <img className="play-pause" src={this.state.icon} />
+          </div>
         </div>
         <div className="track-details-container">
           <div className="title-times-container">
             <div>{this.props.track.title}</div>
-            <div>{this.state.currentTime}/{this.state.duration}</div>
+            <div>
+              {this.state.currentTime}/{this.state.duration}
+            </div>
           </div>
           <div id="prog-bar-container">
-            <div id="prog-bar"></div>
+            <div id="prog-bar">
+              <div id="prog-fill" ref={this.progress}></div>
+              <div id="prog-knob"></div>
+            </div>
           </div>
         </div>
         <audio
           controls
-          src={this.state.track.url}
+          src={this.props.track.url}
           id="audio-element"
           ref={this.audio}
           onTimeUpdate={(e) => this.updateTime()}
-          onLoadedData={(e)=> this.setDuration()}
+          onLoadedData={(e) => this.onLoadData()}
         >
           {" "}
           Your browser does not support the <code>audio</code> element.

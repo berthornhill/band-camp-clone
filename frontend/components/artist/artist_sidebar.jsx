@@ -5,7 +5,10 @@ const ArtistSidebar = ({ artist }) => {
   return (
     <div className="artist-show-main-right">
       <div id="artist-pic">
-        <img src={window.albumcover3} alt="rock star guy" />
+        <img
+          src={artist.artistImage ? artist.artistImage : window.albumcover2}
+          alt="rock star guy"
+        />
       </div>
       <div className="artist-side-bar-name">{artist.artist}</div>
       <div className="artist-side-bar-location">{artist.location}</div>

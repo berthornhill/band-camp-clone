@@ -1,10 +1,11 @@
 import { connect } from "react-redux";
-import MediaPlayer from "./media_player";
+import AlbumInfo from "./album_info";
 // import { fetchAlbum } from "../../actions/album_actions.js";
 import { fetchAlbum } from "../../actions/album_actions";
+import { playTrack } from "../../actions/player_actions";
 
 const mSTP = (state, ownProps) => {
-  // debugger;
+  debugger;
   return {
     album: state.entities.albums[ownProps.match.params.albumId],
     tracks: state.entities.tracks,
@@ -15,7 +16,8 @@ const mSTP = (state, ownProps) => {
 const mDTP = (dispatch) => {
   return {
     fetchAlbum: (id) => dispatch(fetchAlbum(id)),
+    playTrack: (track) => dispatch(playTrack(track)),
   };
 };
 
-export default connect(mSTP, mDTP)(MediaPlayer);
+export default connect(mSTP, mDTP)(AlbumInfo);

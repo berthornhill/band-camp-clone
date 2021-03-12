@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import MediaPlayer from "../media_player/media_player_container";
+import AlbumInfo from "./album_info_container";
 import BigAlbum from "./big_album";
 
 class AlbumShow extends React.Component {
@@ -19,11 +19,11 @@ class AlbumShow extends React.Component {
     if (!this.props.album) {
       return null;
     }
-    // debugger;
+    debugger;
 
     return (
       <div className="artist-show-main-left">
-        <MediaPlayer />
+        <AlbumInfo />
         <BigAlbum album={this.props.album} />
       </div>
     );

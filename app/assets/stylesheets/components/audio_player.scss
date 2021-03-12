@@ -2,6 +2,7 @@
   width: 100%;
   height: 60px;
   display: flex;
+  padding-bottom: 25px;
 
   .track-details-container {
     display: flex;
@@ -33,6 +34,21 @@
   height: 35%;
   width: 100%;
   border: 1px solid #e5e5e5;
+  display: flex;
+  align-items: center;
+}
+
+#prog-fill {
+  background-color: rgba(0, 0, 0, 0.04);
+  height: 100%;
+  flex-basis: 0%;
+}
+
+#prog-knob {
+  height: 12px;
+  width: 23px;
+  background-color: white;
+  border: 1px solid #e5e5e5;
 }
 
 #play-button-container {
@@ -41,8 +57,10 @@
   border-top: 1px solid #e5e5e5;
   border-bottom: 1px solid #e5e5e5;
   .play-pause {
-    font-size: 50px;
-    text-align: center;
+    height: 80%;
+    width: 80%;
+    margin: auto;
+    padding-top: 10%;
   }
   .play-pause:hover {
     cursor: pointer;

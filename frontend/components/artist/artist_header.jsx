@@ -7,7 +7,10 @@ const ArtistHeader = ({ artist }) => {
     <div className="artist-header-outer">
       <div className="artist-header-inner">
         <div className="artist-header-image">
-          <img src={window.soundboard} alt="artist image" />
+          <img
+            src={artist.bannerImage ? artist.bannerImage : window.soundboard}
+            alt="artist image"
+          />
 
           <div className="img-text">{artist.artist}</div>
         </div>
