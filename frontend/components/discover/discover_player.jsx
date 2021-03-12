@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { playTrack } from "../../actions/player_actions";
 import AudioPlayer from "../media_player/audio_player_container";
+import NowPlayingInfo from "./now_playing_info";
 
 class DiscoverPlayer extends React.Component {
   constructor(props) {
@@ -132,6 +133,7 @@ class DiscoverPlayer extends React.Component {
               initialTrack={initialTrack}
               playing={this.state.playing}
             />
+            <NowPlayingInfo initialTrack={initialTrack} />
           </div>
         </div>
       </div>
