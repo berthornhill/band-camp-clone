@@ -8,9 +8,9 @@ class Api::TagsController < ApplicationController
         debugger
         @tagged_artists = @artists.pluck(:id)
         @tagged_albums = @albums.pluck(:id)
-        debugger
+        # debugger
         append_artists_from_arr(@albums.pluck(:artist_id))
-        debugger
+        # debugger
         @all_tags = GenreTag.select(:tag).distinct.pluck(:tag)
         @currentTag = params[:tag]
      

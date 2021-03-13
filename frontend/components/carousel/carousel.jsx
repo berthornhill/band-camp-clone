@@ -10,14 +10,14 @@ class Carousel extends React.Component {
 
     this.state = {
       currentIndex: 0,
-      pagedArray: this.setPages(this.props.array, this.props.cardsPerPage),
+      pagedArray: this.setPages(this.props.keysArray, this.props.cardsPerPage),
     };
     this.nextSlide = this.nextSlide.bind(this);
     this.previousSlide = this.previousSlide.bind(this);
     this.setPages = this.setPages.bind(this);
   }
 
-  // sets the array passed tot the carousel into a 2D array based on the desired number of items per page, also passed as props as 'cardsPerPage'.
+  // sets the initial 'keys-array' passed to the carousel into a 2D array based on the desired number of items per page, also passed as props as 'cardsPerPage'.
 
   setPages(array, cardsPerPage) {
     const pagedArray = [];
