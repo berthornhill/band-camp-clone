@@ -18,8 +18,32 @@ json.artists do
     end
 end
 
+json.albums do
+     @albums.each do |album|
+        # debugger  
+            json.set! album.id do 
+                json.id album.id
+                json.albumName album.album_name
+                json.description album.description
+                json.artistId album.artist_id
+            
+                json.tracks album.tracks.pluck(:id)
+            
+                if album.album_art.attached? 
+                    json.albumArt url_for(album.album_art)
+                end
+            end
+             
+        # end 
+    end
+end
+
+
+
+
 json.tags do 
     json.allTags @all_tags
     json.currentTag @current_tag
-    json.taggedData @tagged_array
+    json.artists @tagged_artists
+    json.albums @tagged_albums
 end

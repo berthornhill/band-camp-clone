@@ -1,12 +1,19 @@
 class Api::TagsController < ApplicationController
 
     def index
-        # debugger
+        debugger
         @artists = User.joins(:tags).select("users.*").where("genre_tags.tag = '#{params[:tag]}'").includes(artist_image_attachment: :blob, banner_image_attachment: :blob).to_a
         # debugger
-        @tagged_array = @artists.pluck(:id)
+        @albums = Album.joins(:tags).select("albums.*").where("genre_tags.tag = '#{params[:tag]}'").includes(album_art_attachment: :blob, tracks: :album ).to_a
+        debugger
+        @tagged_artists = @artists.pluck(:id)
+        @tagged_albums = @albums.pluck(:id)
+        debugger
+        append_artists_from_arr(@albums.pluck(:artist_id))
+        debugger
         @all_tags = GenreTag.select(:tag).distinct.pluck(:tag)
         @currentTag = params[:tag]
+     
         render :index
     end
 
@@ -22,7 +29,10 @@ class Api::TagsController < ApplicationController
         @tagged_array = @tracks.pluck(:id)
         @all_tags = GenreTag.select(:tag).distinct.pluck(:tag)
         @current_tag = params[:id]
-        append_artists_from_arr(@tracks)
+
+        # debugger
+        artistIds = @tracks.map{|track| track.artist.id}
+        append_artists_from_arr(artistIds)
         append_albums_from_tracks()
 
         # debugger
@@ -34,9 +44,9 @@ class Api::TagsController < ApplicationController
 
     private
 
-    def append_artists_from_arr(active_record_array)
-        artist_array = active_record_array.map{|record| record.artist.id}.uniq!
-        new_artists = User.where('id IN (?)', artist_array).includes(artist_image_attachment: :blob, banner_image_attachment: :blob).to_a
+    def append_artists_from_arr(ids)
+        # debugger
+        new_artists = User.where('id IN (?)', ids).includes(artist_image_attachment: :blob, banner_image_attachment: :blob).to_a
         # debugger
         @artists.concat(new_artists)
     end

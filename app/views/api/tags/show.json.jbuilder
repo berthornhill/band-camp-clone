@@ -60,5 +60,5 @@ end
 json.tags do 
     json.allTags @all_tags
     json.currentTag @current_tag
-    json.taggedData @tagged_array
+    json.tracks @tagged_array
 end

@@ -40,13 +40,13 @@ class DiscoverPlayer extends React.Component {
   render() {
     const { tags } = this.props;
     debugger;
-    if (!tags.taggedData) return null;
+    if (!tags.tracks) return null;
 
     debugger;
     // pulls first track from tagged id to be passed on to the audio player
-    const initialTrack = this.props.tracks[tags.taggedData[0]];
+    const initialTrack = this.props.tracks[tags.tracks[0]];
 
-    const trackCards = tags.taggedData.slice(0, 8).map((id) => {
+    const trackCards = tags.tracks.slice(0, 8).map((id) => {
       let track = this.props.tracks[id];
       let artist = this.props.artists[track.artistId];
       let album = this.props.albums[track.albumId];

@@ -1582,11 +1582,11 @@ var DiscoverPlayer = /*#__PURE__*/function (_React$Component) {
 
       var tags = this.props.tags;
       debugger;
-      if (!tags.taggedData) return null;
+      if (!tags.tracks) return null;
       debugger; // pulls first track from tagged id to be passed on to the audio player
 
-      var initialTrack = this.props.tracks[tags.taggedData[0]];
-      var trackCards = tags.taggedData.slice(0, 8).map(function (id) {
+      var initialTrack = this.props.tracks[tags.tracks[0]];
+      var trackCards = tags.tracks.slice(0, 8).map(function (id) {
         var track = _this2.props.tracks[id];
         var artist = _this2.props.artists[track.artistId];
         var album = _this2.props.albums[track.albumId];
@@ -1777,7 +1777,7 @@ var NowPlayingInfo = function NowPlayingInfo(_ref) {
     className: "result-link"
   }, "".concat(artist.artist))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "xtra-info"
-  }, artist.location));
+  }, artist.location != "null" ? artist.location : "location unknown"));
 };
 
 var mSTP = function mSTP(state, ownProps) {

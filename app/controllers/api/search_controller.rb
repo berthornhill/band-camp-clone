@@ -25,8 +25,11 @@ class Api::SearchController < ApplicationController
             @album_results_array = @albums.pluck(:id)
             @track_results_array = @tracks.pluck(:id)
 
-            append_artists_from_arr(@tracks)
-            append_artists_from_arr(@albums)
+
+            artistIds = @tracks.map{|track| track.artist.id}
+            append_artists_from_arr(artistIds)
+            append_artists_from_arr(@albums.pluck(:artist_id))
+            
             append_albums_from_tracks()
             # debugger
         render :result

@@ -20,7 +20,9 @@ const NowPlayingInfo = ({ artist, album }) => {
           {`${artist.artist}`}
         </Link>
       </div>
-      <div className="xtra-info">{artist.location}</div>
+      <div className="xtra-info">
+        {artist.location != "null" ? artist.location : "location unknown"}
+      </div>
     </div>
   );
 };
