@@ -13,12 +13,14 @@ class Tags extends React.Component {
     // this.props.
     debugger;
 
-    if (!this.props.taggedArtists) return null;
+    if (!this.props.tags.artists) return null;
 
     const content = {
       artists: this.props.artists,
       albums: this.props.albums,
     };
+
+    console.log("Made it this far");
 
     return (
       <div class="tags-outer">
@@ -27,7 +29,7 @@ class Tags extends React.Component {
           <div className="artists-carousel-inner">
             <Carousel
               content={content}
-              keysArray={this.props.taggedArtists}
+              keysArray={this.props.tags.artists}
               cardsPerPage={5}
             />
           </div>
@@ -36,7 +38,7 @@ class Tags extends React.Component {
           <div className="albums-carousel-inner">
             <Carousel
               content={content}
-              keysArray={this.props.taggedAlbums}
+              keysArray={this.props.tags.albums}
               cardsPerPage={3}
             />
           </div>

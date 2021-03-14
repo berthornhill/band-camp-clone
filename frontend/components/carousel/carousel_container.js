@@ -8,3 +8,9 @@ const mSTP = (state, ownProps) => {
     content: ownProps.content,
   };
 };
+
+const mDTP = (dispatch) => {
+  return {};
+};
+
+export default connect(mSTP, mDTP)(Carousel);

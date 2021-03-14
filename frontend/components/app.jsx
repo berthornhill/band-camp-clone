@@ -14,6 +14,7 @@ import Footer from "./footer/footer";
 import ArtistShow from "./artist/artist_show_container";
 import UserShow from "./users/user_show_container";
 import SearchResults from "./search_page/search_results_container";
+import Tags from "./tags/tags_container";
 
 const App = () => {
   return (
@@ -31,6 +32,7 @@ const App = () => {
         <Route path="/users/:id" component={UserShow} />
         <Route path="/artist/:id" component={ArtistShow} />
         <Route path="/search" component={SearchResults} />
+        <Route path="/tags/:tag" component={Tags} />
 
         <Route path="/" component={Splash} />
       </Switch>

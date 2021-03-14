@@ -1,16 +1,15 @@
 class Api::TagsController < ApplicationController
 
     def index
-        debugger
+        
         @artists = User.joins(:tags).select("users.*").where("genre_tags.tag = '#{params[:tag]}'").includes(artist_image_attachment: :blob, banner_image_attachment: :blob).to_a
-        # debugger
         @albums = Album.joins(:tags).select("albums.*").where("genre_tags.tag = '#{params[:tag]}'").includes(album_art_attachment: :blob, tracks: :album ).to_a
-        debugger
+        
         @tagged_artists = @artists.pluck(:id)
         @tagged_albums = @albums.pluck(:id)
-        # debugger
+        
         append_artists_from_arr(@albums.pluck(:artist_id))
-        # debugger
+        
         @all_tags = GenreTag.select(:tag).distinct.pluck(:tag)
         @currentTag = params[:tag]
      
@@ -18,7 +17,7 @@ class Api::TagsController < ApplicationController
     end
 
     def show 
-        # debugger
+        
         
         @artists ||= []
         @albums ||= []
@@ -30,12 +29,12 @@ class Api::TagsController < ApplicationController
         @all_tags = GenreTag.select(:tag).distinct.pluck(:tag)
         @current_tag = params[:id]
 
-        # debugger
+        
         artistIds = @tracks.map{|track| track.artist.id}
         append_artists_from_arr(artistIds)
         append_albums_from_tracks()
 
-        # debugger
+        
         render :show
 
     end
