@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const CarouselContent = ({ content, keys }) => {
+  if (!keys) return <div>nothing has been tagged with this yet</div>;
+
   const taggedArtists = keys.map((id) => {
     let artist = content.artists[id];
     return (

@@ -25,8 +25,9 @@ class Api::SearchController < ApplicationController
             @album_results_array = @albums.pluck(:id)
             @track_results_array = @tracks.pluck(:id)
 
-
+            # debugger
             artistIds = @tracks.map{|track| track.artist.id}
+            # debugger
             append_artists_from_arr(artistIds)
             append_artists_from_arr(@albums.pluck(:artist_id))
             
@@ -41,8 +42,8 @@ class Api::SearchController < ApplicationController
     
     # grabs artist and album records associated which are not part of search result but needed for rendering #search results on front end.
 
-    def append_artists_from_arr(active_record_array)
-        artist_array = active_record_array.map{|record| record.artist.id}.uniq!
+    def append_artists_from_arr(artist_array)
+        # artist_array = active_record_array.map{|record| record.artist.id}.uniq!
         new_artists = User.where('id IN (?)', artist_array).includes(artist_image_attachment: :blob, banner_image_attachment: :blob).to_a
         # debugger
         @artists.concat(new_artists)

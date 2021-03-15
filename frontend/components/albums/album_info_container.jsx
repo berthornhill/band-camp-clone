@@ -5,7 +5,6 @@ import { fetchAlbum } from "../../actions/album_actions";
 import { playTrack } from "../../actions/player_actions";
 
 const mSTP = (state, ownProps) => {
-  debugger;
   return {
     album: state.entities.albums[ownProps.match.params.albumId],
     tracks: state.entities.tracks,

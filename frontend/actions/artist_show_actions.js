@@ -54,7 +54,6 @@ const receiveErrors = (errors) => {
 };
 
 const receiveSearch = ({ artists, albums, tracks, search }) => {
-  debugger;
   return {
     type: RECEIVE_SEARCH,
     artists,

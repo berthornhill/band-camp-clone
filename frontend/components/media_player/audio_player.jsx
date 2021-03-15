@@ -3,7 +3,7 @@ import React from "react";
 class AudioPlayer extends React.Component {
   constructor(props) {
     super(props);
-    debugger;
+
     this.state = {
       // playing: props.playing,
       // track: props.track,
@@ -29,7 +29,7 @@ class AudioPlayer extends React.Component {
 
   componentDidMount() {
     let audio = this.audio.current;
-    debugger;
+
     audio.load();
     this.props.playing ? this.togglePlay() : null;
 
@@ -42,7 +42,7 @@ class AudioPlayer extends React.Component {
   }
 
   // componentDidUpdate(prevProps) {
-  //   debugger;
+  //
   //   if (prevProps.track !== this.props.track) {
   //     this.setState({ track: this.props.track, playing: this.props.playing });
   //   } else if (
@@ -59,14 +59,13 @@ class AudioPlayer extends React.Component {
   }
 
   onLoadData() {
-    debugger;
     this.props.playing ? this.togglePlay() : null;
     this.setDuration();
   }
 
   togglePlay() {
     let audio = this.audio.current;
-    debugger;
+
     if (audio.paused) {
       audio.play();
       this.setState({ icon: window.pause, playing: true });
@@ -74,7 +73,6 @@ class AudioPlayer extends React.Component {
       audio.pause();
       this.setState({ icon: window.playSolidBlack, playing: false });
     }
-    debugger;
   }
 
   setDuration() {
@@ -86,8 +84,7 @@ class AudioPlayer extends React.Component {
 
   updateTime() {
     let audio = this.audio.current;
-    console.log("updating time");
-    debugger;
+
     let time = this.convertTime(audio.currentTime);
     this.setState({ currentTime: time });
     this.updateProgressBar();
@@ -113,12 +110,11 @@ class AudioPlayer extends React.Component {
   updateProgressBar() {
     let audio = this.audio.current;
     const currentProgress = (audio.currentTime / audio.duration) * 100;
-    debugger;
+
     this.progress.current.style.flexBasis = `${currentProgress}%`;
   }
 
   render() {
-    debugger;
     return (
       <div id="audio-player-container">
         <div id="play-button-container" onClick={this.handleClick}>

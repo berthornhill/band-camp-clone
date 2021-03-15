@@ -9,9 +9,16 @@ class Tags extends React.Component {
     this.props.fetchTagged(tag);
   }
 
+  componentDidUpdate(prevProps) {
+    // debugger;
+    if (prevProps.match.params.tag !== this.props.match.params.tag) {
+      this.props.fetchTagged(this.props.match.params.tag);
+    }
+  }
+
   render() {
     // this.props.
-    debugger;
+    // debugger;
 
     if (!this.props.tags.artists) return null;
 
@@ -19,8 +26,6 @@ class Tags extends React.Component {
       artists: this.props.artists,
       albums: this.props.albums,
     };
-
-    console.log("Made it this far");
 
     return (
       <div className="tags-outer">

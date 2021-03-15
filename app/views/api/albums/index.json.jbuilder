@@ -1,6 +1,6 @@
 
 json.artist @artist_id
-debugger
+# debugger
 @albums.each do |album|
     json.set! album.id do 
         json.id album.id

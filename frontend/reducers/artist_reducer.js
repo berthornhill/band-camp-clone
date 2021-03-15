@@ -30,7 +30,6 @@ const ArtistReducer = (state = {}, action) => {
       return { ...state, ...action.artists };
     // return { ...state, action };
     case RECEIVE_TAGGED:
-      debugger;
       return { ...state, ...action.payload.artists };
     default:
       return state;

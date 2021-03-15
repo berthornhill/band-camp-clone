@@ -29,7 +29,7 @@ const NowPlayingInfo = ({ artist, album }) => {
 
 const mSTP = (state, ownProps) => {
   let track = state.ui.playing.track || ownProps.initialTrack;
-  debugger;
+
   return {
     // playing: ownProps.playing,
     // track: track,

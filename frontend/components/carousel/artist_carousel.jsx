@@ -18,6 +18,16 @@ class ArtistCarousel extends React.Component {
     this.setPages = this.setPages.bind(this);
   }
 
+  componentDidUpdate(pastProps) {
+    if (pastProps.keysArray !== this.props.keysArray) {
+      const updatedArray = this.setPages(
+        this.props.keysArray,
+        this.props.cardsPerPage
+      );
+      this.setState({ pagedArray: updatedArray });
+    }
+  }
+
   // sets the initial 'keys-array' passed to the carousel into a 2D array based on the desired number of items per page, also passed as props as 'cardsPerPage'.
 
   setPages(array, cardsPerPage) {
@@ -49,7 +59,6 @@ class ArtistCarousel extends React.Component {
   }
 
   render() {
-    debugger;
     const { pagedArray, currentIndex } = this.state;
 
     return (

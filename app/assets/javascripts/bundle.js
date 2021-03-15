@@ -262,7 +262,6 @@ var receiveSearch = function receiveSearch(_ref2) {
       albums = _ref2.albums,
       tracks = _ref2.tracks,
       search = _ref2.search;
-  debugger;
   return {
     type: RECEIVE_SEARCH,
     artists: artists,
@@ -617,7 +616,6 @@ var AlbumInfo = /*#__PURE__*/function (_React$Component) {
     key: "handlePlayTrack",
     value: function handlePlayTrack(e) {
       e.preventDefault();
-      debugger;
       var track = this.props.tracks[e.target.value];
       this.props.playTrack(track);
       this.setState({
@@ -656,7 +654,6 @@ var AlbumInfo = /*#__PURE__*/function (_React$Component) {
           })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, track.trackNo, "."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, track.title));
         }
       });
-      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "album-show-main-outer"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -711,7 +708,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state, ownProps) {
-  debugger;
   return {
     album: state.entities.albums[ownProps.match.params.albumId],
     tracks: state.entities.tracks,
@@ -801,7 +797,6 @@ var AlbumShow = /*#__PURE__*/function (_React$Component) {
         return null;
       }
 
-      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "artist-show-main-left"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_album_info_container__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_big_album__WEBPACK_IMPORTED_MODULE_3__["default"], {
@@ -1281,7 +1276,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state, ownProps) {
-  debugger;
   return {
     artist: state.entities.artists[ownProps.match.params.id] // albums: Object.values(state.entities.albums),
 
@@ -1396,10 +1390,20 @@ var AlbumCarousel = /*#__PURE__*/function (_React$Component) {
     _this.previousSlide = _this.previousSlide.bind(_assertThisInitialized(_this));
     _this.setPages = _this.setPages.bind(_assertThisInitialized(_this));
     return _this;
-  } // sets the initial 'keys-array' passed to the carousel into a 2D array based on the desired number of items per page, also passed as props as 'cardsPerPage'.
-
+  }
 
   _createClass(AlbumCarousel, [{
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(pastProps) {
+      if (pastProps.keysArray !== this.props.keysArray) {
+        var updatedArray = this.setPages(this.props.keysArray, this.props.cardsPerPage);
+        this.setState({
+          pagedArray: updatedArray
+        });
+      }
+    } // sets the initial 'keys-array' passed to the carousel into a 2D array based on the desired number of items per page, also passed as props as 'cardsPerPage'.
+
+  }, {
     key: "setPages",
     value: function setPages(array, cardsPerPage) {
       var pagedArray = [];
@@ -1417,10 +1421,8 @@ var AlbumCarousel = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "nextSlide",
     value: function nextSlide() {
-      debugger;
       var nextSlide = this.state.currentIndex + 1;
       var length = this.state.pagedArray.length;
-      debugger;
       nextSlide === length ? this.setState({
         currentIndex: 0
       }) : this.setState({
@@ -1441,7 +1443,6 @@ var AlbumCarousel = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      debugger;
       var _this$state = this.state,
           pagedArray = _this$state.pagedArray,
           currentIndex = _this$state.currentIndex;
@@ -1517,7 +1518,7 @@ __webpack_require__.r(__webpack_exports__);
 var CarouselContent = function CarouselContent(_ref) {
   var content = _ref.content,
       keys = _ref.keys;
-  debugger;
+  if (!keys) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "nothing has been tagged with this yet");
   var taggedAlbums = keys.map(function (id) {
     var album = content.albums[id];
     var artist = content.artists[album.artistId];
@@ -1643,10 +1644,20 @@ var ArtistCarousel = /*#__PURE__*/function (_React$Component) {
     _this.previousSlide = _this.previousSlide.bind(_assertThisInitialized(_this));
     _this.setPages = _this.setPages.bind(_assertThisInitialized(_this));
     return _this;
-  } // sets the initial 'keys-array' passed to the carousel into a 2D array based on the desired number of items per page, also passed as props as 'cardsPerPage'.
-
+  }
 
   _createClass(ArtistCarousel, [{
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(pastProps) {
+      if (pastProps.keysArray !== this.props.keysArray) {
+        var updatedArray = this.setPages(this.props.keysArray, this.props.cardsPerPage);
+        this.setState({
+          pagedArray: updatedArray
+        });
+      }
+    } // sets the initial 'keys-array' passed to the carousel into a 2D array based on the desired number of items per page, also passed as props as 'cardsPerPage'.
+
+  }, {
     key: "setPages",
     value: function setPages(array, cardsPerPage) {
       var pagedArray = [];
@@ -1686,7 +1697,6 @@ var ArtistCarousel = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      debugger;
       var _this$state = this.state,
           pagedArray = _this$state.pagedArray,
           currentIndex = _this$state.currentIndex;
@@ -1762,6 +1772,7 @@ __webpack_require__.r(__webpack_exports__);
 var CarouselContent = function CarouselContent(_ref) {
   var content = _ref.content,
       keys = _ref.keys;
+  if (!keys) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "nothing has been tagged with this yet");
   var taggedArtists = keys.map(function (id) {
     var artist = content.artists[id];
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
@@ -2011,10 +2022,8 @@ var DiscoverPlayer = /*#__PURE__*/function (_React$Component) {
 
   _createClass(DiscoverPlayer, [{
     key: "componentDidMount",
-    value: function componentDidMount() {
-      // initialTrack = this.props.tracks[this.props.taggedData[0]];
+    value: function componentDidMount() {// initialTrack = this.props.tracks[this.props.taggedData[0]];
       // this.props.playTrack(initialTrack);
-      debugger;
     }
   }, {
     key: "handlePauseTrack",
@@ -2030,7 +2039,6 @@ var DiscoverPlayer = /*#__PURE__*/function (_React$Component) {
     key: "handlePlayTrack",
     value: function handlePlayTrack(e) {
       e.preventDefault();
-      debugger;
       var track = this.props.tracks[e.target.id];
       this.props.playTrack(track);
       this.setState({
@@ -2044,9 +2052,7 @@ var DiscoverPlayer = /*#__PURE__*/function (_React$Component) {
       var _this2 = this;
 
       var tags = this.props.tags;
-      debugger;
-      if (!tags.tracks) return null;
-      debugger; // pulls first track from tagged id to be passed on to the audio player
+      if (!tags.tracks) return null; // pulls first track from tagged id to be passed on to the audio player
 
       var initialTrack = this.props.tracks[tags.tracks[0]];
       var trackCards = tags.tracks.slice(0, 8).map(function (id) {
@@ -2080,7 +2086,6 @@ var DiscoverPlayer = /*#__PURE__*/function (_React$Component) {
         //   );
         // }
 
-        debugger;
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "discover-track-card",
           key: id
@@ -2245,7 +2250,6 @@ var NowPlayingInfo = function NowPlayingInfo(_ref) {
 
 var mSTP = function mSTP(state, ownProps) {
   var track = state.ui.playing.track || ownProps.initialTrack;
-  debugger;
   return {
     // playing: ownProps.playing,
     // track: track,
@@ -2299,21 +2303,20 @@ var Footer = function Footer() {
     className: "link-column2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     href: "#"
-  }, "Github")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    href: "#"
-  }, "About me!")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    href: "#"
-  }, "Resume!")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    href: "#"
-  }, "hire me?")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, "About the developer")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "https://github.com/berthornhill",
+    target: "_blank"
+  }, "Github")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "link-column3"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "link-column4"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    href: "#"
-  }, "Favorites")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    href: "#"
-  }, "Music?")))))));
+    href: "https://www.linkedin.com/in/bert-hill-0324b120/",
+    target: "_blank"
+  }, "LinkedIn")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "https://angel.co/u/bert-hill-2",
+    target: "_blank"
+  }, "Anglel List")))))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Footer);
@@ -2627,6 +2630,7 @@ var SearchBar = /*#__PURE__*/function (_React$Component) {
     _this.renderRedirect = _this.renderRedirect.bind(_assertThisInitialized(_this));
     _this.openCloseMenu = _this.openCloseMenu.bind(_assertThisInitialized(_this));
     _this.closeMenu = _this.closeMenu.bind(_assertThisInitialized(_this));
+    _this.delayClose = _this.delayClose.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -2637,6 +2641,13 @@ var SearchBar = /*#__PURE__*/function (_React$Component) {
       this.setState({
         displayDropDown: true
       });
+    }
+  }, {
+    key: "delayClose",
+    value: function delayClose(e) {
+      debugger;
+      e.preventDefault;
+      setTimeout(this.closeMenu, 200);
     }
   }, {
     key: "closeMenu",
@@ -2690,15 +2701,18 @@ var SearchBar = /*#__PURE__*/function (_React$Component) {
         // <div>
         react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
           className: "search-bar",
-          onSubmit: this.handleSubmit
+          onSubmit: this.handleSubmit,
+          onFocus: this.openCloseMenu,
+          onBlur: this.delayClose
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
           type: "text",
           placeholder: "Search and discover music",
           className: "search-field",
           value: this.state.searchCriteria,
-          onChange: this.handleChange,
-          onFocus: this.openCloseMenu,
-          onBlur: this.closeMenu
+          onChange: this.handleChange // onFocus={this.openCloseMenu}
+          // onBlur={this.closeMenu}
+          // onClick={this.openMenu}
+
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
           src: window.bulb,
           alt: "search icon",
@@ -2774,66 +2788,37 @@ var SearchDropdown = /*#__PURE__*/function (_React$Component) {
   _createClass(SearchDropdown, [{
     key: "handleClick",
     value: function handleClick(e) {
-      debugger;
       e.stopPropagation();
-      console.log("Stop the Prop!");
+      this.props.history.push("/tags/".concat(e.target.id));
     }
   }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
+      var tags = [["electronic", "orange"], ["metal", "sherbert"], ["rock", "red"], ["alternative", "fusia"], ["hip-hop/rap", "lavender"], ["experimental", "violet"], ["punk", "purple"], ["pop", "blue"], ["ambient", "grey"] // ["browse all", "brown"],
+      ];
+      var tagsList = tags.map(function (tag, i) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          className: tag[1],
+          onClick: _this2.handleClick,
+          key: i
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          id: tag[0],
+          onClick: _this2.handleClick
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, tag[0]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, ">")));
+      });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "search-dropdown",
         onClick: this.handleClick
-      }, console.log("Menu Open!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-        className: "orange",
-        onClick: this.handleClick
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
-        to: "/tags/electronic",
-        onClick: this.handleClick
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "electronic"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, ">"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-        className: "sherbert"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
-        to: "/tags/metal"
-      }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "metal"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, ">"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-        className: "red"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
-        to: "/tags/rock"
-      }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "rock"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, ">"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-        className: "fusia"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
-        to: "/tags/alternative"
-      }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "alternative"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, ">"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-        className: "lavender"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
-        to: "/tags/hip-hop/rap"
-      }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "hip-hop/rap"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, ">"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-        className: "violet"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
-        to: "/tags/experimental"
-      }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "experimental"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, ">"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-        className: "purple"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
-        to: "/tags/punk"
-      }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "punk"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, ">"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-        className: "blue"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
-        to: "/tags/pop"
-      }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "pop"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, ">"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-        className: "grey"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
-        to: "/tags/ambient"
-      }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "ambient"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, ">"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-        className: "brown"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
-        to: "/tags/"
-      }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "browse all"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, ">")))));
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, tagsList));
     }
   }]);
 
   return SearchDropdown;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (SearchDropdown);
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["withRouter"])(SearchDropdown));
 
 /***/ }),
 
@@ -2946,7 +2931,6 @@ var AudioPlayer = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, AudioPlayer);
 
     _this = _super.call(this, props);
-    debugger;
     _this.state = {
       // playing: props.playing,
       // track: props.track,
@@ -2973,7 +2957,6 @@ var AudioPlayer = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       var audio = this.audio.current;
-      debugger;
       audio.load();
       this.props.playing ? this.togglePlay() : null; // .then(()=>{
       //     this.updateTime();
@@ -2981,7 +2964,7 @@ var AudioPlayer = /*#__PURE__*/function (_React$Component) {
       //   // this.setState({ currentTime: audio.currentTime, duration: audio.duration });
       // } )
     } // componentDidUpdate(prevProps) {
-    //   debugger;
+    //
     //   if (prevProps.track !== this.props.track) {
     //     this.setState({ track: this.props.track, playing: this.props.playing });
     //   } else if (
@@ -3001,7 +2984,6 @@ var AudioPlayer = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "onLoadData",
     value: function onLoadData() {
-      debugger;
       this.props.playing ? this.togglePlay() : null;
       this.setDuration();
     }
@@ -3009,7 +2991,6 @@ var AudioPlayer = /*#__PURE__*/function (_React$Component) {
     key: "togglePlay",
     value: function togglePlay() {
       var audio = this.audio.current;
-      debugger;
 
       if (audio.paused) {
         audio.play();
@@ -3024,8 +3005,6 @@ var AudioPlayer = /*#__PURE__*/function (_React$Component) {
           playing: false
         });
       }
-
-      debugger;
     }
   }, {
     key: "setDuration",
@@ -3040,8 +3019,6 @@ var AudioPlayer = /*#__PURE__*/function (_React$Component) {
     key: "updateTime",
     value: function updateTime() {
       var audio = this.audio.current;
-      console.log("updating time");
-      debugger;
       var time = this.convertTime(audio.currentTime);
       this.setState({
         currentTime: time
@@ -3070,7 +3047,6 @@ var AudioPlayer = /*#__PURE__*/function (_React$Component) {
     value: function updateProgressBar() {
       var audio = this.audio.current;
       var currentProgress = audio.currentTime / audio.duration * 100;
-      debugger;
       this.progress.current.style.flexBasis = "".concat(currentProgress, "%");
     }
   }, {
@@ -3078,7 +3054,6 @@ var AudioPlayer = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
-      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "audio-player-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3140,7 +3115,6 @@ __webpack_require__.r(__webpack_exports__);
 
 var mSTP = function mSTP(state, ownProps) {
   var track = state.ui.playing.track || ownProps.initialTrack;
-  debugger;
   return {
     playing: ownProps.playing,
     track: track,
@@ -4541,16 +4515,23 @@ var Tags = /*#__PURE__*/function (_React$Component) {
       this.props.fetchTagged(tag);
     }
   }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      // debugger;
+      if (prevProps.match.params.tag !== this.props.match.params.tag) {
+        this.props.fetchTagged(this.props.match.params.tag);
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
       // this.props.
-      debugger;
+      // debugger;
       if (!this.props.tags.artists) return null;
       var content = {
         artists: this.props.artists,
         albums: this.props.albums
       };
-      console.log("Made it this far");
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "tags-outer"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_tags_header__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -5190,7 +5171,6 @@ var TracksForm = /*#__PURE__*/function (_React$Component) {
       }); // debugger;
 
       var trackList = this.props.albums[this.state.currentAlbum].tracks.map(function (trackId) {
-        debugger;
         var track = _this4.props.tracks[trackId];
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           key: track.id,
@@ -5493,7 +5473,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 var AlbumsReducer = function AlbumsReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
-  Object.freeze(state); // debugger;
+  Object.freeze(state);
 
   switch (action.type) {
     case _actions_artist_show_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ARTIST"]:
@@ -5504,16 +5484,12 @@ var AlbumsReducer = function AlbumsReducer() {
       return Object.assign({}, state, _defineProperty({}, action.album.id, action.album));
 
     case _actions_album_actions__WEBPACK_IMPORTED_MODULE_2__["RECEIVE_NEW_TRACK"]:
-      debugger;
-
       var addTracksState = _objectSpread({}, state);
 
       addTracksState[action.album.id].tracks = action.album.tracks;
-      debugger;
       return addTracksState;
 
     case _actions_artist_show_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_SEARCH"]:
-      // debugger;
       return _objectSpread(_objectSpread({}, state), action.albums);
 
     case _actions_tag_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_TAGGED"]:
@@ -5573,7 +5549,6 @@ var ArtistReducer = function ArtistReducer() {
     // return { ...state, action };
 
     case _actions_tag_actions__WEBPACK_IMPORTED_MODULE_3__["RECEIVE_TAGGED"]:
-      debugger;
       return _objectSpread(_objectSpread({}, state), action.payload.artists);
 
     default:

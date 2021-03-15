@@ -19,7 +19,6 @@ class AlbumShow extends React.Component {
     if (!this.props.album) {
       return null;
     }
-    debugger;
 
     return (
       <div className="artist-show-main-left">

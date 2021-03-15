@@ -18,7 +18,6 @@ class DiscoverPlayer extends React.Component {
   componentDidMount() {
     // initialTrack = this.props.tracks[this.props.taggedData[0]];
     // this.props.playTrack(initialTrack);
-    debugger;
   }
 
   handlePauseTrack(e) {
@@ -30,7 +29,6 @@ class DiscoverPlayer extends React.Component {
   handlePlayTrack(e) {
     e.preventDefault();
 
-    debugger;
     let track = this.props.tracks[e.target.id];
     this.props.playTrack(track);
     this.setState({ currentTrackId: track.id, playing: true });
@@ -39,10 +37,9 @@ class DiscoverPlayer extends React.Component {
 
   render() {
     const { tags } = this.props;
-    debugger;
+
     if (!tags.tracks) return null;
 
-    debugger;
     // pulls first track from tagged id to be passed on to the audio player
     const initialTrack = this.props.tracks[tags.tracks[0]];
 
@@ -78,8 +75,6 @@ class DiscoverPlayer extends React.Component {
       //     </div>
       //   );
       // }
-
-      debugger;
 
       return (
         <div className="discover-track-card" key={id}>

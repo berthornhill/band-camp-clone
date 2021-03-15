@@ -41,7 +41,7 @@ end
 
 json.tracks do 
     @tracks.each do |track|
-        # debuggers
+        
         json.set! track.id do
             json.id track.id
             json.title track.title

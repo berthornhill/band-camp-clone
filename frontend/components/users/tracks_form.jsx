@@ -81,7 +81,6 @@ class TracksForm extends React.Component {
     // debugger;
     const trackList = this.props.albums[this.state.currentAlbum].tracks.map(
       (trackId) => {
-        debugger;
         let track = this.props.tracks[trackId];
 
         return (

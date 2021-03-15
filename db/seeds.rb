@@ -68,7 +68,6 @@ BANDS = ["Shawn Mendes",
     "Nicky Jam",
     "Marshmello",
     "The Chainsmokers",
-    "Ed Sheeran"
     ]
 
 ALBUMS = ["Harry Styles",
@@ -152,31 +151,39 @@ ALBUMS = ["Harry Styles",
 BANDS.each_with_index do | band, i |
     User.create!(
         username: "#{band}#{i}",
-        password: "testpassword",
+        password: "averysecurepassword$^$$%#%@",
         email:"test#{i}@test.com",
         artist: band,
         bio: "We are a great band! We hope you enjoy our music! Like and follow us on Bandlamp! Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        location: "USA"
+        location: "USA",
     )
+    x = rand(1..31)
+    User.last.artist_image.attach(io: URI.open("https://bandlamp-seed.s3.us-east-2.amazonaws.com/images/#{x}.jpg"), filename: "#{x}.jpg")
+    x = rand(1..31)
+    User.last.banner_image.attach(io: URI.open("https://bandlamp-seed.s3.us-east-2.amazonaws.com/images/#{x}.jpg"), filename: "#{x}.jpg")
     
 end
 
 
 User.all.ids.each do |id| 
-
+    
     numAlbums = rand(1..7)
-
+    
     numAlbums.times {
         Album.create!(
             artist_id: id,
             album_name: "#{ALBUMS.sample}",
             description: "This is our newest realese! It's was a labor of love and it would mean a lot to us if you would listen to it and like and follow us on Bandlamp. Peace and love!"
         )
+        x = rand(1..31)
+        Album.last.album_art.attach(io: URI.open("https://bandlamp-seed.s3.us-east-2.amazonaws.com/images/#{x}.jpg"), filename: "#{x}.jpg")
     }
 end
 
-User.create!(username: "Bert", artist: "Bert Hill, Developer", password: "password", email: "bert@bert", bio: "I created this app. Thanks for stopping in. In addition to my work as a developer, I am also a musicain. Here are a few recordings of some of my performances from over the years. Please enjoy them and the website")
-Album.create!(artist_id: User.last.id, album_name: "Sample Tracks", description: "Demo recordings")
+User.create!(username: "Bert", artist: "Bert Hill, Developer", password: "anothersecurepassword", email: "bert@bert", bio: "I am a full stack software engineer, musician, and educator. I have a love of computers, learning, music as well as for sharing my enthusiasm for these things with anyone who will listen.
+Currently, I’m building in Ruby, Rails, JavaScript, React, Redux but I am always looking to learn more languages and grow as a developer. As a musician, I've performed and recorded all over the country but mostly around New York City. Feel free to follow me on LinkedIn, check out my GitHub if you‘d like to connect or collaborate. Links can be found in the footer section.
+Thanks for visiting and I hope you enjoy! - Bert Hill")
+Album.create!(artist_id: User.last.id, album_name: "Sample Tracks", description: "Feel free to connect on LinkdIn, check out my github.")
 
 
 waterfront = URI.open('https://bandlamp-seed.s3.us-east-2.amazonaws.com/waterfront.wav')
@@ -186,7 +193,7 @@ Track.last.song.attach(io: waterfront, filename: 'waterfront.wav')
 Track.create!(title: "Zocalo Quintet Demo Reel", album_id: Album.last.id, track_no: 3)
 Track.last.song.attach(io: URI.open('https://bandlamp-seed.s3.us-east-2.amazonaws.com/zoc_demo.mp3'), filename: 'zoc_demo.mp3')
 
-Track.create!(title: "Silent Flame", album_id: Album.last.id, track_no: 2)
+Track.create!(title: "The Silent Flame, by Ke-Chia Chen", album_id: Album.last.id, track_no: 2)
 Track.last.song.attach(io: URI.open('https://bandlamp-seed.s3.us-east-2.amazonaws.com/silent_flame.mp3'), filename: 'silent_flame.mp3')
 
 

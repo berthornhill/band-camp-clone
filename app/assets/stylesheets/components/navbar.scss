@@ -170,7 +170,21 @@
     color: white;
   }
 
-  a {
+  // a {
+  //   flex-grow: 1;
+  //   color: white;
+  //   position: relative;
+  //   font-size: 14px;
+  //   font-weight: 500;
+  //   padding-right: 20px;
+  //   padding-left: 20px;
+  //   width: 100%;
+  //   display: flex;
+  //   justify-content: space-between;
+  //   transition: opacity 0.2s;
+  // }
+
+  ul div {
     flex-grow: 1;
     color: white;
     position: relative;
@@ -182,6 +196,7 @@
     display: flex;
     justify-content: space-between;
     transition: opacity 0.2s;
+    cursor: pointer;
   }
 
   li:hover {

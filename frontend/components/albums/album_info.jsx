@@ -19,7 +19,6 @@ class AlbumInfo extends React.Component {
   handlePlayTrack(e) {
     e.preventDefault();
 
-    debugger;
     let track = this.props.tracks[e.target.value];
     this.props.playTrack(track);
     this.setState({ currentTrackId: track.id, playing: true });
@@ -61,8 +60,6 @@ class AlbumInfo extends React.Component {
         );
       }
     });
-
-    debugger;
 
     return (
       <div className="album-show-main-outer">

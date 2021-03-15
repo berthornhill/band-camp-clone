@@ -17,11 +17,19 @@ class SearchBar extends React.Component {
     this.renderRedirect = this.renderRedirect.bind(this);
     this.openCloseMenu = this.openCloseMenu.bind(this);
     this.closeMenu = this.closeMenu.bind(this);
+    this.delayClose = this.delayClose.bind(this);
   }
 
   openCloseMenu() {
     // const toggle = !this.state.displayDropDown;
     this.setState({ displayDropDown: true });
+  }
+
+  delayClose(e) {
+    debugger;
+    e.preventDefault;
+
+    setTimeout(this.closeMenu, 200);
   }
 
   closeMenu() {
@@ -63,15 +71,21 @@ class SearchBar extends React.Component {
     // debugger;
     return (
       // <div>
-      <form className="search-bar" onSubmit={this.handleSubmit}>
+      <form
+        className="search-bar"
+        onSubmit={this.handleSubmit}
+        onFocus={this.openCloseMenu}
+        onBlur={this.delayClose}
+      >
         <input
           type="text"
           placeholder="Search and discover music"
           className="search-field"
           value={this.state.searchCriteria}
           onChange={this.handleChange}
-          onFocus={this.openCloseMenu}
-          onBlur={this.closeMenu}
+          // onFocus={this.openCloseMenu}
+          // onBlur={this.closeMenu}
+          // onClick={this.openMenu}
         />
 
         <img

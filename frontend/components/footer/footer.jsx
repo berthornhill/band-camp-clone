@@ -29,27 +29,38 @@ const Footer = () => {
           <div className="link-column2">
             <ul>
               <li>
-                <a href="#">Github</a>
+                <a href="#">About the developer</a>
               </li>
               <li>
-                <a href="#">About me!</a>
+                <a href="https://github.com/berthornhill" target="_blank">
+                  Github
+                </a>
               </li>
-              <li>
-                <a href="#">Resume!</a>
-              </li>
-              <li>
-                <a href="#">hire me?</a>
-              </li>
+              {/* <li>
+                <a
+                  href="#"
+                  target="_blank"
+                >
+                  View my resume
+                </a>
+              </li> */}
             </ul>
           </div>
           <div className="link-column3"></div>
           <div className="link-column4">
             <ul>
               <li>
-                <a href="#">Favorites</a>
+                <a
+                  href="https://www.linkedin.com/in/bert-hill-0324b120/"
+                  target="_blank"
+                >
+                  LinkedIn
+                </a>
               </li>
               <li>
-                <a href="#">Music?</a>
+                <a href="https://angel.co/u/bert-hill-2" target="_blank">
+                  Anglel List
+                </a>
               </li>
             </ul>
           </div>
