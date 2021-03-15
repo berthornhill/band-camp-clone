@@ -1,16 +1,17 @@
 import React from "react";
 
 const Arrow = ({ direction, handleClick, arrow }) => {
-  const arrowStyle = {
-    "background-image": `url(${arrow})`,
-  };
+  // const arrowStyle = {
+  //   backgroundImage: `url(${arrow})`,
+  // };
 
   return (
-    <div
+    <img
+      src={arrow}
       className={`arrow ${direction}`}
       onClick={handleClick}
-      style={arrowStyle}
-    ></div>
+      // style={arrowStyle}
+    />
   );
 };
 

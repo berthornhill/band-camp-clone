@@ -1,11 +1,11 @@
 import React from "react";
 import Arrow from "./arrow";
-import CarouselContent from "./carousel_content";
+import CarouselContent from "./album_carousel_content";
 
 // Modular React Carousel Component. Requires and keys-array indexs and corresponding object containing obejcts with keys that corresponding to keys-array in the array.
 // Builds two functional "Arrow" components which are passed the corresponding directional change function( nextSlide, previousSlide) as well as directional string and url for the desired image to be rendered as the button.
 
-class Carousel extends React.Component {
+class AlbumCarousel extends React.Component {
   constructor(props) {
     super(props);
 
@@ -32,16 +32,17 @@ class Carousel extends React.Component {
   }
 
   nextSlide() {
+    debugger;
     const nextSlide = this.state.currentIndex + 1;
-    const length = this.props.pagedArray.length;
-
+    const length = this.state.pagedArray.length;
+    debugger;
     nextSlide === length
       ? this.setState({ currentIndex: 0 })
       : this.setState({ currentIndex: nextSlide });
   }
   previousSlide() {
     const prevSlide = this.state.currentIndex - 1;
-    const last = this.props.pagedArray.length - 1;
+    const last = this.state.pagedArray.length - 1;
 
     prevSlide < 0
       ? this.setState({ currentIndex: last })
@@ -73,4 +74,4 @@ class Carousel extends React.Component {
   }
 }
 
-export default Carousel;
+export default AlbumCarousel;

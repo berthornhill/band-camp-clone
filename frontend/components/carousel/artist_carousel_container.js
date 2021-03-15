@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import Carousel from "./carousel";
+import Carousel from "./artist_carousel";
 
 const mSTP = (state, ownProps) => {
   return {

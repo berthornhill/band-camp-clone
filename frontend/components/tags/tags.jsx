@@ -1,7 +1,7 @@
 import React from "react";
-import { fetchTagged } from "../../actions/tag_actions";
 import TagsHeader from "./tags_header";
-import Carousel from "../carousel/carousel_container";
+import AlbumCarousel from "../carousel/album_carousel_container";
+import ArtistCarousel from "../carousel/artist_carousel_container";
 
 class Tags extends React.Component {
   componentDidMount() {
@@ -23,22 +23,22 @@ class Tags extends React.Component {
     console.log("Made it this far");
 
     return (
-      <div class="tags-outer">
-        <TagsHeader tag={this.props.currentTag} />
-        <div className="artists-carousel-outer">
-          <div className="artists-carousel-inner">
-            <Carousel
+      <div className="tags-outer">
+        <TagsHeader tag={this.props.tags.currentTag} />
+        <div className="albums-carousel-outer">
+          <div className="albums-carousel-inner">
+            <AlbumCarousel
               content={content}
-              keysArray={this.props.tags.artists}
+              keysArray={this.props.tags.albums}
               cardsPerPage={5}
             />
           </div>
         </div>
-        <div className="albums-carousel-outer">
-          <div className="albums-carousel-inner">
-            <Carousel
+        <div className="artists-carousel-outer">
+          <div className="artists-carousel-inner">
+            <ArtistCarousel
               content={content}
-              keysArray={this.props.tags.albums}
+              keysArray={this.props.tags.artists}
               cardsPerPage={3}
             />
           </div>

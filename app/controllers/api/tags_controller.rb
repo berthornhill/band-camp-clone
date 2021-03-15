@@ -11,7 +11,7 @@ class Api::TagsController < ApplicationController
         append_artists_from_arr(@albums.pluck(:artist_id))
         
         @all_tags = GenreTag.select(:tag).distinct.pluck(:tag)
-        @currentTag = params[:tag]
+        @current_tag = params[:tag]
      
         render :index
     end

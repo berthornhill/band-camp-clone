@@ -1337,41 +1337,10 @@ var ArtistSidebar = function ArtistSidebar(_ref) {
 
 /***/ }),
 
-/***/ "./frontend/components/carousel/arrow.jsx":
-/*!************************************************!*\
-  !*** ./frontend/components/carousel/arrow.jsx ***!
-  \************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-
-
-var Arrow = function Arrow(_ref) {
-  var direction = _ref.direction,
-      handleClick = _ref.handleClick,
-      arrow = _ref.arrow;
-  var arrowStyle = {
-    "background-image": "url(".concat(arrow, ")")
-  };
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "arrow ".concat(direction),
-    onClick: handleClick,
-    style: arrowStyle
-  });
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (Arrow);
-
-/***/ }),
-
-/***/ "./frontend/components/carousel/carousel.jsx":
-/*!***************************************************!*\
-  !*** ./frontend/components/carousel/carousel.jsx ***!
-  \***************************************************/
+/***/ "./frontend/components/carousel/album_carousel.jsx":
+/*!*********************************************************!*\
+  !*** ./frontend/components/carousel/album_carousel.jsx ***!
+  \*********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1380,7 +1349,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _arrow__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./arrow */ "./frontend/components/carousel/arrow.jsx");
-/* harmony import */ var _carousel_content__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./carousel_content */ "./frontend/components/carousel/carousel_content.jsx");
+/* harmony import */ var _album_carousel_content__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./album_carousel_content */ "./frontend/components/carousel/album_carousel_content.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1408,15 +1377,15 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
  // Modular React Carousel Component. Requires and keys-array indexs and corresponding object containing obejcts with keys that corresponding to keys-array in the array.
 // Builds two functional "Arrow" components which are passed the corresponding directional change function( nextSlide, previousSlide) as well as directional string and url for the desired image to be rendered as the button.
 
-var Carousel = /*#__PURE__*/function (_React$Component) {
-  _inherits(Carousel, _React$Component);
+var AlbumCarousel = /*#__PURE__*/function (_React$Component) {
+  _inherits(AlbumCarousel, _React$Component);
 
-  var _super = _createSuper(Carousel);
+  var _super = _createSuper(AlbumCarousel);
 
-  function Carousel(props) {
+  function AlbumCarousel(props) {
     var _this;
 
-    _classCallCheck(this, Carousel);
+    _classCallCheck(this, AlbumCarousel);
 
     _this = _super.call(this, props);
     _this.state = {
@@ -1430,7 +1399,7 @@ var Carousel = /*#__PURE__*/function (_React$Component) {
   } // sets the initial 'keys-array' passed to the carousel into a 2D array based on the desired number of items per page, also passed as props as 'cardsPerPage'.
 
 
-  _createClass(Carousel, [{
+  _createClass(AlbumCarousel, [{
     key: "setPages",
     value: function setPages(array, cardsPerPage) {
       var pagedArray = [];
@@ -1448,8 +1417,10 @@ var Carousel = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "nextSlide",
     value: function nextSlide() {
+      debugger;
       var nextSlide = this.state.currentIndex + 1;
-      var length = this.props.pagedArray.length;
+      var length = this.state.pagedArray.length;
+      debugger;
       nextSlide === length ? this.setState({
         currentIndex: 0
       }) : this.setState({
@@ -1460,7 +1431,7 @@ var Carousel = /*#__PURE__*/function (_React$Component) {
     key: "previousSlide",
     value: function previousSlide() {
       var prevSlide = this.state.currentIndex - 1;
-      var last = this.props.pagedArray.length - 1;
+      var last = this.state.pagedArray.length - 1;
       prevSlide < 0 ? this.setState({
         currentIndex: last
       }) : this.setState({
@@ -1480,7 +1451,7 @@ var Carousel = /*#__PURE__*/function (_React$Component) {
         arrow: window.arrow_left,
         direction: "left",
         handleClick: this.previousSlide
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_carousel_content__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_album_carousel_content__WEBPACK_IMPORTED_MODULE_2__["default"], {
         content: this.props.content,
         keys: pagedArray[currentIndex]
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_arrow__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -1491,24 +1462,24 @@ var Carousel = /*#__PURE__*/function (_React$Component) {
     }
   }]);
 
-  return Carousel;
+  return AlbumCarousel;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (Carousel);
+/* harmony default export */ __webpack_exports__["default"] = (AlbumCarousel);
 
 /***/ }),
 
-/***/ "./frontend/components/carousel/carousel_container.js":
-/*!************************************************************!*\
-  !*** ./frontend/components/carousel/carousel_container.js ***!
-  \************************************************************/
+/***/ "./frontend/components/carousel/album_carousel_container.js":
+/*!******************************************************************!*\
+  !*** ./frontend/components/carousel/album_carousel_container.js ***!
+  \******************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _carousel__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./carousel */ "./frontend/components/carousel/carousel.jsx");
+/* harmony import */ var _album_carousel__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./album_carousel */ "./frontend/components/carousel/album_carousel.jsx");
 
 
 
@@ -1524,14 +1495,65 @@ var mDTP = function mDTP(dispatch) {
   return {};
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_carousel__WEBPACK_IMPORTED_MODULE_1__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_album_carousel__WEBPACK_IMPORTED_MODULE_1__["default"]));
 
 /***/ }),
 
-/***/ "./frontend/components/carousel/carousel_content.jsx":
-/*!***********************************************************!*\
-  !*** ./frontend/components/carousel/carousel_content.jsx ***!
-  \***********************************************************/
+/***/ "./frontend/components/carousel/album_carousel_content.jsx":
+/*!*****************************************************************!*\
+  !*** ./frontend/components/carousel/album_carousel_content.jsx ***!
+  \*****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
+
+
+var CarouselContent = function CarouselContent(_ref) {
+  var content = _ref.content,
+      keys = _ref.keys;
+  debugger;
+  var taggedAlbums = keys.map(function (id) {
+    var album = content.albums[id];
+    var artist = content.artists[album.artistId];
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+      className: "album-tag-card",
+      key: album.id
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      to: "/artist/".concat(artist.id, "/album/").concat(album.id),
+      className: "artist-image"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      src: album.albumArt ? album.albumArt : window.albumcover2,
+      alt: "album image"
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "info-section"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "card-name"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      to: "/artist/".concat(album.artistId, "/album/").concat(album.id),
+      className: "card-name"
+    }, album.albumName)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "xtra-info"
+    }, "by ", "".concat(artist.artist))));
+  });
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "album-carousel"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, taggedAlbums));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (CarouselContent);
+
+/***/ }),
+
+/***/ "./frontend/components/carousel/arrow.jsx":
+/*!************************************************!*\
+  !*** ./frontend/components/carousel/arrow.jsx ***!
+  \************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1541,10 +1563,228 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
 
+var Arrow = function Arrow(_ref) {
+  var direction = _ref.direction,
+      handleClick = _ref.handleClick,
+      arrow = _ref.arrow;
+  // const arrowStyle = {
+  //   backgroundImage: `url(${arrow})`,
+  // };
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: arrow,
+    className: "arrow ".concat(direction),
+    onClick: handleClick // style={arrowStyle}
+
+  });
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Arrow);
+
+/***/ }),
+
+/***/ "./frontend/components/carousel/artist_carousel.jsx":
+/*!**********************************************************!*\
+  !*** ./frontend/components/carousel/artist_carousel.jsx ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _arrow__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./arrow */ "./frontend/components/carousel/arrow.jsx");
+/* harmony import */ var _artist_carousel_content__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./artist_carousel_content */ "./frontend/components/carousel/artist_carousel_content.jsx");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+ // Modular React Carousel Component. Requires and keys-array indexs and corresponding object containing obejcts with keys that corresponding to keys-array in the array.
+// Builds two functional "Arrow" components which are passed the corresponding directional change function( nextSlide, previousSlide) as well as directional string and url for the desired image to be rendered as the button.
+
+var ArtistCarousel = /*#__PURE__*/function (_React$Component) {
+  _inherits(ArtistCarousel, _React$Component);
+
+  var _super = _createSuper(ArtistCarousel);
+
+  function ArtistCarousel(props) {
+    var _this;
+
+    _classCallCheck(this, ArtistCarousel);
+
+    _this = _super.call(this, props);
+    _this.state = {
+      currentIndex: 0,
+      pagedArray: _this.setPages(_this.props.keysArray, _this.props.cardsPerPage)
+    };
+    _this.nextSlide = _this.nextSlide.bind(_assertThisInitialized(_this));
+    _this.previousSlide = _this.previousSlide.bind(_assertThisInitialized(_this));
+    _this.setPages = _this.setPages.bind(_assertThisInitialized(_this));
+    return _this;
+  } // sets the initial 'keys-array' passed to the carousel into a 2D array based on the desired number of items per page, also passed as props as 'cardsPerPage'.
+
+
+  _createClass(ArtistCarousel, [{
+    key: "setPages",
+    value: function setPages(array, cardsPerPage) {
+      var pagedArray = [];
+
+      while (array.length != 0) {
+        pagedArray.push(array.slice(0, cardsPerPage));
+
+        for (var index = 0; index < cardsPerPage; index++) {
+          array.shift();
+        }
+      }
+
+      return pagedArray;
+    }
+  }, {
+    key: "nextSlide",
+    value: function nextSlide() {
+      var nextSlide = this.state.currentIndex + 1;
+      var length = this.state.pagedArray.length;
+      nextSlide === length ? this.setState({
+        currentIndex: 0
+      }) : this.setState({
+        currentIndex: nextSlide
+      });
+    }
+  }, {
+    key: "previousSlide",
+    value: function previousSlide() {
+      var prevSlide = this.state.currentIndex - 1;
+      var last = this.state.pagedArray.length - 1;
+      prevSlide < 0 ? this.setState({
+        currentIndex: last
+      }) : this.setState({
+        currentIndex: prevSlide
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      debugger;
+      var _this$state = this.state,
+          pagedArray = _this$state.pagedArray,
+          currentIndex = _this$state.currentIndex;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "carousel"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_arrow__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        arrow: window.arrow_left,
+        direction: "left",
+        handleClick: this.previousSlide
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_artist_carousel_content__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        content: this.props.content,
+        keys: pagedArray[currentIndex]
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_arrow__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        arrow: window.arrow_right,
+        direction: "right",
+        handleClick: this.nextSlide
+      }));
+    }
+  }]);
+
+  return ArtistCarousel;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (ArtistCarousel);
+
+/***/ }),
+
+/***/ "./frontend/components/carousel/artist_carousel_container.js":
+/*!*******************************************************************!*\
+  !*** ./frontend/components/carousel/artist_carousel_container.js ***!
+  \*******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _artist_carousel__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./artist_carousel */ "./frontend/components/carousel/artist_carousel.jsx");
+
+
+
+var mSTP = function mSTP(state, ownProps) {
+  return {
+    keysArray: ownProps.keysArray,
+    cardsPerPage: ownProps.cardsPerPage,
+    content: ownProps.content
+  };
+};
+
+var mDTP = function mDTP(dispatch) {
+  return {};
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_artist_carousel__WEBPACK_IMPORTED_MODULE_1__["default"]));
+
+/***/ }),
+
+/***/ "./frontend/components/carousel/artist_carousel_content.jsx":
+/*!******************************************************************!*\
+  !*** ./frontend/components/carousel/artist_carousel_content.jsx ***!
+  \******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
+
+
 var CarouselContent = function CarouselContent(_ref) {
   var content = _ref.content,
       keys = _ref.keys;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "content will go in here");
+  var taggedArtists = keys.map(function (id) {
+    var artist = content.artists[id];
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+      className: "artist-tag-card",
+      key: artist.id
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      to: "/artist/".concat(artist.id),
+      className: "artist-image"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      src: artist.artistImage ? artist.artistImage : window.albumcover3,
+      alt: "artist image"
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "info-section"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "card-type"
+    }, "Artist"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      to: "/artist/".concat(artist.id),
+      className: "card-name"
+    }, artist.artist), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "xtra-info"
+    }, "location: ", "".concat(artist.location))));
+  });
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "artist-carousel"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, taggedArtists));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (CarouselContent);
@@ -4243,9 +4483,9 @@ var splash = function splash(props) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _actions_tag_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/tag_actions */ "./frontend/actions/tag_actions.js");
-/* harmony import */ var _tags_header__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./tags_header */ "./frontend/components/tags/tags_header.jsx");
-/* harmony import */ var _carousel_carousel_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../carousel/carousel_container */ "./frontend/components/carousel/carousel_container.js");
+/* harmony import */ var _tags_header__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tags_header */ "./frontend/components/tags/tags_header.jsx");
+/* harmony import */ var _carousel_album_carousel_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../carousel/album_carousel_container */ "./frontend/components/carousel/album_carousel_container.js");
+/* harmony import */ var _carousel_artist_carousel_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../carousel/artist_carousel_container */ "./frontend/components/carousel/artist_carousel_container.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -4302,24 +4542,24 @@ var Tags = /*#__PURE__*/function (_React$Component) {
       };
       console.log("Made it this far");
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        "class": "tags-outer"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_tags_header__WEBPACK_IMPORTED_MODULE_2__["default"], {
-        tag: this.props.currentTag
+        className: "tags-outer"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_tags_header__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        tag: this.props.tags.currentTag
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "artists-carousel-outer"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "artists-carousel-inner"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_carousel_carousel_container__WEBPACK_IMPORTED_MODULE_3__["default"], {
-        content: content,
-        keysArray: this.props.tags.artists,
-        cardsPerPage: 5
-      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "albums-carousel-outer"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "albums-carousel-inner"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_carousel_carousel_container__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_carousel_album_carousel_container__WEBPACK_IMPORTED_MODULE_2__["default"], {
         content: content,
         keysArray: this.props.tags.albums,
+        cardsPerPage: 5
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "artists-carousel-outer"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "artists-carousel-inner"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_carousel_artist_carousel_container__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        content: content,
+        keysArray: this.props.tags.artists,
         cardsPerPage: 3
       }))));
     }
@@ -4388,11 +4628,12 @@ var TagsHeader = function TagsHeader(_ref) {
   var tag = _ref.tag;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "tag-header-outer"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "tag-header-inner"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: window.tag_background,
+    alt: "tag page headerimage"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
     className: "tag"
-  }, tag)));
+  }, tag));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (TagsHeader);
