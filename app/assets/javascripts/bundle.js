@@ -4191,16 +4191,33 @@ var AlbumCarousel = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var imgs = [window.rockstarguy, window.albumcover1, window.albumcover2, window.albumcover3, window.albumcover4, window.albumcover5, window.concert2, window.concert1, window.guy1, window.guy2, window.guy3, window.guy4, window.color1, window.color2, window.color3, window.color4];
+      // const imgs = [
+      //   window.rockstarguy,
+      //   window.albumcover1,
+      //   window.albumcover2,
+      //   window.albumcover3,
+      //   window.albumcover4,
+      //   window.albumcover5,
+      //   window.concert2,
+      //   window.concert1,
+      //   window.guy1,
+      //   window.guy2,
+      //   window.guy3,
+      //   window.guy4,
+      //   window.color1,
+      //   window.color2,
+      //   window.color3,
+      //   window.color4,
+      // ];
       var artistsArray = this.props.artists.map(function (artist) {
-        var i = Math.floor(Math.random() * 16);
+        // let i = Math.floor(Math.random() * 16);
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           className: "album-card splash",
           key: artist.id
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
           to: "/artist/".concat(artist.id)
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-          src: imgs[i],
+          src: artist.artistImage,
           alt: artist.artist
         })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "album-title"
@@ -5962,7 +5979,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var configureStore = function configureStore() {
   var preloadedState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  return Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_root_reducer__WEBPACK_IMPORTED_MODULE_3__["default"], preloadedState, Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(redux_thunk__WEBPACK_IMPORTED_MODULE_1__["default"], redux_logger__WEBPACK_IMPORTED_MODULE_2___default.a));
+  return Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_root_reducer__WEBPACK_IMPORTED_MODULE_3__["default"], preloadedState, Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(redux_thunk__WEBPACK_IMPORTED_MODULE_1__["default"]));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (configureStore);

@@ -8,33 +8,33 @@ class AlbumCarousel extends React.Component {
   }
 
   render() {
-    const imgs = [
-      window.rockstarguy,
-      window.albumcover1,
-      window.albumcover2,
-      window.albumcover3,
-      window.albumcover4,
-      window.albumcover5,
-      window.concert2,
-      window.concert1,
-      window.guy1,
-      window.guy2,
-      window.guy3,
-      window.guy4,
-      window.color1,
-      window.color2,
-      window.color3,
-      window.color4,
-    ];
+    // const imgs = [
+    //   window.rockstarguy,
+    //   window.albumcover1,
+    //   window.albumcover2,
+    //   window.albumcover3,
+    //   window.albumcover4,
+    //   window.albumcover5,
+    //   window.concert2,
+    //   window.concert1,
+    //   window.guy1,
+    //   window.guy2,
+    //   window.guy3,
+    //   window.guy4,
+    //   window.color1,
+    //   window.color2,
+    //   window.color3,
+    //   window.color4,
+    // ];
 
     const artistsArray = this.props.artists.map((artist) => {
-      let i = Math.floor(Math.random() * 16);
+      // let i = Math.floor(Math.random() * 16);
 
       return (
         <li className="album-card splash" key={artist.id}>
           <Link to={`/artist/${artist.id}`}>
             <div>
-              <img src={imgs[i]} alt={artist.artist} />
+              <img src={artist.artistImage} alt={artist.artist} />
             </div>
             <div className="album-title">
               <span>Artist</span>

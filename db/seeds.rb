@@ -158,8 +158,10 @@ BANDS.each_with_index do | band, i |
         location: "USA",
     )
     x = rand(1..31)
+    
     User.last.artist_image.attach(io: URI.open("https://bandlamp-seed.s3.us-east-2.amazonaws.com/images/#{x}.jpg"), filename: "#{x}.jpg")
     x = rand(1..31)
+    
     User.last.banner_image.attach(io: URI.open("https://bandlamp-seed.s3.us-east-2.amazonaws.com/images/#{x}.jpg"), filename: "#{x}.jpg")
     
 end
@@ -167,7 +169,7 @@ end
 
 User.all.ids.each do |id| 
     
-    numAlbums = rand(1..7)
+    numAlbums = rand(1..3)
     
     numAlbums.times {
         Album.create!(
