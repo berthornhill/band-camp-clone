@@ -8,25 +8,6 @@ class AlbumCarousel extends React.Component {
   }
 
   render() {
-    // const imgs = [
-    //   window.rockstarguy,
-    //   window.albumcover1,
-    //   window.albumcover2,
-    //   window.albumcover3,
-    //   window.albumcover4,
-    //   window.albumcover5,
-    //   window.concert2,
-    //   window.concert1,
-    //   window.guy1,
-    //   window.guy2,
-    //   window.guy3,
-    //   window.guy4,
-    //   window.color1,
-    //   window.color2,
-    //   window.color3,
-    //   window.color4,
-    // ];
-
     const artistsArray = this.props.artists.map((artist) => {
       // let i = Math.floor(Math.random() * 16);
 
