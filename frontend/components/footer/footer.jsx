@@ -29,7 +29,7 @@ const Footer = () => {
           <div className="link-column2">
             <ul>
               <li>
-                <a href="#">About the developer</a>
+                <Link to="/artist/308">About the developer</Link>
               </li>
               <li>
                 <a href="https://github.com/berthornhill" target="_blank">

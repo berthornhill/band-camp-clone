@@ -8,7 +8,7 @@ const TopTags = [
   "experimental",
   "alternative",
   "metal",
-  "hip-hop/rap",
+  "hip-hop",
   "punk",
   "ambient",
   "soundtrack",
