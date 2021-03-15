@@ -112,9 +112,10 @@ class InfoForm extends React.Component {
             onChange={this.handleChange("bio")}
           />
         </label>
-        <label htmlFor="artist-location" className="artist-info-form">
-          Location
+        <label htmlFor="artist-location" className="">
+          <div>Location</div>
           <input
+            className="location"
             type="text"
             value={location ? location : ""}
             onChange={this.handleChange("location")}

@@ -82,8 +82,9 @@ class AlbumForm extends React.Component {
           />
         </label>
         <label htmlFor="album-albumName" className="artist-info-form">
-          Title
+          <div>Title</div>
           <input
+            className="location"
             type="text"
             value={albumName ? albumName : ""}
             onChange={this.handleChange("albumName")}

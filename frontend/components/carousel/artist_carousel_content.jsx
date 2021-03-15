@@ -25,7 +25,7 @@ const CarouselContent = ({ content, keys }) => {
 
   return (
     <div className="artist-carousel">
-      <ul>{taggedArtists}</ul>
+      <ul className="carousel-animation">{taggedArtists}</ul>
     </div>
   );
 };

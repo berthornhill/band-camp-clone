@@ -1543,7 +1543,9 @@ var CarouselContent = function CarouselContent(_ref) {
   });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "album-carousel"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, taggedAlbums));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+    className: "carousel-animation"
+  }, taggedAlbums));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (CarouselContent);
@@ -1784,7 +1786,9 @@ var CarouselContent = function CarouselContent(_ref) {
   });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "artist-carousel"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, taggedArtists));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+    className: "carousel-animation"
+  }, taggedArtists));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (CarouselContent);
@@ -4415,24 +4419,30 @@ var Features = function Features() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     src: window.concert2,
     alt: "top story, rock star guy image"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "This Year, Concerts Are Outside!"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Welcome to my Bandcamp Clone!"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "trio-box"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "mini-story one"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/artist/245"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     src: window.record,
     alt: "top story, rock star guy image"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Sign up and create a Profile!"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "mini-story two"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/artist/240"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     src: window.rockstarguy,
     alt: "top story, rock star guy image"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Upload some images or some music. Make it unique!"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "mini-story three"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/artist/256"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     src: window.urmusic,
     alt: "top story, rock star guy image"
-  }))))));
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "about the developer")))))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Features);
@@ -4549,7 +4559,9 @@ var Tags = /*#__PURE__*/function (_React$Component) {
         className: "albums-carousel-outer"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "albums-carousel-inner"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_carousel_album_carousel_container__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "tag-title"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "featured albums tagged with", " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, this.props.tags.currentTag))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_carousel_album_carousel_container__WEBPACK_IMPORTED_MODULE_2__["default"], {
         content: content,
         keysArray: this.props.tags.albums,
         cardsPerPage: 5
@@ -4557,7 +4569,9 @@ var Tags = /*#__PURE__*/function (_React$Component) {
         className: "artists-carousel-outer"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "artists-carousel-inner"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_carousel_artist_carousel_container__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "tag-title"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "featured artists tagged with", " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, this.props.tags.currentTag))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_carousel_artist_carousel_container__WEBPACK_IMPORTED_MODULE_3__["default"], {
         content: content,
         keysArray: this.props.tags.artists,
         cardsPerPage: 3
@@ -4777,7 +4791,8 @@ var AlbumForm = /*#__PURE__*/function (_React$Component) {
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "album-albumName",
         className: "artist-info-form"
-      }, "Title", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Title"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "location",
         type: "text",
         value: albumName ? albumName : "",
         onChange: this.handleChange("albumName")
@@ -5004,8 +5019,9 @@ var InfoForm = /*#__PURE__*/function (_React$Component) {
         onChange: this.handleChange("bio")
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "artist-location",
-        className: "artist-info-form"
-      }, "Location", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: ""
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Location"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "location",
         type: "text",
         value: location ? location : "",
         onChange: this.handleChange("location")
@@ -5179,7 +5195,7 @@ var TracksForm = /*#__PURE__*/function (_React$Component) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           key: track.id,
           className: "track-list"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, " ", track.trackNo), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, track.title));
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, track.trackNo, "."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, track.title));
       });
       var selected = this.props.albums[this.state.currentAlbum]; // debugger;
 
@@ -5191,17 +5207,21 @@ var TracksForm = /*#__PURE__*/function (_React$Component) {
       }, albumSelect), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ol", null, trackList), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         className: "add-tracks-label",
         htmlFor: "addTrack"
-      }, "Add Track", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Add Track*:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "grey"
+      }, "choose an audio file to upload"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         className: "input-button",
         type: "file",
         id: "newTrack",
         accept: "audio/*",
         onChange: this.handleFile
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        className: "track-form-label",
         htmlFor: "title"
-      }, "Track Title:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Track Title*:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
-        onChange: this.handleChange("title")
+        onChange: this.handleChange("title"),
+        className: "location"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "submit"
       }, "Upload Track"));
@@ -5484,11 +5504,12 @@ var AlbumsReducer = function AlbumsReducer() {
       return Object.assign({}, state, _defineProperty({}, action.album.id, action.album));
 
     case _actions_album_actions__WEBPACK_IMPORTED_MODULE_2__["RECEIVE_NEW_TRACK"]:
-      // debugger;
+      debugger;
+
       var addTracksState = _objectSpread({}, state);
 
-      addTracksState[action.album.id].tracks = action.album.tracks; // debugger;
-
+      addTracksState[action.album.id].tracks = action.album.tracks;
+      debugger;
       return addTracksState;
 
     case _actions_artist_show_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_SEARCH"]:

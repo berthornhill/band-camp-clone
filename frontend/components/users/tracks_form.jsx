@@ -86,7 +86,7 @@ class TracksForm extends React.Component {
 
         return (
           <li key={track.id} className="track-list">
-            <div> {track.trackNo}</div>
+            <div>{track.trackNo}.</div>
             <div>{track.title}</div>
           </li>
         );
@@ -102,7 +102,8 @@ class TracksForm extends React.Component {
         <ul className="album-select-box">{albumSelect}</ul>
         <ol>{trackList}</ol>
         <label className="add-tracks-label" htmlFor="addTrack">
-          Add Track
+          <div>Add Track*:</div>
+          <div className="grey">choose an audio file to upload</div>
           <input
             className="input-button"
             type="file"
@@ -111,9 +112,13 @@ class TracksForm extends React.Component {
             onChange={this.handleFile}
           />
         </label>
-        <label htmlFor="title">
-          Track Title:
-          <input type="text" onChange={this.handleChange("title")} />
+        <label className="track-form-label" htmlFor="title">
+          <div>Track Title*:</div>
+          <input
+            type="text"
+            onChange={this.handleChange("title")}
+            className="location"
+          />
         </label>
         <button type="submit">Upload Track</button>
       </form>

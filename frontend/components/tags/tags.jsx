@@ -27,6 +27,12 @@ class Tags extends React.Component {
         <TagsHeader tag={this.props.tags.currentTag} />
         <div className="albums-carousel-outer">
           <div className="albums-carousel-inner">
+            <div className="tag-title">
+              <h3>
+                featured albums tagged with{" "}
+                <span>{this.props.tags.currentTag}</span>
+              </h3>
+            </div>
             <AlbumCarousel
               content={content}
               keysArray={this.props.tags.albums}
@@ -36,6 +42,12 @@ class Tags extends React.Component {
         </div>
         <div className="artists-carousel-outer">
           <div className="artists-carousel-inner">
+            <div className="tag-title">
+              <h3>
+                featured artists tagged with{" "}
+                <span>{this.props.tags.currentTag}</span>
+              </h3>
+            </div>
             <ArtistCarousel
               content={content}
               keysArray={this.props.tags.artists}
