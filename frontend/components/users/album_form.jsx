@@ -1,4 +1,5 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 
 class AlbumForm extends React.Component {
   constructor(props) {
@@ -23,7 +24,7 @@ class AlbumForm extends React.Component {
     return (e) => {
       e.preventDefault();
       this.setState({ [input]: e.target.value });
-      e.target.className = "";
+      // e.target.className = "";
     };
   }
 
@@ -58,7 +59,9 @@ class AlbumForm extends React.Component {
     formData.append("album[album_art]", this.state.albumArt.file);
     formData.append("album[artist_id]", id);
 
-    this.props.createAlbum(id, formData);
+    this.props
+      .createAlbum(id, formData)
+      .then(() => this.props.history.push(`/users/${id}/track`));
   }
 
   render() {
@@ -68,7 +71,9 @@ class AlbumForm extends React.Component {
     // debugger;
     return (
       <form id="info-form" onSubmit={this.handleSubmit}>
+        <h4 className="form-title">CREATE A NEW ALBUM</h4>
         <label htmlFor="artist-image" className="artist-info-form">
+          <span>Select some artwork for your album</span>
           <img
             className="artist-image-preview"
             src={albumArtPreview}
@@ -106,4 +111,4 @@ class AlbumForm extends React.Component {
   }
 }
 
-export default AlbumForm;
+export default withRouter(AlbumForm);

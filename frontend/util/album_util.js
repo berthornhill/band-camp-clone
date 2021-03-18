@@ -37,3 +37,15 @@ export const createTracks = (albumId, formData) => {
     processData: false,
   });
 };
+
+export const deleteAlbum = (id) =>
+  $.ajax({
+    method: "DELETE",
+    url: `/api/albums/${id}`,
+  });
+
+export const deleteTrack = (id) =>
+  $.ajax({
+    method: "DELETE",
+    url: `/api/tracks/${id}`,
+  });

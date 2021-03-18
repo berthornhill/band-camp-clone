@@ -22,6 +22,7 @@ class AudioPlayer extends React.Component {
     this.setDuration = this.setDuration.bind(this);
     this.onLoadData = this.onLoadData.bind(this);
     this.updateProgressBar = this.updateProgressBar.bind(this);
+    this.scrub = this.scrub.bind(this);
     //` reference to <audio> element for managing playback
     this.audio = React.createRef();
     this.progress = React.createRef();
@@ -114,6 +115,14 @@ class AudioPlayer extends React.Component {
     this.progress.current.style.flexBasis = `${currentProgress}%`;
   }
 
+  scrub(e) {
+    e.preventDefault();
+    const audio = this.audio.current;
+    const clickedPos = e.pageX - e.target.offsetLeft;
+    const newTime = (clickedPos / e.target.offsetWidth) * audio.duration;
+    audio.currentTime = newTime;
+  }
+
   render() {
     return (
       <div id="audio-player-container">
@@ -130,7 +139,7 @@ class AudioPlayer extends React.Component {
             </div>
           </div>
           <div id="prog-bar-container">
-            <div id="prog-bar">
+            <div id="prog-bar" onClick={this.scrub}>
               <div id="prog-fill" ref={this.progress}></div>
               <div id="prog-knob"></div>
             </div>

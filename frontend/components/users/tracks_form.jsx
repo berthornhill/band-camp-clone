@@ -1,4 +1,5 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 
 class TracksForm extends React.Component {
   constructor(props) {
@@ -14,6 +15,8 @@ class TracksForm extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleFile = this.handleFile.bind(this);
+    this.handleDeleteAlbum = this.handleDeleteAlbum.bind(this);
+    this.handleDeleteTrack = this.handleDeleteTrack.bind(this);
   }
 
   handleChange(input) {
@@ -21,6 +24,21 @@ class TracksForm extends React.Component {
       e.preventDefault();
       this.setState({ [input]: e.target.value });
     };
+  }
+
+  handleDeleteAlbum(e) {
+    e.preventDefault();
+    // debugger;
+    const id = this.props.match.params.id;
+
+    debugger;
+    this.props.deleteAlbum(this.state.currentAlbum);
+    this.props.history.push(`/users/${id}/album`);
+  }
+
+  handleDeleteTrack(e) {
+    e.preventDefault();
+    this.props.deleteTrack(e.target.id);
   }
 
   handleFile(e) {
@@ -40,6 +58,7 @@ class TracksForm extends React.Component {
   }
 
   handleSubmit(e) {
+    debugger;
     e.preventDefault();
     // const file = e.currentTarget.files[0];
 
@@ -57,6 +76,11 @@ class TracksForm extends React.Component {
   }
 
   render() {
+    debugger;
+
+    if (this.props.albumsArray.length === 0)
+      return <h1>Try uploading creating an album first!</h1>;
+
     // builds album image cards which change the current Album for addition of tracks.
     const albumSelect = this.props.albumsArray.map((id, index) => {
       let album = this.props.albums[id];
@@ -85,8 +109,17 @@ class TracksForm extends React.Component {
 
         return (
           <li key={track.id} className="track-list">
-            <div>{track.trackNo}.</div>
-            <div>{track.title}</div>
+            <div>
+              <div>{track.trackNo}.</div>
+              <div>{track.title}</div>
+            </div>
+            <button
+              id={track.id}
+              className="track-delete"
+              onClick={this.handleDeleteTrack}
+            >
+              DELETE TRACK
+            </button>
           </li>
         );
       }
@@ -97,8 +130,17 @@ class TracksForm extends React.Component {
     // debugger;
 
     return (
-      <form id="info-form" onSubmit={this.handleSubmit}>
+      <div id="info-form">
+        <h4 className="form-title">UPLOAD TRACKS</h4>
+
+        <span>Select an album:</span>
+
         <ul className="album-select-box">{albumSelect}</ul>
+        <form action="delete" onClick={this.handleDeleteAlbum}>
+          <button id="delete-album" type="submit">
+            DELETE ALBUM AND ALL CONNECTED TRACKS
+          </button>
+        </form>
         <ol>{trackList}</ol>
         <label className="add-tracks-label" htmlFor="addTrack">
           <div>Add Track*:</div>
@@ -111,21 +153,23 @@ class TracksForm extends React.Component {
             onChange={this.handleFile}
           />
         </label>
-        <label className="track-form-label" htmlFor="title">
-          <div>Track Title*:</div>
-          <input
-            type="text"
-            onChange={this.handleChange("title")}
-            className="location"
-          />
-        </label>
-        <button type="submit">Upload Track</button>
-      </form>
+        <form onSubmit={this.handleSubmit}>
+          <label className="track-form-label" htmlFor="title">
+            <div>Track Title*:</div>
+            <input
+              type="text"
+              onChange={this.handleChange("title")}
+              className="location"
+            />
+          </label>
+          <button type="submit">Upload Track</button>
+        </form>
+      </div>
     );
   }
 }
 
-export default TracksForm;
+export default withRouter(TracksForm);
 
 // albumId
 // name

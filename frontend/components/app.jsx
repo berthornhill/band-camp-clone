@@ -8,7 +8,7 @@ import LoginNav from "./session/login_nav";
 // import SplashContainer from "./splash/spash_container";
 import Splash from "./splash/splash_component";
 import SignupForm from "./session/signup_form_container";
-import { AuthRoute } from "../util/route_util";
+import { AuthRoute, ProtectedRoute } from "../util/route_util";
 import Modal from "./modal/modal_container";
 import Footer from "./footer/footer";
 import ArtistShow from "./artist/artist_show_container";
@@ -29,7 +29,7 @@ const App = () => {
       <Switch>
         <AuthRoute path="/users/login" component={LoginForm} />
         <AuthRoute path="/users/signup" component={SignupForm} />
-        <Route path="/users/:id" component={UserShow} />
+        <ProtectedRoute path="/users/:id" component={UserShow} />
         <Route path="/artist/:id" component={ArtistShow} />
         <Route path="/search" component={SearchResults} />
         <Route path="/tags/:tag" component={Tags} />

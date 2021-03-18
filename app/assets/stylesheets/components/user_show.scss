@@ -121,12 +121,13 @@
 
   label {
     padding-bottom: 50px;
+    padding-top: 8px;
     display: flex;
     flex-direction: column;
     align-items: center;
   }
   input {
-    padding-top: 25px;
+    padding-left: 10px;
   }
 
   label > {
@@ -147,14 +148,18 @@
     width: 100%;
     object-fit: cover;
   }
+  span {
+    padding: 10px;
+  }
 
   .form-text-area {
-    width: 98%;
-    min-height: 48px;
+    width: 96%;
+    padding-left: 10px;
+    min-height: 40px;
     border: 1px solid #dbdbdb;
   }
   .location {
-    width: 98%;
+    width: 96%;
     height: 20px;
     border: 1px solid #dbdbdb;
   }
@@ -167,13 +172,34 @@
     border: 1px solid grey;
     padding: 3px;
     width: 75%;
-    margin: auto;
+    margin-left: 65px;
   }
+
+  button:hover {
+    background-color: #0687f5;
+    color: white;
+  }
+  .track-delete {
+    height: 18px;
+    width: auto;
+    font-size: 11px;
+    color: red;
+    border-color: red;
+    justify-self: flex-end;
+  }
+
+  .track-delete:hover {
+    background-color: red;
+    color: white;
+  }
+
   .input-button {
     border: none;
     background-color: white;
     font-size: 20px;
     color: #0687f5;
+    padding-top: 16px;
+    align-self: flex-start;
 
     #file-upload-button {
       background-color: white;
@@ -219,9 +245,30 @@
     border-top: 1px solid #dbdbdb;
     height: 25px;
     padding-left: 8px;
+    padding-right: 8px;
+    justify-content: space-between;
     align-items: center;
     div {
       padding-right: 5px;
+      display: inline;
     }
+  }
+
+  .form-title {
+    text-align: center;
+    font-size: larger;
+    padding: 15px;
+    border-bottom: 1px solid #e5e5e5;
+  }
+
+  #delete-album {
+    color: red;
+    border-color: red;
+    font-size: 15px;
+    margin-bottom: 12px;
+  }
+  #delete-album:hover {
+    background-color: red;
+    color: white;
   }
 }

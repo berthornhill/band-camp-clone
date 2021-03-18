@@ -4,9 +4,12 @@ import {
   RECEIVE_SEARCH,
 } from "../actions/artist_show_actions";
 
-import { RECEIVE_ALBUM } from "../actions/album_actions";
+import { RECEIVE_ALBUM, REMOVE_DELETED } from "../actions/album_actions";
 
-import { RECEIVE_CURRENT_USER } from "../actions/session_actions";
+import {
+  RECEIVE_CURRENT_USER,
+  REMOVE_ERRORS,
+} from "../actions/session_actions";
 import { RECEIVE_TAGGED } from "../actions/tag_actions";
 
 const ArtistReducer = (state = {}, action) => {
@@ -31,6 +34,12 @@ const ArtistReducer = (state = {}, action) => {
     // return { ...state, action };
     case RECEIVE_TAGGED:
       return { ...state, ...action.payload.artists };
+    case REMOVE_DELETED:
+      debugger;
+      const tempState = { ...state };
+      tempState[action.artist.id].albums = action.artist.albums;
+      return tempState;
+
     default:
       return state;
   }

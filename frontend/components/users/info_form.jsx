@@ -29,7 +29,7 @@ class InfoForm extends React.Component {
     return (e) => {
       e.preventDefault();
       this.setState({ [input]: e.target.value });
-      e.target.className = "";
+      // e.target.className = "";
     };
   }
 
@@ -69,7 +69,9 @@ class InfoForm extends React.Component {
     // formData.append("artist[artist_image]", this.state.artistImage.file);
     // formData.append("artist[banner_image]", this.state.bannerImage.file);
 
-    this.props.updateArtist(id, formData);
+    this.props
+      .updateArtist(id, formData)
+      .then(() => this.props.history.push(`/users/${id}/album`));
   }
 
   render() {
@@ -82,7 +84,9 @@ class InfoForm extends React.Component {
 
     return (
       <form id="info-form" onSubmit={this.handleSubmit}>
+        <h4 className="form-title">EDIT & UPDATE YOUR BAND'S INFO</h4>
         <label htmlFor="artist-image" className="artist-info-form">
+          <span>Select or change your artist profile image</span>
           <img
             className="artist-image-preview"
             src={artistImagePreview}
@@ -96,6 +100,7 @@ class InfoForm extends React.Component {
           />
         </label>
         <label htmlFor="banner-image" className="artist-info-form">
+          <span>Select or change your banner image</span>
           <img
             className="banner-image-preview"
             src={artistBannerPreview}

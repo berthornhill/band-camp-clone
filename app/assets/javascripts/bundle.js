@@ -90,7 +90,7 @@
 /*!*******************************************!*\
   !*** ./frontend/actions/album_actions.js ***!
   \*******************************************/
-/*! exports provided: RECEIVE_ALBUM, RECEIVE_ALBUMS, RECEIVE_TRACKS, RECEIVE_NEW_TRACK, fetchAlbum, fetchAlbums, createAlbum, fetchTracks, createTracks */
+/*! exports provided: RECEIVE_ALBUM, RECEIVE_ALBUMS, RECEIVE_TRACKS, RECEIVE_NEW_TRACK, REMOVE_DELETED, REMOVE_TRACK, fetchAlbum, fetchAlbums, createAlbum, fetchTracks, createTracks, deleteAlbum, deleteTrack */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -99,17 +99,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_ALBUMS", function() { return RECEIVE_ALBUMS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_TRACKS", function() { return RECEIVE_TRACKS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_NEW_TRACK", function() { return RECEIVE_NEW_TRACK; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_DELETED", function() { return REMOVE_DELETED; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_TRACK", function() { return REMOVE_TRACK; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAlbum", function() { return fetchAlbum; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAlbums", function() { return fetchAlbums; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createAlbum", function() { return createAlbum; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchTracks", function() { return fetchTracks; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createTracks", function() { return createTracks; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteAlbum", function() { return deleteAlbum; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteTrack", function() { return deleteTrack; });
 /* harmony import */ var _util_album_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/album_util */ "./frontend/util/album_util.js");
 
 var RECEIVE_ALBUM = "RECEIVE_ALBUM";
 var RECEIVE_ALBUMS = "RECEIVE_ALBUMS";
 var RECEIVE_TRACKS = "RECEIVE_TRACKS";
 var RECEIVE_NEW_TRACK = "RECEIVE_NEW_TRACK";
+var REMOVE_DELETED = "REMOVE_DELETED";
+var REMOVE_TRACK = "REMOVE_TRACK";
 
 var receiveAlbums = function receiveAlbums(_ref) {
   var albums = _ref.albums;
@@ -148,6 +154,29 @@ var receiveNewTrack = function receiveNewTrack(_ref3) {
   };
 };
 
+var removeAlbum = function removeAlbum(_ref4) {
+  var artist = _ref4.artist,
+      tracks = _ref4.tracks,
+      album = _ref4.album;
+  debugger;
+  return {
+    type: REMOVE_DELETED,
+    artist: artist,
+    tracks: tracks,
+    album: album
+  };
+};
+
+var removeTrack = function removeTrack(_ref5) {
+  var track = _ref5.track,
+      album = _ref5.album;
+  return {
+    type: REMOVE_TRACK,
+    album: album,
+    track: track
+  };
+};
+
 var fetchAlbum = function fetchAlbum(id) {
   return function (dispatch) {
     return _util_album_util__WEBPACK_IMPORTED_MODULE_0__["fetchAlbum"](id).then(function (album) {
@@ -180,6 +209,20 @@ var createTracks = function createTracks(albumId, formData) {
   return function (dispatch) {
     return _util_album_util__WEBPACK_IMPORTED_MODULE_0__["createTracks"](albumId, formData).then(function (tracks) {
       return dispatch(receiveNewTrack(tracks));
+    });
+  };
+};
+var deleteAlbum = function deleteAlbum(id) {
+  return function (dispatch) {
+    return _util_album_util__WEBPACK_IMPORTED_MODULE_0__["deleteAlbum"](id).then(function (payload) {
+      return dispatch(removeAlbum(payload));
+    });
+  };
+};
+var deleteTrack = function deleteTrack(id) {
+  return function (dispatch) {
+    return _util_album_util__WEBPACK_IMPORTED_MODULE_0__["deleteTrack"](id).then(function (payload) {
+      return dispatch(removeTrack(payload));
     });
   };
 };
@@ -651,7 +694,11 @@ var AlbumInfo = /*#__PURE__*/function (_React$Component) {
             src: icon,
             alt: "play-pause button",
             onClick: _this2.handlePlayTrack
-          })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, track.trackNo, "."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, track.title));
+          })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, track.trackNo, "."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, track.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+            className: "download-link",
+            href: track.url,
+            download: track.title
+          }, "download"));
         }
       });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -671,7 +718,7 @@ var AlbumInfo = /*#__PURE__*/function (_React$Component) {
         className: "needs-music"
       }, "\uD83C\uDFB6 This album needs some music \uD83C\uDFB6"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "blurb"
-      }, "Digital Album Streaming + Download Includes unlimited streaming via the free Bandcamp app, plus high-quality download in MP3, FLAC and more."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Digital Album Streaming + Download Includes unlimited streaming via the free Bandlamp app, plus high-quality download in MP3, FLAC and more."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "ba-description"
       }, this.props.album.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "tracks-list"
@@ -950,7 +997,7 @@ var App = function App() {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_7__["AuthRoute"], {
     path: "/users/signup",
     component: _session_signup_form_container__WEBPACK_IMPORTED_MODULE_6__["default"]
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_7__["ProtectedRoute"], {
     path: "/users/:id",
     component: _users_user_show_container__WEBPACK_IMPORTED_MODULE_11__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
@@ -1842,7 +1889,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-var TopTags = ["featured", "electronic", "rock", "experimental", "alternative", "metal", "hip-hop/rap", "punk", "ambient", "soundtrack", "jazz", "classical"];
+var TopTags = ["featured", "electronic", "rock", "experimental", "alternative", "metal", "hip-hop", "punk", "ambient", "soundtrack", "jazz", "classical"];
 
 var Discover = /*#__PURE__*/function (_React$Component) {
   _inherits(Discover, _React$Component);
@@ -2301,8 +2348,8 @@ var Footer = function Footer() {
     }
   }, "Sign in as Demo User")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "link-column2"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    href: "#"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/artist/308"
   }, "About the developer")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     href: "https://github.com/berthornhill",
     target: "_blank"
@@ -2946,7 +2993,8 @@ var AudioPlayer = /*#__PURE__*/function (_React$Component) {
     _this.convertTime = _this.convertTime.bind(_assertThisInitialized(_this));
     _this.setDuration = _this.setDuration.bind(_assertThisInitialized(_this));
     _this.onLoadData = _this.onLoadData.bind(_assertThisInitialized(_this));
-    _this.updateProgressBar = _this.updateProgressBar.bind(_assertThisInitialized(_this)); //` reference to <audio> element for managing playback
+    _this.updateProgressBar = _this.updateProgressBar.bind(_assertThisInitialized(_this));
+    _this.scrub = _this.scrub.bind(_assertThisInitialized(_this)); //` reference to <audio> element for managing playback
 
     _this.audio = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef();
     _this.progress = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef();
@@ -3050,6 +3098,15 @@ var AudioPlayer = /*#__PURE__*/function (_React$Component) {
       this.progress.current.style.flexBasis = "".concat(currentProgress, "%");
     }
   }, {
+    key: "scrub",
+    value: function scrub(e) {
+      e.preventDefault();
+      var audio = this.audio.current;
+      var clickedPos = e.pageX - e.target.offsetLeft;
+      var newTime = clickedPos / e.target.offsetWidth * audio.duration;
+      audio.currentTime = newTime;
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this2 = this;
@@ -3071,7 +3128,8 @@ var AudioPlayer = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.track.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.state.currentTime, "/", this.state.duration)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "prog-bar-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "prog-bar"
+        id: "prog-bar",
+        onClick: this.scrub
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "prog-fill",
         ref: this.progress
@@ -4388,7 +4446,7 @@ var Features = function Features() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "top-story"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    to: "/artist/210"
+    to: "/artist/286"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     src: window.concert2,
     alt: "top story, rock star guy image"
@@ -4397,21 +4455,21 @@ var Features = function Features() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "mini-story one"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    to: "/artist/245"
+    to: "/artist/277"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     src: window.record,
     alt: "top story, rock star guy image"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Sign up and create a Profile!"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "mini-story two"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    to: "/artist/240"
+    to: "/artist/307"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     src: window.rockstarguy,
     alt: "top story, rock star guy image"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Upload some images or some music. Make it unique!"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "mini-story three"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    to: "/artist/256"
+    to: "/artist/308"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     src: window.urmusic,
     alt: "top story, rock star guy image"
@@ -4645,6 +4703,7 @@ var TagsHeader = function TagsHeader(_ref) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -4668,6 +4727,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 
 
 
@@ -4705,9 +4765,8 @@ var AlbumForm = /*#__PURE__*/function (_React$Component) {
       return function (e) {
         e.preventDefault();
 
-        _this2.setState(_defineProperty({}, input, e.target.value));
+        _this2.setState(_defineProperty({}, input, e.target.value)); // e.target.className = "";
 
-        e.target.className = "";
       };
     }
   }, {
@@ -4734,6 +4793,8 @@ var AlbumForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
+      var _this4 = this;
+
       e.preventDefault();
       if (!this.state.albumArt.file) return alert("You must add some album art"); // send form data.
 
@@ -4743,7 +4804,9 @@ var AlbumForm = /*#__PURE__*/function (_React$Component) {
       formData.append("album[album_name]", this.state.albumName);
       formData.append("album[album_art]", this.state.albumArt.file);
       formData.append("album[artist_id]", id);
-      this.props.createAlbum(id, formData);
+      this.props.createAlbum(id, formData).then(function () {
+        return _this4.props.history.push("/users/".concat(id, "/track"));
+      });
     }
   }, {
     key: "render",
@@ -4756,10 +4819,12 @@ var AlbumForm = /*#__PURE__*/function (_React$Component) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         id: "info-form",
         onSubmit: this.handleSubmit
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+        className: "form-title"
+      }, "CREATE A NEW ALBUM"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "artist-image",
         className: "artist-info-form"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Select some artwork for your album"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "artist-image-preview",
         src: albumArtPreview,
         alt: "preview of image"
@@ -4793,7 +4858,7 @@ var AlbumForm = /*#__PURE__*/function (_React$Component) {
   return AlbumForm;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (AlbumForm);
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(AlbumForm));
 
 /***/ }),
 
@@ -4914,9 +4979,8 @@ var InfoForm = /*#__PURE__*/function (_React$Component) {
       return function (e) {
         e.preventDefault();
 
-        _this2.setState(_defineProperty({}, input, e.target.value));
+        _this2.setState(_defineProperty({}, input, e.target.value)); // e.target.className = "";
 
-        e.target.className = "";
       };
     }
   }, {
@@ -4943,6 +5007,8 @@ var InfoForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
+      var _this4 = this;
+
       e.preventDefault(); // send form data.
 
       var formData = new FormData();
@@ -4953,7 +5019,9 @@ var InfoForm = /*#__PURE__*/function (_React$Component) {
       this.state.bannerImage.file ? formData.append("artist[banner_image]", this.state.bannerImage.file) : null; // formData.append("artist[artist_image]", this.state.artistImage.file);
       // formData.append("artist[banner_image]", this.state.bannerImage.file);
 
-      this.props.updateArtist(id, formData);
+      this.props.updateArtist(id, formData).then(function () {
+        return _this4.props.history.push("/users/".concat(id, "/album"));
+      });
     }
   }, {
     key: "render",
@@ -4966,10 +5034,12 @@ var InfoForm = /*#__PURE__*/function (_React$Component) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         id: "info-form",
         onSubmit: this.handleSubmit
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+        className: "form-title"
+      }, "EDIT & UPDATE YOUR BAND'S INFO"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "artist-image",
         className: "artist-info-form"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Select or change your artist profile image"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "artist-image-preview",
         src: artistImagePreview,
         alt: "preview of image"
@@ -4981,7 +5051,7 @@ var InfoForm = /*#__PURE__*/function (_React$Component) {
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "banner-image",
         className: "artist-info-form"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Select or change your banner image"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "banner-image-preview",
         src: artistBannerPreview,
         alt: "preview of image"
@@ -5046,6 +5116,7 @@ var mDTP = function mDTP(dispatch) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -5072,6 +5143,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var TracksForm = /*#__PURE__*/function (_React$Component) {
   _inherits(TracksForm, _React$Component);
 
@@ -5094,6 +5166,8 @@ var TracksForm = /*#__PURE__*/function (_React$Component) {
     _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.handleFile = _this.handleFile.bind(_assertThisInitialized(_this));
+    _this.handleDeleteAlbum = _this.handleDeleteAlbum.bind(_assertThisInitialized(_this));
+    _this.handleDeleteTrack = _this.handleDeleteTrack.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -5107,6 +5181,22 @@ var TracksForm = /*#__PURE__*/function (_React$Component) {
 
         _this2.setState(_defineProperty({}, input, e.target.value));
       };
+    }
+  }, {
+    key: "handleDeleteAlbum",
+    value: function handleDeleteAlbum(e) {
+      e.preventDefault(); // debugger;
+
+      var id = this.props.match.params.id;
+      debugger;
+      this.props.deleteAlbum(this.state.currentAlbum);
+      this.props.history.push("/users/".concat(id, "/album"));
+    }
+  }, {
+    key: "handleDeleteTrack",
+    value: function handleDeleteTrack(e) {
+      e.preventDefault();
+      this.props.deleteTrack(e.target.id);
     }
   }, {
     key: "handleFile",
@@ -5135,6 +5225,7 @@ var TracksForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
+      debugger;
       e.preventDefault(); // const file = e.currentTarget.files[0];
       // debugger;
 
@@ -5153,7 +5244,9 @@ var TracksForm = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this4 = this;
 
-      // builds album image cards which change the current Album for addition of tracks.
+      debugger;
+      if (this.props.albumsArray.length === 0) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Try uploading creating an album first!"); // builds album image cards which change the current Album for addition of tracks.
+
       var albumSelect = this.props.albumsArray.map(function (id, index) {
         var album = _this4.props.albums[id]; // debugger;
 
@@ -5174,16 +5267,27 @@ var TracksForm = /*#__PURE__*/function (_React$Component) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           key: track.id,
           className: "track-list"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, track.trackNo, "."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, track.title));
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, track.trackNo, "."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, track.title)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          id: track.id,
+          className: "track-delete",
+          onClick: _this4.handleDeleteTrack
+        }, "DELETE TRACK"));
       });
       var selected = this.props.albums[this.state.currentAlbum]; // debugger;
 
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        id: "info-form",
-        onSubmit: this.handleSubmit
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "info-form"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+        className: "form-title"
+      }, "UPLOAD TRACKS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Select an album:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "album-select-box"
-      }, albumSelect), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ol", null, trackList), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      }, albumSelect), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        action: "delete",
+        onClick: this.handleDeleteAlbum
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        id: "delete-album",
+        type: "submit"
+      }, "DELETE ALBUM AND ALL CONNECTED TRACKS")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ol", null, trackList), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         className: "add-tracks-label",
         htmlFor: "addTrack"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Add Track*:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -5194,7 +5298,9 @@ var TracksForm = /*#__PURE__*/function (_React$Component) {
         id: "newTrack",
         accept: "audio/*",
         onChange: this.handleFile
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        onSubmit: this.handleSubmit
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         className: "track-form-label",
         htmlFor: "title"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Track Title*:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -5203,14 +5309,14 @@ var TracksForm = /*#__PURE__*/function (_React$Component) {
         className: "location"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "submit"
-      }, "Upload Track"));
+      }, "Upload Track")));
     }
   }]);
 
   return TracksForm;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (TracksForm); // albumId
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(TracksForm)); // albumId
 // name
 // trackNumber
 
@@ -5244,6 +5350,12 @@ var mSTP = function mSTP(state, ownProps) {
 
 var mDTP = function mDTP(dispatch) {
   return {
+    deleteTrack: function deleteTrack(id) {
+      return dispatch(Object(_actions_album_actions__WEBPACK_IMPORTED_MODULE_2__["deleteTrack"])(id));
+    },
+    deleteAlbum: function deleteAlbum(id) {
+      return dispatch(Object(_actions_album_actions__WEBPACK_IMPORTED_MODULE_2__["deleteAlbum"])(id));
+    },
     createTracks: function createTracks(albumId, formData) {
       return dispatch(Object(_actions_album_actions__WEBPACK_IMPORTED_MODULE_2__["createTracks"])(albumId, formData));
     }
@@ -5494,6 +5606,21 @@ var AlbumsReducer = function AlbumsReducer() {
     case _actions_tag_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_TAGGED"]:
       return _objectSpread(_objectSpread({}, state), action.payload.albums);
 
+    case _actions_album_actions__WEBPACK_IMPORTED_MODULE_2__["REMOVE_DELETED"]:
+      debugger;
+
+      var tempState = _objectSpread({}, state);
+
+      delete tempState[action.album.id];
+      debugger;
+      return tempState;
+
+    case _actions_album_actions__WEBPACK_IMPORTED_MODULE_2__["REMOVE_TRACK"]:
+      var updateState = _objectSpread({}, state);
+
+      updateState[action.album.id].tracks = action.album.tracks;
+      return updateState;
+
     default:
       return state;
   }
@@ -5549,6 +5676,14 @@ var ArtistReducer = function ArtistReducer() {
 
     case _actions_tag_actions__WEBPACK_IMPORTED_MODULE_3__["RECEIVE_TAGGED"]:
       return _objectSpread(_objectSpread({}, state), action.payload.artists);
+
+    case _actions_album_actions__WEBPACK_IMPORTED_MODULE_1__["REMOVE_DELETED"]:
+      debugger;
+
+      var tempState = _objectSpread({}, state);
+
+      tempState[action.artist.id].albums = action.artist.albums;
+      return tempState;
 
     default:
       return state;
@@ -5877,12 +6012,29 @@ var TracksReducer = function TracksReducer() {
     case _actions_tag_actions__WEBPACK_IMPORTED_MODULE_2__["RECEIVE_TAGGED"]:
       return _objectSpread(_objectSpread({}, state), action.payload.tracks);
 
+    case _actions_album_actions__WEBPACK_IMPORTED_MODULE_1__["REMOVE_DELETED"]:
+      var tempState = _objectSpread({}, state);
+
+      action.tracks.forEach(function (track) {
+        return delete tempState[track];
+      });
+      debugger;
+      return tempState;
+
+    case _actions_album_actions__WEBPACK_IMPORTED_MODULE_1__["REMOVE_TRACK"]:
+      var newTrackState = _objectSpread({}, state);
+
+      delete newTrackState[action.track];
+      return newTrackState;
+
     default:
       return state;
   }
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (TracksReducer);
+
+var removeFromArray = function removeFromArray(array) {};
 
 /***/ }),
 
@@ -5961,7 +6113,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var configureStore = function configureStore() {
   var preloadedState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  return Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_root_reducer__WEBPACK_IMPORTED_MODULE_3__["default"], preloadedState, Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(redux_thunk__WEBPACK_IMPORTED_MODULE_1__["default"]));
+  return Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_root_reducer__WEBPACK_IMPORTED_MODULE_3__["default"], preloadedState, Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(redux_thunk__WEBPACK_IMPORTED_MODULE_1__["default"], redux_logger__WEBPACK_IMPORTED_MODULE_2___default.a));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (configureStore);
@@ -5972,7 +6124,7 @@ var configureStore = function configureStore() {
 /*!*************************************!*\
   !*** ./frontend/util/album_util.js ***!
   \*************************************/
-/*! exports provided: fetchAlbum, fetchAlbums, fetchTracks, createAlbum, createTracks */
+/*! exports provided: fetchAlbum, fetchAlbums, fetchTracks, createAlbum, createTracks, deleteAlbum, deleteTrack */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5982,6 +6134,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchTracks", function() { return fetchTracks; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createAlbum", function() { return createAlbum; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createTracks", function() { return createTracks; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteAlbum", function() { return deleteAlbum; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteTrack", function() { return deleteTrack; });
 var fetchAlbum = function fetchAlbum(id) {
   return $.ajax({
     method: "GET",
@@ -6017,6 +6171,18 @@ var createTracks = function createTracks(albumId, formData) {
     data: formData,
     contentType: false,
     processData: false
+  });
+};
+var deleteAlbum = function deleteAlbum(id) {
+  return $.ajax({
+    method: "DELETE",
+    url: "/api/albums/".concat(id)
+  });
+};
+var deleteTrack = function deleteTrack(id) {
+  return $.ajax({
+    method: "DELETE",
+    url: "/api/tracks/".concat(id)
   });
 };
 

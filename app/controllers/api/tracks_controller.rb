@@ -29,4 +29,20 @@ class Api::TracksController < ApplicationController
       params.require(:track).permit(:title, :song, :album_id, :track_no)
     end
 
+    def destroy 
+      @track = Track.where(id: params[:id]).includes(:artist)[0]
+      @track_id = @track.id
+      @album_id = @track.album_id
+
+      # debugger
+      if @track.artist.id == current_user.id
+        # debugger
+        @track.destroy
+        @tracks_array = Album.find(@album_id).tracks.pluck(:id)
+        render :delete
+      else
+        render json: {error: "current user does not match"}
+      end
+    end
+
 end

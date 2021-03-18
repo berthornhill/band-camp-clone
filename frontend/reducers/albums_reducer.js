@@ -4,6 +4,8 @@ import {
   RECEIVE_ALBUMS,
   RECEIVE_ALBUM,
   RECEIVE_NEW_TRACK,
+  REMOVE_DELETED,
+  REMOVE_TRACK,
 } from "../actions/album_actions";
 
 const AlbumsReducer = (state = {}, action) => {
@@ -24,6 +26,17 @@ const AlbumsReducer = (state = {}, action) => {
       return { ...state, ...action.albums };
     case RECEIVE_TAGGED:
       return { ...state, ...action.payload.albums };
+
+    case REMOVE_DELETED:
+      debugger;
+      const tempState = { ...state };
+      delete tempState[action.album.id];
+      debugger;
+      return tempState;
+    case REMOVE_TRACK:
+      const updateState = { ...state };
+      updateState[action.album.id].tracks = action.album.tracks;
+      return updateState;
     default:
       return state;
   }

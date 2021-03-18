@@ -1,6 +1,10 @@
 import { connect } from "react-redux";
 import TracksForm from "./tracks_form";
-import { createTracks } from "../../actions/album_actions";
+import {
+  createTracks,
+  deleteAlbum,
+  deleteTrack,
+} from "../../actions/album_actions";
 
 const mSTP = (state, ownProps) => {
   debugger;
@@ -14,6 +18,8 @@ const mSTP = (state, ownProps) => {
 
 const mDTP = (dispatch) => {
   return {
+    deleteTrack: (id) => dispatch(deleteTrack(id)),
+    deleteAlbum: (id) => dispatch(deleteAlbum(id)),
     createTracks: (albumId, formData) =>
       dispatch(createTracks(albumId, formData)),
   };

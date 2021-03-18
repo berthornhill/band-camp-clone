@@ -56,6 +56,13 @@ class AlbumInfo extends React.Component {
             </button> */}
             <div>{track.trackNo}.</div>
             <div>{track.title}</div>
+            <a
+              className="download-link"
+              href={track.url}
+              download={track.title}
+            >
+              download
+            </a>
           </li>
         );
       }
@@ -82,7 +89,7 @@ class AlbumInfo extends React.Component {
 
             <div className="blurb">
               Digital Album Streaming + Download Includes unlimited streaming
-              via the free Bandcamp app, plus high-quality download in MP3, FLAC
+              via the free Bandlamp app, plus high-quality download in MP3, FLAC
               and more.
             </div>
 
