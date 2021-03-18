@@ -59,7 +59,7 @@ const Footer = () => {
               </li>
               <li>
                 <a href="https://angel.co/u/bert-hill-2" target="_blank">
-                  Anglel List
+                  Angel List
                 </a>
               </li>
             </ul>

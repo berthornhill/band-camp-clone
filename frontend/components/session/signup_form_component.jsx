@@ -103,7 +103,7 @@ class SignupForm extends React.Component {
                 </div>
               </div>
               <div className="item">
-                <label>Passsword</label>
+                <label>Password</label>
                 <div>
                   <input
                     type="password"
