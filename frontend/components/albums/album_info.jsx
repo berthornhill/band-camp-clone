@@ -35,9 +35,9 @@ class AlbumInfo extends React.Component {
       let track = this.props.tracks[id];
 
       let icon = window.playSolidBlack;
-      if (this.state.currentTrackId === id) {
-        icon = window.pause;
-      }
+      // if (this.state.currentTrackId === id) {
+      //   icon = window.pause;
+      // }
 
       if (track) {
         return (

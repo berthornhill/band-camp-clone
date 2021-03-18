@@ -675,11 +675,9 @@ var AlbumInfo = /*#__PURE__*/function (_React$Component) {
       var initialTrack = this.props.tracks[this.props.album.tracks[0]];
       var tracks = this.props.album.tracks.map(function (id) {
         var track = _this2.props.tracks[id];
-        var icon = window.playSolidBlack;
-
-        if (_this2.state.currentTrackId === id) {
-          icon = window.pause;
-        }
+        var icon = window.playSolidBlack; // if (this.state.currentTrackId === id) {
+        //   icon = window.pause;
+        // }
 
         if (track) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
