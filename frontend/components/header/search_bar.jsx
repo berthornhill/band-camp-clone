@@ -26,7 +26,6 @@ class SearchBar extends React.Component {
   }
 
   delayClose(e) {
-    debugger;
     e.preventDefault;
 
     setTimeout(this.closeMenu, 200);

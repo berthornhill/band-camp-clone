@@ -40,7 +40,6 @@ const receiveNewTrack = ({ track, album }) => {
 };
 
 const removeAlbum = ({ artist, tracks, album }) => {
-  debugger;
   return {
     type: REMOVE_DELETED,
     artist,

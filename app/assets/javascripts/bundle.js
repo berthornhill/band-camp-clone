@@ -158,7 +158,6 @@ var removeAlbum = function removeAlbum(_ref4) {
   var artist = _ref4.artist,
       tracks = _ref4.tracks,
       album = _ref4.album;
-  debugger;
   return {
     type: REMOVE_DELETED,
     artist: artist,
@@ -2692,7 +2691,6 @@ var SearchBar = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "delayClose",
     value: function delayClose(e) {
-      debugger;
       e.preventDefault;
       setTimeout(this.closeMenu, 200);
     }
@@ -5607,12 +5605,9 @@ var AlbumsReducer = function AlbumsReducer() {
       return _objectSpread(_objectSpread({}, state), action.payload.albums);
 
     case _actions_album_actions__WEBPACK_IMPORTED_MODULE_2__["REMOVE_DELETED"]:
-      debugger;
-
       var tempState = _objectSpread({}, state);
 
       delete tempState[action.album.id];
-      debugger;
       return tempState;
 
     case _actions_album_actions__WEBPACK_IMPORTED_MODULE_2__["REMOVE_TRACK"]:
@@ -5678,8 +5673,6 @@ var ArtistReducer = function ArtistReducer() {
       return _objectSpread(_objectSpread({}, state), action.payload.artists);
 
     case _actions_album_actions__WEBPACK_IMPORTED_MODULE_1__["REMOVE_DELETED"]:
-      debugger;
-
       var tempState = _objectSpread({}, state);
 
       tempState[action.artist.id].albums = action.artist.albums;
@@ -6018,7 +6011,6 @@ var TracksReducer = function TracksReducer() {
       action.tracks.forEach(function (track) {
         return delete tempState[track];
       });
-      debugger;
       return tempState;
 
     case _actions_album_actions__WEBPACK_IMPORTED_MODULE_1__["REMOVE_TRACK"]:
@@ -6113,7 +6105,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var configureStore = function configureStore() {
   var preloadedState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  return Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_root_reducer__WEBPACK_IMPORTED_MODULE_3__["default"], preloadedState, Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(redux_thunk__WEBPACK_IMPORTED_MODULE_1__["default"], redux_logger__WEBPACK_IMPORTED_MODULE_2___default.a));
+  return Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_root_reducer__WEBPACK_IMPORTED_MODULE_3__["default"], preloadedState, Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(redux_thunk__WEBPACK_IMPORTED_MODULE_1__["default"]));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (configureStore);

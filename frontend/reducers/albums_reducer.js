@@ -28,10 +28,9 @@ const AlbumsReducer = (state = {}, action) => {
       return { ...state, ...action.payload.albums };
 
     case REMOVE_DELETED:
-      debugger;
       const tempState = { ...state };
       delete tempState[action.album.id];
-      debugger;
+
       return tempState;
     case REMOVE_TRACK:
       const updateState = { ...state };

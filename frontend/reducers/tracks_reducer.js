@@ -27,7 +27,7 @@ const TracksReducer = (state = {}, action) => {
     case REMOVE_DELETED:
       const tempState = { ...state };
       action.tracks.forEach((track) => delete tempState[track]);
-      debugger;
+
       return tempState;
 
     case REMOVE_TRACK:

@@ -35,7 +35,6 @@ const ArtistReducer = (state = {}, action) => {
     case RECEIVE_TAGGED:
       return { ...state, ...action.payload.artists };
     case REMOVE_DELETED:
-      debugger;
       const tempState = { ...state };
       tempState[action.artist.id].albums = action.artist.albums;
       return tempState;
