@@ -2095,13 +2095,10 @@ var DiscoverPlayer = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
-      debugger;
       var tags = this.props.tags;
       if (!tags.tracks) return null; // pulls first track from tagged id to be passed on to the audio player
 
       var initialTrack = this.props.tracks[tags.tracks[0]];
-      debugger; // this.props.albums[this.props.tracks[tags.tracks[0]].albumId];
-
       var displayedArt;
 
       if (!this.state.currentTrackId) {
@@ -3546,7 +3543,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state) {
-  debugger;
+  // debugger;
   return {
     search: state.entities.search,
     artists: state.entities.artists,
@@ -3582,7 +3579,7 @@ var TrackCard = function TrackCard(_ref) {
   var track = _ref.track,
       album = _ref.album,
       artist = _ref.artist;
-  debugger;
+  // debugger;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "search-card",
     key: track.id
@@ -4648,7 +4645,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state, ownProps) {
-  debugger;
+  // debugger;
   return {
     // taggedArtists: state.tags.artists,
     // taggedAlbums: state.tags.albums,
@@ -4886,7 +4883,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state, ownProps) {
-  debugger;
+  // debugger;
   return {
     artist: state.entities.artists[ownProps.match.params.id],
     errors: state.errors
@@ -5194,8 +5191,8 @@ var TracksForm = /*#__PURE__*/function (_React$Component) {
     value: function handleDeleteAlbum(e) {
       e.preventDefault(); // debugger;
 
-      var id = this.props.match.params.id;
-      debugger;
+      var id = this.props.match.params.id; // debugger;
+
       this.props.deleteAlbum(this.state.currentAlbum);
       this.props.history.push("/users/".concat(id, "/album"));
     }
@@ -5232,7 +5229,7 @@ var TracksForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
-      debugger;
+      // debugger;
       e.preventDefault(); // const file = e.currentTarget.files[0];
       // debugger;
 
@@ -5251,7 +5248,7 @@ var TracksForm = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this4 = this;
 
-      debugger;
+      // debugger;
       if (this.props.albumsArray.length === 0) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Try uploading creating an album first!"); // builds album image cards which change the current Album for addition of tracks.
 
       var albumSelect = this.props.albumsArray.map(function (id, index) {
@@ -5346,7 +5343,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state, ownProps) {
-  debugger;
+  // debugger;
   return {
     albumsArray: state.entities.artists[ownProps.match.params.id].albums.sort(),
     albums: state.entities.albums,
@@ -6114,7 +6111,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var configureStore = function configureStore() {
   var preloadedState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  return Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_root_reducer__WEBPACK_IMPORTED_MODULE_3__["default"], preloadedState, Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(redux_thunk__WEBPACK_IMPORTED_MODULE_1__["default"], redux_logger__WEBPACK_IMPORTED_MODULE_2___default.a));
+  return Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_root_reducer__WEBPACK_IMPORTED_MODULE_3__["default"], preloadedState, Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(redux_thunk__WEBPACK_IMPORTED_MODULE_1__["default"]));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (configureStore);

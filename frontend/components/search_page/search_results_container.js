@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import SearchResults from "./search_results";
 
 const mSTP = (state) => {
-  debugger;
+  // debugger;
   return {
     search: state.entities.search,
     artists: state.entities.artists,

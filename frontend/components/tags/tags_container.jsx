@@ -3,7 +3,7 @@ import { fetchTagged } from "../../actions/tag_actions";
 import Tags from "./tags";
 
 const mSTP = (state, ownProps) => {
-  debugger;
+  // debugger;
   return {
     // taggedArtists: state.tags.artists,
     // taggedAlbums: state.tags.albums,

@@ -36,7 +36,6 @@ class DiscoverPlayer extends React.Component {
   }
 
   render() {
-    debugger;
     const { tags } = this.props;
 
     if (!tags.tracks) return null;
@@ -44,8 +43,6 @@ class DiscoverPlayer extends React.Component {
     // pulls first track from tagged id to be passed on to the audio player
     const initialTrack = this.props.tracks[tags.tracks[0]];
 
-    debugger;
-    // this.props.albums[this.props.tracks[tags.tracks[0]].albumId];
     let displayedArt;
 
     if (!this.state.currentTrackId) {

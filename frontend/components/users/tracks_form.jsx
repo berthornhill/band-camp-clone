@@ -31,7 +31,7 @@ class TracksForm extends React.Component {
     // debugger;
     const id = this.props.match.params.id;
 
-    debugger;
+    // debugger;
     this.props.deleteAlbum(this.state.currentAlbum);
     this.props.history.push(`/users/${id}/album`);
   }
@@ -58,7 +58,7 @@ class TracksForm extends React.Component {
   }
 
   handleSubmit(e) {
-    debugger;
+    // debugger;
     e.preventDefault();
     // const file = e.currentTarget.files[0];
 
@@ -76,7 +76,7 @@ class TracksForm extends React.Component {
   }
 
   render() {
-    debugger;
+    // debugger;
 
     if (this.props.albumsArray.length === 0)
       return <h1>Try uploading creating an album first!</h1>;

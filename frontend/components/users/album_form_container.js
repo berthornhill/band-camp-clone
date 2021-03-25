@@ -3,7 +3,7 @@ import AlbumForm from "./album_form";
 import { createAlbum } from "../../actions/album_actions";
 
 const mSTP = (state, ownProps) => {
-  debugger;
+  // debugger;
   return {
     artist: state.entities.artists[ownProps.match.params.id],
     errors: state.errors,
