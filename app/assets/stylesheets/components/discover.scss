@@ -77,9 +77,19 @@
   }
 }
 
+.tag-pill {
+  z-index: 1;
+  background-color: #ffffff00;
+  padding-left: 10px;
+  padding-right: 10px;
+  transition: background-color 0.3s;
+  border-radius: 25px;
+}
+
 .tag-pill:hover {
-  border-radius: 50%;
-  color: rgb(37, 37, 37);
+  background-color: #ffffff3f;
+  transition: background-color 0.3s;
+  cursor: pointer;
 }
 
 // discover player styles

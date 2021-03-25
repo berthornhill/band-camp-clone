@@ -2095,10 +2095,21 @@ var DiscoverPlayer = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
+      debugger;
       var tags = this.props.tags;
       if (!tags.tracks) return null; // pulls first track from tagged id to be passed on to the audio player
 
       var initialTrack = this.props.tracks[tags.tracks[0]];
+      debugger; // this.props.albums[this.props.tracks[tags.tracks[0]].albumId];
+
+      var displayedArt;
+
+      if (!this.state.currentTrackId) {
+        displayedArt = this.props.albums[this.props.tracks[tags.tracks[0]].albumId].albumArt;
+      } else {
+        displayedArt = this.props.albums[this.props.tracks[this.state.currentTrackId].albumId].albumArt;
+      }
+
       var trackCards = tags.tracks.slice(0, 8).map(function (id) {
         var track = _this2.props.tracks[id];
         var artist = _this2.props.artists[track.artistId];
@@ -2178,8 +2189,8 @@ var DiscoverPlayer = /*#__PURE__*/function (_React$Component) {
         className: "now-playing-image"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         id: "np-cover-art",
-        src: window.albumcover3,
-        alt: ""
+        src: displayedArt,
+        alt: "album art for current playing track"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_media_player_audio_player_container__WEBPACK_IMPORTED_MODULE_3__["default"], {
         initialTrack: initialTrack,
         playing: this.state.playing
@@ -6103,7 +6114,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var configureStore = function configureStore() {
   var preloadedState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  return Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_root_reducer__WEBPACK_IMPORTED_MODULE_3__["default"], preloadedState, Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(redux_thunk__WEBPACK_IMPORTED_MODULE_1__["default"]));
+  return Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_root_reducer__WEBPACK_IMPORTED_MODULE_3__["default"], preloadedState, Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(redux_thunk__WEBPACK_IMPORTED_MODULE_1__["default"], redux_logger__WEBPACK_IMPORTED_MODULE_2___default.a));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (configureStore);

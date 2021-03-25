@@ -36,12 +36,27 @@ class DiscoverPlayer extends React.Component {
   }
 
   render() {
+    debugger;
     const { tags } = this.props;
 
     if (!tags.tracks) return null;
 
     // pulls first track from tagged id to be passed on to the audio player
     const initialTrack = this.props.tracks[tags.tracks[0]];
+
+    debugger;
+    // this.props.albums[this.props.tracks[tags.tracks[0]].albumId];
+    let displayedArt;
+
+    if (!this.state.currentTrackId) {
+      displayedArt = this.props.albums[
+        this.props.tracks[tags.tracks[0]].albumId
+      ].albumArt;
+    } else {
+      displayedArt = this.props.albums[
+        this.props.tracks[this.state.currentTrackId].albumId
+      ].albumArt;
+    }
 
     const trackCards = tags.tracks.slice(0, 8).map((id) => {
       let track = this.props.tracks[id];
@@ -122,7 +137,11 @@ class DiscoverPlayer extends React.Component {
         <div className="col-right">
           <div className="col-right-outer">
             <div className="now-playing-image">
-              <img id="np-cover-art" src={window.albumcover3} alt="" />
+              <img
+                id="np-cover-art"
+                src={displayedArt}
+                alt="album art for current playing track"
+              />
             </div>
             <AudioPlayer
               initialTrack={initialTrack}
