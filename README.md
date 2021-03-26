@@ -63,3 +63,15 @@ code to calculate progress bar update and update on scrub from `<AudioPlayer>`
 ## Search Bar
 
 The search bar presented a few sets of challenges for me. One was the returns from a single search needed to return 3 different sets of data. That is to say, it needed to run the search for matches in `Users`, `Albums`, and `Tracks` and return the results in an organized way for rendering on the front end.
+
+---
+
+## Connect
+
+Please reach out if you'd like to connect!
+
+berthilldev@gmail.com
+
+www.berthilldev.com
+
+Skills : JavaScript, Ruby, Ruby on Rails, React, Redux, SQL, HTML, CSS, Git, MongoDB, PostgreSQL, Node.js, Linux, Express.js Amazon Web Services (AWS S3), Heroku, Object Oriented Programming (OOP), Test Driven Development (TDD), Webpack, jQuery
