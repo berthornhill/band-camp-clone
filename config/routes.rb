@@ -16,9 +16,6 @@ Rails.application.routes.draw do
 
     resources :tracks, only: [:destroy]
 
-    # resources :tracks, 
-
-    resources :tests, only: [:show]
 
     resources :tags, only: [:index, :show]
 

@@ -5,9 +5,10 @@ export const fetchAlbum = (id) =>
   });
 
 export const fetchAlbums = (id) => {
+  debugger;
   return $.ajax({
     method: "GET",
-    url: `/api/tests/${id}`,
+    url: `/api/albums/${id}`,
   });
 };
 

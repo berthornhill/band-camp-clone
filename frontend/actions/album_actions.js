@@ -8,7 +8,6 @@ export const REMOVE_DELETED = "REMOVE_DELETED";
 export const REMOVE_TRACK = "REMOVE_TRACK";
 
 const receiveAlbums = ({ albums }) => {
-  // debugger;
   return {
     type: RECEIVE_ALBUMS,
     albums,

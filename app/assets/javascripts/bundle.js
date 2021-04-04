@@ -119,7 +119,6 @@ var REMOVE_TRACK = "REMOVE_TRACK";
 
 var receiveAlbums = function receiveAlbums(_ref) {
   var albums = _ref.albums;
-  // debugger;
   return {
     type: RECEIVE_ALBUMS,
     albums: albums
@@ -1120,19 +1119,11 @@ var ArtistIndex = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(ArtistIndex, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      // debugger;
-      this.props.fetchAlbums(this.props.match.params.id);
-    }
-  }, {
     key: "render",
     value: function render() {
       var _this = this;
 
-      // artist.albums [1,2,3,4]
-      //  albums: {1:{}, 2:{}, 3:{}, 4:{}} //{}
-      var albumCards; // debugger;
+      var albumCards;
 
       if (this.props.artist.albums) {
         albumCards = this.props.artist.albums.map(function (key) {
@@ -1152,8 +1143,7 @@ var ArtistIndex = /*#__PURE__*/function (_React$Component) {
             })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, album.albumName)));
           }
         });
-      } // debugger;
-
+      }
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "artist-show-main-left"
@@ -1164,15 +1154,9 @@ var ArtistIndex = /*#__PURE__*/function (_React$Component) {
   }]);
 
   return ArtistIndex;
-}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component); // {
-// albumName: "Good Intentions",
-// description: "This is our newes",
-// id: 131
-// }
-
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 var mSTP = function mSTP(state, ownProps) {
-  // debugger;
   return {
     albums: state.entities.albums,
     artist: state.entities.artists[ownProps.match.params.id] //[1,2,334,4,53]
@@ -1181,12 +1165,7 @@ var mSTP = function mSTP(state, ownProps) {
 };
 
 var mDTP = function mDTP(dispatch) {
-  // debugger;
-  return {
-    fetchAlbums: function fetchAlbums(artistId) {
-      return dispatch(Object(_actions_album_actions__WEBPACK_IMPORTED_MODULE_2__["fetchAlbums"])(artistId));
-    }
-  };
+  return {};
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(mSTP, mDTP)(ArtistIndex));
@@ -6141,9 +6120,10 @@ var fetchAlbum = function fetchAlbum(id) {
   });
 };
 var fetchAlbums = function fetchAlbums(id) {
+  debugger;
   return $.ajax({
     method: "GET",
-    url: "/api/tests/".concat(id)
+    url: "/api/albums/".concat(id)
   });
 };
 var fetchTracks = function fetchTracks(id) {

@@ -1,7 +1,6 @@
 import { RECEIVE_ARTIST, RECEIVE_SEARCH } from "../actions/artist_show_actions";
 import { RECEIVE_TAGGED } from "../actions/tag_actions";
 import {
-  RECEIVE_ALBUMS,
   RECEIVE_ALBUM,
   RECEIVE_NEW_TRACK,
   REMOVE_DELETED,

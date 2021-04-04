@@ -13,8 +13,7 @@ class Api::ArtistsController < ApplicationController
     def show 
         
         @artist = User.where(id: params[:id]).includes(artist_image_attachment: :blob, banner_image_attachment: :blob)[0]
-        # @artist = User.where(id: params[:id]).includes(artist_image_attachment: :blob, banner_image_attachment: :blob)
-        # debuggers
+        
         #pulls all albums with aritst_id of @artist
         @albums = Album.where(artist_id: @artist.id).includes(album_art_attachment: :blob).to_a
         @albumsArr = @albums.pluck(:id) # creates array of album :ids
@@ -23,23 +22,15 @@ class Api::ArtistsController < ApplicationController
     end
 
     def update
+      
         @artist = User.find(params[:id])
-        # debugger
-
+        
         if @artist.artist_image.attached? && params[:artist][:artist_image] 
-            # debugger
-            @artist.artist_image.purge
-            # @artist.artist_image.attach(params[:artist][:artist_image])
-            # @artist.update(params[:artist][:artist_image])
-            # debugger
+            @artist.artist_image.purge     
         end
 
         if @artist.banner_image.attached? && params[:artist][:banner_image]
-            # debugger
-            @artist.banner_image.purge
-            # @artist.banner_image.attach(params[:artist][:banner_image])
-            # @artist.update(params[:artist][:banner_image])
-            # debugger
+            @artist.banner_image.purge        
         end
         
         if @artist.update(update_params)
@@ -51,7 +42,6 @@ class Api::ArtistsController < ApplicationController
            
             render :show
         else
-            # debugger
             render json: {errors: @artist.errors.full_messages }, status: 401
         end
     
