@@ -61,33 +61,6 @@ class DiscoverPlayer extends React.Component {
       let album = this.props.albums[track.albumId];
       let playOrPause;
 
-      // sets to render div with play button
-      // if (this.state.currentTrackId == id) {
-      //   debugger;
-      //   playOrPause = (
-      //     <div
-      //       id={id}
-      //       className="play-button playing"
-      //       onClick={this.handlePlayTrack}
-      //     >
-      //       <div id={id} className="play-button-overlay"></div>
-      //       <div id={id} className="play-button-symbol">
-      //         ❚❚
-      //       </div>
-      //     </div>
-      //   );
-      // } else {
-      //   debugger;
-      //   playOrPause = (
-      //     <div id={id} className="play-button" onClick={this.handlePlayTrack}>
-      //       <div id={id} className="play-button-overlay"></div>
-      //       <div id={id} className="play-button-symbol">
-      //         ▶
-      //       </div>
-      //     </div>
-      //   );
-      // }
-
       return (
         <div className="discover-track-card" key={id}>
           <div className="cover-art-container">
@@ -153,24 +126,3 @@ class DiscoverPlayer extends React.Component {
 }
 
 export default DiscoverPlayer;
-
-// info stuff to be added underneath <AudioPlayer>
-{
-  /* <div className="info-section">
-  <div className="xtra-info">
-    from the album{" "}
-    <Link
-      to={`/artist/${album.artistId}/album/${album.id}`}
-      className="result-link"
-    >
-      {`${album.albumName}`}
-    </Link>
-  </div>
-  <div className="xtra-info">
-    by
-    <Link to={`/artist/${album.artistId}`} className="result-link">
-      {`${artist.artist}`}
-    </Link>
-  </div>
-</div>; */
-}

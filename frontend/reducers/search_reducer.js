@@ -8,10 +8,9 @@ const _nullSearch = {
 
 const SearchReducer = (state = _nullSearch, action) => {
   Object.freeze(state);
-  // debugger;
+
   switch (action.type) {
     case RECEIVE_SEARCH:
-      // debugger;
       return action.search;
     default:
       return state;

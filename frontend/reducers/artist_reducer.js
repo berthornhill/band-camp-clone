@@ -29,7 +29,6 @@ const ArtistReducer = (state = {}, action) => {
         [action.artist.id]: action.artist,
       });
     case RECEIVE_SEARCH:
-      // debugger;
       return { ...state, ...action.artists };
     // return { ...state, action };
     case RECEIVE_TAGGED:

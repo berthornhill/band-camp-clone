@@ -15,7 +15,6 @@ const receiveAlbums = ({ albums }) => {
 };
 
 const receiveAlbum = ({ album, artist }) => {
-  // debugger;
   return {
     type: RECEIVE_ALBUM,
     album,

@@ -1,5 +1,4 @@
 export const fetchTaggedTracks = (tag) => {
-  // debugger;
   return $.ajax({
     method: "GET",
     url: `/api/tags/${tag}`,

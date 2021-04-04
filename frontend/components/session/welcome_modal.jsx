@@ -60,7 +60,6 @@ const WelcomeModal = ({ removeModal }) => {
   );
 };
 
-// debugger;
 const mSTP = () => {
   return {};
 };
@@ -70,5 +69,5 @@ const mDTP = (dispatch) => {
     removeModal: () => dispatch(removeModal()),
   };
 };
-// debugger;
+
 export default connect(mSTP, mDTP)(WelcomeModal);

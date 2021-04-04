@@ -20,7 +20,6 @@ export const fetchTracks = (id) => {
 };
 
 export const createAlbum = (artistId, formData) => {
-  // debugger;
   return $.ajax({
     method: "POST",
     url: `/api/artists/${artistId}/albums`,

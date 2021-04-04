@@ -6,7 +6,7 @@ class SignupForm extends React.Component {
     super(props);
 
     // (this.state = this.props.user), (this.state = props.errors);
-    // debugger;
+
     this.state = {
       username: props.user.username,
       artist: props.user.artist,
@@ -15,7 +15,6 @@ class SignupForm extends React.Component {
       errors: props.errors,
     };
 
-    // debugger;
     //sets state to empty user and password
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -23,9 +22,8 @@ class SignupForm extends React.Component {
 
   handleChange(value) {
     // e.preventDefault();
-    // debugger;
+
     return (e) => {
-      // debugger;
       this.setState({ [value]: e.target.value });
       e.target.className = "";
 
@@ -57,7 +55,6 @@ class SignupForm extends React.Component {
   }
 
   render() {
-    // debugger;
     return (
       <div className="form-outer">
         <div className="form-inner-container">

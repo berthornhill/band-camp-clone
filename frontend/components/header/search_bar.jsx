@@ -6,7 +6,7 @@ import SearchDropdown from "./search_dropdown";
 class SearchBar extends React.Component {
   constructor(props) {
     super(props);
-    // debugger;
+
     this.state = {
       searchCriteria: "",
       redirect: false,
@@ -21,7 +21,6 @@ class SearchBar extends React.Component {
   }
 
   openCloseMenu() {
-    // const toggle = !this.state.displayDropDown;
     this.setState({ displayDropDown: true });
   }
 
@@ -36,16 +35,11 @@ class SearchBar extends React.Component {
   }
 
   renderRedirect() {
-    // debugger;
     this.state.redirect ? <Redirect to="/search" /> : null;
   }
 
   handleChange(e) {
-    // debugger;
-    // return (e) => {
-
     e.preventDefault();
-    // debugger;
     this.setState({ searchCriteria: e.target.value });
   }
 
@@ -55,21 +49,15 @@ class SearchBar extends React.Component {
     this.closeMenu();
 
     this.props.searchArtist({ search: this.state.searchCriteria });
-    // this.setState({ redirect: true });3
-    // debugger;
-    // this.props.history.push("/search");
 
     this.props.history.push({
       pathname: "/search",
       search: `?results=${this.state.searchCriteria}`,
-      // state: this.state.searchCriteria,
     });
   }
 
   render() {
-    // debugger;
     return (
-      // <div>
       <form
         className="search-bar"
         onSubmit={this.handleSubmit}
@@ -82,9 +70,6 @@ class SearchBar extends React.Component {
           className="search-field"
           value={this.state.searchCriteria}
           onChange={this.handleChange}
-          // onFocus={this.openCloseMenu}
-          // onBlur={this.closeMenu}
-          // onClick={this.openMenu}
         />
 
         <img
@@ -95,7 +80,6 @@ class SearchBar extends React.Component {
         />
         {this.state.displayDropDown ? <SearchDropdown /> : null}
       </form>
-      // </div>
     );
   }
 }

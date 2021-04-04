@@ -5,7 +5,6 @@ import { removeModal } from "../../actions/modal_actions";
 import React from "react";
 
 const mSTP = (state, ownProps) => {
-  // debugger;
   return {
     user: {
       username: "",

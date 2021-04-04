@@ -4,7 +4,7 @@ import { withRouter } from "react-router-dom";
 class TracksForm extends React.Component {
   constructor(props) {
     super(props);
-    // debugger;
+
     this.state = {
       currentAlbum: props.albumsArray[props.albumsArray.length - 1],
       title: "",
@@ -28,10 +28,9 @@ class TracksForm extends React.Component {
 
   handleDeleteAlbum(e) {
     e.preventDefault();
-    // debugger;
+
     const id = this.props.match.params.id;
 
-    // debugger;
     this.props.deleteAlbum(this.state.currentAlbum);
     this.props.history.push(`/users/${id}/album`);
   }
@@ -43,7 +42,7 @@ class TracksForm extends React.Component {
 
   handleFile(e) {
     e.preventDefault();
-    // debugger;
+
     const file = e.currentTarget.files[0];
     // const fileReader = new FileReader();
 
@@ -58,13 +57,11 @@ class TracksForm extends React.Component {
   }
 
   handleSubmit(e) {
-    // debugger;
     e.preventDefault();
     // const file = e.currentTarget.files[0];
 
-    // debugger;
     const id = this.state.currentAlbum;
-    // debugger;
+
     const newTrackNo = this.props.albums[id].tracks.length + 1;
     const formData = new FormData();
     formData.append("track[song]", this.state.file);
@@ -76,15 +73,13 @@ class TracksForm extends React.Component {
   }
 
   render() {
-    // debugger;
-
     if (this.props.albumsArray.length === 0)
       return <h1>Try uploading creating an album first!</h1>;
 
     // builds album image cards which change the current Album for addition of tracks.
     const albumSelect = this.props.albumsArray.map((id, index) => {
       let album = this.props.albums[id];
-      // debugger;
+
       return (
         <li key={id}>
           <div
@@ -102,7 +97,7 @@ class TracksForm extends React.Component {
         </li>
       );
     });
-    // debugger;
+
     const trackList = this.props.albums[this.state.currentAlbum].tracks.map(
       (trackId) => {
         let track = this.props.tracks[trackId];
@@ -126,8 +121,6 @@ class TracksForm extends React.Component {
     );
 
     const selected = this.props.albums[this.state.currentAlbum];
-
-    // debugger;
 
     return (
       <div id="info-form">
@@ -170,7 +163,3 @@ class TracksForm extends React.Component {
 }
 
 export default withRouter(TracksForm);
-
-// albumId
-// name
-// trackNumber

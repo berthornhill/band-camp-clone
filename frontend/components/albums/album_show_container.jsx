@@ -3,7 +3,6 @@ import { fetchAlbum } from "../../actions/album_actions";
 import { connect } from "react-redux";
 
 const mSTP = (state, ownProps) => {
-  // debugger;
   return {
     album: state.entities.albums[ownProps.match.params.albumId],
     tracks: state.entities.tracks,

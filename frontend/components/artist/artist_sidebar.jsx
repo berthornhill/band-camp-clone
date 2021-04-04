@@ -1,7 +1,6 @@
 import React from "react";
 
 const ArtistSidebar = ({ artist }) => {
-  // debugger;
   return (
     <div className="artist-show-main-right">
       <div id="artist-pic">

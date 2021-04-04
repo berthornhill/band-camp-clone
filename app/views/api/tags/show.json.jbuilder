@@ -1,6 +1,5 @@
 json.artists do
     @artists.each do |artist|
-        # debugger
         json.set! artist.id do 
             json.id artist.id
             json.artist artist.artist
@@ -19,29 +18,25 @@ json.artists do
 end
 
 json.albums do
-     @albums.each do |album|
-        # debugger  
-            json.set! album.id do 
-                json.id album.id
-                json.albumName album.album_name
-                json.description album.description
-                json.artistId album.artist_id
-            
-                json.tracks @tracks.select{ |track| track.album_id == album.id }.pluck(:id)
-            
-                if album.album_art.attached? 
-                    json.albumArt url_for(album.album_art)
-                end
+     @albums.each do |album|         
+        json.set! album.id do 
+            json.id album.id
+            json.albumName album.album_name
+            json.description album.description
+            json.artistId album.artist_id
+        
+            json.tracks @tracks.select{ |track| track.album_id == album.id }.pluck(:id)
+        
+            if album.album_art.attached? 
+                json.albumArt url_for(album.album_art)
             end
-             
-        # end 
+        end
     end
 end
 
 
 json.tracks do 
     @tracks.each do |track|
-        # debuggers
         json.set! track.id do
             json.id track.id
             json.title track.title
@@ -52,7 +47,6 @@ json.tracks do
             if track.song.attached? 
                  json.url url_for(track.song)
             end
-
         end
     end
 end

@@ -7,7 +7,7 @@ import AudioPlayer from "../media_player/audio_player_container";
 class AlbumInfo extends React.Component {
   constructor(props) {
     super(props);
-    // debugger;
+
     this.state = {
       playing: false,
       currentTrackId: null,
@@ -22,22 +22,16 @@ class AlbumInfo extends React.Component {
     let track = this.props.tracks[e.target.value];
     this.props.playTrack(track);
     this.setState({ currentTrackId: track.id, playing: true });
-    // e.target.className = "play-button playing";
   }
 
   render() {
-    // debugger;
     const { artist } = this.props;
 
     const initialTrack = this.props.tracks[this.props.album.tracks[0]];
 
     let tracks = this.props.album.tracks.map((id) => {
       let track = this.props.tracks[id];
-
       let icon = window.playSolidBlack;
-      // if (this.state.currentTrackId === id) {
-      //   icon = window.pause;
-      // }
 
       if (track) {
         return (
@@ -51,9 +45,6 @@ class AlbumInfo extends React.Component {
                 onClick={this.handlePlayTrack}
               />
             </div>
-            {/* <button value={id} id={id} onClick={this.handlePlayTrack}>
-              <img src={icon} alt="play-pause button" />
-            </button> */}
             <div>{track.trackNo}.</div>
             <div>{track.title}</div>
             <a

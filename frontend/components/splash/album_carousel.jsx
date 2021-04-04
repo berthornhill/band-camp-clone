@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 
 class AlbumCarousel extends React.Component {
   componentDidMount() {
-    // debugger;
     this.props.fetchArtists();
   }
 
@@ -33,7 +32,6 @@ class AlbumCarousel extends React.Component {
 
     // if !this.props.
 
-    // debugger;
     return (
       <div className="album-carousel-outer">
         <div className="album-carousel">

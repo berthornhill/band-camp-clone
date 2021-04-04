@@ -14,7 +14,6 @@ class UserDropdown extends React.Component {
   }
 
   openCloseMenu() {
-    // debugger;
     const toggle = !this.state.display;
     this.setState({ display: toggle });
   }
@@ -42,7 +41,6 @@ class UserDropdown extends React.Component {
 
 // Menu Functional component
 const MenuItems = ({ currentUser, logout, user }) => {
-  // debugger;
   return (
     <div>
       <ul>
@@ -55,9 +53,3 @@ const MenuItems = ({ currentUser, logout, user }) => {
 };
 
 export default UserDropdown;
-
-// const mSTP = (state) => {
-//     return {
-//         cu
-//     }
-// }

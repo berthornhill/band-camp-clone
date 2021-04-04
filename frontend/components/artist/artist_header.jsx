@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const ArtistHeader = ({ artist }) => {
-  // debugger;
   return (
     <div className="artist-header-outer">
       <div className="artist-header-inner">

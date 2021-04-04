@@ -43,7 +43,7 @@ class ArtistIndex extends React.Component {
 const mSTP = (state, ownProps) => {
   return {
     albums: state.entities.albums,
-    artist: state.entities.artists[ownProps.match.params.id], //[1,2,334,4,53]
+    artist: state.entities.artists[ownProps.match.params.id],
   };
 };
 

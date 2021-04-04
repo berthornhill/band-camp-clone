@@ -31,7 +31,6 @@ class Discover extends React.Component {
   }
 
   changeTag(e) {
-    // debugger;
     e.preventDefault();
     this.setState({ focusedTag: e.target.id });
     this.props.fetchTaggedTracks(e.target.id);

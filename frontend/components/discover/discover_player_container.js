@@ -4,7 +4,6 @@ import DiscoverPlayer from "./discover_player";
 import { playTrack } from "../../actions/player_actions";
 
 const mSTP = (state, ownProps) => {
-  //   debugger;
   return {
     artists: state.entities.artists,
     albums: state.entities.albums,

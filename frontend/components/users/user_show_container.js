@@ -3,7 +3,6 @@ import UserShow from "./user_show";
 import { fetchArtist, updateArtist } from "../../actions/artist_show_actions";
 
 const mSTP = (state, ownProps) => {
-  // debugger;
   return {
     artist: state.entities.artists[ownProps.match.params.id],
     session: state.session,

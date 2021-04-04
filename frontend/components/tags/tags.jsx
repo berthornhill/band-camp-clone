@@ -10,16 +10,12 @@ class Tags extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    // debugger;
     if (prevProps.match.params.tag !== this.props.match.params.tag) {
       this.props.fetchTagged(this.props.match.params.tag);
     }
   }
 
   render() {
-    // this.props.
-    // debugger;
-
     if (!this.props.tags.artists) return null;
 
     const content = {

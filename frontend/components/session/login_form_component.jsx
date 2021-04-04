@@ -13,11 +13,8 @@ class LoginForm extends React.Component {
 
   handleChange(value) {
     return (e) => {
-      // debugger;
       this.setState({ [value]: e.target.value });
       e.target.className = "";
-      // this.props.clearErrors();
-      // debugger;
     };
   }
 
@@ -28,7 +25,6 @@ class LoginForm extends React.Component {
 
   handleDemo() {
     this.setState({ username: "demo", password: "testpassword" });
-    // debugger;
   }
 
   // life cycle methods //

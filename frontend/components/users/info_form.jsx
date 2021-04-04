@@ -5,7 +5,7 @@ import { updateArtist } from "../../actions/artist_show_actions";
 class InfoForm extends React.Component {
   constructor(props) {
     super(props);
-    // debugger;
+
     this.state = {
       artist: props.artist.artist,
       bio: props.artist.bio,
@@ -29,19 +29,15 @@ class InfoForm extends React.Component {
     return (e) => {
       e.preventDefault();
       this.setState({ [input]: e.target.value });
-      // e.target.className = "";
     };
   }
 
   handleFile(e) {
-    // debugger;
-
     e.preventDefault();
-    // debugger;
+
     const file = e.currentTarget.files[0];
     const fileReader = new FileReader();
     fileReader.onloadend = () => {
-      // debugger;
       this.setState({
         [e.target.id]: { preview: fileReader.result, file: file },
       });
@@ -52,7 +48,7 @@ class InfoForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    // send form data.
+
     const formData = new FormData();
     const { id } = this.props.artist;
     formData.append("artist[location]", this.state.location);
@@ -65,9 +61,6 @@ class InfoForm extends React.Component {
     this.state.bannerImage.file
       ? formData.append("artist[banner_image]", this.state.bannerImage.file)
       : null;
-
-    // formData.append("artist[artist_image]", this.state.artistImage.file);
-    // formData.append("artist[banner_image]", this.state.bannerImage.file);
 
     this.props
       .updateArtist(id, formData)
@@ -135,7 +128,6 @@ class InfoForm extends React.Component {
 // redux methods for info form
 
 const mSTP = (state, ownProps) => {
-  // debugger;
   return {
     artist: state.entities.artists[ownProps.match.params.id],
     errors: state.errors,

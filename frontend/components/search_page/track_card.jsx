@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const TrackCard = ({ track, album, artist }) => {
-  // debugger;
   return (
     <li className="search-card" key={track.id}>
       <Link

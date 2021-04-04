@@ -7,7 +7,6 @@ import {
 } from "../../actions/album_actions";
 
 const mSTP = (state, ownProps) => {
-  // debugger;
   return {
     albumsArray: state.entities.artists[ownProps.match.params.id].albums.sort(),
     albums: state.entities.albums,

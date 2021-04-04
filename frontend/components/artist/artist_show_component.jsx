@@ -12,25 +12,21 @@ class ArtistShow extends React.Component {
   }
 
   componentDidMount() {
-    // debugger;
     this.props.fetchArtist(this.props.match.params.id);
   }
 
   componentDidUpdate(prevProps) {
-    // debugger;
     if (this.props.match.params.id !== prevProps.match.params.id) {
       this.props.fetchArtist(this.props.match.params.id);
     }
   }
 
   render() {
-    // debugger;
     const { artist } = this.props;
-    // debugger;
+
     if (!artist) {
       return null;
     } else {
-      // debugger;
       return (
         <div className="artist-show-outer">
           <div className="artist-show-inner">

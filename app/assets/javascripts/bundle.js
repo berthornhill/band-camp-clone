@@ -128,7 +128,6 @@ var receiveAlbums = function receiveAlbums(_ref) {
 var receiveAlbum = function receiveAlbum(_ref2) {
   var album = _ref2.album,
       artist = _ref2.artist;
-  // debugger;
   return {
     type: RECEIVE_ALBUM,
     album: album,
@@ -247,12 +246,9 @@ __webpack_require__.r(__webpack_exports__);
 
 var RECEIVE_ARTIST = "RECEIVE_ARTIST";
 var RECEIVE_ARTISTS = "RECEIVE_ARTISTS";
-var RECEIVE_SEARCH = "RECEIVE_SEARCH"; // export const RECEIVE_ALBUM = "RECEIVE_ALBUM";
-// export const RECEIVE_ALBUMS = "RECEIVE_ALBUMS";
-// export const RECEIVE_TRACKS = "RECEIVE_TRACKS";
+var RECEIVE_SEARCH = "RECEIVE_SEARCH";
 
 var receiveArtist = function receiveArtist(artistPackage) {
-  // debugger;
   return {
     type: RECEIVE_ARTIST,
     artistPackage: artistPackage
@@ -260,7 +256,6 @@ var receiveArtist = function receiveArtist(artistPackage) {
 };
 
 var receiveArtists = function receiveArtists(artists) {
-  // debugger;
   return {
     type: RECEIVE_ARTISTS,
     artists: artists
@@ -269,7 +264,6 @@ var receiveArtists = function receiveArtists(artists) {
 
 var receiveAlbums = function receiveAlbums(_ref) {
   var albums = _ref.albums;
-  // debugger;
   return {
     type: RECEIVE_ALBUMS,
     albums: albums
@@ -284,7 +278,6 @@ var receiveTracks = function receiveTracks(tracks) {
 };
 
 var receiveAlbum = function receiveAlbum(album) {
-  // debugger;
   return {
     type: RECEIVE_ALBUM,
     album: album
@@ -423,13 +416,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
-var LOGOUT_CURRENT_USER = "LOGOUT_CURRENT_USER"; // export const LOGIN_CURRENT_USER = "LOGIN_CURRENT_USER";
-
+var LOGOUT_CURRENT_USER = "LOGOUT_CURRENT_USER";
 var RECEIVE_ERRORS = "RECEIVE_ERRORS";
 var REMOVE_ERRORS = "REMOVE_ERRORS";
 
 var recieveCurrentUser = function recieveCurrentUser(user) {
-  // debugger;
   return {
     type: RECEIVE_CURRENT_USER,
     user: user
@@ -447,16 +438,10 @@ var receiveErrors = function receiveErrors(errors) {
     type: RECEIVE_ERRORS,
     errors: errors
   };
-}; // const removeErrors = () => {
-//   return {
-//     type: REMOVE_ERRORS,
-//   };
-// };
-
+};
 
 var signup = function signup(user) {
   return function (dispatch) {
-    // debugger;
     return _util_session_api_util__WEBPACK_IMPORTED_MODULE_1__["signup"](user).then(function (user) {
       return dispatch(recieveCurrentUser(user));
     }, function (errors) {
@@ -466,7 +451,6 @@ var signup = function signup(user) {
 };
 var login = function login(user) {
   return function (dispatch) {
-    // debugger;
     return _util_session_api_util__WEBPACK_IMPORTED_MODULE_1__["login"](user).then(function (user) {
       return dispatch(recieveCurrentUser(user));
     }, function (errors) {
@@ -476,7 +460,6 @@ var login = function login(user) {
 };
 var logout = function logout() {
   return function (dispatch) {
-    // debugger;
     return _util_session_api_util__WEBPACK_IMPORTED_MODULE_1__["logout"]().then(function () {
       return dispatch(logoutCurrentUser());
     }, function (errors) {
@@ -549,22 +532,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _components_root__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/root */ "./frontend/components/root.jsx");
 /* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./store/store */ "./frontend/store/store.js");
-/* harmony import */ var _util_session_api_util__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./util/session_api_util */ "./frontend/util/session_api_util.js");
-/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./actions/session_actions */ "./frontend/actions/session_actions.js");
 
 
 
-
- //testing
-
- //testing
 
 document.addEventListener("DOMContentLoaded", function () {
-  window.sessionUtil = _util_session_api_util__WEBPACK_IMPORTED_MODULE_4__;
-  window.sessionActions = _actions_session_actions__WEBPACK_IMPORTED_MODULE_5__; //testing
-
-  window.store = Object(_store_store__WEBPACK_IMPORTED_MODULE_3__["default"])(); //testing
-
   var prelodedState = undefined;
   var store;
 
@@ -643,8 +615,7 @@ var AlbumInfo = /*#__PURE__*/function (_React$Component) {
 
     _classCallCheck(this, AlbumInfo);
 
-    _this = _super.call(this, props); // debugger;
-
+    _this = _super.call(this, props);
     _this.state = {
       playing: false,
       currentTrackId: null
@@ -662,21 +633,18 @@ var AlbumInfo = /*#__PURE__*/function (_React$Component) {
       this.setState({
         currentTrackId: track.id,
         playing: true
-      }); // e.target.className = "play-button playing";
+      });
     }
   }, {
     key: "render",
     value: function render() {
       var _this2 = this;
 
-      // debugger;
       var artist = this.props.artist;
       var initialTrack = this.props.tracks[this.props.album.tracks[0]];
       var tracks = this.props.album.tracks.map(function (id) {
         var track = _this2.props.tracks[id];
-        var icon = window.playSolidBlack; // if (this.state.currentTrackId === id) {
-        //   icon = window.pause;
-        // }
+        var icon = window.playSolidBlack;
 
         if (track) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
@@ -835,7 +803,6 @@ var AlbumShow = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      // debugger;
       if (!this.props.album) {
         return null;
       }
@@ -885,7 +852,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state, ownProps) {
-  // debugger;
   return {
     album: state.entities.albums[ownProps.match.params.albumId],
     tracks: state.entities.tracks
@@ -919,7 +885,6 @@ __webpack_require__.r(__webpack_exports__);
 
 var BigAlbum = function BigAlbum(_ref) {
   var album = _ref.album;
-  // debugger;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "big-album-outer"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1032,7 +997,6 @@ __webpack_require__.r(__webpack_exports__);
 
 var ArtistHeader = function ArtistHeader(_ref) {
   var artist = _ref.artist;
-  // debugger;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "artist-header-outer"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1159,8 +1123,7 @@ var ArtistIndex = /*#__PURE__*/function (_React$Component) {
 var mSTP = function mSTP(state, ownProps) {
   return {
     albums: state.entities.albums,
-    artist: state.entities.artists[ownProps.match.params.id] //[1,2,334,4,53]
-
+    artist: state.entities.artists[ownProps.match.params.id]
   };
 };
 
@@ -1233,13 +1196,11 @@ var ArtistShow = /*#__PURE__*/function (_React$Component) {
   _createClass(ArtistShow, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      // debugger;
       this.props.fetchArtist(this.props.match.params.id);
     }
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps) {
-      // debugger;
       if (this.props.match.params.id !== prevProps.match.params.id) {
         this.props.fetchArtist(this.props.match.params.id);
       }
@@ -1247,13 +1208,11 @@ var ArtistShow = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      // debugger;
-      var artist = this.props.artist; // debugger;
+      var artist = this.props.artist;
 
       if (!artist) {
         return null;
       } else {
-        // debugger;
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "artist-show-outer"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1300,13 +1259,11 @@ __webpack_require__.r(__webpack_exports__);
 
 var mSTP = function mSTP(state, ownProps) {
   return {
-    artist: state.entities.artists[ownProps.match.params.id] // albums: Object.values(state.entities.albums),
-
+    artist: state.entities.artists[ownProps.match.params.id]
   };
 };
 
 var mDTP = function mDTP(dispatch) {
-  // debugger;
   return {
     fetchArtist: function fetchArtist(id) {
       return dispatch(Object(_actions_artist_show_actions__WEBPACK_IMPORTED_MODULE_1__["fetchArtist"])(id));
@@ -1333,7 +1290,6 @@ __webpack_require__.r(__webpack_exports__);
 
 var ArtistSidebar = function ArtistSidebar(_ref) {
   var artist = _ref.artist;
-  // debugger;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "artist-show-main-right"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1893,7 +1849,6 @@ var Discover = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "changeTag",
     value: function changeTag(e) {
-      // debugger;
       e.preventDefault();
       this.setState({
         focusedTag: e.target.id
@@ -1959,7 +1914,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state) {
-  // debugger;
   return {
     artists: state.entities.artists,
     albums: state.entities.albums,
@@ -2090,33 +2044,7 @@ var DiscoverPlayer = /*#__PURE__*/function (_React$Component) {
         var track = _this2.props.tracks[id];
         var artist = _this2.props.artists[track.artistId];
         var album = _this2.props.albums[track.albumId];
-        var playOrPause; // sets to render div with play button
-        // if (this.state.currentTrackId == id) {
-        //   debugger;
-        //   playOrPause = (
-        //     <div
-        //       id={id}
-        //       className="play-button playing"
-        //       onClick={this.handlePlayTrack}
-        //     >
-        //       <div id={id} className="play-button-overlay"></div>
-        //       <div id={id} className="play-button-symbol">
-        //         ❚❚
-        //       </div>
-        //     </div>
-        //   );
-        // } else {
-        //   debugger;
-        //   playOrPause = (
-        //     <div id={id} className="play-button" onClick={this.handlePlayTrack}>
-        //       <div id={id} className="play-button-overlay"></div>
-        //       <div id={id} className="play-button-symbol">
-        //         ▶
-        //       </div>
-        //     </div>
-        //   );
-        // }
-
+        var playOrPause;
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "discover-track-card",
           key: id
@@ -2179,27 +2107,7 @@ var DiscoverPlayer = /*#__PURE__*/function (_React$Component) {
   return DiscoverPlayer;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (DiscoverPlayer); // info stuff to be added underneath <AudioPlayer>
-
-{
-  /* <div className="info-section">
-  <div className="xtra-info">
-    from the album{" "}
-    <Link
-      to={`/artist/${album.artistId}/album/${album.id}`}
-      className="result-link"
-    >
-      {`${album.albumName}`}
-    </Link>
-  </div>
-  <div className="xtra-info">
-    by
-    <Link to={`/artist/${album.artistId}`} className="result-link">
-      {`${artist.artist}`}
-    </Link>
-  </div>
-  </div>; */
-}
+/* harmony default export */ __webpack_exports__["default"] = (DiscoverPlayer);
 
 /***/ }),
 
@@ -2221,7 +2129,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state, ownProps) {
-  //   debugger;
   return {
     artists: state.entities.artists,
     albums: state.entities.albums,
@@ -2416,7 +2323,6 @@ var UserDropdown = /*#__PURE__*/function (_React$Component) {
   _createClass(UserDropdown, [{
     key: "openCloseMenu",
     value: function openCloseMenu() {
-      // debugger;
       var toggle = !this.state.display;
       this.setState({
         display: toggle
@@ -2452,7 +2358,6 @@ var MenuItems = function MenuItems(_ref) {
   var currentUser = _ref.currentUser,
       logout = _ref.logout,
       user = _ref.user;
-  // debugger;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
     to: "/artist/".concat(currentUser)
   }, user.artist, ": view site"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
@@ -2462,11 +2367,7 @@ var MenuItems = function MenuItems(_ref) {
   }, "log out")));
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (UserDropdown); // const mSTP = (state) => {
-//     return {
-//         cu
-//     }
-// }
+/* harmony default export */ __webpack_exports__["default"] = (UserDropdown);
 
 /***/ }),
 
@@ -2496,9 +2397,6 @@ var NavBar = function NavBar(_ref) {
       logout = _ref.logout,
       openModal = _ref.openModal,
       searchArtist = _ref.searchArtist;
-  // let sessionLinks;
-  // // if (id)
-  // debugger;
   var sessionButtons = currentUser ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: logout
   }, "Log Out")) : [/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
@@ -2649,8 +2547,7 @@ var SearchBar = /*#__PURE__*/function (_React$Component) {
 
     _classCallCheck(this, SearchBar);
 
-    _this = _super.call(this, props); // debugger;
-
+    _this = _super.call(this, props);
     _this.state = {
       searchCriteria: "",
       redirect: false,
@@ -2668,7 +2565,6 @@ var SearchBar = /*#__PURE__*/function (_React$Component) {
   _createClass(SearchBar, [{
     key: "openCloseMenu",
     value: function openCloseMenu() {
-      // const toggle = !this.state.displayDropDown;
       this.setState({
         displayDropDown: true
       });
@@ -2689,7 +2585,6 @@ var SearchBar = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "renderRedirect",
     value: function renderRedirect() {
-      // debugger;
       this.state.redirect ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Redirect"], {
         to: "/search"
       }) : null;
@@ -2697,10 +2592,7 @@ var SearchBar = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleChange",
     value: function handleChange(e) {
-      // debugger;
-      // return (e) => {
-      e.preventDefault(); // debugger;
-
+      e.preventDefault();
       this.setState({
         searchCriteria: e.target.value
       });
@@ -2712,45 +2604,32 @@ var SearchBar = /*#__PURE__*/function (_React$Component) {
       this.closeMenu();
       this.props.searchArtist({
         search: this.state.searchCriteria
-      }); // this.setState({ redirect: true });3
-      // debugger;
-      // this.props.history.push("/search");
-
+      });
       this.props.history.push({
         pathname: "/search",
-        search: "?results=".concat(this.state.searchCriteria) // state: this.state.searchCriteria,
-
+        search: "?results=".concat(this.state.searchCriteria)
       });
     }
   }, {
     key: "render",
     value: function render() {
-      // debugger;
-      return (
-        /*#__PURE__*/
-        // <div>
-        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-          className: "search-bar",
-          onSubmit: this.handleSubmit,
-          onFocus: this.openCloseMenu,
-          onBlur: this.delayClose
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          type: "text",
-          placeholder: "Search and discover music",
-          className: "search-field",
-          value: this.state.searchCriteria,
-          onChange: this.handleChange // onFocus={this.openCloseMenu}
-          // onBlur={this.closeMenu}
-          // onClick={this.openMenu}
-
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-          src: window.bulb,
-          alt: "search icon",
-          className: "search-icon",
-          onClick: this.handleSubmit
-        }), this.state.displayDropDown ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_search_dropdown__WEBPACK_IMPORTED_MODULE_3__["default"], null) : null) // </div>
-
-      );
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        className: "search-bar",
+        onSubmit: this.handleSubmit,
+        onFocus: this.openCloseMenu,
+        onBlur: this.delayClose
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        placeholder: "Search and discover music",
+        className: "search-field",
+        value: this.state.searchCriteria,
+        onChange: this.handleChange
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: window.bulb,
+        alt: "search icon",
+        className: "search-icon",
+        onClick: this.handleSubmit
+      }), this.state.displayDropDown ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_search_dropdown__WEBPACK_IMPORTED_MODULE_3__["default"], null) : null);
     }
   }]);
 
@@ -3461,15 +3340,13 @@ var SearchResults = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this = this;
 
-      var search = this.props.search; // debugger;
-
+      var search = this.props.search;
       var artistResults = search.artists.map(function (id) {
         var artist = _this.props.artists[id];
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_artist_card__WEBPACK_IMPORTED_MODULE_3__["default"], {
           artist: artist
         });
-      }); // debugger;
-
+      });
       var albumResults = search.albums.map(function (id) {
         var album = _this.props.albums[id];
         var artist = _this.props.artists[album.artistId];
@@ -3479,7 +3356,6 @@ var SearchResults = /*#__PURE__*/function (_React$Component) {
         });
       });
       var trackResults = search.tracks.map(function (id) {
-        // debugger;
         var track = _this.props.tracks[id];
         var album = _this.props.albums[track.albumId];
         var artist = _this.props.artists[track.artistId];
@@ -3488,8 +3364,7 @@ var SearchResults = /*#__PURE__*/function (_React$Component) {
           album: album,
           artist: artist
         });
-      }); // debugger;
-
+      });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "search-outer"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3522,7 +3397,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state) {
-  // debugger;
   return {
     search: state.entities.search,
     artists: state.entities.artists,
@@ -3558,7 +3432,6 @@ var TrackCard = function TrackCard(_ref) {
   var track = _ref.track,
       album = _ref.album,
       artist = _ref.artist;
-  // debugger;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "search-card",
     key: track.id
@@ -3653,11 +3526,9 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
       var _this2 = this;
 
       return function (e) {
-        // debugger;
         _this2.setState(_defineProperty({}, value, e.target.value));
 
-        e.target.className = ""; // this.props.clearErrors();
-        // debugger;
+        e.target.className = "";
       };
     }
   }, {
@@ -3672,7 +3543,7 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
       this.setState({
         username: "demo",
         password: "testpassword"
-      }); // debugger;
+      });
     } // life cycle methods //
 
   }, {
@@ -3762,7 +3633,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state, ownProps) {
-  // debugger;
   var user;
   ownProps.location.type ? user = {
     username: "demo",
@@ -3878,7 +3748,6 @@ var SignupForm = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, SignupForm);
 
     _this = _super.call(this, props); // (this.state = this.props.user), (this.state = props.errors);
-    // debugger;
 
     _this.state = {
       username: props.user.username,
@@ -3886,8 +3755,7 @@ var SignupForm = /*#__PURE__*/function (_React$Component) {
       password: props.user.password,
       email: props.user.email,
       errors: props.errors
-    }; // debugger;
-    //sets state to empty user and password
+    }; //sets state to empty user and password
 
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
@@ -3899,9 +3767,7 @@ var SignupForm = /*#__PURE__*/function (_React$Component) {
       var _this2 = this;
 
       // e.preventDefault();
-      // debugger;
       return function (e) {
-        // debugger;
         _this2.setState(_defineProperty({}, value, e.target.value));
 
         e.target.className = "";
@@ -3958,7 +3824,6 @@ var SignupForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      // debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-outer"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -4054,7 +3919,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state, ownProps) {
-  // debugger;
   return {
     user: {
       username: "",
@@ -4155,8 +4019,7 @@ var WelcomeModal = function WelcomeModal(_ref) {
   }, "Don't wanna make an account of your own? No problem. Use this provided Demo account and have a good time! Try out all our", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("span", {
     className: "grad-text"
   }, " illuminating"), " features without the commitment!"))))));
-}; // debugger;
-
+};
 
 var mSTP = function mSTP() {
   return {};
@@ -4168,8 +4031,7 @@ var mDTP = function mDTP(dispatch) {
       return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__["removeModal"])());
     }
   };
-}; // debugger;
-
+};
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mSTP, mDTP)(WelcomeModal));
 
@@ -4226,7 +4088,6 @@ var AlbumCarousel = /*#__PURE__*/function (_React$Component) {
   _createClass(AlbumCarousel, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      // debugger;
       this.props.fetchArtists();
     }
   }, {
@@ -4250,7 +4111,6 @@ var AlbumCarousel = /*#__PURE__*/function (_React$Component) {
           className: "band-name"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "in \uD83C\uDDFA\uD83C\uDDF8 ", artist.location))));
       }); // if !this.props.
-      // debugger;
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "album-carousel-outer"
@@ -4353,7 +4213,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state) {
-  // debugger;
   return {
     artists: Object.values(state.entities.artists)
   };
@@ -4557,7 +4416,6 @@ var Tags = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps) {
-      // debugger;
       if (prevProps.match.params.tag !== this.props.match.params.tag) {
         this.props.fetchTagged(this.props.match.params.tag);
       }
@@ -4565,8 +4423,6 @@ var Tags = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      // this.props.
-      // debugger;
       if (!this.props.tags.artists) return null;
       var content = {
         artists: this.props.artists,
@@ -4624,10 +4480,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state, ownProps) {
-  // debugger;
   return {
-    // taggedArtists: state.tags.artists,
-    // taggedAlbums: state.tags.albums,
     tags: state.entities.tags,
     artists: state.entities.artists,
     albums: state.entities.albums
@@ -4748,8 +4601,7 @@ var AlbumForm = /*#__PURE__*/function (_React$Component) {
       return function (e) {
         e.preventDefault();
 
-        _this2.setState(_defineProperty({}, input, e.target.value)); // e.target.className = "";
-
+        _this2.setState(_defineProperty({}, input, e.target.value));
       };
     }
   }, {
@@ -4757,14 +4609,11 @@ var AlbumForm = /*#__PURE__*/function (_React$Component) {
     value: function handleFile(e) {
       var _this3 = this;
 
-      // debugger;
-      e.preventDefault(); // debugger;
-
+      e.preventDefault();
       var file = e.currentTarget.files[0];
       var fileReader = new FileReader();
 
       fileReader.onloadend = function () {
-        // debugger;
         _this3.setState(_defineProperty({}, e.target.id, {
           preview: fileReader.result,
           file: file
@@ -4797,8 +4646,7 @@ var AlbumForm = /*#__PURE__*/function (_React$Component) {
       var _this$state = this.state,
           albumName = _this$state.albumName,
           description = _this$state.description;
-      var albumArtPreview = this.state.albumArt.preview || window.emptyband; // debugger;
-
+      var albumArtPreview = this.state.albumArt.preview || window.emptyband;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         id: "info-form",
         onSubmit: this.handleSubmit
@@ -4862,7 +4710,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state, ownProps) {
-  // debugger;
   return {
     artist: state.entities.artists[ownProps.match.params.id],
     errors: state.errors
@@ -4932,8 +4779,7 @@ var InfoForm = /*#__PURE__*/function (_React$Component) {
 
     _classCallCheck(this, InfoForm);
 
-    _this = _super.call(this, props); // debugger;
-
+    _this = _super.call(this, props);
     _this.state = {
       artist: props.artist.artist,
       bio: props.artist.bio,
@@ -4962,8 +4808,7 @@ var InfoForm = /*#__PURE__*/function (_React$Component) {
       return function (e) {
         e.preventDefault();
 
-        _this2.setState(_defineProperty({}, input, e.target.value)); // e.target.className = "";
-
+        _this2.setState(_defineProperty({}, input, e.target.value));
       };
     }
   }, {
@@ -4971,14 +4816,11 @@ var InfoForm = /*#__PURE__*/function (_React$Component) {
     value: function handleFile(e) {
       var _this3 = this;
 
-      // debugger;
-      e.preventDefault(); // debugger;
-
+      e.preventDefault();
       var file = e.currentTarget.files[0];
       var fileReader = new FileReader();
 
       fileReader.onloadend = function () {
-        // debugger;
         _this3.setState(_defineProperty({}, e.target.id, {
           preview: fileReader.result,
           file: file
@@ -4992,16 +4834,13 @@ var InfoForm = /*#__PURE__*/function (_React$Component) {
     value: function handleSubmit(e) {
       var _this4 = this;
 
-      e.preventDefault(); // send form data.
-
+      e.preventDefault();
       var formData = new FormData();
       var id = this.props.artist.id;
       formData.append("artist[location]", this.state.location);
       formData.append("artist[bio]", this.state.bio);
       this.state.artistImage.file ? formData.append("artist[artist_image]", this.state.artistImage.file) : null;
-      this.state.bannerImage.file ? formData.append("artist[banner_image]", this.state.bannerImage.file) : null; // formData.append("artist[artist_image]", this.state.artistImage.file);
-      // formData.append("artist[banner_image]", this.state.bannerImage.file);
-
+      this.state.bannerImage.file ? formData.append("artist[banner_image]", this.state.bannerImage.file) : null;
       this.props.updateArtist(id, formData).then(function () {
         return _this4.props.history.push("/users/".concat(id, "/album"));
       });
@@ -5069,7 +4908,6 @@ var InfoForm = /*#__PURE__*/function (_React$Component) {
 
 
 var mSTP = function mSTP(state, ownProps) {
-  // debugger;
   return {
     artist: state.entities.artists[ownProps.match.params.id],
     errors: state.errors
@@ -5137,8 +4975,7 @@ var TracksForm = /*#__PURE__*/function (_React$Component) {
 
     _classCallCheck(this, TracksForm);
 
-    _this = _super.call(this, props); // debugger;
-
+    _this = _super.call(this, props);
     _this.state = {
       currentAlbum: props.albumsArray[props.albumsArray.length - 1],
       title: "",
@@ -5168,10 +5005,8 @@ var TracksForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleDeleteAlbum",
     value: function handleDeleteAlbum(e) {
-      e.preventDefault(); // debugger;
-
-      var id = this.props.match.params.id; // debugger;
-
+      e.preventDefault();
+      var id = this.props.match.params.id;
       this.props.deleteAlbum(this.state.currentAlbum);
       this.props.history.push("/users/".concat(id, "/album"));
     }
@@ -5184,8 +5019,7 @@ var TracksForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleFile",
     value: function handleFile(e) {
-      e.preventDefault(); // debugger;
-
+      e.preventDefault();
       var file = e.currentTarget.files[0]; // const fileReader = new FileReader();
 
       this.setState({
@@ -5208,12 +5042,9 @@ var TracksForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
-      // debugger;
       e.preventDefault(); // const file = e.currentTarget.files[0];
-      // debugger;
 
-      var id = this.state.currentAlbum; // debugger;
-
+      var id = this.state.currentAlbum;
       var newTrackNo = this.props.albums[id].tracks.length + 1;
       var formData = new FormData();
       formData.append("track[song]", this.state.file);
@@ -5227,12 +5058,10 @@ var TracksForm = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this4 = this;
 
-      // debugger;
       if (this.props.albumsArray.length === 0) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Try uploading creating an album first!"); // builds album image cards which change the current Album for addition of tracks.
 
       var albumSelect = this.props.albumsArray.map(function (id, index) {
-        var album = _this4.props.albums[id]; // debugger;
-
+        var album = _this4.props.albums[id];
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           key: id
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -5243,8 +5072,7 @@ var TracksForm = /*#__PURE__*/function (_React$Component) {
           alt: "album cover art",
           className: id === _this4.state.currentAlbum ? "current-album" : null
         })));
-      }); // debugger;
-
+      });
       var trackList = this.props.albums[this.state.currentAlbum].tracks.map(function (trackId) {
         var track = _this4.props.tracks[trackId];
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
@@ -5256,8 +5084,7 @@ var TracksForm = /*#__PURE__*/function (_React$Component) {
           onClick: _this4.handleDeleteTrack
         }, "DELETE TRACK"));
       });
-      var selected = this.props.albums[this.state.currentAlbum]; // debugger;
-
+      var selected = this.props.albums[this.state.currentAlbum];
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "info-form"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
@@ -5299,9 +5126,7 @@ var TracksForm = /*#__PURE__*/function (_React$Component) {
   return TracksForm;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(TracksForm)); // albumId
-// name
-// trackNumber
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(TracksForm));
 
 /***/ }),
 
@@ -5322,7 +5147,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state, ownProps) {
-  // debugger;
   return {
     albumsArray: state.entities.artists[ownProps.match.params.id].albums.sort(),
     albums: state.entities.albums,
@@ -5402,8 +5226,7 @@ var UserShow = /*#__PURE__*/function (_React$Component) {
 
     _classCallCheck(this, UserShow);
 
-    _this = _super.call(this, props); // debugger;
-
+    _this = _super.call(this, props);
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
     _this.handleTab = _this.handleTab.bind(_assertThisInitialized(_this));
@@ -5417,29 +5240,25 @@ var UserShow = /*#__PURE__*/function (_React$Component) {
     key: "handleChange",
     value: function handleChange(input) {
       return function (e) {
-        e.preventDefault(); // set e to state
+        e.preventDefault();
       };
     }
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
-      e.preventDefaul(); // send form data.
+      e.preventDefaul();
     }
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {
-      var artist = this.props.artist; // debugger;
-
+      var artist = this.props.artist;
       if (!artist) this.props.fetchArtist(this.props.match.params.id);
     }
   }, {
     key: "render",
     value: function render() {
-      // debugger;
-      var artist = this.props.artist; // debugger;
-
-      if (!artist) return null; // debugger;
-
+      var artist = this.props.artist;
+      if (!artist) return null;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "user-background"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -5507,7 +5326,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state, ownProps) {
-  // debugger;
   return {
     artist: state.entities.artists[ownProps.match.params.id],
     session: state.session,
@@ -5650,7 +5468,6 @@ var ArtistReducer = function ArtistReducer() {
       return Object.assign({}, state, _defineProperty({}, action.artist.id, action.artist));
 
     case _actions_artist_show_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_SEARCH"]:
-      // debugger;
       return _objectSpread(_objectSpread({}, state), action.artists);
     // return { ...state, action };
 
@@ -5759,7 +5576,7 @@ __webpack_require__.r(__webpack_exports__);
 var ErrorsReducer = function ErrorsReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
   var action = arguments.length > 1 ? arguments[1] : undefined;
-  Object.freeze(state); // debugger;
+  Object.freeze(state);
 
   switch (action.type) {
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ERRORS"]:
@@ -5859,11 +5676,10 @@ var _nullSearch = {
 var SearchReducer = function SearchReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _nullSearch;
   var action = arguments.length > 1 ? arguments[1] : undefined;
-  Object.freeze(state); // debugger;
+  Object.freeze(state);
 
   switch (action.type) {
     case _actions_artist_show_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_SEARCH"]:
-      // debugger;
       return action.search;
 
     default:
@@ -5971,20 +5787,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 var TracksReducer = function TracksReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
-  Object.freeze(state); // debugger;
+  Object.freeze(state);
 
   switch (action.type) {
     case _actions_artist_show_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ARTIST"]:
-      var newState = Object.assign({}, state, action.artistPackage.tracks); // debugger;
-
+      var newState = Object.assign({}, state, action.artistPackage.tracks);
       return newState;
 
     case _actions_album_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_NEW_TRACK"]:
-      // debugger;
       return Object.assign({}, state, action.track);
 
     case _actions_artist_show_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_SEARCH"]:
-      // debugger;
       return _objectSpread(_objectSpread({}, state), action.tracks);
 
     case _actions_tag_actions__WEBPACK_IMPORTED_MODULE_2__["RECEIVE_TAGGED"]:
@@ -6133,7 +5946,6 @@ var fetchTracks = function fetchTracks(id) {
   });
 };
 var createAlbum = function createAlbum(artistId, formData) {
-  // debugger;
   return $.ajax({
     method: "POST",
     url: "/api/artists/".concat(artistId, "/albums"),
@@ -6320,7 +6132,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchTaggedTracks", function() { return fetchTaggedTracks; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchTagged", function() { return fetchTagged; });
 var fetchTaggedTracks = function fetchTaggedTracks(tag) {
-  // debugger;
   return $.ajax({
     method: "GET",
     url: "/api/tags/".concat(tag)

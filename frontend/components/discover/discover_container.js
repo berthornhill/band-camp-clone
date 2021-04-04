@@ -3,7 +3,6 @@ import Discover from "./discover";
 import { fetchTaggedTracks } from "../../actions/tag_actions";
 
 const mSTP = (state) => {
-  // debugger;
   return {
     artists: state.entities.artists,
     albums: state.entities.albums,

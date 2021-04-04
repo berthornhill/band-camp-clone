@@ -6,7 +6,6 @@ class Api::UsersController < ApplicationController
             login!(@user)
             render :show
         else 
-            # debugger
             render json: {
                 artist: (@user.errors.full_messages_for(:artist).first),
                 username:(@user.errors.full_messages_for(:username).first),

@@ -5,11 +5,6 @@ import UserNav from "./user_nav";
 import SearchBar from "./search_bar";
 
 const NavBar = ({ currentUser, user, logout, openModal, searchArtist }) => {
-  // let sessionLinks;
-  // // if (id)
-
-  // debugger;
-
   const sessionButtons = currentUser ? (
     <div>
       <button onClick={logout}>Log Out</button>

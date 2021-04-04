@@ -3,12 +3,8 @@ import * as artistAPI from "../util/artist_show_util";
 export const RECEIVE_ARTIST = "RECEIVE_ARTIST";
 export const RECEIVE_ARTISTS = "RECEIVE_ARTISTS";
 export const RECEIVE_SEARCH = "RECEIVE_SEARCH";
-// export const RECEIVE_ALBUM = "RECEIVE_ALBUM";
-// export const RECEIVE_ALBUMS = "RECEIVE_ALBUMS";
-// export const RECEIVE_TRACKS = "RECEIVE_TRACKS";
 
 const receiveArtist = (artistPackage) => {
-  // debugger;
   return {
     type: RECEIVE_ARTIST,
     artistPackage,
@@ -16,7 +12,6 @@ const receiveArtist = (artistPackage) => {
 };
 
 const receiveArtists = (artists) => {
-  // debugger;
   return {
     type: RECEIVE_ARTISTS,
     artists,
@@ -24,7 +19,6 @@ const receiveArtists = (artists) => {
 };
 
 const receiveAlbums = ({ albums }) => {
-  // debugger;
   return {
     type: RECEIVE_ALBUMS,
     albums,
@@ -39,7 +33,6 @@ const receiveTracks = (tracks) => {
 };
 
 const receiveAlbum = (album) => {
-  // debugger;
   return {
     type: RECEIVE_ALBUM,
     album,

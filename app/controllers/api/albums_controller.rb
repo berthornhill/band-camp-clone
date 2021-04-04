@@ -1,29 +1,17 @@
 class Api::AlbumsController < ApplicationController
 
-    def index 
-        
-        # @albums = Album.where(artist_id: (params[:artist_id]))
-        # @artist_id = params[:artist_id]
-        
-        # @albums = Album.where(artist_id: (params[:id]))
-        # @artist_id = params[:id]
-        # render :index
-    end
    
     def show
         
         @album = Album.where(id: params[:id]).includes(album_art_attachment: :blob)[0]
-        @tracks = Track.where(album_id: params[:id]).includes(song_attachment: :blob).to_a
-        
+        @tracks = Track.where(album_id: params[:id]).includes(song_attachment: :blob).to_a        
         render :show
-
 
     end
 
 
     def create 
        
-
         @album = Album.new(album_params)
         
         if @album.save 

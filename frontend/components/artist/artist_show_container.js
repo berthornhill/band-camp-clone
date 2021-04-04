@@ -5,12 +5,10 @@ import ArtistShow from "./artist_show_component";
 const mSTP = (state, ownProps) => {
   return {
     artist: state.entities.artists[ownProps.match.params.id],
-    // albums: Object.values(state.entities.albums),
   };
 };
 
 const mDTP = (dispatch) => {
-  // debugger;
   return {
     fetchArtist: (id) => dispatch(fetchArtist(id)),
   };

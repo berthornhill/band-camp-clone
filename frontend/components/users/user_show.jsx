@@ -8,8 +8,6 @@ class UserShow extends React.Component {
   constructor(props) {
     super(props);
 
-    // debugger;
-
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleTab = this.handleTab.bind(this);
@@ -20,28 +18,24 @@ class UserShow extends React.Component {
   handleChange(input) {
     return (e) => {
       e.preventDefault();
-      // set e to state
     };
   }
 
   handleSubmit(e) {
     e.preventDefaul();
-    // send form data.
   }
 
   componentDidMount() {
     const { artist } = this.props;
-    // debugger;
+
     if (!artist) this.props.fetchArtist(this.props.match.params.id);
   }
 
   render() {
-    // debugger;
     const { artist } = this.props;
-    // debugger;
+
     if (!artist) return null;
 
-    // debugger;
     return (
       <div id="user-background">
         <div id="color-bar"></div>

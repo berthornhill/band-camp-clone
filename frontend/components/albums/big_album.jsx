@@ -1,7 +1,6 @@
 import React from "react";
 
 const BigAlbum = ({ album }) => {
-  // debugger;
   return (
     <div className="big-album-outer">
       <div className="big-album-inner">

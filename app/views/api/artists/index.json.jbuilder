@@ -1,6 +1,5 @@
 
 @artists.each do |artist|
-    # debugger
     json.set! artist.id do 
         json.id artist.id
         json.artist artist.artist

@@ -24,20 +24,15 @@ class AlbumForm extends React.Component {
     return (e) => {
       e.preventDefault();
       this.setState({ [input]: e.target.value });
-      // e.target.className = "";
     };
   }
 
   handleFile(e) {
-    // debugger;
-
     e.preventDefault();
 
-    // debugger;
     const file = e.currentTarget.files[0];
     const fileReader = new FileReader();
     fileReader.onloadend = () => {
-      // debugger;
       this.setState({
         [e.target.id]: { preview: fileReader.result, file: file },
       });
@@ -68,7 +63,7 @@ class AlbumForm extends React.Component {
     const { albumName, description } = this.state;
 
     const albumArtPreview = this.state.albumArt.preview || window.emptyband;
-    // debugger;
+
     return (
       <form id="info-form" onSubmit={this.handleSubmit}>
         <h4 className="form-title">CREATE A NEW ALBUM</h4>
