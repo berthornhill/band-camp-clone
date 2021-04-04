@@ -1,3 +1,5 @@
+// colorful dot spacers and sales blurb for the Splash page.
+
 import React from "react";
 
 const DotSales = () => {
@@ -16,8 +18,9 @@ const DotSales = () => {
         </div>
         <div className="sales">
           <p>
-            Fans have paid more than <strong>1 billion</strong> using Bandlamp,
-            and <strong>$10</strong> of that in last 72 hours alone!
+            Fans have paid more than <strong>$10 million</strong> using
+            Bandlamp, and <strong>$20 thousand</strong> of that in last 72 hours
+            alone!
           </p>
         </div>
         <div>

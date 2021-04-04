@@ -1,3 +1,6 @@
+// <Discover> component is a track playback feature. Tagged tracks are available by clicking the links of the "topTags".
+// <Discover>  handles the render of the clickable tags but passes off the track/artist card and playback switching to <DiscoverPlayer>
+
 import React from "react";
 import DiscoverPlayer from "./discover_player_container";
 

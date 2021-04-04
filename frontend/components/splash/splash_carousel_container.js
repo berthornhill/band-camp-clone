@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import AlbumCarousel from "./album_carousel";
+import SplashCarousel from "./splash_carousel";
 import { fetchArtists } from "../../actions/artist_show_actions";
 
 const mSTP = (state) => {
@@ -14,4 +14,4 @@ const mDTP = (dispatch) => {
   };
 };
 
-export default connect(mSTP, mDTP)(AlbumCarousel);
+export default connect(mSTP, mDTP)(SplashCarousel);

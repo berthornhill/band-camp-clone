@@ -1,3 +1,10 @@
+/* 
+  <DiscoverPlayer> manages the render of the track/artist cards and contains the <AudioPlayer> component and a <NowPlayingInfo> component, 
+  unique to the <DiscoverPlayer> pulls first track from tagged id to be passed on to the audio player.
+  function <TrackCard> component to build track and clean up component. 
+
+*/
+
 import React from "react";
 import { Link } from "react-router-dom";
 import { playTrack } from "../../actions/player_actions";
@@ -15,11 +22,6 @@ class DiscoverPlayer extends React.Component {
     this.handlePauseTrack = this.handlePauseTrack.bind(this);
   }
 
-  componentDidMount() {
-    // initialTrack = this.props.tracks[this.props.taggedData[0]];
-    // this.props.playTrack(initialTrack);
-  }
-
   handlePauseTrack(e) {
     e.preventDefault();
     this.setState({ playing: false, currentTrackId: null });
@@ -32,19 +34,16 @@ class DiscoverPlayer extends React.Component {
     let track = this.props.tracks[e.target.id];
     this.props.playTrack(track);
     this.setState({ currentTrackId: track.id, playing: true });
-    // e.target.className = "play-button playing";
   }
 
   render() {
     const { tags } = this.props;
 
     if (!tags.tracks) return null;
-
-    // pulls first track from tagged id to be passed on to the audio player
     const initialTrack = this.props.tracks[tags.tracks[0]];
 
     let displayedArt;
-
+    debugger;
     if (!this.state.currentTrackId) {
       displayedArt = this.props.albums[
         this.props.tracks[tags.tracks[0]].albumId
@@ -63,40 +62,14 @@ class DiscoverPlayer extends React.Component {
 
       return (
         <div className="discover-track-card" key={id}>
-          <div className="cover-art-container">
-            <img
-              className="cover-art"
-              src={album.albumArt ? album.albumArt : window.albumcover3}
-              alt={`play ${track.title}`}
-            />
-            <div id={id} className="play-button" onClick={this.handlePlayTrack}>
-              <div id={id} className="play-button-overlay">
-                <img
-                  id={id}
-                  className="play-button-symbol"
-                  src={window.playSolid}
-                />
-              </div>
-              <div></div>
-            </div>
-            {/* {playOrPause} */}
-          </div>
-          <div className="track-info">
-            <div className="title">
-              <Link
-                to={`/artist/${album.artistId}/album/${album.id}`}
-                className="card-link title"
-              >
-                {track.title}
-              </Link>
-            </div>
-            <div className="artist">
-              <Link to={`/artist/${artist.id}`} className="card-link artist">
-                {artist.artist}
-              </Link>
-            </div>
-            <div className="card-tag">{tags.currentTag}</div>
-          </div>
+          <TrackCard
+            track={track}
+            artist={artist}
+            album={album}
+            tags={tags}
+            id={id}
+            handlePlayTrack={this.handlePlayTrack}
+          />
         </div>
       );
     });
@@ -126,3 +99,44 @@ class DiscoverPlayer extends React.Component {
 }
 
 export default DiscoverPlayer;
+
+const TrackCard = ({ track, album, artist, tags, id, handlePlayTrack }) => {
+  return (
+    <>
+      <div className="cover-art-container">
+        <img
+          className="cover-art"
+          src={album.albumArt ? album.albumArt : window.albumcover3}
+          alt={`play ${track.title}`}
+        />
+        <div id={id} className="play-button" onClick={handlePlayTrack}>
+          <div id={id} className="play-button-overlay">
+            <img
+              id={id}
+              className="play-button-symbol"
+              src={window.playSolid}
+            />
+          </div>
+          <div></div>
+        </div>
+        {/* {playOrPause} */}
+      </div>
+      <div className="track-info">
+        <div className="title">
+          <Link
+            to={`/artist/${album.artistId}/album/${album.id}`}
+            className="card-link title"
+          >
+            {track.title}
+          </Link>
+        </div>
+        <div className="artist">
+          <Link to={`/artist/${artist.id}`} className="card-link artist">
+            {artist.artist}
+          </Link>
+        </div>
+        <div className="card-tag">{tags.currentTag}</div>
+      </div>
+    </>
+  );
+};

@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+// <Features> component renders the grid images on the splash page.
+
 const Features = () => {
   return (
     <div className="splash">

@@ -1819,6 +1819,8 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
+// <Discover> component is a track playback feature. Tagged tracks are available by clicking the links of the "topTags".
+// <Discover>  handles the render of the clickable tags but passes off the track/artist card and playback switching to <DiscoverPlayer>
 
 
 var TopTags = ["featured", "electronic", "rock", "experimental", "alternative", "metal", "hip-hop", "punk", "ambient", "soundtrack", "jazz", "classical"];
@@ -1971,6 +1973,12 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
+/* 
+  <DiscoverPlayer> manages the render of the track/artist cards and contains the <AudioPlayer> component and a <NowPlayingInfo> component, 
+  unique to the <DiscoverPlayer> pulls first track from tagged id to be passed on to the audio player.
+  function <TrackCard> component to build track and clean up component. 
+
+*/
 
 
 
@@ -1998,11 +2006,6 @@ var DiscoverPlayer = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(DiscoverPlayer, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {// initialTrack = this.props.tracks[this.props.taggedData[0]];
-      // this.props.playTrack(initialTrack);
-    }
-  }, {
     key: "handlePauseTrack",
     value: function handlePauseTrack(e) {
       e.preventDefault();
@@ -2021,7 +2024,7 @@ var DiscoverPlayer = /*#__PURE__*/function (_React$Component) {
       this.setState({
         currentTrackId: track.id,
         playing: true
-      }); // e.target.className = "play-button playing";
+      });
     }
   }, {
     key: "render",
@@ -2029,10 +2032,10 @@ var DiscoverPlayer = /*#__PURE__*/function (_React$Component) {
       var _this2 = this;
 
       var tags = this.props.tags;
-      if (!tags.tracks) return null; // pulls first track from tagged id to be passed on to the audio player
-
+      if (!tags.tracks) return null;
       var initialTrack = this.props.tracks[tags.tracks[0]];
       var displayedArt;
+      debugger;
 
       if (!this.state.currentTrackId) {
         displayedArt = this.props.albums[this.props.tracks[tags.tracks[0]].albumId].albumArt;
@@ -2048,38 +2051,14 @@ var DiscoverPlayer = /*#__PURE__*/function (_React$Component) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "discover-track-card",
           key: id
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "cover-art-container"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-          className: "cover-art",
-          src: album.albumArt ? album.albumArt : window.albumcover3,
-          alt: "play ".concat(track.title)
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(TrackCard, {
+          track: track,
+          artist: artist,
+          album: album,
+          tags: tags,
           id: id,
-          className: "play-button",
-          onClick: _this2.handlePlayTrack
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          id: id,
-          className: "play-button-overlay"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-          id: id,
-          className: "play-button-symbol",
-          src: window.playSolid
-        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "track-info"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "title"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-          to: "/artist/".concat(album.artistId, "/album/").concat(album.id),
-          className: "card-link title"
-        }, track.title)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "artist"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-          to: "/artist/".concat(artist.id),
-          className: "card-link artist"
-        }, artist.artist)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "card-tag"
-        }, tags.currentTag)));
+          handlePlayTrack: _this2.handlePlayTrack
+        }));
       });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "showcase"
@@ -2108,6 +2087,47 @@ var DiscoverPlayer = /*#__PURE__*/function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (DiscoverPlayer);
+
+var TrackCard = function TrackCard(_ref) {
+  var track = _ref.track,
+      album = _ref.album,
+      artist = _ref.artist,
+      tags = _ref.tags,
+      id = _ref.id,
+      handlePlayTrack = _ref.handlePlayTrack;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "cover-art-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    className: "cover-art",
+    src: album.albumArt ? album.albumArt : window.albumcover3,
+    alt: "play ".concat(track.title)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: id,
+    className: "play-button",
+    onClick: handlePlayTrack
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: id,
+    className: "play-button-overlay"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    id: id,
+    className: "play-button-symbol",
+    src: window.playSolid
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "track-info"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "title"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/artist/".concat(album.artistId, "/album/").concat(album.id),
+    className: "card-link title"
+  }, track.title)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "artist"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/artist/".concat(artist.id),
+    className: "card-link artist"
+  }, artist.artist)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "card-tag"
+  }, tags.currentTag)));
+};
 
 /***/ }),
 
@@ -4037,199 +4057,6 @@ var mDTP = function mDTP(dispatch) {
 
 /***/ }),
 
-/***/ "./frontend/components/splash/album_carousel.jsx":
-/*!*******************************************************!*\
-  !*** ./frontend/components/splash/album_carousel.jsx ***!
-  \*******************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-
-
-
-var AlbumCarousel = /*#__PURE__*/function (_React$Component) {
-  _inherits(AlbumCarousel, _React$Component);
-
-  var _super = _createSuper(AlbumCarousel);
-
-  function AlbumCarousel() {
-    _classCallCheck(this, AlbumCarousel);
-
-    return _super.apply(this, arguments);
-  }
-
-  _createClass(AlbumCarousel, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.props.fetchArtists();
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var artistsArray = this.props.artists.map(function (artist) {
-        // let i = Math.floor(Math.random() * 16);
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-          className: "album-card splash",
-          key: artist.id
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-          to: "/artist/".concat(artist.id)
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-          src: artist.artistImage,
-          alt: artist.artist
-        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "album-title"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Artist")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "band-name"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, artist.artist)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "band-name"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "in \uD83C\uDDFA\uD83C\uDDF8 ", artist.location))));
-      }); // if !this.props.
-
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "album-carousel-outer"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "album-carousel"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, artistsArray.slice(0, 8))));
-    }
-  }]);
-
-  return AlbumCarousel;
-}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
-
-/* harmony default export */ __webpack_exports__["default"] = (AlbumCarousel); // const AlbumCarousel = () => {
-//   const album5 = (
-//     <li className="album-card splash" key="5">
-//       <div>
-//         <img src={window.albumcover5} alt="muzac" />
-//       </div>
-//       <div className="album-title">
-//         <span>Best Album Ever</span>
-//       </div>
-//       <div className="band-name">
-//         <span>Best Band Ever</span>
-//       </div>
-//     </li>
-//   );
-//   const album2 = (
-//     <li className="album-card splash" key="2">
-//       <div>
-//         <img src={window.albumcover2} alt="muzac" />
-//       </div>
-//       <div className="album-title">
-//         <span>Best Album Ever</span>
-//       </div>
-//       <div className="band-name">
-//         <span>Best Band Ever</span>
-//       </div>
-//     </li>
-//   );
-//   const album3 = (
-//     <li className="album-card splash" key="3">
-//       <div>
-//         <img src={window.albumcover3} alt="muzac" />
-//       </div>
-//       <div className="album-title">
-//         <span>Best Album Ever</span>
-//       </div>
-//       <div className="band-name">
-//         <span>Best Band Ever</span>
-//       </div>
-//     </li>
-//   );
-//   const album4 = (
-//     <li className="album-card splash" key="4">
-//       <div>
-//         <img src={window.albumcover4} alt="muzac" />
-//       </div>
-//       <div className="album-title">
-//         <span>Best Album Ever</span>
-//       </div>
-//       <div className="band-name">
-//         <span>Best Band Ever</span>
-//       </div>
-//     </li>
-//   );
-//   return (
-//     <div className="album-carousel-outer">
-//       <div className="album-carousel">
-//         <ul>
-//           {album1}
-//           {album2}
-//           {album3}
-//           {album4}
-//           {album5}
-//           {album2}
-//           {album3}
-//           {album4}
-//         </ul>
-//       </div>
-//     </div>
-//   );
-// };
-
-/***/ }),
-
-/***/ "./frontend/components/splash/album_carousel_container.js":
-/*!****************************************************************!*\
-  !*** ./frontend/components/splash/album_carousel_container.js ***!
-  \****************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _album_carousel__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./album_carousel */ "./frontend/components/splash/album_carousel.jsx");
-/* harmony import */ var _actions_artist_show_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/artist_show_actions */ "./frontend/actions/artist_show_actions.js");
-
-
-
-
-var mSTP = function mSTP(state) {
-  return {
-    artists: Object.values(state.entities.artists)
-  };
-};
-
-var mDTP = function mDTP(dispatch) {
-  return {
-    fetchArtists: function fetchArtists() {
-      return dispatch(Object(_actions_artist_show_actions__WEBPACK_IMPORTED_MODULE_2__["fetchArtists"])());
-    }
-  };
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_album_carousel__WEBPACK_IMPORTED_MODULE_1__["default"]));
-
-/***/ }),
-
 /***/ "./frontend/components/splash/dot_sales.jsx":
 /*!**************************************************!*\
   !*** ./frontend/components/splash/dot_sales.jsx ***!
@@ -4241,6 +4068,7 @@ var mDTP = function mDTP(dispatch) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+// colorful dot spacers and sales blurb for the Splash page.
 
 
 var DotSales = function DotSales() {
@@ -4256,7 +4084,7 @@ var DotSales = function DotSales() {
     className: "dot-sales splash"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, dotLeft, dotLeft, dotLeft, dotLeft, dotLeft), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "sales"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Fans have paid more than ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "1 billion"), " using Bandlamp, and ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "$10"), " of that in last 72 hours alone!")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, dotRight, dotRight, dotRight, dotRight, dotRight)));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Fans have paid more than ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "$10 million"), " using Bandlamp, and ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "$20 thousand"), " of that in last 72 hours alone!")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, dotRight, dotRight, dotRight, dotRight, dotRight)));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (DotSales);
@@ -4276,7 +4104,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 
-
+ // <Features> component renders the grid images on the splash page.
 
 var Features = function Features() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -4322,6 +4150,138 @@ var Features = function Features() {
 
 /***/ }),
 
+/***/ "./frontend/components/splash/splash_carousel.jsx":
+/*!********************************************************!*\
+  !*** ./frontend/components/splash/splash_carousel.jsx ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+// <SplashCarousel> displays the 8 artist cards with links to their albums and some infor about them, including location.
+//  <ArtistCard>: function to build content of each artist card.
+
+
+
+var SplashCarousel = /*#__PURE__*/function (_React$Component) {
+  _inherits(SplashCarousel, _React$Component);
+
+  var _super = _createSuper(SplashCarousel);
+
+  function SplashCarousel() {
+    _classCallCheck(this, SplashCarousel);
+
+    return _super.apply(this, arguments);
+  }
+
+  _createClass(SplashCarousel, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.fetchArtists();
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var artistsArray = this.props.artists.map(function (artist) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          className: "album-card splash",
+          key: artist.id
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ArtistCard, {
+          artist: artist
+        }));
+      });
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "album-carousel-outer"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "album-carousel"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, artistsArray.slice(0, 8))));
+    }
+  }]);
+
+  return SplashCarousel;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (SplashCarousel);
+
+var ArtistCard = function ArtistCard(_ref) {
+  var artist = _ref.artist;
+  debugger;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/artist/".concat(artist.id)
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: artist.artistImage,
+    alt: artist.artist
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "album-title"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Artist")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "band-name"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, artist.artist)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "band-name"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "in \uD83C\uDDFA\uD83C\uDDF8 ", artist.location)));
+};
+
+/***/ }),
+
+/***/ "./frontend/components/splash/splash_carousel_container.js":
+/*!*****************************************************************!*\
+  !*** ./frontend/components/splash/splash_carousel_container.js ***!
+  \*****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _splash_carousel__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./splash_carousel */ "./frontend/components/splash/splash_carousel.jsx");
+/* harmony import */ var _actions_artist_show_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/artist_show_actions */ "./frontend/actions/artist_show_actions.js");
+
+
+
+
+var mSTP = function mSTP(state) {
+  return {
+    artists: Object.values(state.entities.artists)
+  };
+};
+
+var mDTP = function mDTP(dispatch) {
+  return {
+    fetchArtists: function fetchArtists() {
+      return dispatch(Object(_actions_artist_show_actions__WEBPACK_IMPORTED_MODULE_2__["fetchArtists"])());
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_splash_carousel__WEBPACK_IMPORTED_MODULE_1__["default"]));
+
+/***/ }),
+
 /***/ "./frontend/components/splash/splash_component.jsx":
 /*!*********************************************************!*\
   !*** ./frontend/components/splash/splash_component.jsx ***!
@@ -4336,9 +4296,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _session_login_form_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../session/login_form_container */ "./frontend/components/session/login_form_container.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _features_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./features_component */ "./frontend/components/splash/features_component.jsx");
-/* harmony import */ var _album_carousel_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./album_carousel_container */ "./frontend/components/splash/album_carousel_container.js");
+/* harmony import */ var _splash_carousel_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./splash_carousel_container */ "./frontend/components/splash/splash_carousel_container.js");
 /* harmony import */ var _dot_sales_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./dot_sales.jsx */ "./frontend/components/splash/dot_sales.jsx");
 /* harmony import */ var _discover_discover_container__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../discover/discover_container */ "./frontend/components/discover/discover_container.js");
+// Splash Page that renders components, features, DotSales, SplashCarousel, Discover
 
 
 
@@ -4347,11 +4308,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var splash = function splash(props) {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_features_component__WEBPACK_IMPORTED_MODULE_3__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_dot_sales_jsx__WEBPACK_IMPORTED_MODULE_5__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_album_carousel_container__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_discover_discover_container__WEBPACK_IMPORTED_MODULE_6__["default"], null));
+var Splash = function Splash(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_features_component__WEBPACK_IMPORTED_MODULE_3__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_dot_sales_jsx__WEBPACK_IMPORTED_MODULE_5__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_splash_carousel_container__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_discover_discover_container__WEBPACK_IMPORTED_MODULE_6__["default"], null));
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (splash);
+/* harmony default export */ __webpack_exports__["default"] = (Splash);
 
 /***/ }),
 
